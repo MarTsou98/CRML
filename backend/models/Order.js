@@ -144,3 +144,5 @@ orderSchema.pre('save',  function (next) {// calculate tax and profit before sav
   this.moneyDetails.FPA = tax;
   next();
 });
+
+module.exports = mongoose.model('Order', orderSchema);
