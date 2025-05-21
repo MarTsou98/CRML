@@ -62,20 +62,20 @@ const orderSchema = new mongoose.Schema({
       notes: { type: String } // optional
     }
   ],
-  damages: [
+         damages: [
     {
       amount: { type: Number },
       date: { type: Date, default: Date.now },
       notes: { type: String } // optional
     }
   ],
-  totalpaid: {
+         totalpaid: {
     type: Number
   },
-    totaldamages: {
+     totaldamages: {
         type: Number
     },
-  discounts: [
+         discounts: [
     {
       amount: { type: Number },
       date: { type: Date, default: Date.now },
