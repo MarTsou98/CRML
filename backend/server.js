@@ -26,5 +26,9 @@ app.use('/api', authRoutes);
 const ordersRoutes = require('./routes/orderRoutes');
 app.use('/api', ordersRoutes);
 
+const customerRoutes = require('./routes/customerRoutes'); // adjust path as needed
+
+app.use('/api', customerRoutes);
+
 // Start server
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

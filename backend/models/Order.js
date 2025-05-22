@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Salesperson = require('./Salesperson');
 const Contractor = require('./Contractor');
 const Customer = require('./Customer');
+
 const orderSchema = new mongoose.Schema({
     Lock: { type: Boolean, default: false },
     invoiceType: {
@@ -144,5 +145,37 @@ orderSchema.pre('save',  function (next) {// calculate tax and profit before sav
   this.moneyDetails.FPA = tax;
   next();
 });
+
+orderSchema.pre('save', async function (next) {
+  try {
+    if (this.isNew) {
+      // Update customer orders if customer_id present
+      if (this.customer_id) {
+        await Customer.findByIdAndUpdate(
+          this.customer_id,
+          { $addToSet: { orders: this._id } }
+        );
+      }
+      // Update contractor orders if contractor_id present
+      if (this.contractor_id) {
+        await Contractor.findByIdAndUpdate(
+          this.contractor_id,
+          { $addToSet: { orders: this._id } }
+        );
+      }
+      // Update salesperson orders if salesperson_id present
+      if (this.salesperson_id) {
+        await Salesperson.findByIdAndUpdate(
+          this.salesperson_id,
+          { $addToSet: { orders: this._id } }
+        );
+      }
+    }
+    next(); // proceed with saving
+  } catch (error) {
+    next(error); // pass error to Mongoose middleware
+  }
+});
+
 
 module.exports = mongoose.model('Order', orderSchema);
