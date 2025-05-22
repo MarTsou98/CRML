@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 dotenv.config();
 
-const seedManagers = require('./managerSeed');
-const seedSalespeople = require('./salespersonSeed');
-const seedContractors = require('./contractorSeed');
-const seedCustomers = require('./customerSeed');
-const seedOrders = require('./orderSeed');
+const seedManagers = require('./seeds/managerSeed');
+const seedSalespeople = require('./seeds/salespersonSeed');
+const seedContractors = require('./seeds/contractorSeed');
+const seedCustomers = require('./seeds/customerSeed');
+const seedOrders = require('./seeds/orderSeed');
 
 async function seedAll() {
   try {
