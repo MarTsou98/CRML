@@ -2,92 +2,66 @@ const mongoose = require('mongoose');
 const Salesperson = require('./Salesperson');
 const Contractor = require('./Contractor');
 const Customer = require('./Customer');
-
 const orderSchema = new mongoose.Schema({
-    Lock: { type: Boolean, default: false },
-    invoiceType: {
-        type: String,
-        enum: ['Timologio', 'Apodiksi'],  // Allowed values only
-        //default: 'simple',            // Default if not specified
-        required: true
-    },
-    customer_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Customer'
-    },
-    salesperson_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Salesperson'
-    },
-    contractor_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Contractor'
-    },
-    moneyDetails: {
-        timi_Timokatalogou: {
-            type: Number,
-            required: true
-        },
-        timi_Polisis:{
-            type: Number,
-            required: true
-        },
-        cash:{
-            type: Number,
-            required: true
-        },
-        bank:{
-            type: Number,
-            required: true
-        },
-        contractor_Share_Cash:{
-            type: Number
-        },
-        contractor_Share_Bank:{
-            type: Number
-        },
-        customer_Share_Cash:{
-            type: Number
-        },
-        customer_Share_Bank:{
-            type: Number
-        },
-        FPA:{
-            type: Number,
-        },
-         payments: [
-    {
-      amount: { type: Number },
-      date: { type: Date, default: Date.now },
-      method: { type: String, enum: ['Cash', 'Bank'], required: true },
-      notes: { type: String } // optional
-    }
-  ],
-         damages: [
-    {
-      amount: { type: Number },
-      date: { type: Date, default: Date.now },
-      notes: { type: String } // optional
-    }
-  ],
-         totalpaid: {
-    type: Number
+  Lock: { type: Boolean, default: false },
+  invoiceType: {
+    type: String,
+    enum: ['Timologio', 'Apodiksi'],
+    required: true
   },
-     totaldamages: {
-        type: Number
-    },
-         discounts: [
-    {
-      amount: { type: Number },
-      date: { type: Date, default: Date.now },
-      notes: { type: String } // optional
-    }
-  ],
-  profit: {
-    type: Number
+  customer_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Customer'
+  },
+  salesperson_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Salesperson'
+  },
+  contractor_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Contractor'
+  },
+  moneyDetails: {
+    timi_Timokatalogou: { type: Number, required: true },
+    timi_Polisis: { type: Number, required: true },
+    cash: { type: Number, required: true },
+    bank: { type: Number, required: true },
+    contractor_Share_Cash: { type: Number },
+    contractor_Share_Bank: { type: Number },
+    customer_Share_Cash: { type: Number },
+    customer_Share_Bank: { type: Number },
+    FPA: { type: Number },
+    payments: [
+      {
+        amount: { type: Number },
+        date: { type: Date, default: Date.now },
+        method: { type: String, enum: ['Cash', 'Bank'], required: true },
+        notes: { type: String }
+      }
+    ],
+    damages: [
+      {
+        amount: { type: Number },
+        date: { type: Date, default: Date.now },
+        notes: { type: String }
+      }
+    ],
+    totalpaid: { type: Number },
+    totaldamages: { type: Number },
+    discounts: [
+      {
+        amount: { type: Number },
+        date: { type: Date, default: Date.now },
+        notes: { type: String }
+      }
+    ],
+    profit: { type: Number },
+    totalCash: { type: Number },
+    totalBank: { type: Number },
+    Notes: { type: String }
   }
-    }
-    },  { timestamps: true }); // Adds createdAt and updatedAt fields   
+}, { timestamps: true });
+
 
 
 
@@ -176,6 +150,31 @@ orderSchema.pre('save', async function (next) {
     next(error); // pass error to Mongoose middleware
   }
 });
+orderSchema.pre('save', async function (next) {
+  try {
+    if (this.isNew) {
+      // Update customer orders if contractor_is present
+      if (this.contractor_id) {
+        await Contractor.findByIdAndUpdate(
+          this.customer_id,
+          { $addToSet: { orders: this._id } }
+        );
+      }
+    
+      // Update salesperson orders if salesperson_id present
+      if (this.salesperson_id) {
+        await Salesperson.findByIdAndUpdate(
+          this.salesperson_id,
+          { $addToSet: { orders: this._id } }
+        );
+      }
+    }
+    next(); // proceed with saving
+  } catch (error) {
+    next(error); // pass error to Mongoose middleware
+  }
+});
+
 
 
 module.exports = mongoose.model('Order', orderSchema);

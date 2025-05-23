@@ -14,31 +14,54 @@ async function seedUsers() {
     await Salesperson.deleteMany({}); // Optional, if reseeding
 
     // Create a salesperson
-    const salesperson = await Salesperson.create({
-      firstName: 'Ronaldo',
-      lastName: 'Nazário',
+    const salesperson1 = await Salesperson.create({
+      firstName: 'Θαίη',
+      lastName: 'Αλεξίου',
+      Role: 'Salesperson',
+    });
+    const salesperson2 = await Salesperson.create({
+      firstName: 'Σοφία',
+      lastName: 'Λιόλου',
+      Role: 'Salesperson',
+    });
+    const salesperson3 = await Salesperson.create({
+      firstName: 'Βασιλική',
+      lastName: 'Μάλλα',
       Role: 'Salesperson',
     });
     const manager = await Manager.create({
-      firstName: 'Zinedine',
-      lastName: 'Zidane',
+      firstName: 'Τηλέμαχος',
+      lastName: 'Τσουρέλας',
       Role: 'Manager',
     });
     // Create users
     const users = await User.insertMany([
       {
-        username: 'zidane',
+        username: 'Tilemaxos',
         role: 'manager',
         password: '',
         manager_id: manager._id
       },
       {
-        username: 'ronaldo',
+        username: 'Thei',
         role: 'salesperson',
         password: '',
-        salesperson_id: salesperson._id
+        salesperson_id: salesperson1._id
+      },
+       {
+        username: 'Sofia',
+        role: 'salesperson',
+        password: '',
+        salesperson_id: salesperson2._id
+      },
+       {
+        username: 'Vasiliki',
+        role: 'salesperson',
+        password: '',
+        salesperson_id: salesperson3._id
       }
     ]);
+    
 
     console.log('Users and Salesperson seeded:', users);
     process.exit();

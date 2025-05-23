@@ -3,10 +3,10 @@ const Salesperson = require('../../models/Salesperson');
 const Contractor = require('../../models/Contractor');
 
 const customerData = [
-  { firstName: 'Paolo', lastName: 'Maldini' },
-  { firstName: 'Andres', lastName: 'Iniesta' },
-  { firstName: 'Xavi', lastName: 'Hernandez' },
-  { firstName: 'Roberto', lastName: 'Baggio' }
+  { firstName: 'Απόστολος', lastName: 'Πελάτης1' },
+  { firstName: 'Νίκος', lastName: 'Λουτράκης' },
+  { firstName: 'Κυριάκος', lastName: 'Κυριακίδης' },
+  { firstName: 'Ανέστης', lastName: 'Καλύβας' }
 ];
 
 module.exports = async function seedCustomers() {

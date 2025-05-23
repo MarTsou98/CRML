@@ -1,9 +1,9 @@
 // utils/seeds/salespersonSeed.js
 const Salesperson = require('../../models/Salesperson');
 const footballers = [
-  { firstName: 'Diego', lastName: 'Maradona' },
-  { firstName: 'Zinedine', lastName: 'Zidane' },
-  { firstName: 'Ronaldinho', lastName: 'Gaúcho' },
+  { firstName: 'Θαίη', lastName: 'Αλεξίου' },
+  { firstName: 'Σοφία', lastName: 'Λιόλου' },
+  { firstName: 'Βασιλική', lastName: 'Μάλλα' },
 ];
 module.exports = async function seedSalespeople() {
   await Salesperson.deleteMany({});

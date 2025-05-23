@@ -1,0 +1,139 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "CRML",
+    "collectionId": "c65a1dcd-ebc9-48af-ac12-56513d89648b",
+    "dateExported": "2025-05-23T08:41:13.263Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "a9c72204-0010-4e1e-afc1-3d58103538ce",
+            "colId": "c65a1dcd-ebc9-48af-ac12-56513d89648b",
+            "containerId": "",
+            "name": "NewOrder",
+            "url": "http://localhost:5000/api/orders/newOrder",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2025-05-23T06:35:16.786Z",
+            "modified": "2025-05-23T08:02:51.674Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"invoiceType\": \"Timologio\",\n  \"customer_id\": \"683015c196e366ac7d14c031\",\n  \"salesperson_id\": \"683015c196e366ac7d14c020\",\n  \"contractor_id\": \"68302b817462939fd2be1aed\",\n  \"moneyDetails\": {\n    \"timi_Timokatalogou\": 15000,\n    \"timi_Polisis\": 19999,\n    \"cash\": 20000,\n    \"bank\": 5000,\n    \"payments\": [\n     \n    ],\n    \"damages\": [\n      { \"amount\": 150, \"notes\": \"Minor scratch\" }\n    ]\n    \n  }\n}\n",
+                "form": []
+            }
+        },
+        {
+            "_id": "27a6ab76-ee83-4520-b1b7-61b0ff046b4e",
+            "colId": "c65a1dcd-ebc9-48af-ac12-56513d89648b",
+            "containerId": "",
+            "name": "GetOrderById",
+            "url": "http://localhost:5000/api/orders/683015c196e366ac7d14c03b",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2025-05-23T07:28:31.058Z",
+            "modified": "2025-05-23T08:38:46.474Z",
+            "headers": []
+        },
+        {
+            "_id": "14472cb4-c331-4f44-86d8-dd0d16da12ad",
+            "colId": "c65a1dcd-ebc9-48af-ac12-56513d89648b",
+            "containerId": "",
+            "name": "GetAllOrders",
+            "url": "http://localhost:5000/api/orders/",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2025-05-23T07:30:50.082Z",
+            "modified": "2025-05-23T07:31:01.268Z",
+            "headers": []
+        },
+        {
+            "_id": "59409e34-053e-428f-ace1-42ac90ddcfb4",
+            "colId": "c65a1dcd-ebc9-48af-ac12-56513d89648b",
+            "containerId": "",
+            "name": "GetOrdersBySalespersonId",
+            "url": "http://localhost:5000/api/orders/salesperson/683015c196e366ac7d14c020",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2025-05-23T07:34:01.886Z",
+            "modified": "2025-05-23T07:34:34.740Z",
+            "headers": []
+        },
+        {
+            "_id": "ba191332-9fd5-4050-a385-34408bd0973e",
+            "colId": "c65a1dcd-ebc9-48af-ac12-56513d89648b",
+            "containerId": "",
+            "name": "CreateAnewCustomer",
+            "url": "http://localhost:5000/api/customers/newCustomer",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2025-05-23T07:37:52.886Z",
+            "modified": "2025-05-23T08:37:33.385Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"firstName\": \"Jane\",\n  \"lastName\": \"Doe\",\n  \"email\": \"dddd.doe@example.com\",\n  \"phone\": \"123-456-7890\",\n  \"address\": \"123 Main St, Springfield\",\n  \"id_of_salesperson\": \"683015c196e366ac7d14c021\",\n  \"id_of_contractor\": \"683015c196e366ac7d14c026\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "46cf9de0-af29-4f76-a7e2-fdfb1349c5d8",
+            "colId": "c65a1dcd-ebc9-48af-ac12-56513d89648b",
+            "containerId": "",
+            "name": "GetOrdersByContractor",
+            "url": "http://localhost:5000/api/orders/contractor/683015c196e366ac7d14c028",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2025-05-23T07:47:39.825Z",
+            "modified": "2025-05-23T07:51:44.926Z",
+            "headers": []
+        },
+        {
+            "_id": "2ab612ed-3e4f-46fd-a1c0-03f58b8ccde1",
+            "colId": "c65a1dcd-ebc9-48af-ac12-56513d89648b",
+            "containerId": "",
+            "name": "CreateNewContractor",
+            "url": "http://localhost:5000/api/contractors",
+            "method": "POST",
+            "sortNum": 80000,
+            "created": "2025-05-23T07:59:17.920Z",
+            "modified": "2025-05-23T08:02:09.271Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Smith\",\n  \"Role\": \"Installer\",\n  \"salesperson_id\": \"665000123abc456789def012\",\n  \"customers\": [],\n  \"orders\": []\n}\n",
+                "form": []
+            }
+        },
+        {
+            "_id": "eb63969b-d02a-4505-bb75-078d44ffce5e",
+            "colId": "c65a1dcd-ebc9-48af-ac12-56513d89648b",
+            "containerId": "",
+            "name": "SearchCustomerByName",
+            "url": "http://localhost:5000/api/customers/search?name=Αν",
+            "method": "GET",
+            "sortNum": 100000,
+            "created": "2025-05-23T08:11:03.631Z",
+            "modified": "2025-05-23T08:28:02.906Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "name",
+                    "value": "Αν",
+                    "isPath": false
+                }
+            ],
+            "preReq": {
+                "options": {
+                    "skipRequest": true
+                }
+            }
+        }
+    ],
+    "ref": "ueD38OzzrQMx8yuzfoFLHm9pGFInSg4wSSNl3ZrxoZoEqeU0LRkqIy-j371On7am35eogTzxAfOV9Y-8twIbNA"
+}

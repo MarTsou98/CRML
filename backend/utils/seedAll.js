@@ -18,7 +18,7 @@ async function seedAll() {
     await seedSalespeople();
     await seedContractors();
     await seedCustomers();
-    await seedOrders();
+   // await seedOrders();
 
     console.log('All seeds done!');
     mongoose.disconnect();

@@ -3,11 +3,10 @@ const Contractor = require('../../models/Contractor');
 const Salesperson = require('../../models/Salesperson');
 
 const contractorsData = [
-  { firstName: 'Zinedine', lastName: 'Zidane', role: 'Contractor' },
-  { firstName: 'Ronaldinho', lastName: 'Gaucho', role: 'Contractor' },
-  { firstName: 'Marco', lastName: 'Van Basten', role: 'Contractor' },
-  { firstName: 'Rivaldo', lastName: 'Vítor', role: 'Contractor' },
-  { firstName: 'George', lastName: 'Weah', role: 'Contractor' }
+  { firstName: 'Giannis', lastName: 'Papadopoulos', role: 'Contractor' },
+  { firstName: 'Χρήστος', lastName: 'Αλεξίου', role: 'Contractor' },
+  { firstName: 'Νίκος', lastName: 'Παπαζογλου', role: 'Contractor' },
+ 
 ];
 
 async function seedContractors() {
