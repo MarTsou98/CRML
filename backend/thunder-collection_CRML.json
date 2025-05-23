@@ -2,7 +2,7 @@
     "clientName": "Thunder Client",
     "collectionName": "CRML",
     "collectionId": "c65a1dcd-ebc9-48af-ac12-56513d89648b",
-    "dateExported": "2025-05-23T08:41:13.263Z",
+    "dateExported": "2025-05-23T10:36:25.919Z",
     "version": "1.2",
     "folders": [],
     "requests": [
@@ -15,7 +15,7 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2025-05-23T06:35:16.786Z",
-            "modified": "2025-05-23T08:02:51.674Z",
+            "modified": "2025-05-23T09:08:53.468Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -24,44 +24,20 @@
             ],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"invoiceType\": \"Timologio\",\n  \"customer_id\": \"683015c196e366ac7d14c031\",\n  \"salesperson_id\": \"683015c196e366ac7d14c020\",\n  \"contractor_id\": \"68302b817462939fd2be1aed\",\n  \"moneyDetails\": {\n    \"timi_Timokatalogou\": 15000,\n    \"timi_Polisis\": 19999,\n    \"cash\": 20000,\n    \"bank\": 5000,\n    \"payments\": [\n     \n    ],\n    \"damages\": [\n      { \"amount\": 150, \"notes\": \"Minor scratch\" }\n    ]\n    \n  }\n}\n",
+                "raw": "{\n  \"invoiceType\": \"Timologio\",\n  \"customer_id\": \"683015c196e366ac7d14c02f\",\n  \"salesperson_id\": \"683015c196e366ac7d14c020\",\n  \"contractor_id\": \"68302b817462939fd2be1aed\",\n  \"moneyDetails\": {\n    \"timi_Timokatalogou\": 15000,\n    \"timi_Polisis\": 19999,\n    \"cash\": 20000,\n    \"bank\": 5000,\n    \"payments\": [\n     \n    ],\n    \"damages\": [\n      { \"amount\": 150, \"notes\": \"Minor scratch\" }\n    ]\n    \n  }\n}\n",
                 "form": []
             }
         },
         {
-            "_id": "27a6ab76-ee83-4520-b1b7-61b0ff046b4e",
+            "_id": "cd4641c0-c6dc-4817-a171-db4994cadad4",
             "colId": "c65a1dcd-ebc9-48af-ac12-56513d89648b",
             "containerId": "",
-            "name": "GetOrderById",
-            "url": "http://localhost:5000/api/orders/683015c196e366ac7d14c03b",
+            "name": "GetAllSalespeople",
+            "url": "http://localhost:5000/api/salespeople/all",
             "method": "GET",
-            "sortNum": 20000,
-            "created": "2025-05-23T07:28:31.058Z",
-            "modified": "2025-05-23T08:38:46.474Z",
-            "headers": []
-        },
-        {
-            "_id": "14472cb4-c331-4f44-86d8-dd0d16da12ad",
-            "colId": "c65a1dcd-ebc9-48af-ac12-56513d89648b",
-            "containerId": "",
-            "name": "GetAllOrders",
-            "url": "http://localhost:5000/api/orders/",
-            "method": "GET",
-            "sortNum": 30000,
-            "created": "2025-05-23T07:30:50.082Z",
-            "modified": "2025-05-23T07:31:01.268Z",
-            "headers": []
-        },
-        {
-            "_id": "59409e34-053e-428f-ace1-42ac90ddcfb4",
-            "colId": "c65a1dcd-ebc9-48af-ac12-56513d89648b",
-            "containerId": "",
-            "name": "GetOrdersBySalespersonId",
-            "url": "http://localhost:5000/api/orders/salesperson/683015c196e366ac7d14c020",
-            "method": "GET",
-            "sortNum": 50000,
-            "created": "2025-05-23T07:34:01.886Z",
-            "modified": "2025-05-23T07:34:34.740Z",
+            "sortNum": 35000,
+            "created": "2025-05-23T10:26:59.402Z",
+            "modified": "2025-05-23T10:27:46.132Z",
             "headers": []
         },
         {
@@ -82,18 +58,6 @@
             }
         },
         {
-            "_id": "46cf9de0-af29-4f76-a7e2-fdfb1349c5d8",
-            "colId": "c65a1dcd-ebc9-48af-ac12-56513d89648b",
-            "containerId": "",
-            "name": "GetOrdersByContractor",
-            "url": "http://localhost:5000/api/orders/contractor/683015c196e366ac7d14c028",
-            "method": "GET",
-            "sortNum": 70000,
-            "created": "2025-05-23T07:47:39.825Z",
-            "modified": "2025-05-23T07:51:44.926Z",
-            "headers": []
-        },
-        {
             "_id": "2ab612ed-3e4f-46fd-a1c0-03f58b8ccde1",
             "colId": "c65a1dcd-ebc9-48af-ac12-56513d89648b",
             "containerId": "",
@@ -109,6 +73,71 @@
                 "raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Smith\",\n  \"Role\": \"Installer\",\n  \"salesperson_id\": \"665000123abc456789def012\",\n  \"customers\": [],\n  \"orders\": []\n}\n",
                 "form": []
             }
+        },
+        {
+            "_id": "b60faf9e-bc11-4986-a047-8cc4dc2bdf6a",
+            "colId": "c65a1dcd-ebc9-48af-ac12-56513d89648b",
+            "containerId": "",
+            "name": "SetNewPaymentById",
+            "url": "http://localhost:5000/api/orders/683015c196e366ac7d14c040/addpayment",
+            "method": "POST",
+            "sortNum": 90000,
+            "created": "2025-05-23T08:50:14.140Z",
+            "modified": "2025-05-23T08:53:35.927Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n  \"amount\": 200,\r\n  \"method\": \"Bank\",\r\n  \"notes\": \"Second installment\"\r\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "dde56019-dc7d-490f-ac48-87e020843792",
+            "colId": "c65a1dcd-ebc9-48af-ac12-56513d89648b",
+            "containerId": "",
+            "name": "SetnewDamageById",
+            "url": "",
+            "method": "GET",
+            "sortNum": 90625,
+            "created": "2025-05-23T08:55:28.397Z",
+            "modified": "2025-05-23T08:55:28.397Z",
+            "headers": []
+        },
+        {
+            "_id": "27a6ab76-ee83-4520-b1b7-61b0ff046b4e",
+            "colId": "c65a1dcd-ebc9-48af-ac12-56513d89648b",
+            "containerId": "",
+            "name": "GetOrderById",
+            "url": "http://localhost:5000/api/orders/683015c196e366ac7d14c03b",
+            "method": "GET",
+            "sortNum": 91250,
+            "created": "2025-05-23T07:28:31.058Z",
+            "modified": "2025-05-23T08:38:46.474Z",
+            "headers": []
+        },
+        {
+            "_id": "59409e34-053e-428f-ace1-42ac90ddcfb4",
+            "colId": "c65a1dcd-ebc9-48af-ac12-56513d89648b",
+            "containerId": "",
+            "name": "GetOrdersBySalespersonId",
+            "url": "http://localhost:5000/api/orders/salesperson/683015c196e366ac7d14c020",
+            "method": "GET",
+            "sortNum": 92500,
+            "created": "2025-05-23T07:34:01.886Z",
+            "modified": "2025-05-23T07:34:34.740Z",
+            "headers": []
+        },
+        {
+            "_id": "46cf9de0-af29-4f76-a7e2-fdfb1349c5d8",
+            "colId": "c65a1dcd-ebc9-48af-ac12-56513d89648b",
+            "containerId": "",
+            "name": "GetOrdersByContractor",
+            "url": "http://localhost:5000/api/orders/contractor/683015c196e366ac7d14c028",
+            "method": "GET",
+            "sortNum": 95000,
+            "created": "2025-05-23T07:47:39.825Z",
+            "modified": "2025-05-23T07:51:44.926Z",
+            "headers": []
         },
         {
             "_id": "eb63969b-d02a-4505-bb75-078d44ffce5e",
@@ -133,7 +162,55 @@
                     "skipRequest": true
                 }
             }
+        },
+        {
+            "_id": "14472cb4-c331-4f44-86d8-dd0d16da12ad",
+            "colId": "c65a1dcd-ebc9-48af-ac12-56513d89648b",
+            "containerId": "",
+            "name": "GetAllOrders",
+            "url": "http://localhost:5000/api/orders/",
+            "method": "GET",
+            "sortNum": 105000,
+            "created": "2025-05-23T07:30:50.082Z",
+            "modified": "2025-05-23T07:31:01.268Z",
+            "headers": []
+        },
+        {
+            "_id": "5ee4b013-7780-4a44-80b8-e793741b4562",
+            "colId": "c65a1dcd-ebc9-48af-ac12-56513d89648b",
+            "containerId": "",
+            "name": "GetOrdersByCustomer",
+            "url": "http://localhost:5000/api/orders/customer/683015c196e366ac7d14c02f",
+            "method": "GET",
+            "sortNum": 120000,
+            "created": "2025-05-23T09:05:17.065Z",
+            "modified": "2025-05-23T09:09:34.062Z",
+            "headers": []
+        },
+        {
+            "_id": "b9a47b44-b52c-4cbc-b615-4c55f078575e",
+            "colId": "c65a1dcd-ebc9-48af-ac12-56513d89648b",
+            "containerId": "",
+            "name": "GetAllCustomers",
+            "url": "http://localhost:5000/api/customers/all",
+            "method": "GET",
+            "sortNum": 130000,
+            "created": "2025-05-23T09:40:12.297Z",
+            "modified": "2025-05-23T09:42:41.517Z",
+            "headers": []
+        },
+        {
+            "_id": "0f877ed8-6f1d-4a1b-86e0-f52bbbcc366a",
+            "colId": "c65a1dcd-ebc9-48af-ac12-56513d89648b",
+            "containerId": "",
+            "name": "GetAllContractors",
+            "url": "http://localhost:5000/api/contractors/all",
+            "method": "GET",
+            "sortNum": 140000,
+            "created": "2025-05-23T09:44:41.561Z",
+            "modified": "2025-05-23T09:44:50.756Z",
+            "headers": []
         }
     ],
-    "ref": "ueD38OzzrQMx8yuzfoFLHm9pGFInSg4wSSNl3ZrxoZoEqeU0LRkqIy-j371On7am35eogTzxAfOV9Y-8twIbNA"
+    "ref": "ueD38OzzrQMx8yuzfoFLHvS59KlkHgoRO3q-cazoghLSxtmg3IVqdTV9J-sbFspqkYl-JsN2P__v-kWrfCpAMA"
 }

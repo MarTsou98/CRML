@@ -31,6 +31,8 @@ const customerRoutes = require('./routes/customerRoutes'); // adjust path as nee
 app.use('/api', customerRoutes);
 const contractorRoutes = require('./routes/contractorRoutes');
 app.use('/api', contractorRoutes);
+const salespersonRoutes = require('./routes/salespersonRoutes');
+app.use('/api', salespersonRoutes);
 
 // Start server
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
