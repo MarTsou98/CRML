@@ -1,9 +1,9 @@
 // routes/contractorRoutes.js
 const express = require('express');
 const router = express.Router();
-const contractController = require('../controllers/contractorController');
+const contractorController = require('../controllers/contractorController');
 
 // POST /contractors
-router.post('/contractors', contractController.createContractor);
-
+router.post('/contractors', contractorController.createContractor);
+router.get('/contractors/all', contractorController.getAllContractors);
 module.exports = router;

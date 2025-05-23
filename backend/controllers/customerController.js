@@ -60,6 +60,15 @@ exports.getCustomersByNameStart = async (req, res) => {
     res.status(500).json({ error: 'Server error during search' });
   }
 };
+exports.getAllCustomers = async (req, res) => {
+  try {
+    const customers = await Customer.find().populate('id_of_salesperson id_of_contractor');
+    res.status(200).json(customers);
+  } catch (error) {
+    console.error('Error fetching customers:', error);
+    res.status(500).json({ error: 'Server error fetching customers' });
+  }
+};
 
 
 

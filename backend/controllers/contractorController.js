@@ -32,3 +32,16 @@ exports.createContractor = async (req, res) => {
     res.status(500).json({ error: 'Server error while creating contractor' });
   }
 };
+exports.getAllContractors = async (req, res) => {
+  try {
+    const contractors = await Contractor.find()
+      .populate('salesperson_id')
+      .populate('customers')
+      .populate('orders');
+    
+    res.status(200).json(contractors);
+  } catch (error) {
+    console.error('Error fetching contractors:', error);
+    res.status(500).json({ error: 'Server error fetching contractors' });
+  }
+};

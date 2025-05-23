@@ -77,6 +77,21 @@ exports.getOrdersByContractor = async (req, res) => {
     res.status(500).json({ error: 'Server error fetching orders' });
   }
 };
+exports.getOrdersByCustomer = async (req, res) => {
+  const { customerId } = req.params;
+
+  try {
+    const orders = await Order.find({ customer_id: customerId })
+      .populate('customer_id')
+      .populate('salesperson_id')
+      .populate('contractor_id');
+
+    res.json(orders);
+  } catch (error) {
+    console.error('Error fetching orders for customer:', error);
+    res.status(500).json({ error: 'Server error fetching orders' });
+  }
+};
 exports.getAllOrders = async (req, res) => {
   try {
     const orders = await Order.find()
@@ -87,5 +102,77 @@ exports.getAllOrders = async (req, res) => {
   } catch (error) {
     console.error('Error fetching orders:', error);
     res.status(500).json({ error: 'Server error fetching orders' });
+  }
+};
+exports.addPaymentToOrder = async (req, res) => {
+  const { orderId } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(orderId)) {
+    return res.status(400).json({ error: 'Invalid order ID' });
+  }
+
+  const { amount, method, notes } = req.body;
+
+  if (!amount || !method || !['Cash', 'Bank'].includes(method)) {
+    return res.status(400).json({ error: 'Valid amount and method (Cash or Bank) are required' });
+  }
+
+  try {
+    const order = await Order.findById(orderId);
+    if (!order) return res.status(404).json({ error: 'Order not found' });
+
+    const payment = {
+      amount,
+      method,
+      notes,
+      date: new Date()
+    };
+
+    // Push payment to array
+    order.moneyDetails.payments.push(payment);
+
+    // Optionally update totalPaid
+    order.moneyDetails.totalpaid = (order.moneyDetails.totalpaid || 0) + amount;
+
+    await order.save();
+    res.status(200).json({ message: 'Payment added', order });
+  } catch (err) {
+    console.error('Error adding payment:', err);
+    res.status(500).json({ error: 'Server error adding payment' });
+  }
+};
+exports.addDamageToOrder = async (req, res) => {
+  const { orderId } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(orderId)) {
+    return res.status(400).json({ error: 'Invalid order ID' });
+  }
+
+  const { amount, notes } = req.body;
+
+  if (!amount || typeof amount !== 'number') {
+    return res.status(400).json({ error: 'Valid damage amount is required' });
+  }
+
+  try {
+    const order = await Order.findById(orderId);
+    if (!order) return res.status(404).json({ error: 'Order not found' });
+
+    const damage = {
+      amount,
+      notes,
+      date: new Date()
+    };
+
+    order.moneyDetails.damages.push(damage);
+
+    // Optionally update totalDamages
+    order.moneyDetails.totaldamages = (order.moneyDetails.totaldamages || 0) + amount;
+
+    await order.save();
+    res.status(200).json({ message: 'Damage added', order });
+  } catch (err) {
+    console.error('Error adding damage:', err);
+    res.status(500).json({ error: 'Server error adding damage' });
   }
 };

@@ -6,5 +6,5 @@ router.post('/customers/newCustomer', customerController.createCustomer);
 
 // GET /customers/search?name=John
 router.get('/customers/search', customerController.getCustomersByNameStart);
-
+router.get('/customers/all', customerController.getAllCustomers);
 module.exports = router;
