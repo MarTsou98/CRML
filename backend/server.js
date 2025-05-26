@@ -4,8 +4,9 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swagger');
 const cors = require('cors');
 const app = express();
-app.use(cors());
 
+
+app.use(cors({ origin: "http://localhost:5173" }));
 
 
 const PORT = 5000;
