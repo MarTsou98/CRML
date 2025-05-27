@@ -1,12 +1,16 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import React from 'react';
 
-const NavbarCenter = ({ role }) => (
-  <div className="navbar-center">
-    <Link to="/orders">Orders</Link>
-    <Link to="/orders/find">Find Order</Link>
-    <Link to="/orders/new">New Order</Link>
-    <Link to="/customers">Customers</Link>
-    {role === 'manager' && <Link to="/contractors">Contractors</Link>}
+const NavbarCenter = ({ user }) => (
+  <div className="nav-links">
+    <NavLink to="/orders" className={({ isActive }) => isActive ? "active" : ""}>Orders</NavLink>
+    <NavLink to="/orders/find" className={({ isActive }) => isActive ? "active" : ""}>Find Order</NavLink>
+    <NavLink to="/orders/new" className={({ isActive }) => isActive ? "active" : ""}>New Order</NavLink>
+    <NavLink to="/customers" className={({ isActive }) => isActive ? "active" : ""}>Customers</NavLink>
+    {user.role === 'manager' && (
+      <NavLink to="/contractors" className={({ isActive }) => isActive ? "active" : ""}>Contractors</NavLink>
+    )}
   </div>
 );
+
 export default NavbarCenter;

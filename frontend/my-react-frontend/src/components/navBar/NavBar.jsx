@@ -14,7 +14,7 @@ const Navbar = ({ user }) => {
       </div>
 
       <div className="navbar-center">
-        <NavbarCenter />
+        <NavbarCenter user={user}/>
       </div>
 
       <div className="navbar-right">
