@@ -1,0 +1,45 @@
+.navbar {
+  display: flex;           /* enables flexbox layout */
+  justify-content: space-between; /* spread children evenly */
+  align-items: center;     /* vertically center items */
+  padding: 0 20px;         /* optional horizontal padding */
+  height: 60px;            /* optional height */
+  background-color: #f8f8f8; /* optional background */
+  border-bottom: 1px solid #ddd; /* optional border */
+}
+.navbar {
+  display: flex;
+  height: 60px;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #ddd;
+}
+
+.navbar-left {
+  flex: 0 0 25%;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  justify-content: flex-end; /* align content to the right */
+  text-align: right;
+}
+
+.navbar-center {
+  flex: 0 0 50%;
+  display: flex;
+  justify-content: center; /* center horizontally */
+  align-items: center;
+  padding: 0 15px;
+  text-align: center;
+}
+.navbar-center > * {
+  /* Make the inner text/content take only the space it needs */
+  width: auto;
+}
+.navbar-right {
+  flex: 0 0 25%;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  justify-content: flex-start; /* align content to the left */
+  text-align: left;
+}

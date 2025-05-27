@@ -1,26 +1,36 @@
+// App.jsx
 import React, { useState } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import LoginForm from './components/LoginForm';
-import OrdersList from './components/OrdersListBySalesPersonID';
-import OrderPreview from './components/OrderPreview';
-import Menu from './components/Menu';
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout/Layout';
+import LoginPage from './pages/LoginPage';
+import OrdersPage from './pages/OrdersPage';
+import NewOrderPage from './pages/NewOrderPage';
+import FindOrderPage from './pages/FindOrderPage';
+import CustomersPage from './pages/CustomerPage';
+import ContractorsPage from './pages/ContractorPage';
+import NotFound from './pages/NotFound';
+import DashBoard from './pages/DashBoard';
 function App() {
   const [user, setUser] = useState(null);
 
-  if (!user) {
-    return <LoginForm onLogin={setUser} />;
-  }
-
   return (
-   <>
-      <Menu />
-      <Routes>
-        <Route path="/" element={<OrdersList salespersonId={user.salesperson_id   } />} />
-        <Route path="/orders" element={<OrdersList salespersonId={user.salesperson_id} />} />
-        <Route path="/orders/:orderId" element={<OrderPreview />} />
-      </Routes>
-    </>
+    
+     <Routes>
+  <Route path="/login" element={<LoginPage onLogin={setUser} />} />
+
+  <Route path="/" element={<Layout />}>
+    <Route path="dashboard" element={<DashBoard />} />
+    <Route path="orders" element={<OrdersPage />} />
+    <Route path="new-order" element={<NewOrderPage />} />
+    <Route path="find-order" element={<FindOrderPage />} />
+    <Route path="customers" element={<CustomersPage />} />
+    <Route path="contractors" element={<ContractorsPage />} />
+  </Route>
+
+  <Route path="*" element={<NotFound />} />
+</Routes>
+
+   
   );
 }
 
