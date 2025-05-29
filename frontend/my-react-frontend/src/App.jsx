@@ -15,6 +15,7 @@ import NewCustomer from './pages/NewCustomer';
 import CustomerDetails from './pages/CustomerDetails';
 import AllCustomersPage from './pages/AllCustomersPage'; // Adjust path if needed
 import OrderDetails from './pages/OrderDetails'; // Adjust path if needed
+import AddPayment from './pages/AddPayment'; // Adjust path if needed
 function App() {
   const [user, setUser] = useState(null);
 
@@ -36,6 +37,7 @@ function App() {
     <Route path="/customers/new" element={<NewCustomer />} />
     <Route path="/customers/:customerId" element={<CustomerDetails />} />
     <Route path="/orders/:orderId" element={<OrderDetails />} />
+    <Route path="/orders/:orderId/addpayment" element={<AddPayment />} />
   </Route>
 
   <Route path="*" element={<NotFound />} />

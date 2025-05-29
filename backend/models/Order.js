@@ -26,16 +26,23 @@ const orderSchema = new mongoose.Schema({
     timi_Polisis: { type: Number, required: true },
     cash: { type: Number, required: true },
     bank: { type: Number, required: true },
+    remainingCash: { type: Number, default: function () { return this.moneyDetails.cash; } },
+    remainingBank: { type: Number, default: function () { return this.moneyDetails.bank; } },
     contractor_Share_Cash: { type: Number },
+    contractor_remainingShare_Cash: { type: Number },
     contractor_Share_Bank: { type: Number },
+    contractor_remainingShare_Bank: { type: Number },
     customer_Share_Cash: { type: Number },
+    customer_remainingShare_Cash: { type: Number },
     customer_Share_Bank: { type: Number },
+    customer_remainingShare_Bank: { type: Number },
     FPA: { type: Number },
     payments: [
       {
         amount: { type: Number },
         date: { type: Date, default: Date.now },
         method: { type: String, enum: ['Cash', 'Bank'], required: true },
+        payer: { type: String, enum: ['Customer', 'Contractor'], required: true },
         notes: { type: String }
       }
     ],
@@ -173,6 +180,51 @@ orderSchema.pre('save', async function (next) {
   } catch (error) {
     next(error); // pass error to Mongoose middleware
   }
+});
+orderSchema.pre('save', function (next) {
+  if (Array.isArray(this.moneyDetails.payments)) {
+    const paidCash = this.moneyDetails.payments
+      .filter(p => p.method === 'Cash')
+      .reduce((sum, p) => sum + (p.amount || 0), 0);
+
+    const paidBank = this.moneyDetails.payments
+      .filter(p => p.method === 'Bank')
+      .reduce((sum, p) => sum + (p.amount || 0), 0);
+
+    this.moneyDetails.remainingCash = this.moneyDetails.cash - paidCash;
+    this.moneyDetails.remainingBank = this.moneyDetails.bank - paidBank;
+  }
+  next();
+});
+orderSchema.pre('save', function (next) {
+  if (!Array.isArray(this.moneyDetails.payments)) return next();
+
+  // Helper for reducing payment totals
+  const sumPayments = (payer, method) => {
+    return this.moneyDetails.payments
+      .filter(p => p.payer === payer && p.method === method)
+      .reduce((sum, p) => sum + (p.amount || 0), 0);
+  };
+
+  // Calculate paid amounts
+  const contractorPaidCash = sumPayments('Contractor', 'Cash');
+  const contractorPaidBank = sumPayments('Contractor', 'Bank');
+  const customerPaidCash = sumPayments('Customer', 'Cash');
+  const customerPaidBank = sumPayments('Customer', 'Bank');
+
+  // Contractor
+  const contractorTotalCash = this.moneyDetails.contractor_Share_Cash || 0;
+  const contractorTotalBank = this.moneyDetails.contractor_Share_Bank || 0;
+  this.moneyDetails.contractor_remainingShare_Cash = contractorTotalCash - contractorPaidCash;
+  this.moneyDetails.contractor_remainingShare_Bank = contractorTotalBank - contractorPaidBank;
+
+  // Customer
+  const customerTotalCash = this.moneyDetails.customer_Share_Cash || 0;
+  const customerTotalBank = this.moneyDetails.customer_Share_Bank || 0;
+  this.moneyDetails.customer_remainingShare_Cash = customerTotalCash - customerPaidCash;
+  this.moneyDetails.customer_remainingShare_Bank = customerTotalBank - customerPaidBank;
+
+  next();
 });
 
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import SmallOrderPreview from '../components/SmallOrderPreview';
 import axios from 'axios';
-
+import BackButton from '../components/BackButton'; // Adjust the path if needed
 const OrdersPage = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -42,6 +42,7 @@ const OrdersPage = () => {
 
   return (
     <div style={{ padding: '1rem' }}>
+      <BackButton />
       <h2>Orders {role === 'manager' ? 'for All Salespersons' : 'for You'}</h2>
       {orders.length === 0 ? (
         <p>No orders found.</p>

@@ -111,7 +111,7 @@ exports.addPaymentToOrder = async (req, res) => {
     return res.status(400).json({ error: 'Invalid order ID' });
   }
 
-  const { amount, method, notes } = req.body;
+  const { amount, method, payer, notes } = req.body;
 
   if (!amount || !method || !['Cash', 'Bank'].includes(method)) {
     return res.status(400).json({ error: 'Valid amount and method (Cash or Bank) are required' });
@@ -124,6 +124,7 @@ exports.addPaymentToOrder = async (req, res) => {
     const payment = {
       amount,
       method,
+      payer,
       notes,
       date: new Date()
     };

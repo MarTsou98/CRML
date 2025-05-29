@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import SmallOrderPreview from '../components/SmallOrderPreview'; // adjust the path if needed
-
+import BackButton from '../components/BackButton'; // adjust the path if needed
 const CustomerDetails = () => {
   const { customerId } = useParams();
   const [customer, setCustomer] = useState(null);
@@ -31,6 +31,7 @@ const CustomerDetails = () => {
 
   return (
     <div style={{ padding: '1rem' }}>
+      <BackButton />
       <h2>Customer Details</h2>
       <p><strong>Name:</strong> {customer.firstName} {customer.lastName}</p>
       <p><strong>Email:</strong> {customer.email}</p>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import BackButton from '../components/BackButton'; // Adjust the path if needed
 const NewCustomer = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName]   = useState('');
@@ -43,6 +43,7 @@ const NewCustomer = () => {
 
   return (
     <div style={{ padding: '1rem' }}>
+      <BackButton />
       <h2>Create New Customer</h2>
       <form onSubmit={handleSubmit}>
         <div>

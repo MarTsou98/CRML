@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import SmallCustomerPreview from '../components/SmallCustomerPreview';
-
+import BackButton from '../components/BackButton'; // Adjust the path if needed
 const CustomersPage = () => {
   const [customers, setCustomers] = useState([]);
   const [loading, setLoading]     = useState(true);
@@ -37,6 +37,7 @@ const CustomersPage = () => {
 
   return (
     <div style={{ padding: '1rem' }}>
+      <BackButton />
       <h2>Your Customers</h2>
       {customers.length === 0 ? (
         <p>No customers found.</p>

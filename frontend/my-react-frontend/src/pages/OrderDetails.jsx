@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-
+import BackButton from '../components/BackButton'; 
+import { Link } from 'react-router-dom';
  const OrderDetails = () => {
   const { orderId } = useParams();
   const [order, setOrder] = useState(null);
@@ -31,7 +32,9 @@ import axios from 'axios';
   const { moneyDetails, invoiceType, Lock, createdAt, salesperson_id, contractor_id } = order;
 
   return (
+    
     <div style={{ padding: '1rem' }}>
+        <BackButton />
       <h2>Order Details</h2>
 
       <p><strong>Invoice Type:</strong> {invoiceType}</p>
@@ -48,26 +51,24 @@ import axios from 'axios';
       <p><strong>Τιμή Τιμοκαταλόγου:</strong> €{moneyDetails?.timi_Timokatalogou}</p>
       <p><strong>Τιμή Πώλησης:</strong> €{moneyDetails?.timi_Polisis}</p>
       <p><strong>Μετρητά:</strong> €{moneyDetails?.cash}</p>
+      <Link to={`/orders/${order._id}/addpayment`}>
+        <button style={{ marginTop: '1rem' }}>Add Payment</button>
+      </Link>
+      
       <p><strong>Τράπεζα:</strong> €{moneyDetails?.bank}</p>
       <p><strong>Κέρδος:</strong> €{moneyDetails?.profit}</p>
       <p><strong>ΦΠΑ:</strong> €{moneyDetails?.FPA}</p>
-
-      <h4>Damages</h4>
-      {moneyDetails?.damages?.length > 0 ? (
-        <ul>
-          {moneyDetails.damages.map((damage) => (
-            <li key={damage._id}>Damage Date: {new Date(damage.date).toLocaleDateString()}</li>
-          ))}
-        </ul>
-      ) : (
-        <p>No damages recorded.</p>
-      )}
+      <p><strong>Υπόλοιπο Μετρητών Πελάτη:</strong> €{moneyDetails?.customer_remainingShare_Cash}</p>	
+      <p><strong>Υπόλοιπο Τράπεζικής Αξίας Πελάτη:</strong> €{moneyDetails?.customer_remainingShare_Bank}</p>	
+      <p><strong>Υπόλοιπο Μετρητών Εργολάβου:</strong> €{moneyDetails?.contractor_remainingShare_Cash}</p>	
+      <p><strong>Υπόλοιπο Τράπεζικής Αξίας Εργολάβου:</strong> €{moneyDetails?.contractor_remainingShare_Bank}</p>	
+      <p><strong></strong></p>
 
       <h4>Payments</h4>
       {moneyDetails?.payments?.length > 0 ? (
         <ul>
           {moneyDetails.payments.map((p, index) => (
-            <li key={index}>Payment of €{p.amount} on {new Date(p.date).toLocaleDateString()}</li>
+            <li key={index}>Payment of €{p.amount} on {new Date(p.date).toLocaleDateString()} Note: {p.notes}</li>
           ))}
         </ul>
       ) : (
