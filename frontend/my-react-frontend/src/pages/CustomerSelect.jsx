@@ -10,19 +10,24 @@ const CustomerSelect = ({ value, onChange }) => {
     const fetchCustomers = async () => {
       const user = JSON.parse(localStorage.getItem('user'));
       const salespersonId = user?.salesperson_id;
-
-      if (!salespersonId) return;
+      
+      //if (!salespersonId) return;
 
       try {
+        if(user.role === 'manager') {
+        const res = await axios.get('http://localhost:5000/api/customers/all');
+        setCustomers(res.data.reverse());
+      } else {
         const res = await axios.get(`http://localhost:5000/api/customers/salesperson/${salespersonId}`);
-        setCustomers(res.data);
-      } catch (err) {
-        setError('Failed to load customers.');
-        console.error(err);
-      } finally {
-        setLoading(false);
+        setCustomers(res.data.reverse());
       }
-    };
+    } catch (err) {
+      setError('Failed to load customers.');
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
     fetchCustomers();
   }, []);

@@ -1,0 +1,31 @@
+.nice-form-group > label {
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  color: #333 !important;
+}
+
+
+.error-message {
+  color: red;
+  font-size: 0.85rem;
+  margin-left: 8px;
+  display: block;
+  margin-top: 4px;
+}
+
+.nice-form-group select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: var(--dropdown-background);
+  color: var(--dropdown-color);
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+.nice-form-group select:focus {
+  border-color: var(--dropdown-highlight);
+  outline: none;
+}

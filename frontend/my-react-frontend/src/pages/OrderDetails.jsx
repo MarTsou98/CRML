@@ -43,10 +43,11 @@ import { Link } from 'react-router-dom';
 
       <h3>Salesperson</h3>
       <p>{salesperson_id?.firstName} {salesperson_id?.lastName}</p>
-
+      <h3>Customer</h3>
+      <p>{order.customer_id?.firstName} {order.customer_id?.lastName}</p>
       <h3>Contractor</h3>
       <p>{contractor_id?.firstName} {contractor_id?.lastName}</p>
-
+      
       <h3>Money Details</h3>
       <p><strong>Τιμή Τιμοκαταλόγου:</strong> €{moneyDetails?.timi_Timokatalogou}</p>
       <p><strong>Τιμή Πώλησης:</strong> €{moneyDetails?.timi_Polisis}</p>

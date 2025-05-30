@@ -3,6 +3,10 @@ import axios from 'axios';
 import CustomerSelect from './CustomerSelect'; // adjust path if needed
 import Backbutton from '../components/BackButton'; // adjust path if needed
 import ContractorSelect from './ContractorSelect'; // adjust path if needed
+import './css/NewOrder.css'; // adjust path if needed
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const NewOrder = () => {
   const [form, setForm] = useState({
     invoiceType: '',
@@ -63,8 +67,39 @@ const NewOrder = () => {
     }
   };
 
+const [errors, setErrors] = useState({});
+const validateForm = () => {
+  const { timi_Timokatalogou, timi_Polisis ,cash} = form.moneyDetails;
+  const newErrors = {};
+
+  if (Number(timi_Timokatalogou) >= Number(timi_Polisis)) {
+    newErrors.timi_Polisis = 'Η τιμή πώλησης πρέπει να είναι μεγαλύτερη από την τιμή τιμοκαταλόγου.';
+  }
+  if(Number(cash) == 0){
+    newErrors.cash = 'Το ποσό μετρητών δεν μπορεί να είναι μηδέν.';
+  }
+
+  // Add more validation rules and set errors similarly
+
+  setErrors(newErrors);
+
+  if (Object.keys(newErrors).length > 0) {
+    toast.error(
+      Object.values(newErrors).join('\n'),
+      { position: "top-right", autoClose:10000 }
+    );
+    return false;
+  }
+
+  return true;
+};
+
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateForm()) return; // Stop submission if validation fails
 
     try {
       const payload = {
@@ -92,66 +127,77 @@ const NewOrder = () => {
   };
 
   return (
-    <div style={{ padding: '1rem' }}>
-      <Backbutton />
-      <h2>Create New Order</h2>
-      <form onSubmit={handleSubmit}>
+    <div> <Backbutton />
+      <div style={{ padding: '1rem', maxWidth: '600px', margin: 'auto' }}>
+       
+        <h2>Create New Order</h2>
+        <form onSubmit={handleSubmit}>
 
-        {/* ✅ Dropdown for invoice type */}
-        <label>Invoice Type:
-          <select name="invoiceType" value={form.invoiceType} onChange={handleChange}>
-            <option value="Timologio">Τιμολόγιο</option>
-            <option value="Apodiksi">Απόδειξη</option>
-          </select>
-        </label><br/>
+         <div className="nice-form-group">
+    <label htmlFor="invoiceType">Invoice Type:</label>
+ 
+    <div className="nice-form-group">
+  <label htmlFor="invoiceType">Τύπος Παραστατικού</label>
+  <select
+    name="invoiceType"
+    id="invoiceType"
+    value={form.invoiceType}
+    onChange={handleChange}
+  >
+    <option value="Timologio">Τιμολόγιο</option>
+    <option value="Apodiksi">Απόδειξη</option>
+  </select>
+</div>
 
-        <CustomerSelect
-          value={form.customer_id}
-          onChange={(val) => setForm({ ...form, customer_id: val })}
-        />
-        <ContractorSelect
-        value={form.contractor_id}
-        onChange={(val) => setForm({ ...form, contractor_id: val })}
-          />
-        
+  </div>
 
-        <h4>Money Details:</h4>
-        <label>Τιμή Τιμοκαταλόγου:
-          <input name="timi_Timokatalogou" type="number" value={form.moneyDetails.timi_Timokatalogou} onChange={handleChange} />
-        </label><br/>
+  <div className="nice-form-group">
+    <CustomerSelect
+      value={form.customer_id}
+      onChange={(val) => setForm({ ...form, customer_id: val })}
+    />
+  </div>
 
-        <label>Τιμή Πώλησης:
-          <input name="timi_Polisis" type="number" value={form.moneyDetails.timi_Polisis} onChange={handleChange} />
-        </label><br/>
+  <div className="nice-form-group">
+    <ContractorSelect
+      value={form.contractor_id}
+      onChange={(val) => setForm({ ...form, contractor_id: val })}
+    />
+  </div>
+  <h4>Money Details:</h4>
 
-        <label>Cash:
-          <input name="cash" type="number" value={form.moneyDetails.cash} onChange={handleChange} />
-        </label><br/>
+{[
+  ['Τιμή Τιμοκαταλόγου', 'timi_Timokatalogou'],
+  ['Τιμή Πώλησης', 'timi_Polisis'],
+  ['Cash', 'cash'],
+  ['Bank', 'bank'],
+  ['Contractor Bank', 'contractor_bank'],
+  ['Customer Bank', 'customer_bank'],
+  ['Contractor Cash', 'contractor_cash'],
+  ['Customer Cash', 'customer_cash'],
+].map(([labelText, field]) => (
+  <div className="nice-form-group" key={field}>
+    <label htmlFor={field}>{labelText}</label>
+    <input
+      type="number"
+      name={field}
+      id={field}
+      value={form.moneyDetails[field]}
+      onChange={handleChange}
+    />
+    {errors[field] && (
+      <span className="error-message">{errors[field]}</span>
+    )}
+  </div>
+))}
 
-        <label>Bank:
-          <input name="bank" type="number" value={form.moneyDetails.bank} onChange={handleChange} />
-        </label><br/>
 
-        <label>Contractor Bank:
-          <input name="contractor_bank" type="number" value={form.moneyDetails.contractor_bank} onChange={handleChange} />
-        </label><br/>
-
-        <label>Customer Bank:
-          <input name="customer_bank" type="number" value={form.moneyDetails.customer_bank} onChange={handleChange} />
-        </label><br/>
-
-        <label>Contractor Cash:
-          <input name="contractor_cash" type="number" value={form.moneyDetails.contractor_cash} onChange={handleChange} />
-        </label><br/>
-
-        <label>Customer Cash:
-          <input name="customer_cash" type="number" value={form.moneyDetails.customer_cash} onChange={handleChange} />
-        </label><br/>
-
-        <button type="submit">Create Order</button>
+<button type="submit">Create Order</button>
       </form>
 
       {message && <p>{message}</p>}
+      
+    </div>
     </div>
   );
 };

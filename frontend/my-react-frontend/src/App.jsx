@@ -21,9 +21,11 @@ function App() {
 
   return (
     
-     <Routes>
+   <Routes>
+  {/* This route is outside the Layout, so no Navbar shown */}
   <Route path="/login" element={<LoginPage onLogin={setUser} />} />
 
+  {/* All other routes are wrapped with Layout, so Navbar shown */}
   <Route path="/" element={<Layout />}>
     <Route path="dashboard" element={<DashBoard />} />
     <Route path="orders" element={<OrdersPage />} />
@@ -31,13 +33,12 @@ function App() {
     <Route path="find-order" element={<FindOrderPage />} />
     <Route path="customers" element={<CustomersPage />} />
     <Route path="contractors" element={<ContractorsPage />} />
-    <Route path="/orders/new" element={<NewOrder />} />
-    <Route path="/customers" element={<CustomersPage />} />
-    <Route path="/customers/all" element={<AllCustomersPage />} />
-    <Route path="/customers/new" element={<NewCustomer />} />
-    <Route path="/customers/:customerId" element={<CustomerDetails />} />
-    <Route path="/orders/:orderId" element={<OrderDetails />} />
-    <Route path="/orders/:orderId/addpayment" element={<AddPayment />} />
+    <Route path="orders/new" element={<NewOrder />} />
+    <Route path="customers/all" element={<AllCustomersPage />} />
+    <Route path="customers/new" element={<NewCustomer />} />
+    <Route path="customers/:customerId" element={<CustomerDetails />} />
+    <Route path="orders/:orderId" element={<OrderDetails />} />
+    <Route path="orders/:orderId/addpayment" element={<AddPayment />} />
   </Route>
 
   <Route path="*" element={<NotFound />} />

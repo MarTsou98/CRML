@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchOrderById } from '../api'; // You need to implement this function
-
+import Navbar from '../components/navBar/NavBar';
 function OrderPreview() {
   const { orderId } = useParams(); // get the orderId from the URL
   const [order, setOrder] = useState(null);
@@ -32,7 +32,9 @@ function OrderPreview() {
   });
 
  return (
+
     <div style={{ border: '1px solid #ccc', padding: '16px', borderRadius: '8px' }}>
+    
       <h2>Order Details</h2>
 
       <p><strong>Order ID:</strong> {order._id}</p>

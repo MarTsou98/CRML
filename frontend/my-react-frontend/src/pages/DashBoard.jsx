@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { UserContext } from '../context/UserContext';
-import Navbar from '../components/navBar/NavBar';
+import Carousel from '../components/carousel'
+
 function DashBoard() {
   const { user } = useContext(UserContext);
 
@@ -10,9 +11,13 @@ function DashBoard() {
 
   return (
     <div>
-<Navbar user={user} />
+     
+
       <h1>Welcome, {user.username}!</h1>
-      {/* rest of dashboard */}
+
+
+
+      <Carousel style={{ position: 'fixed', bottom: 0, left: 0, width: '100%', zIndex: 10 }} />
     </div>
   );
 }

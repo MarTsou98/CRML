@@ -1,0 +1,24 @@
+.nice-form-group > label {
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  color: #333 !important;
+}
+
+
+.error-message {
+  color: red;
+  font-size: 0.85rem;
+  margin-left: 8px;
+  display: block;
+  margin-top: 4px;
+}
+input.error {
+  border: 2px solid red;
+}
+
+.error-text {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+

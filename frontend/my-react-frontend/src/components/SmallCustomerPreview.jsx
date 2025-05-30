@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './css/SmallCustomerPreview.css';
 
 const SmallCustomerPreview = ({ customer }) => {
   return (
-    <div style={{ border: '1px solid #ccc', padding: '10px', marginBottom: '10px', borderRadius: '6px' }}>
+    <div className="small-customer-preview">
       <p><strong>Name:</strong> {customer.firstName} {customer.lastName}</p>
       <p><strong>Email:</strong> {customer.email}</p>
       <p><strong>Phone:</strong> {customer.phone}</p>

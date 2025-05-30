@@ -3,8 +3,11 @@ import NavbarLeft from './NavbarLeft';
 import NavbarCenter from './NavbarCenter';
 import NavbarRight from './NavbarRight';
 import './Navbar.css'; // make sure path is correct relative to Navbar.jsx
+import { useUser } from '../../context/UserContext'; // Adjust path if needed
 
-const Navbar = ({ user }) => {
+const Navbar = () => {
+  const { user } = useUser();
+
   if (!user) return null;
 
   return (

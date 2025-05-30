@@ -1,0 +1,8 @@
+.small-order-preview {
+  width: 50%;
+  border: 1px solid #aaa;
+  padding: 8px;
+  margin-bottom: 8px;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
