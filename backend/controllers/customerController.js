@@ -40,7 +40,7 @@ if(id_of_contractor === 'undefined' || id_of_contractor === ''|| id_of_contracto
     res.status(500).json({ error: 'Server error' });
   }
 };
-exports.getCustomersByNameStart = async (req, res) => {
+/*exports.getCustomersByNameStart = async (req, res) => {
   const { name } = req.query;
   if (!name) return res.status(400).json({ error: 'Missing query parameter "name"' });
 
@@ -59,7 +59,7 @@ exports.getCustomersByNameStart = async (req, res) => {
     console.error('Search error:', error);
     res.status(500).json({ error: 'Server error during search' });
   }
-};
+};*/
 exports.getAllCustomers = async (req, res) => {
   try {
     const customers = await Customer.find().populate('id_of_salesperson id_of_contractor');
@@ -114,6 +114,39 @@ exports.getCustomersDetailsByCustomerId = async (req, res) => {
     res.status(500).json({ error: 'Server error fetching customer details' });
   }
 };
+exports.getCustomersByQuery = async (req, res) => {
+  const { query } = req.query;
+  if (!query) return res.status(400).json({ error: 'Missing query parameter "query"' });
+
+  const normalized = normalizeGreek(query);
+
+  try {
+    const customers = await Customer.find({
+      $or: [
+        { firstName_normalized: { $regex: normalized, $options: 'i' } },
+        { lastName_normalized: { $regex: normalized, $options: 'i' } },
+        { email: { $regex: query, $options: 'i' } },
+        { phone: { $regex: query, $options: 'i' } }
+      ]
+    })
+    .populate({
+      path: 'id_of_salesperson',
+      select: 'name email phone' // Adjust as needed
+    })
+    .populate({
+      path: 'id_of_contractor',
+      select: 'companyName contactName' // Adjust as needed
+    });
+
+    res.json(customers);
+  } catch (error) {
+    console.error('Search error:', error);
+    res.status(500).json({ error: 'Server error during search' });
+  }
+};
+
+
+
 
 
 function removeTonos(str) {

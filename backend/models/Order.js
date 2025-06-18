@@ -9,10 +9,16 @@ const orderSchema = new mongoose.Schema({
     enum: ['Timologio', 'Apodiksi'],
     required: true
   },
+  orderType: {
+    type: String,
+    enum:["Σύνθεση Ερμαρίων", "Κανονική"]
+  },
+  order_notes: { type: String },
   customer_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Customer'
   },
+  customer_notes: { type: String },
   salesperson_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Salesperson'
@@ -21,6 +27,12 @@ const orderSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Contractor'
   },
+contractors_notes: { type: String },
+orderedFromCompany: {
+  type: String,
+  enum: ['Lube', 'Decopan', 'Sover', 'Doors', 'Appliances', 'CounterTop'],
+  required: true // or false if it's optional
+},
   moneyDetails: {
     timi_Timokatalogou: { type: Number, required: true },
     timi_Polisis: { type: Number, required: true },

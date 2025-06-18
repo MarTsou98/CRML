@@ -128,29 +128,27 @@ const validateForm = () => {
 
   return (
     <div> <Backbutton />
-      <div style={{ padding: '1rem', maxWidth: '600px', margin: 'auto' }}>
+      <div className="big-text" style={{ padding: '1rem', maxWidth: '600px', margin: 'auto' }}>
        
-        <h2>Create New Order</h2>
+        <h2 className="big-text">Create New Order</h2>
         <form onSubmit={handleSubmit}>
 
-         <div className="nice-form-group">
-    <label htmlFor="invoiceType">Invoice Type:</label>
+       
  
-    <div className="nice-form-group">
-  <label htmlFor="invoiceType">Τύπος Παραστατικού</label>
+        <div className="nice-form-group big-text">
+  <label  htmlFor="invoiceType" className="big-text" >Τύπος Παραστατικού</label>
   <select
     name="invoiceType"
     id="invoiceType"
     value={form.invoiceType}
     onChange={handleChange}
   >
-    <option value="Timologio">Τιμολόγιο</option>
+    <option value="Timologio" >Τιμολόγιο</option>
     <option value="Apodiksi">Απόδειξη</option>
   </select>
 </div>
 
-  </div>
-
+  
   <div className="nice-form-group">
     <CustomerSelect
       value={form.customer_id}
