@@ -13,7 +13,9 @@ const orderSchema = new mongoose.Schema({
     type: String,
     enum:["Σύνθεση Ερμαρίων", "Κανονική"]
   },
-  order_notes: { type: String },
+  orderNotes: {
+     type: String
+     },
   customer_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Customer'
@@ -30,7 +32,7 @@ const orderSchema = new mongoose.Schema({
 contractors_notes: { type: String },
 orderedFromCompany: {
   type: String,
-  enum: ['Lube', 'Decopan', 'Sover', 'Doors', 'Appliances', 'CounterTop'],
+  enum: ['Lube', 'Decopan', 'Sovet', 'Doors', 'Appliances', 'CounterTop'],
   required: true // or false if it's optional
 },
   moneyDetails: {

@@ -37,14 +37,14 @@ const CustomerSelect = ({ value, onChange }) => {
 
   return (
     <div>
-      <label htmlFor="customer">Customer:</label>
+      <label htmlFor="customer">Πελάτης:</label>
       <select
         id="customer"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         required
       >
-        <option value="">-- Select customer --</option>
+        <option value="">-- Επιλέξτε πελάτη --</option>
         {customers.map((customer) => (
           <option key={customer._id} value={customer._id}>
             {customer.firstName} {customer.lastName}

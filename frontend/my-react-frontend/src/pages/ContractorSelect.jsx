@@ -27,14 +27,14 @@ const ContractorSelect = ({ value, onChange }) => {
 
   return (
     <div>
-      <label htmlFor="contractor">Contractor:</label>
+      <label htmlFor="contractor">Εργολάβος:</label>
       <select
         id="contractor"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         required
       >
-        <option value="">-- Select contractor --</option>
+        <option value="">-- Επιλέξτε εργολάβο --</option>
         {contractors.map((contractor) => (
           <option key={contractor._id} value={contractor._id}>
             {contractor.firstName} {contractor.lastName}

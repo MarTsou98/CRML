@@ -1,0 +1,11 @@
+.search-input {
+  max-width: 300px;  /* Limits the search bar width */
+  flex-grow: 0;      /* Prevents it from growing */
+}
+
+.search-button {
+  height: 40px;
+  font-size: 16px;
+  border-radius: 6px;
+  padding: 0 16px;
+}

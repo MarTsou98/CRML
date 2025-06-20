@@ -1,0 +1,81 @@
+/* OrderDetails.css */
+
+.order-details-container {
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.order-details-container h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.details-section {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.details-column {
+  flex: 1;
+  min-width: 280px;
+}
+
+.section-title {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #007acc;
+  padding-bottom: 0.3rem;
+}
+
+.detail-box {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.detail-box strong {
+  display: block;
+  font-weight: 600;
+  color: #00557f;
+  margin-bottom: 0.2rem;
+}
+
+.detail-box p {
+  margin: 0.2rem 0 0.6rem;
+  line-height: 1.4;
+}
+
+.payments-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.payments-list li {
+  background: #eef5f9;
+  margin-bottom: 0.5rem;
+  padding: 0.8rem;
+  border-left: 4px solid #007acc;
+  border-radius: 6px;
+}
+
+.add-payment-button {
+  background-color: #007acc;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.add-payment-button:hover {
+  background-color: #005c99;
+}

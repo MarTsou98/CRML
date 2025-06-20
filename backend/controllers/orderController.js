@@ -1,6 +1,7 @@
 const Order = require('../models/Order');
 const mongoose = require('mongoose');
 exports.createOrder = async (req, res) => {
+    console.log('Received order payload:', req.body);
   try {
     const orderData = req.body;
 
@@ -23,6 +24,7 @@ exports.createOrder = async (req, res) => {
     res.status(500).json({ error: 'Server error creating order' });
   }
 };
+
 exports.getOrderById = async (req, res) => {
   const { id } = req.params;
 
@@ -47,6 +49,8 @@ exports.getOrderById = async (req, res) => {
     res.status(500).json({ error: 'Server error fetching order' });
   }
 };
+
+
 exports.getOrdersBySalesperson = async (req, res) => {
   const { salespersonId } = req.params;
 

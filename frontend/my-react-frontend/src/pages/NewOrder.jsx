@@ -14,6 +14,7 @@ const NewOrder = () => {
     salesperson_id: '', // will auto-fill from storage
     contractor_id: '',
     orderedFromCompany: '', // <-- ADD THIS
+    orderNotes: '',
     moneyDetails: {
       timi_Timokatalogou: '',
       timi_Polisis: '',
@@ -127,95 +128,112 @@ const validateForm = () => {
     }
   };
 
-  return (
-    <div> <Backbutton />
-      <div className="big-text" style={{ padding: '1rem', maxWidth: '600px', margin: 'auto' }}>
-       
-        <h2 className="big-text">Create New Order</h2>
-        <form onSubmit={handleSubmit}>
+return (
+  <div className="new-order-wrapper">
+    <Backbutton />
+    <div className="new-order-content">
+      <h2 className="new-order-heading">Δημιουργία Παραγγελίας</h2>
+      <form onSubmit={handleSubmit} className="new-order-form">
 
-       
- 
-        <div className="nice-form-group big-text">
-  <label  htmlFor="invoiceType" className="big-text" >Τύπος Παραστατικού</label>
-  <select
-    name="invoiceType"
-    id="invoiceType"
-    value={form.invoiceType}
-    onChange={handleChange}
-  >
-    <option value="Timologio" >Τιμολόγιο</option>
-    <option value="Apodiksi">Απόδειξη</option>
-  </select>
-</div>
+        <div className="new-order-form-group">
+          <label htmlFor="invoiceType" className="new-order-label">Τύπος Παραστατικού</label>
+          <select
+            name="invoiceType"
+            id="invoiceType"
+            value={form.invoiceType}
+            onChange={handleChange}
+            className="new-order-input"
+          >
+            <option value="Timologio">Τιμολόγιο</option>
+            <option value="Apodiksi">Απόδειξη</option>
+          </select>
+        </div>
 
-  
-  <div className="nice-form-group">
-    <CustomerSelect
-      value={form.customer_id}
-      onChange={(val) => setForm({ ...form, customer_id: val })}
-    />
-  </div>
+        <div className="new-order-form-group">
+          <CustomerSelect
+            value={form.customer_id}
+            onChange={(val) => setForm({ ...form, customer_id: val })}
+          />
+        </div>
 
-  <div className="nice-form-group">
-    <ContractorSelect
-      value={form.contractor_id}
-      onChange={(val) => setForm({ ...form, contractor_id: val })}
-    />
-  </div>
-  <div className="nice-form-group ">
-  <label htmlFor="orderedFromCompany" >Εταιρεία που παραγγέλθηκε</label>
-  <select
-    name="orderedFromCompany"
-    value={form.orderedFromCompany}
-    onChange={handleChange}
-    required
-  >
-    <option value="">-- Επιλέξτε Εταιρεία --</option>
-    <option value="Lube">Lube</option>
-    <option value="Decopan">Decopan</option>
-    <option value="Sover">Sover</option>
-    <option value="Doors">Doors</option>
-    <option value="Appliances">Appliances</option>
-    <option value="CounterTop">CounterTop</option>
-  </select>
-</div>
-  <h4>Money Details:</h4>
+        <div className="new-order-form-group">
+          <ContractorSelect
+            value={form.contractor_id}
+            onChange={(val) => setForm({ ...form, contractor_id: val })}
+          />
+        </div>
 
-{[
-  ['Τιμή Τιμοκαταλόγου', 'timi_Timokatalogou'],
-  ['Τιμή Πώλησης', 'timi_Polisis'],
-  ['Cash', 'cash'],
-  ['Bank', 'bank'],
-  ['Contractor Bank', 'contractor_bank'],
-  ['Customer Bank', 'customer_bank'],
-  ['Contractor Cash', 'contractor_cash'],
-  ['Customer Cash', 'customer_cash'],
-].map(([labelText, field]) => (
-  <div className="nice-form-group" key={field}>
-    <label htmlFor={field}>{labelText}</label>
-    <input
-      type="number"
-      name={field}
-      id={field}
-      value={form.moneyDetails[field]}
-      onChange={handleChange}
-    />
-    {errors[field] && (
-      <span className="error-message">{errors[field]}</span>
-    )}
-  </div>
-))}
+        <div className="new-order-form-group">
+          <label htmlFor="orderedFromCompany" className="new-order-label">Εταιρεία που παραγγέλθηκε</label>
+          <select
+            name="orderedFromCompany"
+            value={form.orderedFromCompany}
+            onChange={handleChange}
+            required
+            className="new-order-input"
+          >
+            <option value="">-- Επιλέξτε Εταιρεία --</option>
+            <option value="Lube">Lube</option>
+            <option value="Decopan">Decopan</option>
+            <option value="Sovet">Sovet</option>
+            <option value="Doors">Doors</option>
+            <option value="Appliances">Appliances</option>
+            <option value="CounterTop">CounterTop</option>
+          </select>
+        </div>
 
+        <h4 className="new-order-heading">Χρηματοοικονομικά Στοιχεία:</h4>
 
-<button type="submit">Create Order</button>
+        {[
+          ['Τιμή Τιμοκαταλόγου', 'timi_Timokatalogou'],
+          ['Τιμή Πώλησης', 'timi_Polisis'],
+          ['Μετρητά', 'cash'],
+          ['Τράπεζα', 'bank'],
+          ['Τράπεζα Εργολάβου', 'contractor_bank'],
+          ['Τράπεζα Πελάτη', 'customer_bank'],
+          ['Μετρητά Εργολάβου', 'contractor_cash'],
+          ['Μετρητά Πελάτη', 'customer_cash'],
+        ].map(([labelText, field]) => (
+          <div className="new-order-form-group" key={field}>
+            <label htmlFor={field} className="new-order-label">{labelText}</label>
+            <input
+              type="number"
+              name={field}
+              id={field}
+              value={form.moneyDetails[field]}
+              onChange={handleChange}
+              className="new-order-input"
+            />
+            {errors[field] && (
+              <span className="new-order-error-message">{errors[field]}</span>
+            )}
+          </div>
+        ))}
+
+        <div className="new-order-form-group">
+          <label htmlFor="orderNotes" className="new-order-label">Σημειώσεις Παραγγελίας</label>
+          <textarea
+            id="orderNotes"
+            name="orderNotes"
+            value={form.orderNotes}
+            onChange={handleChange}
+            rows={4}
+            className="new-order-input"
+            placeholder="Εισάγετε σημειώσεις για την παραγγελία..."
+          />
+        </div>
+
+        <button type="submit" className="new-order-button">Δημιουργία Παραγγελίας</button>
       </form>
 
-      {message && <p>{message}</p>}
-      
+      {message && (
+        <p className={`new-order-message${message.includes('Failed') ? ' error' : ''}`}>
+          {message}
+        </p>
+      )}
     </div>
-    </div>
-  );
+  </div>
+);
 };
 
 export default NewOrder;
