@@ -4,6 +4,6 @@ const router = express.Router();
 const contractorController = require('../controllers/contractorController');
 
 // POST /contractors
-router.post('/contractors', contractorController.createContractor);
+router.post('/createContractor', contractorController.createContractor);
 router.get('/contractors/all', contractorController.getAllContractors);
 module.exports = router;

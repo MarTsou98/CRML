@@ -8,8 +8,7 @@ exports.createContractor = async (req, res) => {
       lastName,
       Role,
       salesperson_id,
-      customers,
-      orders
+      ContractorNotes = '',
     } = req.body;
 
     const contractor = new Contractor({
@@ -17,8 +16,7 @@ exports.createContractor = async (req, res) => {
       lastName,
       Role,
       salesperson_id,
-      customers,
-      orders
+      ContractorNotes
     });
 
     await contractor.save();
@@ -32,6 +30,7 @@ exports.createContractor = async (req, res) => {
     res.status(500).json({ error: 'Server error while creating contractor' });
   }
 };
+
 exports.getAllContractors = async (req, res) => {
   try {
     const contractors = await Contractor.find()

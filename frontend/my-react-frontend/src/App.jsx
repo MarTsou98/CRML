@@ -17,6 +17,7 @@ import AllCustomersPage from './pages/AllCustomersPage'; // Adjust path if neede
 import OrderDetails from './pages/OrderDetails'; // Adjust path if needed
 import AddPayment from './pages/AddPayment'; // Adjust path if needed
 import SearchCustomer from './pages/SearchCustomer'; // Adjust path if needed
+import CreateContractorsPage from './pages/CreateContractorsPage'; // Adjust path if needed
 function App() {
   const [user, setUser] = useState(null);
 
@@ -34,6 +35,7 @@ function App() {
     <Route path="find-order" element={<FindOrderPage />} />
     <Route path="customers" element={<CustomersPage />} />
     <Route path="contractors" element={<ContractorsPage />} />
+    <Route path="newcontractors" element={<CreateContractorsPage />} />
     <Route path="orders/new" element={<NewOrder />} />
     <Route path="customers/search" element={<SearchCustomer />} />
     <Route path="customers/all" element={<AllCustomersPage />} />

@@ -34,10 +34,13 @@ const NewOrder = () => {
   useEffect(() => {
     // Example: Fetch from localStorage
     const user = JSON.parse(localStorage.getItem('user')) || {}; // Adjust based on your context or storage method
-    const savedSalespersonId = user.salesperson_id || ''; // Adjust based on your context or storage method
+    const savedSalespersonId = user.salesperson_id || null; // Adjust based on your context or storage method
+    if(user.role === 'manager') {
+      setForm(prev => ({ ...prev, salesperson_id: null })); // Managers can select any salesperson
+    }
     if (savedSalespersonId) {
       setForm(prev => ({ ...prev, salesperson_id: savedSalespersonId }));
-    }
+    } 
     // Set default invoice type
     setForm(prev => ({ ...prev, invoiceType: 'Timologio' }));
   }, []);

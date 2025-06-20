@@ -20,7 +20,15 @@ const contractorSchema = new mongoose.Schema({
        ref: 'Customer'
      }
    ],
-
+   Phone: {
+       type: String
+   },
+   email: {
+       type: String
+   },
+   ContractorNotes: {
+       type: String
+   },
    orders: [
      {
        type: mongoose.Schema.Types.ObjectId,
