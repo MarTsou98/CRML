@@ -7,13 +7,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import './css/NewCustomer.css';
 
 const NewCustomer = () => {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    address: '',
-  });
+ const [formData, setFormData] = useState({
+  firstName: '',
+  lastName: '',
+  email: '',
+  phone: '',
+  address: '',
+  CustomerNotes: '', // ✅ New field
+});
+
 
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
@@ -75,9 +77,20 @@ const NewCustomer = () => {
               onChange={(e) => handleChange(field, e.target.value)}
               className={errors[field] ? 'error' : ''}
             />
+           
             {errors[field] && <small className="error-text">{errors[field]}</small>}
           </div>
         ))}
+         <div className="nice-form-group">
+  <label>Notes:</label>
+  <textarea
+    value={formData.CustomerNotes}
+    onChange={(e) => handleChange('CustomerNotes', e.target.value)}
+    rows={4}
+    placeholder="Enter any relevant notes about the customer"
+  />
+  {errors.CustomerNotes && <small className="error-text">{errors.CustomerNotes}</small>}
+</div>
 
         <div className="nice-form-group">
           <button type="submit" className="nice-button">Create Customer</button>

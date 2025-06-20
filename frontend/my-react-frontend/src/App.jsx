@@ -16,6 +16,7 @@ import CustomerDetails from './pages/CustomerDetails';
 import AllCustomersPage from './pages/AllCustomersPage'; // Adjust path if needed
 import OrderDetails from './pages/OrderDetails'; // Adjust path if needed
 import AddPayment from './pages/AddPayment'; // Adjust path if needed
+import SearchCustomer from './pages/SearchCustomer'; // Adjust path if needed
 function App() {
   const [user, setUser] = useState(null);
 
@@ -34,6 +35,7 @@ function App() {
     <Route path="customers" element={<CustomersPage />} />
     <Route path="contractors" element={<ContractorsPage />} />
     <Route path="orders/new" element={<NewOrder />} />
+    <Route path="customers/search" element={<SearchCustomer />} />
     <Route path="customers/all" element={<AllCustomersPage />} />
     <Route path="customers/new" element={<NewCustomer />} />
     <Route path="customers/:customerId" element={<CustomerDetails />} />

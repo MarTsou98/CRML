@@ -10,7 +10,8 @@ exports.createCustomer = async (req, res) => {
       phone,
       address,
       id_of_salesperson,
-      id_of_contractor
+      id_of_contractor,
+       CustomerNotes // ✅ Include this in the destructuring
     } = req.body;
 if(id_of_contractor === 'undefined' || id_of_contractor === ''|| id_of_contractor === null) {id_of_contractor = '6836d07cf73e4ebd95b75b2b';}
     if (!firstName || !lastName || !email) {
@@ -28,6 +29,7 @@ if(id_of_contractor === 'undefined' || id_of_contractor === ''|| id_of_contracto
       email,
       phone,
       address,
+       CustomerNotes, // ✅ Now included in the document
       id_of_salesperson,
       id_of_contractor
     });

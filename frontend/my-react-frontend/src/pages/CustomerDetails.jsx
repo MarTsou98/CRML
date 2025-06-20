@@ -37,7 +37,7 @@ const CustomerDetails = () => {
       <p><strong>Email:</strong> {customer.email}</p>
       <p><strong>Phone:</strong> {customer.phone}</p>
       <p><strong>Address:</strong> {customer.address}</p>
-      <p><strong>Salesperson:</strong> {customer.id_of_salesperson?.firstName} {customer.id_of_salesperson?.lastName}</p>
+      <p><strong>Σημείωσης:</strong> {customer.CustomerNotes}</p>
 
       <div>
   <h3>Orders</h3>

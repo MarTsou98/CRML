@@ -13,6 +13,7 @@ const NewOrder = () => {
     customer_id: '',
     salesperson_id: '', // will auto-fill from storage
     contractor_id: '',
+    orderedFromCompany: '', // <-- ADD THIS
     moneyDetails: {
       timi_Timokatalogou: '',
       timi_Polisis: '',
@@ -162,6 +163,23 @@ const validateForm = () => {
       onChange={(val) => setForm({ ...form, contractor_id: val })}
     />
   </div>
+  <div className="nice-form-group ">
+  <label htmlFor="orderedFromCompany" >Εταιρεία που παραγγέλθηκε</label>
+  <select
+    name="orderedFromCompany"
+    value={form.orderedFromCompany}
+    onChange={handleChange}
+    required
+  >
+    <option value="">-- Επιλέξτε Εταιρεία --</option>
+    <option value="Lube">Lube</option>
+    <option value="Decopan">Decopan</option>
+    <option value="Sover">Sover</option>
+    <option value="Doors">Doors</option>
+    <option value="Appliances">Appliances</option>
+    <option value="CounterTop">CounterTop</option>
+  </select>
+</div>
   <h4>Money Details:</h4>
 
 {[

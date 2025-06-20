@@ -8,6 +8,9 @@ const NavbarCenter = ({ user }) => (
     <NavLink to="/orders/new" className={({ isActive }) => isActive ? "active" : ""}>New Order</NavLink>
     <NavLink to="/customers/all" className={({ isActive }) => isActive ? "active" : ""}>Customers</NavLink>
     <NavLink to="/customers/new" className={({ isActive }) => isActive ? "active" : ""}>New Customer</NavLink>
+  
+    <NavLink to="/customers/search" className={({ isActive }) => isActive ? "active" : ""}>Search Customer</NavLink>
+
     {user.role === 'manager' && (
       <NavLink to="/contractors" className={({ isActive }) => isActive ? "active" : ""}>Contractors</NavLink>
     )}
