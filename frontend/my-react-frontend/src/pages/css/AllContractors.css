@@ -1,0 +1,13 @@
+.contractor-box {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.contractor-box:hover {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}

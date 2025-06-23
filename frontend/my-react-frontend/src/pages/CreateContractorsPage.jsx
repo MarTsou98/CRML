@@ -11,7 +11,7 @@ const NewContractor = () => {
     firstName: '',
     lastName: '',
     Role: '',
-    Phone: '',
+    phone: '',
     email: '',
     ContractorNotes: '',
   });
@@ -60,46 +60,59 @@ const NewContractor = () => {
   };
 
   return (
-    <div className="new-contractor-wrapper">
-      <ToastContainer position="top-right" />
-      <BackButton />
-      <h2 className="new-contractor-heading">Create New Contractor</h2>
-      <form onSubmit={handleSubmit} className="new-contractor-form">
-        {['firstName', 'lastName', 'Role', 'Phone', 'email'].map((field) => (
-          <div className="new-contractor-form-group" key={field}>
-            <label>{field.charAt(0).toUpperCase() + field.slice(1)}:</label>
-            <input
-              type="text"
-              value={formData[field]}
-              onChange={(e) => handleChange(field, e.target.value)}
-              className={errors[field] ? 'error' : ''}
-            />
-            {errors[field] && (
-              <small className="new-contractor-error-text">{errors[field]}</small>
-            )}
-          </div>
-        ))}
+  <div className="new-contractor-wrapper">
+  <div className="new-contractor-content">
+    <ToastContainer position="top-right" />
+    <BackButton />
+    <h2 className="new-contractor-heading">Δημιουργία νέου εργολάβου</h2>
 
-        <div className="new-contractor-form-group">
-          <label>Notes:</label>
-          <textarea
-            value={formData.ContractorNotes}
-            onChange={(e) => handleChange('ContractorNotes', e.target.value)}
-            rows={4}
-            placeholder="Enter any relevant notes about the contractor"
-          />
-          {errors.ContractorNotes && (
-            <small className="new-contractor-error-text">
-              {errors.ContractorNotes}
-            </small>
-          )}
-        </div>
+    <form onSubmit={handleSubmit} className="new-contractor-form">
+     {[
+  { name: 'firstName', label: 'Όνομα' },
+  { name: 'lastName', label: 'Επίθετο' },
+  { name: 'Role', label: 'Ρόλος' },
+  { name: 'phone', label: 'Τηλέφωνο' },
+  { name: 'email', label: 'Email' },
+].map(({ name, label }) => (
+  <div className="new-contractor-form-group" key={name}>
+    <label className="new-contractor-label">{label}:</label>
+    <input
+      type="text"
+      value={formData[name]}
+      onChange={(e) => handleChange(name, e.target.value)}
+      className={`new-contractor-input ${errors[name] ? 'error' : ''}`}
+    />
+    {errors[name] && (
+      <small className="new-contractor-error-message">
+        {errors[name]}
+      </small>
+    )}
+  </div>
+))}
 
-        <div className="new-contractor-form-group">
-          <button type="submit" className="new-contractor-button">Create Contractor</button>
-        </div>
-      </form>
-    </div>
+      <div className="new-contractor-form-group">
+        <label className="new-contractor-label">Σημειώσεις:</label>
+        <textarea
+          value={formData.ContractorNotes}
+          onChange={(e) => handleChange('ContractorNotes', e.target.value)}
+          rows={4}
+          placeholder="Enter any relevant notes about the contractor"
+          className="new-contractor-input"
+        />
+        {errors.ContractorNotes && (
+          <small className="new-contractor-error-message">
+            {errors.ContractorNotes}
+          </small>
+        )}
+      </div>
+
+      <button type="submit" className="new-contractor-button">
+       Δημιουργία εργολάβου
+      </button>
+    </form>
+  </div>
+</div>
+
   );
 };
 

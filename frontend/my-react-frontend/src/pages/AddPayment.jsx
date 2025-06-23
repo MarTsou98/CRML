@@ -34,13 +34,13 @@ const AddPayment = () => {
    <div className="new-order-wrapper">
   <div className="new-order-content">
     <BackButton />
-    <h2 className="new-order-heading">Add Payment to Order</h2>
+    <h2 className="new-order-heading">Προσθήκη Πληρωμής στην Παραγγελία</h2>
 
     {error && <p className="new-order-message error">{error}</p>}
 
     <form onSubmit={handleSubmit} className="new-order-form">
       <div className="new-order-form-group">
-        <label className="new-order-label">Amount:</label>
+        <label className="new-order-label">Ποσό:</label>
         <input
           type="number"
           value={amount}
@@ -51,21 +51,21 @@ const AddPayment = () => {
       </div>
 
       <div className="new-order-form-group">
-        <label className="new-order-label">Method:</label>
+        <label className="new-order-label">Μέθοδος:</label>
         <select
           value={method}
           onChange={(e) => setMethod(e.target.value)}
           required
           className="new-order-input"
         >
-          <option value="">Select method</option>
-          <option value="Cash">Cash</option>
-          <option value="Bank">Bank</option>
+          <option value="">Επιλέξτε μέθοδο</option>
+          <option value="Cash">Μετρητά</option>
+          <option value="Bank">Τράπεζα</option>
         </select>
       </div>
 
       <div className="new-order-form-group">
-        <span className="new-order-label">Payer:</span>
+        <span className="new-order-label">Πληρωτής:</span>
         <label>
           <input
             type="radio"
@@ -73,7 +73,7 @@ const AddPayment = () => {
             checked={payer === 'Customer'}
             onChange={(e) => setPayer(e.target.value)}
           />
-          Customer
+          Πελάτης
         </label>
         <label>
           <input
@@ -82,12 +82,12 @@ const AddPayment = () => {
             checked={payer === 'Contractor'}
             onChange={(e) => setPayer(e.target.value)}
           />
-          Contractor
+          Εργολάβος
         </label>
       </div>
 
       <div className="new-order-form-group">
-        <label className="new-order-label">Notes:</label>
+        <label className="new-order-label">Σημειώσεις:</label>
         <textarea
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
@@ -97,7 +97,7 @@ const AddPayment = () => {
       </div>
 
       <button type="submit" className="new-order-button">
-        Submit Payment
+        Προσθήκη Πληρωμής
       </button>
     </form>
   </div>

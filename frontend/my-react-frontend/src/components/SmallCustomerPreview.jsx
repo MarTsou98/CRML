@@ -5,11 +5,11 @@ import './css/SmallCustomerPreview.css';
 const SmallCustomerPreview = ({ customer }) => {
   return (
     <div className="small-customer-preview">
-      <p><strong>Name:</strong> {customer.firstName} {customer.lastName}</p>
+      <p><strong>Όνομα:</strong> {customer.firstName} {customer.lastName}</p>	
       <p><strong>Email:</strong> {customer.email}</p>
-      <p><strong>Phone:</strong> {customer.phone}</p>
+      <p><strong>Τηλέφωνο:</strong> {customer.phone}</p>
       <Link to={`/customers/${customer._id}`}>
-        <button>View Details</button>
+        <button>Δείτε Λεπτομέρειες</button>
       </Link>
     </div>
   );

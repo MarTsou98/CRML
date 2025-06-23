@@ -1,42 +1,42 @@
-.new-order-wrapper {
+.new-contractor-wrapper {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f9fafb;
   padding: 1rem;
   color: #333;
 }
 
-.new-order-content {
+.new-contractor-content {
   max-width: 600px;
   margin: 0 auto;
 }
 
-.new-order-heading {
+.new-contractor-heading {
   font-weight: 600;
   color: #2c3e50;
   margin-bottom: 1rem;
   text-align: center;
 }
 
-.new-order-form {
+.new-contractor-form {
   background: white;
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
 }
 
-.new-order-form-group {
+.new-contractor-form-group {
   display: flex;
   flex-direction: column;
   margin-bottom: 1.25rem;
 }
 
-.new-order-label {
+.new-contractor-label {
   font-weight: 600;
   margin-bottom: 0.4rem;
   color: #34495e;
 }
 
-.new-order-input {
+.new-contractor-input {
   padding: 0.5rem 0.75rem;
   font-size: 1rem;
   border: 1.5px solid #ccc;
@@ -45,19 +45,19 @@
   font-family: inherit;
 }
 
-.new-order-input:focus {
+.new-contractor-input:focus {
   border-color: #2980b9;
   box-shadow: 0 0 5px #2980b9aa;
   outline: none;
 }
 
-.new-order-error-message {
+.new-contractor-error-message {
   color: #e74c3c;
   font-size: 0.85rem;
   margin-top: 0.3rem;
 }
 
-.new-order-button {
+.new-contractor-button {
   background-color: #2980b9;
   color: white;
   border: none;
@@ -73,23 +73,23 @@
   margin: 1rem auto 0;
 }
 
-.new-order-button:hover {
+.new-contractor-button:hover {
   background-color: #1f6391;
 }
 
-.new-order-message {
+.new-contractor-message {
   text-align: center;
   margin-top: 1rem;
   font-weight: 600;
   color: #27ae60;
 }
 
-.new-order-message.error {
+.new-contractor-message.error {
   color: #e74c3c;
 }
 
 @media (max-width: 640px) {
-  .new-order-form {
+  .new-contractor-form {
     padding: 1rem;
     margin: 1rem;
   }

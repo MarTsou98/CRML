@@ -12,7 +12,7 @@ const NavbarCenter = ({ user }) => (
     <NavLink to="/customers/search" className={({ isActive }) => isActive ? "active" : ""}>Αναζήτηση Πελάτη</NavLink>
 
     {user.role === 'manager' && (
-      <NavLink to="/contractors" className={({ isActive }) => isActive ? "active" : ""}>Εργολάβοι</NavLink>
+      <NavLink to="/AllContractorsPage" className={({ isActive }) => isActive ? "active" : ""}>Εργολάβοι</NavLink>
      
     )}
      {user.role === 'manager' && (
