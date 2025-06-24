@@ -34,6 +34,8 @@ const contractorRoutes = require('./routes/contractorRoutes');
 app.use('/api', contractorRoutes);
 const salespersonRoutes = require('./routes/salespersonRoutes');
 app.use('/api', salespersonRoutes);
+const statsRoutes = require('./routes/statsRoutes');
+app.use('/api/stats', statsRoutes);
 
 // Start server
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

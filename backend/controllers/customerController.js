@@ -30,8 +30,8 @@ if(id_of_contractor === 'undefined' || id_of_contractor === ''|| id_of_contracto
       phone,
       address,
        CustomerNotes, // ✅ Now included in the document
-      id_of_salesperson,
-      id_of_contractor
+      id_of_salesperson, // ✅ Fix this field name
+ id_of_contractor     // ✅ And this one too
     });
 
     await customer.save();
