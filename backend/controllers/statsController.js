@@ -4,14 +4,35 @@ const Contractor = require('../models/Contractor');
 const mongoose = require('mongoose');
 exports.getOrdersByType = async (req, res) => {
   try {
+    const companies = ['Lube', 'Decopan', 'Sovet', 'Doors', 'Appliances', 'CounterTop'];
+
     const data = await Order.aggregate([
-      { $group: { _id: "$orderType", count: { $sum: 1 } } }
+      {
+        $group: {
+          _id: "$orderedFromCompany",
+          count: { $sum: 1 }
+        }
+      }
     ]);
 
     const result = {};
-    data.forEach(entry => {
-      result[entry._id] = entry.count;
+    let total = 0;
+
+    // Initialize all companies with 0
+    companies.forEach(company => {
+      result[company] = 0;
     });
+
+    // Populate with actual counts and calculate total
+    data.forEach(entry => {
+      if (result.hasOwnProperty(entry._id)) {
+        result[entry._id] = entry.count;
+        total += entry.count;
+      }
+    });
+
+    // Add total to the result
+    result.total = total;
 
     res.json(result);
   } catch (err) {
@@ -19,6 +40,180 @@ exports.getOrdersByType = async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 };
+exports.getTypeOfOrdersBySalesperson = async (req, res) => {
+  try {
+    const { salesperson_id } = req.params;
+
+    if (!salesperson_id) {
+      return res.status(400).json({ message: 'salesperson_id is required' });
+    }
+
+    const companies = ['Lube', 'Decopan', 'Sovet', 'Doors', 'Appliances', 'CounterTop'];
+
+    const data = await Order.aggregate([
+      {
+        $match: {
+          salesperson_id: new mongoose.Types.ObjectId(salesperson_id)
+        }
+      },
+      {
+        $group: {
+          _id: "$orderedFromCompany",
+          count: { $sum: 1 }
+        }
+      }
+    ]);
+
+    const result = {};
+    let total = 0;
+
+    companies.forEach(company => {
+      result[company] = 0;
+    });
+
+    data.forEach(entry => {
+      if (result.hasOwnProperty(entry._id)) {
+        result[entry._id] = entry.count;
+        total += entry.count;
+      }
+    });
+
+    result.total = total;
+
+    res.json(result);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
+exports.getTypeOfOrdersByContractor = async (req, res) => {
+  try {
+    const { contractor_id } = req.params;
+
+    if (!contractor_id) {
+      return res.status(400).json({ message: 'contractor_id is required' });
+    }
+
+    const companies = ['Lube', 'Decopan', 'Sovet', 'Doors', 'Appliances', 'CounterTop'];
+
+    const data = await Order.aggregate([
+      {
+        $match: {
+          contractor_id: new mongoose.Types.ObjectId(contractor_id)
+        }
+      },
+      {
+        $group: {
+          _id: "$orderedFromCompany",
+          count: { $sum: 1 }
+        }
+      }
+    ]);
+
+    const result = {};
+    let total = 0;
+
+    companies.forEach(company => {
+      result[company] = 0;
+    });
+
+    data.forEach(entry => {
+      if (result.hasOwnProperty(entry._id)) {
+        result[entry._id] = entry.count;
+        total += entry.count;
+      }
+    });
+
+    result.total = total;
+
+    res.json(result);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
+exports.getProfitBySalesperson = async (req, res) => {
+  try {
+    const data = await Order.aggregate([
+      {
+        $group: {
+          _id: "$salesperson_id",
+          totalProfit: { $sum: "$moneyDetails.profit" },
+          totalRevenue: { $sum: "$moneyDetails.timi_Polisis" },
+          orderCount: { $sum: 1 }
+        }
+      },
+      {
+        $lookup: {
+          from: "salespeople", // collection name in MongoDB (lowercase plural)
+          localField: "_id",
+          foreignField: "_id",
+          as: "salesperson"
+        }
+      },
+      {
+        $unwind: "$salesperson"
+      },
+      {
+        $project: {
+          _id: 0,
+          salespersonId: "$_id",
+          name: "$salesperson.name",
+          totalProfit: 1,
+          totalRevenue: 1,
+          orderCount: 1
+        }
+      }
+    ]);
+
+    res.json(data);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server Error" });
+  }
+};
+exports.getProfitByContractor = async (req, res) => {
+  try {
+    const data = await Order.aggregate([
+      {
+        $group: {
+          _id: "$contractor_id",
+          totalProfit: { $sum: "$moneyDetails.profit" },
+          totalRevenue: { $sum: "$moneyDetails.timi_Polisis" },
+          orderCount: { $sum: 1 }
+        }
+      },
+      {
+        $lookup: {
+          from: "contractors",
+          localField: "_id",
+          foreignField: "_id",
+          as: "contractor"
+        }
+      },
+      {
+        $unwind: "$contractor"
+      },
+      {
+        $project: {
+          _id: 0,
+          contractorId: "$_id",
+          name: "$contractor.name",
+          totalProfit: 1,
+          totalRevenue: 1,
+          orderCount: 1
+        }
+      }
+    ]);
+
+    res.json(data);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server Error" });
+  }
+};
+
+
 
 exports.getSummaryStats = async (req, res) => {
   try {

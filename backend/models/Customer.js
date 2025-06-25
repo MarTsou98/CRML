@@ -15,7 +15,7 @@ const customerSchema = new mongoose.Schema({
   orders: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Order' }]
 }, { timestamps: true });
 
-const Salesperson = require('./Salesperson');
+//const Salesperson = require('./Salesperson');
 const Contractor = require('./Contractor'); // ✅ Import the Contractor model
 
 customerSchema.pre('save', async function (next) {
