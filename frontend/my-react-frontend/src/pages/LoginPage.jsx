@@ -5,6 +5,7 @@ import { UserContext } from '../context/UserContext';
 
 function LoginPage() {
   const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');  // NEW
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const { setUser } = useContext(UserContext);
@@ -14,8 +15,9 @@ function LoginPage() {
     setError(null);
 
     try {
-      const data = await login(username);
-      setUser(data.user); // or just data if your API returns user directly
+      // Pass both username and password now
+      const data = await login(username, password);
+      setUser(data.user);
       localStorage.setItem('user', JSON.stringify(data.user));
       navigate('/DashBoard');
     } catch (err) {
@@ -33,6 +35,16 @@ function LoginPage() {
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            required
+            style={{ width: '100%', padding: '8px' }}
+          />
+        </div>
+        <div style={{ marginBottom: '1rem' }}> {/* NEW */}
+          <label>Password:</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required
             style={{ width: '100%', padding: '8px' }}
           />
