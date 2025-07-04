@@ -20,7 +20,15 @@ import AddPayment from './pages/AddPayment'; // Adjust path if needed
 import SearchCustomer from './pages/SearchCustomer'; // Adjust path if needed
 import CreateContractorsPage from './pages/CreateContractorsPage'; // Adjust path if needed
 import AllContractorsPage from './pages/AllContractorsPage';
-
+import OrderByTypePage from './pages/OrderByTypePage'; // Adjust path if needed
+import StatsDashboardPage from './pages/StatsDashboardPage';
+import OrdersBySalespersonPage from './pages/OrdersBySalespersonPage'; // Adjust path if needed
+import OrdersByContractorPage from './pages/OrdersByContractorPage';
+import SummaryStatsPage from './pages/SummaryStatsPage';
+import SalespersonStatsPage from './pages/SalespersonStatsPage';
+import ContractorStatsPage from './pages/ContractorStatsPage';
+import ProfitBySalespersonPage from './pages/ProfitBySalespersonPage';
+import ProfitByContractorPage from './pages/ProfitByContractorPage';
 function App() {
   const [user, setUser] = useState(null);
 
@@ -34,6 +42,7 @@ function App() {
   <Route path="/" element={<Layout />}>
   
     <Route path="dashboard" element={<DashBoard />} />
+    <Route path="stats/by-company-type" element={<OrderByTypePage />} />
     <Route path="orders" element={<OrdersPage />} />
     <Route path="new-order" element={<NewOrderPage />} />
     <Route path="new-order/:customerId" element={<NewOrderPage />} />
@@ -50,7 +59,15 @@ function App() {
     <Route path="orders/:orderId" element={<OrderDetails />} />
     <Route path="orders/:orderId/addpayment" element={<AddPayment />} />
     <Route path="/contractors/:id" element={<ContractorDetailsPage />} />
+    <Route path="stats" element={<StatsDashboardPage />} />
     <Route path="AllContractorsPage" element={<AllContractorsPage />} />
+    <Route path="stats/by-salesperson" element={<OrdersBySalespersonPage />} />
+    <Route path="stats/by-contractor" element={<OrdersByContractorPage />} />
+    <Route path="stats/summary" element={<SummaryStatsPage />} />
+<Route path="stats/salesperson/:id" element={<SalespersonStatsPage />} />
+<Route path="stats/contractor/:id" element={<ContractorStatsPage />} />
+<Route path="stats/profit-by-salesperson" element={<ProfitBySalespersonPage />} />
+<Route path="stats/profit-by-contractor" element={<ProfitByContractorPage />} />
   </Route>
 
   <Route path="*" element={<NotFound />} />

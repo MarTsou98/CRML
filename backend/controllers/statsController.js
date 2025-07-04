@@ -241,61 +241,61 @@ exports.getStatsForOneSalesperson = async (req, res) => {
       return res.status(404).json({ message: 'Salesperson not found' });
     }
 
-    const stats = await Order.aggregate([
-  {
-    $match: {
-      salesperson_id: new mongoose.Types.ObjectId(id)
-    }
-  },
-  {
-    $group: {
-      _id: "$salesperson_id",
-      totalOrders: { $sum: 1 },
-      totalRevenue: { $sum: "$moneyDetails.timi_Polisis" },
-      totalProfit: { $sum: "$moneyDetails.profit" }
-    }
-  },
-  {
-    $lookup: {
-      from: "salespeople",             // **collection name** in MongoDB (check yours!)
-      localField: "_id",
-      foreignField: "_id",
-      as: "salespersonDetails"
-    }
-  },
-  {
-    $unwind: "$salespersonDetails"
-  },
-  {
-    $project: {
-      _id: 0,
-      salespersonId: "$_id",
-      totalOrders: 1,
-      totalRevenue: 1,
-      totalProfit: 1,
-      salespersonDetails: 1            // <-- full salesperson document here
-    }
-  }
-]);
+    const data = await Order.aggregate([
+      {
+        $match: {
+          salesperson_id: new mongoose.Types.ObjectId(id),
+        },
+      },
+      {
+        $group: {
+          _id: "$salesperson_id",
+          totalProfit: { $sum: "$moneyDetails.profit" },
+          totalRevenue: { $sum: "$moneyDetails.timi_Polisis" },
+          orderCount: { $sum: 1 }
+        }
+      },
+      {
+        $lookup: {
+          from: "salespeople",
+          localField: "_id",
+          foreignField: "_id",
+          as: "salesperson"
+        }
+      },
+      { $unwind: "$salesperson" },
+      {
+        $project: {
+          _id: 0,
+          salespersonId: "$_id",
+          name: { $concat: ["$salesperson.firstName", " ", "$salesperson.lastName"] },
+          totalProfit: 1,
+          totalRevenue: 1,
+          orderCount: 1
+        }
+      }
+    ]);
 
-    const result = stats[0] || {
-      totalOrders: 0,
+    const result = data[0] || {
+      salespersonId: id,
+      totalProfit: 0,
       totalRevenue: 0,
-      totalProfit: 0
+      orderCount: 0,
+      name: `${salesperson.firstName} ${salesperson.lastName}`,
     };
 
-    res.json({
-      salespersonId: id,
-      name: salesperson.name,
-      email: salesperson.email,
-      ...result
-    });
+    // Add email from found salesperson document
+    result.email = salesperson.email;
+
+    res.json(result);
 
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server error' });
   }
 };
+
+
 exports.getStatsForOneContractor = async (req, res) => {
   const { id } = req.params;
 
