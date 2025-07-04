@@ -13,7 +13,7 @@ const OrdersByType = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-   axios.get('http://localhost:5000/api/stats/orders-by-type')// Adjust as needed
+    axios.get('http://localhost:5000/api/stats/orders-by-type')
       .then(res => {
         setOrders(res.data);
         setLoading(false);
@@ -31,27 +31,50 @@ const OrdersByType = () => {
     .filter(key => key !== 'total')
     .map((company, index) => ({
       name: company,
-      value: orders[company],
+      count: orders[company].count,
+      revenue: orders[company].totalRevenue,
+      profit: orders[company].totalProfit,
       color: COLORS[index % COLORS.length]
     }));
+const CustomTooltip = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    const { count, revenue, profit } = payload[0].payload;
+    return (
+      <div style={{
+        background: 'white',
+        border: '1px solid #ccc',
+        padding: '0.75rem',
+        borderRadius: '0.5rem',
+        boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+      }}>
+        <p><strong>{label}</strong></p>
+        <p>🧾 Orders: {count}</p>
+        <p>💰 Revenue: ${revenue.toLocaleString()}</p>
+        <p>📈 Profit: ${profit.toLocaleString()}</p>
+      </div>
+    );
+  }
+  return null;
+};
 
   return (
     <div style={{ padding: '2rem' }}>
-      <h2>Order Counts by Company</h2>
+      <h2>📊 Order Counts by Company</h2>
 
       {/* Bar Chart */}
       <div style={{ width: '100%', height: 300 }}>
         <ResponsiveContainer>
           <BarChart data={chartData}>
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Bar dataKey="value">
-              {chartData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={entry.color} />
-              ))}
-            </Bar>
-          </BarChart>
+  <XAxis dataKey="name" />
+  <YAxis />
+  <Tooltip content={<CustomTooltip />} />
+  <Bar dataKey="count">
+    {chartData.map((entry, index) => (
+      <Cell key={`cell-${index}`} fill={entry.color} />
+    ))}
+  </Bar>
+</BarChart>
+
         </ResponsiveContainer>
       </div>
 
@@ -59,28 +82,31 @@ const OrdersByType = () => {
       <div style={{ width: '100%', height: 300, marginTop: '2rem' }}>
         <ResponsiveContainer>
           <PieChart>
-            <Pie
-              data={chartData}
-              dataKey="value"
-              nameKey="name"
-              cx="50%"
-              cy="50%"
-              outerRadius={100}
-              fill="#8884d8"
-              label
-            >
-              {chartData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={entry.color} />
-              ))}
-            </Pie>
-            <Legend />
-            <Tooltip />
-          </PieChart>
+  <Pie
+    data={chartData}
+    dataKey="count"
+    nameKey="name"
+    cx="50%"
+    cy="50%"
+    outerRadius={100}
+    fill="#8884d8"
+    label
+  >
+    {chartData.map((entry, index) => (
+      <Cell key={`cell-${index}`} fill={entry.color} />
+    ))}
+  </Pie>
+  <Legend />
+  <Tooltip content={<CustomTooltip />} />
+</PieChart>
+
         </ResponsiveContainer>
       </div>
 
       <hr />
-      <h3>Total Orders: {orders.total}</h3>
+      <h3>Total Orders: {orders.total.count}</h3>
+      <h4>Total Revenue: ${orders.total.totalRevenue.toLocaleString()}</h4>
+      <h4>Total Profit: ${orders.total.totalProfit.toLocaleString()}</h4>
     </div>
   );
 };

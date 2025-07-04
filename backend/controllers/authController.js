@@ -20,6 +20,12 @@ const login = async (req, res) => {
       user: {
         id: user._id,
         username: user.username,
+        
+salesperson_id: user.salesperson_id,
+        email: user.email,
+        name: user.name,
+        phone: user.phone,
+        address: user.address,
         role: user.role
       }
     });

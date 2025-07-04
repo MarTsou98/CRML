@@ -6,33 +6,73 @@ exports.getOrdersByType = async (req, res) => {
   try {
     const companies = ['Lube', 'Decopan', 'Sovet', 'Doors', 'Appliances', 'CounterTop'];
 
-    const data = await Order.aggregate([
-      {
-        $group: {
-          _id: "$orderedFromCompany",
-          count: { $sum: 1 }
+const data = await Order.aggregate([
+  {
+    $group: {
+      _id: "$orderedFromCompany",
+      count: { $sum: 1 },
+      totalProfit: {
+        $sum: {
+          $cond: [
+            { $ifNull: ["$moneyDetails.profit", false] },
+            "$moneyDetails.profit",
+            0
+          ]
+        }
+      },
+      totalRevenue: {
+        $sum: {
+          $cond: [
+            { $ifNull: ["$moneyDetails.timi_Polisis", false] },
+            "$moneyDetails.timi_Polisis",
+            0
+          ]
         }
       }
-    ]);
+    }
+  }
+]);
+
 
     const result = {};
-    let total = 0;
+    let totalCount = 0;
+    let totalProfit = 0;
+    let totalRevenue = 0;
 
-    // Initialize all companies with 0
+    // Initialize all companies with zeroed stats
     companies.forEach(company => {
-      result[company] = 0;
+      result[company] = {
+        count: 0,
+        totalProfit: 0,
+        totalRevenue: 0
+      };
     });
 
-    // Populate with actual counts and calculate total
+    // Fill in actual values from aggregation
     data.forEach(entry => {
       if (result.hasOwnProperty(entry._id)) {
-        result[entry._id] = entry.count;
-        total += entry.count;
+        const count = entry.count || 0;
+        const profit = entry.totalProfit || 0;
+        const revenue = entry.totalRevenue || 0;
+
+        result[entry._id] = {
+          count,
+          totalProfit: profit,
+          totalRevenue: revenue
+        };
+
+        totalCount += count;
+        totalProfit += profit;
+        totalRevenue += revenue;
       }
     });
 
-    // Add total to the result
-    result.total = total;
+    // Add total section
+    result.total = {
+      count: totalCount,
+      totalProfit,
+      totalRevenue
+    };
 
     res.json(result);
   } catch (err) {
@@ -40,6 +80,9 @@ exports.getOrdersByType = async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 };
+
+
+
 exports.getTypeOfOrdersBySalesperson = async (req, res) => {
   try {
     const { salesperson_id } = req.params;
