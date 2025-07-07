@@ -382,3 +382,57 @@ exports.getStatsForOneContractor = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
+exports.getTypeOfOrdersBySalespersonByName = async (req, res) => {
+  try {
+    const { fullName } = req.params;
+
+    if (!fullName) {
+      return res.status(400).json({ message: 'fullName is required' });
+    }
+
+    const [firstName, lastName] = fullName.split(' ');
+
+    const salesperson = await SalesPerson.findOne({ firstName, lastName });
+
+    if (!salesperson) {
+      return res.status(404).json({ message: 'Salesperson not found' });
+    }
+
+    const companies = ['Lube', 'Decopan', 'Sovet', 'Doors', 'Appliances', 'CounterTop'];
+
+    const data = await Order.aggregate([
+      {
+        $match: {
+          salesperson_id: salesperson._id
+        }
+      },
+      {
+        $group: {
+          _id: "$orderedFromCompany",
+          count: { $sum: 1 }
+        }
+      }
+    ]);
+
+    const result = {};
+    let total = 0;
+
+    companies.forEach(company => {
+      result[company] = 0;
+    });
+
+    data.forEach(entry => {
+      if (result.hasOwnProperty(entry._id)) {
+        result[entry._id] = entry.count;
+        total += entry.count;
+      }
+    });
+
+    result.total = total;
+
+    res.json(result);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};

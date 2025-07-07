@@ -181,3 +181,44 @@ exports.addDamageToOrder = async (req, res) => {
     res.status(500).json({ error: 'Server error adding damage' });
   }
 };
+
+
+
+exports.searchOrders = async (req, res) => {
+  const { q } = req.query;
+  if (!q || q.trim() === '') {
+    return res.status(400).json({ message: 'Query parameter q is required' });
+  }
+
+  // If you want to search by _id only when q is a valid ObjectId
+  const isValidObjectId = mongoose.Types.ObjectId.isValid(q);
+
+  try {
+    let filters = {};
+
+    if (isValidObjectId) {
+      filters._id = q; // only filter by _id if valid
+    } else {
+      // Otherwise, search by customer name or other fields (example with regex)
+      filters = {
+        $or: [
+          { 'customer_id.firstName_normalized': new RegExp(q, 'i') },
+          { 'customer_id.lastName_normalized': new RegExp(q, 'i') },
+          { 'salesperson_id.name': new RegExp(q, 'i') },
+          { 'contractor_id.name': new RegExp(q, 'i') },
+          // add more fields if you want
+        ]
+      };
+    }
+
+    const orders = await Order.find(filters)
+      .populate('customer_id', 'firstName lastName')
+      .populate('salesperson_id', 'name')
+      .populate('contractor_id', 'name');
+
+    res.json(orders);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};

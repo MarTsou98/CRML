@@ -1,16 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
+import {
+  BarChart, Bar, XAxis, YAxis, Tooltip,
+  ResponsiveContainer, CartesianGrid
+} from 'recharts';
 
 const OrdersByContractorPage = () => {
-  const [contractorId, setContractorId] = useState('');
+  const [contractors, setContractors] = useState([]);
+  const [selectedId, setSelectedId] = useState('');
   const [data, setData] = useState(null);
   const [error, setError] = useState('');
+
+  // Fetch all contractors on mount
+  useEffect(() => {
+    axios.get('http://localhost:5000/api/contractors/all')
+      .then(res => setContractors(res.data))
+      .catch(err => {
+        console.error('Error fetching contractors:', err);
+        setError('Failed to load contractors.');
+      });
+  }, []);
 
   const fetchStats = async () => {
     try {
       setError('');
-      const response = await axios.get(`http://localhost:5000/api/stats/Type-Of-orders-by-contractors/${contractorId}`);
+      setData(null);
+
+      const response = await axios.get(`http://localhost:5000/api/stats/Type-Of-orders-by-contractors/${selectedId}`);
       const resData = response.data;
 
       const chartData = Object.entries(resData)
@@ -19,24 +35,45 @@ const OrdersByContractorPage = () => {
 
       setData(chartData);
     } catch (err) {
-      setData(null);
+      console.error(err);
       setError(err.response?.data?.message || 'Error fetching data');
     }
   };
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <h2>Orders by Contractor</h2>
+    <div style={{ padding: '2rem', fontFamily: 'Arial, sans-serif' }}>
+      <h2>Παραγγελίες ανά Συνεργάτη</h2>
+
       <div style={{ marginBottom: '1rem' }}>
-        <input
-          type="text"
-          placeholder="Enter Contractor ID"
-          value={contractorId}
-          onChange={(e) => setContractorId(e.target.value)}
+        <select
+          value={selectedId}
+          onChange={(e) => setSelectedId(e.target.value)}
           style={{ padding: '0.5rem', width: '300px' }}
-        />
-        <button onClick={fetchStats} style={{ marginLeft: '1rem', padding: '0.5rem 1rem' }}>
-          Fetch Stats
+        >
+          <option value="">-- Επιλέξτε Συνεργάτη --</option>
+          {contractors.map(contractor => (
+            <option key={contractor._id} value={contractor._id}>
+              {contractor.firstName && contractor.lastName
+                ? `${contractor.firstName} ${contractor.lastName}`
+                : contractor.name || 'Unknown'}
+            </option>
+          ))}
+        </select>
+
+        <button
+          onClick={fetchStats}
+          disabled={!selectedId}
+          style={{
+            marginLeft: '1rem',
+            padding: '0.5rem 1rem',
+            backgroundColor: '#0077cc',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: selectedId ? 'pointer' : 'not-allowed'
+          }}
+        >
+          Προβολή Στατιστικών
         </button>
       </div>
 
@@ -53,7 +90,7 @@ const OrdersByContractorPage = () => {
           </BarChart>
         </ResponsiveContainer>
       ) : (
-        data && <p>No data found for this contractor.</p>
+        data && <p>Δεν βρέθηκαν δεδομένα για αυτόν τον συνεργάτη.</p>
       )}
     </div>
   );

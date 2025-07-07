@@ -4,7 +4,7 @@ import React from 'react';
 const NavbarCenter = ({ user }) => (
   <div className="nav-links">
     <NavLink to="/orders" className={({ isActive }) => isActive ? "active" : ""}>Παραγγελίες</NavLink>
-    <NavLink to="/orders/find" className={({ isActive }) => isActive ? "active" : ""}>Βρες Παραγγελία</NavLink>
+    <NavLink to="/orders/search" className={({ isActive }) => isActive ? "active" : ""}>Βρες Παραγγελία</NavLink>
     <NavLink to="/orders/new" className={({ isActive }) => isActive ? "active" : ""}>Νέα Παραγγελία</NavLink>
     <NavLink to="/customers/all" className={({ isActive }) => isActive ? "active" : ""}>Πελάτες</NavLink>
     <NavLink to="/customers/new" className={({ isActive }) => isActive ? "active" : ""}>Νέος Πελάτης</NavLink>

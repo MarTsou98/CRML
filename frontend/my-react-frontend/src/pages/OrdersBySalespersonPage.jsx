@@ -1,43 +1,74 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
+import {
+  BarChart, Bar, XAxis, YAxis, Tooltip,
+  ResponsiveContainer, CartesianGrid
+} from 'recharts';
 
 const OrdersBySalespersonPage = () => {
-  const [salespersonId, setSalespersonId] = useState('');
+  const [salespeople, setSalespeople] = useState([]);
+  const [selectedId, setSelectedId] = useState('');
   const [data, setData] = useState(null);
   const [error, setError] = useState('');
+
+  // Fetch all salespeople once
+  useEffect(() => {
+    axios.get('http://localhost:5000/api/salespeople/all')
+      .then(res => setSalespeople(res.data))
+      .catch(err => {
+        console.error('Error fetching salespeople:', err);
+        setError('Failed to load salespeople.');
+      });
+  }, []);
 
   const fetchStats = async () => {
     try {
       setError('');
-      const response = await axios.get(`http://localhost:5000/api/stats/Type-Of-orders-by-salesperson/${salespersonId}`);
+      setData(null);
+
+      const response = await axios.get(`http://localhost:5000/api/stats/Type-Of-orders-by-salesperson/${selectedId}`);
       const resData = response.data;
 
-      // Convert response into array format for recharts
       const chartData = Object.entries(resData)
         .filter(([key]) => key !== 'total')
         .map(([company, count]) => ({ company, count }));
 
       setData(chartData);
     } catch (err) {
-      setData(null);
+      console.error(err);
       setError(err.response?.data?.message || 'Error fetching data');
     }
   };
 
   return (
     <div style={{ padding: '2rem' }}>
-      <h2>Orders by Salesperson</h2>
+      <h2>Παραγγελείες Πωλητή ανά Εταιρεία</h2>
+
+      {/* Dropdown instead of free-text ID */}
       <div style={{ marginBottom: '1rem' }}>
-        <input
-          type="text"
-          placeholder="Enter Salesperson ID"
-          value={salespersonId}
-          onChange={(e) => setSalespersonId(e.target.value)}
+        <select
+          value={selectedId}
+          onChange={(e) => setSelectedId(e.target.value)}
           style={{ padding: '0.5rem', width: '300px' }}
-        />
-        <button onClick={fetchStats} style={{ marginLeft: '1rem', padding: '0.5rem 1rem' }}>
-          Fetch Stats
+        >
+          <option value="">-- Επιλέξτε Πωλητή --</option>
+          {salespeople.map(sp => (
+            <option key={sp._id} value={sp._id}>
+              {sp.firstName} {sp.lastName}
+            </option>
+          ))}
+        </select>
+
+        <button
+          onClick={fetchStats}
+          disabled={!selectedId}
+          style={{
+            marginLeft: '1rem',
+            padding: '0.5rem 1rem',
+            cursor: selectedId ? 'pointer' : 'not-allowed'
+          }}
+        >
+          Εύρεση Στατιστικών
         </button>
       </div>
 
@@ -54,7 +85,7 @@ const OrdersBySalespersonPage = () => {
           </BarChart>
         </ResponsiveContainer>
       ) : (
-        data && <p>No data found for this salesperson.</p>
+        data && <p>Δεν βρέθηκαν δεδομένα για αυτόν τον πωλητή.</p>
       )}
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const FindOrderPage = () => {
+const OrderSearchPage = () => {
   const [query, setQuery] = useState('');
   const [orders, setOrders] = useState([]);
   const [error, setError] = useState('');
@@ -99,4 +99,4 @@ const FindOrderPage = () => {
   );
 };
 
-export default FindOrderPage;
+export default OrderSearchPage;

@@ -29,6 +29,7 @@ import SalespersonStatsPage from './pages/SalespersonStatsPage';
 import ContractorStatsPage from './pages/ContractorStatsPage';
 import ProfitBySalespersonPage from './pages/ProfitBySalespersonPage';
 import ProfitByContractorPage from './pages/ProfitByContractorPage';
+import OrderSearchPage from './pages/OrdersSearchPage'; // Adjust path if needed
 function App() {
   const [user, setUser] = useState(null);
 
@@ -56,6 +57,7 @@ function App() {
     <Route path="customers/all" element={<AllCustomersPage />} />
     <Route path="customers/new" element={<NewCustomer />} />
     <Route path="customers/:customerId" element={<CustomerDetails />} />
+    <Route path="orders/search" element={<OrderSearchPage />} />
     <Route path="orders/:orderId" element={<OrderDetails />} />
     <Route path="orders/:orderId/addpayment" element={<AddPayment />} />
     <Route path="/contractors/:id" element={<ContractorDetailsPage />} />
@@ -68,6 +70,7 @@ function App() {
 <Route path="stats/contractor/:id" element={<ContractorStatsPage />} />
 <Route path="stats/profit-by-salesperson" element={<ProfitBySalespersonPage />} />
 <Route path="stats/profit-by-contractor" element={<ProfitByContractorPage />} />
+<Route path="orders/search" element={<OrderSearchPage />} />
   </Route>
 
   <Route path="*" element={<NotFound />} />

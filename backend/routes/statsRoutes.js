@@ -11,5 +11,5 @@ router.get('/salesperson/:id', statsController.getStatsForOneSalesperson);
 router.get('/contractor/:id', statsController.getStatsForOneContractor);
 router.get('/profit-by-salesperson', statsController.getProfitBySalesperson);
 router.get('/profit-by-contractor', statsController.getProfitByContractor);
-
+router.get('/type-of-orders-by-salesperson/name/:fullName', statsController.getTypeOfOrdersBySalespersonByName);
 module.exports = router;
