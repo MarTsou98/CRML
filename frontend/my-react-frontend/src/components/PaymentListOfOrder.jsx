@@ -14,10 +14,13 @@ const PaymentListOfOrder = ({ orderId, payments }) => (
       {payments?.length > 0 ? (
         <ul className="payments-list">
           {payments.map((p, index) => (
-            <li key={index}>
-              Πληρωμή €{p.amount} στις {new Date(p.date).toLocaleDateString()}<br />
-              <em>Σημείωση:</em> {p.notes}
-            </li>
+          <li key={index}>
+  Πληρωμή €{p.amount} στις {new Date(p.date).toLocaleDateString()}<br />
+   Από τον {p.payer === "Contractor" ? "Εργολάβο" : "Πελάτη"}<br />
+   με χρήση {p.method === "Cash" ? "Μετρητών" : "Τράπεζας"}<br />
+  <em>Σημείωση:</em> {p.notes}
+</li>
+
           ))}
         </ul>
       ) : (

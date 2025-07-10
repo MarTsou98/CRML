@@ -8,12 +8,13 @@ const OrderSearchPage = () => {
   const [loading, setLoading] = useState(false);
 
   const searchOrders = async () => {
+    console.log("Searching for:", query);
     if (!query.trim()) {
       setOrders([]);
       setError('');
       return;
     }
-
+console.log("Searching for:", query);
     setLoading(true);
     setError('');
     try {

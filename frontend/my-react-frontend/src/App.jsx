@@ -51,8 +51,8 @@ function App() {
     <Route path="customers" element={<CustomersPage />} />
     <Route path="contractors" element={<ContractorsPage />} />
     <Route path="newcontractors" element={<CreateContractorsPage />} />
-   <Route path="orders/new" element={<NewOrder />} />
-<Route path="orders/new/:customerId" element={<NewOrder />} />
+    <Route path="orders/new" element={<NewOrder />} />
+    <Route path="orders/new/:customerId" element={<NewOrder />} />
     <Route path="customers/search" element={<SearchCustomer />} />
     <Route path="customers/all" element={<AllCustomersPage />} />
     <Route path="customers/new" element={<NewCustomer />} />
@@ -66,11 +66,11 @@ function App() {
     <Route path="stats/by-salesperson" element={<OrdersBySalespersonPage />} />
     <Route path="stats/by-contractor" element={<OrdersByContractorPage />} />
     <Route path="stats/summary" element={<SummaryStatsPage />} />
-<Route path="stats/salesperson/:id" element={<SalespersonStatsPage />} />
-<Route path="stats/contractor/:id" element={<ContractorStatsPage />} />
-<Route path="stats/profit-by-salesperson" element={<ProfitBySalespersonPage />} />
-<Route path="stats/profit-by-contractor" element={<ProfitByContractorPage />} />
-<Route path="orders/search" element={<OrderSearchPage />} />
+    <Route path="stats/salesperson/:id" element={<SalespersonStatsPage />} />
+    <Route path="stats/contractor/:id" element={<ContractorStatsPage />} />
+    <Route path="stats/profit-by-salesperson" element={<ProfitBySalespersonPage />} />
+    <Route path="stats/profit-by-contractor" element={<ProfitByContractorPage />} />
+    <Route path="orders/search" element={<OrderSearchPage />} />
   </Route>
 
   <Route path="*" element={<NotFound />} />

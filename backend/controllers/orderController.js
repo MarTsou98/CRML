@@ -185,7 +185,10 @@ exports.addDamageToOrder = async (req, res) => {
 
 
 exports.searchOrders = async (req, res) => {
+
+ 
   const { q } = req.query;
+   console.log("Received query:", q);
   if (!q || q.trim() === '') {
     return res.status(400).json({ message: 'Query parameter q is required' });
   }
@@ -201,14 +204,14 @@ exports.searchOrders = async (req, res) => {
     } else {
       // Otherwise, search by customer name or other fields (example with regex)
       filters = {
-        $or: [
-          { 'customer_id.firstName_normalized': new RegExp(q, 'i') },
-          { 'customer_id.lastName_normalized': new RegExp(q, 'i') },
-          { 'salesperson_id.name': new RegExp(q, 'i') },
-          { 'contractor_id.name': new RegExp(q, 'i') },
-          // add more fields if you want
-        ]
-      };
+  $or: [
+    isValidObjectId ? { _id: q } : null,
+    { 'customer_id.firstName_normalized': new RegExp(q, 'i') },
+    { 'customer_id.lastName_normalized': new RegExp(q, 'i') },
+    { 'salesperson_id.name': new RegExp(q, 'i') },
+    { 'contractor_id.name': new RegExp(q, 'i') },
+  ].filter(Boolean) // remove null if q isn't ObjectId
+};
     }
 
     const orders = await Order.find(filters)
