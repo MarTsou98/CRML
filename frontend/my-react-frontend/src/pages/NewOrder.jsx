@@ -28,7 +28,7 @@ const NewOrder = () => {
       contractor_cash: '',
       customer_cash: '',
       payments: [],
-      damages: [{ amount: '', notes: '' }],
+      //damages: [{ amount: '', notes: '' }],
     },
   });
 

@@ -148,15 +148,20 @@ exports.addPaymentToOrder = async (req, res) => {
 };
 exports.addDamageToOrder = async (req, res) => {
   const { orderId } = req.params;
+  const { amount, notes, typeOfDamage } = req.body;
+  const allowedTypes = [
+    'Μεταφορά εξωτερικού',
+    'Μεταφορά εσωτερικού',
+    'Τοποθέτηση',
+    'Διάφορα'
+  ];
 
-  if (!mongoose.Types.ObjectId.isValid(orderId)) {
-    return res.status(400).json({ error: 'Invalid order ID' });
+  if (!amount || typeof amount !== 'number' || isNaN(amount)) {
+    return res.status(400).json({ error: 'Valid damage amount is required' });
   }
 
-  const { amount, notes } = req.body;
-
-  if (!amount || typeof amount !== 'number') {
-    return res.status(400).json({ error: 'Valid damage amount is required' });
+  if (!typeOfDamage || !allowedTypes.includes(typeOfDamage)) {
+    return res.status(400).json({ error: 'Invalid or missing typeOfDamage' });
   }
 
   try {
@@ -166,21 +171,22 @@ exports.addDamageToOrder = async (req, res) => {
     const damage = {
       amount,
       notes,
+      typeOfDamage,
       date: new Date()
     };
 
     order.moneyDetails.damages.push(damage);
 
-    // Optionally update totalDamages
-    order.moneyDetails.totaldamages = (order.moneyDetails.totaldamages || 0) + amount;
-
     await order.save();
+
     res.status(200).json({ message: 'Damage added', order });
   } catch (err) {
-    console.error('Error adding damage:', err);
+    console.error('Error adding damage:', err);  // <--- Add this line if missing
     res.status(500).json({ error: 'Server error adding damage' });
   }
 };
+
+
 
 
 

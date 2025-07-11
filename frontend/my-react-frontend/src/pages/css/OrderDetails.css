@@ -79,3 +79,13 @@
 .add-payment-button:hover {
   background-color: #005c99;
 }
+.add-damage-button {
+  background-color: #dc3545;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+

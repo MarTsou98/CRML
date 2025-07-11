@@ -30,6 +30,10 @@ import ContractorStatsPage from './pages/ContractorStatsPage';
 import ProfitBySalespersonPage from './pages/ProfitBySalespersonPage';
 import ProfitByContractorPage from './pages/ProfitByContractorPage';
 import OrderSearchPage from './pages/OrdersSearchPage'; // Adjust path if needed
+import AddDamage from './pages/AddDamage';
+
+
+
 function App() {
   const [user, setUser] = useState(null);
 
@@ -41,7 +45,7 @@ function App() {
 
   {/* All other routes are wrapped with Layout, so Navbar shown */}
   <Route path="/" element={<Layout />}>
-  
+  <Route path="/orders/:orderId/adddamage" element={<AddDamage />} />
     <Route path="dashboard" element={<DashBoard />} />
     <Route path="stats/by-company-type" element={<OrderByTypePage />} />
     <Route path="orders" element={<OrdersPage />} />

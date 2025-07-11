@@ -6,7 +6,14 @@ import './css/OrderDetails.css'; // Adjust the path if needed
 import GeneralDetailsOfOrder from '../components/GeneralDetailsOfOrder';
 import FinancialDetailsOfOrder from '../components/FinancialDetailsOfOrder';
 import PaymentListOfOrder from '../components/PaymentListOfOrder';
+import DamageListOfOrder from '../components/DamageListOfOrder';
+import { NavLink } from 'react-router-dom';
+
+
+
 const OrderDetails = () => {
+  const user = JSON.parse(localStorage.getItem('user'));
+const userRole = user?.role;
   const { orderId } = useParams();
   const [order, setOrder] = useState(null);
   const [error, setError] = useState(null);
@@ -57,9 +64,19 @@ const OrderDetails = () => {
       <FinancialDetailsOfOrder money={moneyDetails} />
     </div>
 
-    <div className="details-column">
-      <PaymentListOfOrder orderId={order._id} payments={moneyDetails?.payments} />
-    </div>
+  <div className="details-column">
+  <PaymentListOfOrder orderId={order._id} payments={moneyDetails?.payments} />
+
+  {userRole === 'manager' && user.username === "Tilemaxos" && (
+    <DamageListOfOrder
+      orderId={order._id}
+      damages={moneyDetails?.damages}
+     
+    />
+  )}
+
+</div>
+
   </div>
 </div>
 );  

@@ -60,13 +60,19 @@ orderedFromCompany: {
         notes: { type: String }
       }
     ],
-    damages: [
-      {
-        amount: { type: Number },
-        date: { type: Date, default: Date.now },
-        notes: { type: String }
-      }
-    ],
+  damages: [
+  {
+    amount: { type: Number },
+    date: { type: Date, default: Date.now },
+    notes: { type: String },
+    typeOfDamage: {
+      type: String,
+      enum: ['Μεταφορά εξωτερικού', 'Μεταφορά εσωτερικού', 'Τοποθέτηση', 'Διάφορα'],
+      required: false
+    }
+  }
+],
+
     totalpaid: { type: Number },
     totaldamages: { type: Number },
     discounts: [
@@ -116,10 +122,10 @@ orderSchema.pre('save',  function (next) {//calculate total damages before savin
 
     // Save the total
     this.moneyDetails.totaldamages = total;
-  } else {
+  } //else {
     // If damages doesn't exist, default to 0
-    this.moneyDetails.totaldamages = 0;
-  }
+  // this.moneyDetails.totaldamages = 0;
+  //}
 
   next(); // Always call next to continue the save process
 });
