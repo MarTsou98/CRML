@@ -3,7 +3,7 @@ const Salesperson = require('../../models/Salesperson');
 const footballers = [
   { firstName: 'Θαίη', lastName: 'Αλεξίου' },
   { firstName: 'Σοφία', lastName: 'Λιόλου' },
-  { firstName: 'Βασιλική', lastName: 'Μάλλα' },
+  { firstName: 'Τηλέμαχος', lastName: 'Τσουρέλας' },
 ];
 module.exports = async function seedSalespeople() {
   await Salesperson.deleteMany({});

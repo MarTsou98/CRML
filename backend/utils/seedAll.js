@@ -14,10 +14,10 @@ async function seedAll() {
     await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/kitchen_crm');
     console.log('DB connected');
 
-    await seedManagers();
+   // await seedManagers();
     await seedSalespeople();
-    await seedContractors();
-    await seedCustomers();
+   // await seedContractors();
+   // await seedCustomers();
    // await seedOrders();
 
     console.log('All seeds done!');
