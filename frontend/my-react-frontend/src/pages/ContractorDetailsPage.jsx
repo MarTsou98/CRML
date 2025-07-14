@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './css/ContractorDetails.css'; // Import your CSS here
-
+const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 const ContractorDetailsPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ const ContractorDetailsPage = () => {
   useEffect(() => {
     const fetchContractor = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/contractors/${id}`);
+        const res = await axios.get(`${BASE_URL}/api/contractors/${id}`);
         setContractor(res.data);
       } catch (err) {
         console.error(err);

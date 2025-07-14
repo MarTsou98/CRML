@@ -7,8 +7,12 @@ import './css/NewOrder.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
+const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 const NewOrder = () => {
+  const navigate = useNavigate();
+
   const { customerId } = useParams();
 
   const [form, setForm] = useState({
@@ -122,8 +126,9 @@ const NewOrder = () => {
         },
       };
 
-      await axios.post('http://localhost:5000/api/orders/newOrder', payload);
+      await axios.post(`${BASE_URL}/api/orders/newOrder`, payload);
       setMessage('Order successfully created!');
+      navigate('/Orders');
     } catch (err) {
       console.error(err);
       setMessage('Failed to create order.');

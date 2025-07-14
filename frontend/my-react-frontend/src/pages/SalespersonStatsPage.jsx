@@ -1,7 +1,7 @@
 // src/pages/SalespersonStatsPage.jsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 const SalespersonStatsPage = () => {
   const [salespeople, setSalespeople] = useState([]);
   const [selectedId, setSelectedId] = useState('');
@@ -11,7 +11,7 @@ const SalespersonStatsPage = () => {
 
   // 1. Load list of salespeople for the dropdown
   useEffect(() => {
-    axios.get('http://localhost:5000/api/salespeople/all')
+    axios.get(`${BASE_URL}/api/salespeople/all`)
       .then(res => setSalespeople(res.data))
       .catch(err => {
         console.error('Error loading salespeople:', err);
@@ -30,7 +30,7 @@ const SalespersonStatsPage = () => {
       setError('');
       setLoadingStats(true);
       try {
-        const res = await axios.get(`http://localhost:5000/api/stats/salesperson/${selectedId}`);
+        const res = await axios.get(`${BASE_URL}/api/stats/salesperson/${selectedId}`);
         setStats(res.data);
       } catch (err) {
         console.error('Error fetching stats:', err);

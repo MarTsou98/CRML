@@ -1,7 +1,7 @@
 // src/pages/SummaryStatsPage.jsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 const SummaryStatsPage = () => {
   const [summary, setSummary] = useState(null);
   const [error, setError] = useState('');
@@ -9,7 +9,7 @@ const SummaryStatsPage = () => {
   useEffect(() => {
     const fetchSummary = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/stats/summary');
+        const res = await axios.get(`${BASE_URL}/api/stats/summary`);
         setSummary(res.data);
       } catch (err) {
         setError(err.response?.data?.message || 'Failed to fetch summary');

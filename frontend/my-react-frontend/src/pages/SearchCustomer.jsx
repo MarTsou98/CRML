@@ -3,7 +3,7 @@ import axios from 'axios';
 import BackButton from '../components/BackButton';
 import SmallCustomerPreview from '../components/SmallCustomerPreview'; // ✅ import your preview
 import './css/SearchCustomer.css';
-
+const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 const SearchCustomer = () => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
@@ -23,7 +23,7 @@ setLoading(true);
   setError('');
   setHasSearched(true);
   try {
-    const res = await axios.get('http://localhost:5000/api/customers/search', {
+    const res = await axios.get(`${BASE_URL}/api/customers/search`, {
       params: { query },
     });
 

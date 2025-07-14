@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 const ContractorSelect = ({ value, onChange }) => {
   const [contractors, setContractors] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -9,7 +9,7 @@ const ContractorSelect = ({ value, onChange }) => {
   useEffect(() => {
     const fetchContractors = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/contractors/all');
+        const res = await axios.get(`${BASE_URL}/api/contractors/all`);
         setContractors(res.data);
       } catch (err) {
         setError('Failed to load contractors.');

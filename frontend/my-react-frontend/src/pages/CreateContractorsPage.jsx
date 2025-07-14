@@ -5,7 +5,7 @@ import BackButton from '../components/BackButton';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './css/NewContractor.css';
-
+const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 const NewContractor = () => {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -47,7 +47,7 @@ const NewContractor = () => {
     const salesperson_id = user?.salesperson_id;
 
     try {
-      await axios.post('http://localhost:5000/api/createContractor', {
+      await axios.post(`${BASE_URL}/api/createContractor`, {
         ...formData,
         salesperson_id, // Fallback if no salesperson_id
       });

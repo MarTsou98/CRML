@@ -1,7 +1,7 @@
 // src/pages/ContractorStatsPage.jsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 const ContractorStatsPage = () => {
   const [contractors, setContractors] = useState([]);
   const [selectedId, setSelectedId] = useState('');
@@ -11,7 +11,7 @@ const ContractorStatsPage = () => {
 
   // 1. Load all contractors for the dropdown
   useEffect(() => {
-    axios.get('http://localhost:5000/api/contractors/all')
+    axios.get(`${BASE_URL}/api/contractors/all`)
       .then(res => setContractors(res.data))
       .catch(err => {
         console.error('Error fetching contractors:', err);
@@ -29,7 +29,7 @@ const ContractorStatsPage = () => {
     setError('');
     setLoadingStats(true);
 
-    axios.get(`http://localhost:5000/api/stats/contractor/${selectedId}`)
+    axios.get(`${BASE_URL}/api/stats/contractor/${selectedId}`)
       .then(res => setStats(res.data))
       .catch(err => {
         console.error('Error fetching contractor stats:', err);

@@ -1,13 +1,13 @@
 // src/components/SalespeopleList.jsx
 import React, { useEffect, useState } from 'react';
-
+const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 function SalespeopleList() {
   const [salespeople, setSalespeople] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/salespeople/all")
+    fetch(`${BASE_URL}/api/salespeople/all`)
       .then((res) => res.json())
       .then((data) => {
         setSalespeople(data);

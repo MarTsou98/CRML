@@ -4,7 +4,7 @@ import {
   BarChart, Bar, XAxis, YAxis, Tooltip,
   ResponsiveContainer, CartesianGrid
 } from 'recharts';
-
+const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 const OrdersByContractorPage = () => {
   const [contractors, setContractors] = useState([]);
   const [selectedId, setSelectedId] = useState('');
@@ -13,7 +13,7 @@ const OrdersByContractorPage = () => {
 
   // Fetch all contractors on mount
   useEffect(() => {
-    axios.get('http://localhost:5000/api/contractors/all')
+    axios.get(`${BASE_URL}/api/contractors/all`)
       .then(res => setContractors(res.data))
       .catch(err => {
         console.error('Error fetching contractors:', err);
@@ -26,7 +26,7 @@ const OrdersByContractorPage = () => {
       setError('');
       setData(null);
 
-      const response = await axios.get(`http://localhost:5000/api/stats/Type-Of-orders-by-contractors/${selectedId}`);
+      const response = await axios.get(`${BASE_URL}/api/stats/Type-Of-orders-by-contractors/${selectedId}`);
       const resData = response.data;
 
       const chartData = Object.entries(resData)

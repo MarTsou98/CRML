@@ -16,7 +16,7 @@ const OrdersPage = () => {
   const user = JSON.parse(localStorage.getItem('user'));
   const role = user?.role;
   const salespersonId = user?.salesperson_id;
-
+const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
   useEffect(() => {
     const fetchOrders = async () => {
       try {
@@ -24,9 +24,9 @@ const OrdersPage = () => {
         let res;
 
         if (role === 'manager') {
-          res = await axios.get('http://localhost:5000/api/orders/');
+          res = await axios.get(`${BASE_URL}/api/orders/`);
         } else if (role === 'salesperson' && salespersonId) {
-          res = await axios.get(`http://localhost:5000/api/orders/salesperson/${salespersonId}`);
+          res = await axios.get(`${BASE_URL}/api/orders/salesperson/${salespersonId}`);
         } else {
           throw new Error('Unauthorized or missing user data.');
         }

@@ -17,7 +17,10 @@ const FindOrderPage = () => {
     setLoading(true);
     setError('');
     try {
-      const res = await axios.get(`http://localhost:5000/api/orders/search?q=${encodeURIComponent(query)}`);
+      
+     const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+      const res = await axios.get(`${BASE_URL}/api/orders/search?q=${encodeURIComponent(query)}`);
+
       setOrders(res.data);
     } catch (err) {
       setError(err.response?.data?.message || 'Error fetching orders');

@@ -4,7 +4,7 @@ import axios from 'axios';
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, PieChart, Pie, Cell, Legend, ResponsiveContainer
 } from 'recharts';
-
+const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 const COLORS = ['#8884d8', '#82ca9d', '#ffc658', '#ff8042', '#a4de6c', '#d0ed57'];
 
 const OrdersByType = () => {
@@ -13,7 +13,7 @@ const OrdersByType = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/stats/orders-by-type')
+    axios.get(`${BASE_URL}/api/stats/orders-by-type`)
       .then(res => {
         setOrders(res.data);
         setLoading(false);

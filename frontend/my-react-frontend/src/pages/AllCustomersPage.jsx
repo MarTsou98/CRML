@@ -7,7 +7,7 @@ const CustomersPage = () => {
   const [customers, setCustomers] = useState([]);
   const [loading, setLoading]     = useState(true);
   const [error, setError]         = useState(null);
-
+const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
   const customersPerPage = 5;
@@ -19,10 +19,10 @@ const CustomersPage = () => {
 
       try {
         if(user.role === 'manager') {
-          const res = await axios.get('http://localhost:5000/api/customers/all');
+          const res = await axios.get(`${BASE_URL}/api/customers/all`);
           setCustomers(res.data);
         } else if (user.role === 'salesperson') {
-          const res = await axios.get(`http://localhost:5000/api/customers/salesperson/${salespersonId}`);
+          const res = await axios.get(`${BASE_URL}/api/customers/salesperson/${salespersonId}`);
           setCustomers(res.data);
         }
       } catch (err) {

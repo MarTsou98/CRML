@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 const CustomerSelect = ({ value, onChange }) => {
   const [customers, setCustomers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,10 +15,10 @@ const CustomerSelect = ({ value, onChange }) => {
 
       try {
         if(user.role === 'manager') {
-        const res = await axios.get('http://localhost:5000/api/customers/all');
+        const res = await axios.get(`${BASE_URL}/api/customers/all`);
         setCustomers(res.data.reverse());
       } else {
-        const res = await axios.get(`http://localhost:5000/api/customers/salesperson/${salespersonId}`);
+        const res = await axios.get(`${BASE_URL}/api/customers/salesperson/${salespersonId}`);
         setCustomers(res.data.reverse());
       }
     } catch (err) {

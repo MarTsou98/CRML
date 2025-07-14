@@ -5,7 +5,7 @@ import BackButton from '../components/BackButton';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './css/NewCustomer.css';
-
+const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 const NewCustomer = () => {
  const [formData, setFormData] = useState({
   firstName: '',
@@ -49,7 +49,7 @@ const NewCustomer = () => {
     const id_of_contractor = user?.contractor_id;
 
     try {
-      await axios.post('http://localhost:5000/api/customers/newCustomer', {
+      await axios.post(`${BASE_URL}/api/customers/newCustomer`, {
         ...formData,
         id_of_salesperson,
         id_of_contractor,

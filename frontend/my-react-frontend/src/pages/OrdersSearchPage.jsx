@@ -6,7 +6,7 @@ const OrderSearchPage = () => {
   const [orders, setOrders] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-
+const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
   const searchOrders = async () => {
     console.log("Searching for:", query);
     if (!query.trim()) {
@@ -18,7 +18,7 @@ console.log("Searching for:", query);
     setLoading(true);
     setError('');
     try {
-      const res = await axios.get(`http://localhost:5000/api/orders/search?q=${encodeURIComponent(query)}`);
+      const res = await axios.get(`${BASE_URL}/api/orders/search?q=${encodeURIComponent(query)}`);
       setOrders(res.data);
     } catch (err) {
       setError(err.response?.data?.message || 'Error fetching orders');

@@ -5,7 +5,7 @@ import SmallOrderPreview from '../components/SmallOrderPreview'; // adjust the p
 import BackButton from '../components/BackButton'; // adjust the path if needed
 import './css/CustomerDetails.css'; // adjust the path if needed
 import { useNavigate } from 'react-router-dom';
-
+const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 // Inside your component
 
 const CustomerDetails = () => {
@@ -17,7 +17,7 @@ const navigate = useNavigate();
   useEffect(() => {
     const fetchCustomer = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/customers/${customerId}`);
+        const res = await axios.get(`${BASE_URL}/api/customers/${customerId}`);
         setCustomer(res.data);
       } catch (err) {
         console.error(err);

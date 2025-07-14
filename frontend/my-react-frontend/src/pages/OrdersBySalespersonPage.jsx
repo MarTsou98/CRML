@@ -4,7 +4,7 @@ import {
   BarChart, Bar, XAxis, YAxis, Tooltip,
   ResponsiveContainer, CartesianGrid
 } from 'recharts';
-
+const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 const OrdersBySalespersonPage = () => {
   const [salespeople, setSalespeople] = useState([]);
   const [selectedId, setSelectedId] = useState('');
@@ -13,7 +13,7 @@ const OrdersBySalespersonPage = () => {
 
   // Fetch all salespeople once
   useEffect(() => {
-    axios.get('http://localhost:5000/api/salespeople/all')
+    axios.get(`${BASE_URL}/api/salespeople/all`)
       .then(res => setSalespeople(res.data))
       .catch(err => {
         console.error('Error fetching salespeople:', err);
@@ -26,7 +26,7 @@ const OrdersBySalespersonPage = () => {
       setError('');
       setData(null);
 
-      const response = await axios.get(`http://localhost:5000/api/stats/Type-Of-orders-by-salesperson/${selectedId}`);
+      const response = await axios.get(`${BASE_URL}/api/stats/Type-Of-orders-by-salesperson/${selectedId}`);
       const resData = response.data;
 
       const chartData = Object.entries(resData)

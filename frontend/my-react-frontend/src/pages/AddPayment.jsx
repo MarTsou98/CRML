@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import BackButton from '../components/BackButton';
-
+const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 const AddPayment = () => {
   const { orderId } = useParams();
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const AddPayment = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:5000/api/orders/${orderId}/addpayment`, {
+      await axios.post(`${BASE_URL}/api/orders/${orderId}/addpayment`, {
         amount: Number(amount),
         payer,
         method,

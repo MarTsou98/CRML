@@ -1,3 +1,4 @@
+const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5173';
 const NavbarRight = ({ user }) => {
   if (!user) return null; // or a placeholder/loading
 
@@ -7,7 +8,7 @@ const NavbarRight = ({ user }) => {
   return (
     <div className="navbar-right">
       <span>{user.username} ({user.role})</span>
-      <button onClick={() => { window.location.href = 'http://localhost:5173/login';}}>Logout</button>
+      <button onClick={() => { window.location.href = `${BASE_URL}/login`;}}>Logout</button>
     </div>
   );
 };

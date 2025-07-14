@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ProfitList from '../components/ProfitList';
-
+const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 const ProfitBySalespersonPage = () => {
   const [salespeople, setSalespeople] = useState([]);
   const [allProfits, setAllProfits] = useState([]);
@@ -11,14 +11,14 @@ const ProfitBySalespersonPage = () => {
 
   // 1. Load all salespeople (for the dropdown)
   useEffect(() => {
-    axios.get('http://localhost:5000/api/salespeople/all')
+    axios.get(`${BASE_URL}/api/salespeople/all`)
       .then(res => setSalespeople(res.data))
       .catch(() => setError('Failed to load salespeople.'));
   }, []);
 
   // 2. Load all profit data once
   useEffect(() => {
-    axios.get('http://localhost:5000/api/stats/profit-by-salesperson')
+    axios.get(`${BASE_URL}/api/stats/profit-by-salesperson`)
       .then(res => setAllProfits(res.data))
       .catch(() => setError('Failed to load profit data.'));
   }, []);

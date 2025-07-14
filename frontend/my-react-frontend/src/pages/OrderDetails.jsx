@@ -8,7 +8,7 @@ import FinancialDetailsOfOrder from '../components/FinancialDetailsOfOrder';
 import PaymentListOfOrder from '../components/PaymentListOfOrder';
 import DamageListOfOrder from '../components/DamageListOfOrder';
 import { NavLink } from 'react-router-dom';
-
+const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 
 
 const OrderDetails = () => {
@@ -22,7 +22,7 @@ const userRole = user?.role;
   useEffect(() => {
     const fetchOrder = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/orders/${orderId}`);
+        const res = await axios.get(`${BASE_URL}/api/orders/${orderId}`);
         setOrder(res.data);
       } catch (err) {
         console.error(err);
