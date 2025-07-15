@@ -6,8 +6,8 @@ const cors = require('cors');
 const app = express();
 require('dotenv').config();
 
-app.use(cors({ origin: process.env.FRONTEND_URL || 'http://localhost:3000' }));
-
+//app.use(cors({ origin: process.env.FRONTEND_URL || 'http://localhost:5000' }));
+app.use(cors({  origin: '*' }));
 const PORT = process.env.PORT || 5000;
 const HOST = process.env.HOST || 'localhost';
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/kitchen_crm';
