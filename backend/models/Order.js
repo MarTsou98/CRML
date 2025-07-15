@@ -105,9 +105,7 @@ orderSchema.pre('save', function (next) {// calculate profit before saving
     return next(new Error('Profit cannot be negative'));
   }
 
-  if (profit > salesPrice * 0.5) {
-    return next(new Error('Profit exceeds 50% of sales price — check your pricing.'));
-  }
+
 
   // 3. Proceed with saving
   next();
@@ -141,8 +139,8 @@ orderSchema.pre('save',  function (next) {// calculate total paid before saving 
   next();
 });
 orderSchema.pre('save',  function (next) {// calculate tax and profit before saving and correct values.
-  const salesPrice = this.moneyDetails.timi_Polisis;
-  const tax = salesPrice * 0.24; // Assuming 24% tax
+  const salesPrice = this.moneyDetails.bank;
+  const tax =salesPrice - salesPrice / 1.24; // Assuming 24% tax
   this.moneyDetails.FPA = tax;
   next();
 });

@@ -199,7 +199,7 @@ const NewOrder = () => {
           {/* Financial Details */}
           <h4 className="new-order-heading">Χρηματοοικονομικά Στοιχεία:</h4>
           {[
-            ['Τιμή Τιμοκαταλόγου', 'timi_Timokatalogou'],
+            ['Proforma', 'timi_Timokatalogou'],
             ['Τιμή Πώλησης', 'timi_Polisis'],
             ['Μετρητά', 'cash'],
             ['Τράπεζα', 'bank'],
