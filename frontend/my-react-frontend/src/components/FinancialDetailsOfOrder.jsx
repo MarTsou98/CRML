@@ -1,36 +1,89 @@
+import { useState } from 'react';
+import axios from 'axios';
 
+const FinancialDetailsOfOrder = ({ money, orderId }) => {
+  const user = JSON.parse(localStorage.getItem('user'));
+  const isManager = user?.role === 'manager' && user.username === 'Tilemachos';
 
-const FinancialDetailsOfOrder = ({ money }) => (
-  <div className="details-section">
-    <div className="details-column">
-      <h3 className="section-title">Οικονομικές Πληροφορίες</h3>
-      <div className="detail-box">
-        <strong>Τιμή Τιμοκαταλόγου:</strong>
-        <p>€{money?.timi_Timokatalogou}</p>
-        <strong>Τιμή Πώλησης:</strong>
-        <p>€{money?.timi_Polisis}</p>
-        <strong>Μετρητά:</strong>
-        <p>€{money?.cash}</p>
-        <strong>Τράπεζα:</strong>
-        <p>€{money?.bank}</p>
-        <strong>Κέρδος:</strong>
-        <p>€{money?.profit}</p>
-        <strong>ΦΠΑ:</strong>
-        <p>€{money?.FPA}</p>
-      </div>
+  const [isEditing, setIsEditing] = useState(false);
+  const [form, setForm] = useState(money);
+  const [message, setMessage] = useState(null);
 
-      <div className="detail-box">
-        <strong>Υπόλοιπο Μετρητών Πελάτη:</strong>
-        <p>€{money?.customer_remainingShare_Cash}</p>
-        <strong>Υπόλοιπο Τράπεζης Πελάτη:</strong>
-        <p>€{money?.customer_remainingShare_Bank}</p>
-        <strong>Υπόλοιπο Μετρητών Εργολάβου:</strong>
-        <p>€{money?.contractor_remainingShare_Cash}</p>
-        <strong>Υπόλοιπο Τράπεζης Εργολάβου:</strong>
-        <p>€{money?.contractor_remainingShare_Bank}</p>
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm(prev => ({
+      ...prev,
+      [name]: parseFloat(value)
+    }));
+  };
+
+  const handleSubmit = async () => {
+    try {
+      await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/api/orders/${orderId}`, {
+        moneyDetails: form
+      });
+      setMessage("✅ Updated successfully");
+      setIsEditing(false);
+          window.location.reload();  // <--- reload page to refresh data
+
+    } catch (err) {
+      console.error(err);
+      setMessage("❌ Failed to update");
+    }
+  };
+
+  const renderField = (label, key) => (
+    <>
+      <strong>{label}:</strong>
+      {isEditing ? (
+        <input
+          type="number"
+          name={key}
+          value={form[key] ?? ''}
+          onChange={handleChange}
+        />
+      ) : (
+        <p>€{money?.[key]}</p>
+      )}
+    </>
+  );
+
+  return (
+    <div className="details-section">
+      <div className="details-column">
+        <h3 className="section-title">Οικονομικές Πληροφορίες</h3>
+        <div className="detail-box">
+          {renderField('Τιμή Τιμοκαταλόγου', 'timi_Timokatalogou')}
+          {renderField('Τιμή Πώλησης', 'timi_Polisis')}
+          {renderField('Μετρητά', 'cash')}
+          {renderField('Τράπεζα', 'bank')}
+          {renderField('Κέρδος', 'profit')}
+          {renderField('ΦΠΑ', 'FPA')}
+        </div>
+
+        <div className="detail-box">
+          {renderField('Υπόλοιπο Μετρητών Πελάτη', 'customer_remainingShare_Cash')}
+          {renderField('Υπόλοιπο Τράπεζης Πελάτη', 'customer_remainingShare_Bank')}
+          {renderField('Υπόλοιπο Μετρητών Εργολάβου', 'contractor_remainingShare_Cash')}
+          {renderField('Υπόλοιπο Τράπεζης Εργολάβου', 'contractor_remainingShare_Bank')}
+        </div>
+
+        {isManager && (
+          <div className="button-row">
+            {!isEditing ? (
+              <button onClick={() => setIsEditing(true)}>✏️ Edit</button>
+            ) : (
+              <>
+                <button onClick={handleSubmit}>💾 Save</button>
+                <button onClick={() => { setIsEditing(false); setForm(money); }}>Cancel</button>
+              </>
+            )}
+            {message && <p style={{ marginTop: '10px' }}>{message}</p>}
+          </div>
+        )}
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default FinancialDetailsOfOrder;

@@ -128,7 +128,7 @@ const NewOrder = () => {
 
       await axios.post(`${BASE_URL}/api/orders/newOrder`, payload);
       setMessage('Order successfully created!');
-      navigate('/Orders');
+     navigate('/Orders', { state: { successMessage: 'Order created successfully!' } });
     } catch (err) {
       console.error(err);
       setMessage('Failed to create order.');

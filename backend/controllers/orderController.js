@@ -231,3 +231,36 @@ exports.searchOrders = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
+exports.updateOrder = async (req, res) => {
+  const { id } = req.params;
+  const updates = req.body;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: 'Invalid order ID' });
+  }
+
+  try {
+    // Optional: Validate profit if present in updates.moneyDetails
+    if (updates.moneyDetails && typeof updates.moneyDetails.profit !== 'undefined' && updates.moneyDetails.profit < 0) {
+      return res.status(400).json({ error: 'Profit cannot be negative' });
+    }
+
+    const updatedOrder = await Order.findByIdAndUpdate(
+      id,
+      { $set: updates },
+      { new: true, runValidators: true }
+    )
+      .populate('customer_id')
+      .populate('salesperson_id')
+      .populate('contractor_id');
+
+    if (!updatedOrder) {
+      return res.status(404).json({ error: 'Order not found' });
+    }
+
+    res.json(updatedOrder);
+  } catch (error) {
+    console.error('Error updating order:', error);
+    res.status(500).json({ error: 'Server error updating order' });
+  }
+};

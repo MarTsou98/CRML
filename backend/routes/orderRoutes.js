@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const orderController = require('../controllers/orderController');
+
 router.get('/search', orderController.searchOrders);
 /**
  * @swagger
@@ -162,6 +163,8 @@ router.post('/orders/newOrder', orderController.createOrder);
  *         description: Server error
  */
 router.get('/orders/:id', orderController.getOrderById);
+router.patch('/orders/:id', orderController.updateOrder);
+
 
 /**
  * @swagger

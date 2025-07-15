@@ -57,9 +57,9 @@ const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
     <div style={{  padding: '1rem', display: 'flex', justifyContent: 'center' }}>
        <div style={{ maxWidth: '800px', width: '100%' }}>
       <BackButton />
-      <h2>Your Customers</h2>
+      <h2>Οι πελάτες σου</h2>
       {currentCustomers.length === 0 ? (
-        <p>No customers found.</p>
+        <p>Δεν βρέθηκαν πελάτες.</p>
       ) : (
         currentCustomers.map((customer) => (
           <SmallCustomerPreview key={customer._id} customer={customer} />

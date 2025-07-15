@@ -61,7 +61,7 @@ const userRole = user?.role;
     </div>
 
     <div className="details-column">
-      <FinancialDetailsOfOrder money={moneyDetails} />
+      <FinancialDetailsOfOrder money={moneyDetails} orderId={order._id} />
     </div>
 
   <div className="details-column">

@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5173';
+const BASE_URL = import.meta.env.VITE_FRONTEND_URL || 'http://localhost:5137';
 const NavbarRight = ({ user }) => {
   if (!user) return null; // or a placeholder/loading
 
