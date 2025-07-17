@@ -27,18 +27,18 @@ const ContractorDetailsPage = () => {
     fetchContractor();
   }, [id]);
 
-  if (loading) return <p className="customer-loading">Loading contractor details...</p>;
+  if (loading) return <p className="customer-loading">Φόρτωση λεπτομερειών εργολάβου...</p>;
   if (error) return <p className="customer-error">{error}</p>;
-  if (!contractor) return <p className="customer-not-found">No contractor found.</p>;
+  if (!contractor) return <p className="customer-not-found">Δεν βρέθηκαν εργολάβοι.</p>;
 
   return (
     <div className="customer-details-wrapper">
       <div className="customer-details-content">
-        <button onClick={() => navigate(-1)} className="add-order-button">Back</button>
+        <button onClick={() => navigate(-1)} className="add-order-button">Πίσω</button>
         <h2 className="customer-details-heading">Λεπτομέρειες Εργολάβου</h2>
         <div className="customer-details-section">
           <p><strong>Όνομα:</strong> {contractor.firstName} {contractor.lastName}</p>
-          <p><strong>Role:</strong> {contractor.Role}</p>
+       {/*   <p><strong>Role:</strong> {contractor.Role}</p> */}
           <p><strong>Email:</strong> {contractor.email || 'N/A'}</p>
           <p><strong>Τηλέφωνο:</strong> {contractor.phone || 'N/A'}</p>
           <p><strong>Σημειώσεις:</strong> {contractor.ContractorNotes || 'N/A'}</p>

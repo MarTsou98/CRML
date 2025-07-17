@@ -41,7 +41,7 @@ const ContractorStatsPage = () => {
 
   return (
     <div style={{ padding: '2rem', fontFamily: 'Arial, sans-serif' }}>
-      <h2>🏗️ Contractor Stats</h2>
+      <h2>🏗️ Στατιστικά εργολάβου</h2>
 
       {error && <p style={{ color: 'red' }}>{error}</p>}
 

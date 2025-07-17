@@ -21,15 +21,15 @@ const SummaryStatsPage = () => {
 
   return (
     <div style={{ padding: '2rem' }}>
-      <h2>📊 Summary Statistics</h2>
+      <h2>📊 Συνολικά Στατιστικά</h2>
 
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
       {summary ? (
         <ul style={{ fontSize: '1.2rem', lineHeight: '2' }}>
-          <li><strong>Total Orders:</strong> {summary.totalOrders.toLocaleString()}</li>
-          <li><strong>Total Revenue:</strong> ${summary.totalRevenue.toLocaleString()}</li>
-          <li><strong>Total Profit:</strong> ${summary.totalProfit.toLocaleString()}</li>
+          <li><strong>Συνολικές Παραγγελίες:</strong> {summary.totalOrders.toLocaleString()}</li>
+          <li><strong>Συνολικά Έσοδα:</strong> ${summary.totalRevenue.toLocaleString()}</li>
+          <li><strong>Συνολική Διαφορά:</strong> ${summary.totalProfit.toLocaleString()}</li>
         </ul>
       ) : (
         !error && <p>Loading...</p>

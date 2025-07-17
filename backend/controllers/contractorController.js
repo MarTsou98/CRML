@@ -3,23 +3,34 @@ const Contractor = require('../models/Contractor');
 exports.createContractor = async (req, res) => {
   try {
     const {
+      EnterpriseName,
+      VAT,
+      Address,
       firstName,
       lastName,
       Role,
       salesperson_id,
       ContractorNotes = '',
-      email,          // Add this
-      phone           // Add this, note case sensitivity
+      email,
+      phone
     } = req.body;
 
+    // Validate required fields
+    if (!EnterpriseName || !VAT || !Address) {
+      return res.status(400).json({ error: 'EnterpriseName, VAT, and Address are required.' });
+    }
+
     const contractor = new Contractor({
+      EnterpriseName,
+      VAT,
+      Address,
       firstName,
       lastName,
       Role,
       salesperson_id,
       ContractorNotes,
-      email,          // Assign here
-      phone           // Assign here
+      email,
+      phone
     });
 
     await contractor.save();
@@ -33,6 +44,7 @@ exports.createContractor = async (req, res) => {
     res.status(500).json({ error: 'Server error while creating contractor' });
   }
 };
+
 
 
 exports.getAllContractors = async (req, res) => {

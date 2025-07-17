@@ -43,11 +43,11 @@ console.log("Searching for:", query);
 
   return (
     <div style={{ padding: '2rem', maxWidth: '900px', margin: 'auto' }}>
-      <h2>Search Orders</h2>
+      <h2>Αναζήτηση Παραγγελιών</h2>
 
       <input
         type="text"
-        placeholder="Search by customer, salesperson, contractor, or other order details..."
+        placeholder="Αναζήτηση κατά πελάτη, πωλητή, εργολάβο ή άλλες λεπτομέρειες παραγγελίας..."
         value={query}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
@@ -70,14 +70,14 @@ console.log("Searching for:", query);
         <table style={{ marginTop: '1rem', width: '100%', borderCollapse: 'collapse' }}>
           <thead>
             <tr>
-              <th style={{ borderBottom: '1px solid #ccc', padding: '0.5rem' }}>Order ID</th>
-              <th style={{ borderBottom: '1px solid #ccc', padding: '0.5rem' }}>Customer</th>
-              <th style={{ borderBottom: '1px solid #ccc', padding: '0.5rem' }}>Salesperson</th>
-              <th style={{ borderBottom: '1px solid #ccc', padding: '0.5rem' }}>Contractor</th>
-              <th style={{ borderBottom: '1px solid #ccc', padding: '0.5rem' }}>Invoice Type</th>
-              <th style={{ borderBottom: '1px solid #ccc', padding: '0.5rem' }}>Order Type</th>
-              <th style={{ borderBottom: '1px solid #ccc', padding: '0.5rem' }}>Profit</th>
-              <th style={{ borderBottom: '1px solid #ccc', padding: '0.5rem' }}>Total Revenue</th>
+              <th style={{ borderBottom: '1px solid #ccc', padding: '0.5rem' }}>ID Παραγγελίας</th>
+              <th style={{ borderBottom: '1px solid #ccc', padding: '0.5rem' }}>Πελάτης</th>
+              <th style={{ borderBottom: '1px solid #ccc', padding: '0.5rem' }}>Πωλητής</th>
+              <th style={{ borderBottom: '1px solid #ccc', padding: '0.5rem' }}>Εργολάβος</th>
+              <th style={{ borderBottom: '1px solid #ccc', padding: '0.5rem' }}>Τύπος Παραστατικού</th>
+              <th style={{ borderBottom: '1px solid #ccc', padding: '0.5rem' }}>Τύπος Παραγγελίας</th>
+              <th style={{ borderBottom: '1px solid #ccc', padding: '0.5rem' }}>Διαφορά</th>
+              <th style={{ borderBottom: '1px solid #ccc', padding: '0.5rem' }}>Συνολικά Έσοδα</th>
             </tr>
           </thead>
           <tbody>

@@ -8,10 +8,10 @@ const ProfitList = ({ title, data }) => {
       <table style={{ width: '100%', borderCollapse: 'collapse' }}>
         <thead>
           <tr>
-            <th style={thStyle}>Name</th>
-            <th style={thStyle}>Orders</th>
-            <th style={thStyle}>Revenue</th>
-            <th style={thStyle}>Profit</th>
+            <th style={thStyle}>Όνομα</th>
+            <th style={thStyle}>Αριθμός Παραγγελιών</th>
+            <th style={thStyle}>Συνολικά Έσοδα</th>
+            <th style={thStyle}>Συνολική Διαφορά</th>
           </tr>
         </thead>
         <tbody>

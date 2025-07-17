@@ -13,7 +13,7 @@ function DashBoard() {
     <div>
      
 
-      <h1>Welcome, {user.username}!</h1>
+      <h1>Καλώς ήρθες, {user.username}!</h1>
 
 
 

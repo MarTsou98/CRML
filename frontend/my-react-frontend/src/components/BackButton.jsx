@@ -17,7 +17,7 @@ const BackButton = () => {
         marginBottom: '1rem'
       }}
     >
-      ← Back
+      ← Πίσω
     </button>
   );
 };

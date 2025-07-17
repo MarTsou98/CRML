@@ -35,9 +35,9 @@ function OrdersList({ salespersonId }) {
   // Otherwise, show small previews list
   return (
     <div>
-      <h2>Your Orders</h2>
+      <h2>Οι Παραγγελίες σου</h2>
       {orders.length === 0 ? (
-        <p>No orders found</p>
+        <p>Δεν βρέθηκαν παραγγελίες</p>
       ) : (
         orders.map(order => (
           <SmallOrderPreview

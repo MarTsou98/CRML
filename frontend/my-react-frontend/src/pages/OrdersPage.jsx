@@ -78,11 +78,11 @@ const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
         {orders.length > ordersPerPage && (
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem', gap: '1rem' }}>
             <button onClick={handlePrev} disabled={currentPage === 1}>
-              Previous
+              Προηγούμενη
             </button>
-            <span>Page {currentPage} of {totalPages}</span>
+            <span>Σελίδα {currentPage} από {totalPages}</span>
             <button onClick={handleNext} disabled={currentPage === totalPages}>
-              Next
+              Επόμενη
             </button>
           </div>
         )}

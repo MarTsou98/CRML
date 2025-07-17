@@ -46,7 +46,7 @@ const SalespersonStatsPage = () => {
 
   return (
     <div style={{ padding: '2rem', fontFamily: 'Arial, sans-serif' }}>
-      <h2>👤 Salesperson Stats</h2>
+      <h2>👤 Στατιστικά Πωλητή</h2>
 
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
@@ -65,23 +65,23 @@ const SalespersonStatsPage = () => {
         </select>
       </div>
 
-      {!selectedId && <p>Please select a salesperson to view their stats.</p>}
+      {!selectedId && <p>Παρακαλώ επιλέξτε έναν πωλητή για να δείτε τα στατιστικά του.</p>}
 
-      {loadingStats && <p>Loading stats…</p>}
+      {loadingStats && <p>Φόρτωση στατιστικών…</p>}
 
       {stats && !loadingStats && (
         <ul style={{ fontSize: '1.1rem', lineHeight: '1.8', marginTop: '1rem' }}>
           <li><strong>Name:</strong> {stats.name}</li>
           <li>
-            <strong>Total Orders:</strong>{' '}
+            <strong>Συνολικές Παραγγελίες:</strong>{' '}
             {(stats.orderCount ?? 0).toLocaleString()}
           </li>
           <li>
-            <strong>Total Revenue:</strong>{' '}
+            <strong>Συνολικά Έσοδα:</strong>{' '}
             ${ (stats.totalRevenue ?? 0).toLocaleString() }
           </li>
           <li>
-            <strong>Total Profit:</strong>{' '}
+            <strong>Συνολική Διαφορά:</strong>{' '}
             ${ (stats.totalProfit ?? 0).toLocaleString() }
           </li>
         </ul>

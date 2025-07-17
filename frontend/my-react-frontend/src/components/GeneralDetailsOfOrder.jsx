@@ -1,12 +1,13 @@
 
 
-const GeneralDetailsOfOrder = ({ invoiceType, Lock, createdAt, salesperson, customer, contractor,orderNotes }) => (
+const GeneralDetailsOfOrder = ({ invoiceType, Lock, createdAt, salesperson, customer, contractor,orderNotes, typeOfOrder }) => (
  <div className="details-section">
     <div className="details-column">
       <h3 className="section-title">Γενικές Πληροφορίες</h3>
       <div className="detail-box">
         <strong>Παραστατικό</strong>
-        <p>{invoiceType}</p>
+<p>{invoiceType === 'timologio' ? 'Τιμολόγιο' : 'Απόδειξη'}</p>
+<p><strong>Τύπος Παραγγελίας:</strong> {typeOfOrder}</p>
         <strong>Locked:</strong>
         <p>{Lock ? 'Yes' : 'No'}</p>
         <strong>Ημερομηνία:</strong>

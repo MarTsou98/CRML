@@ -24,11 +24,11 @@ function SalespeopleList() {
 
   return (
     <div>
-      <h2>Salespeople</h2>
+      <h2>Πωλητές</h2>
       <ul>
         {salespeople.map(person => (
           <li key={person._id}>
-            {person.firstName} {person.lastName} ({person.orders.length} orders)
+            {person.firstName} {person.lastName} ({person.orders.length} παραγγελίες)
           </li>
         ))}
       </ul>

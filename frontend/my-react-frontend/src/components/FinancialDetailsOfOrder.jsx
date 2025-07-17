@@ -24,8 +24,7 @@ const FinancialDetailsOfOrder = ({ money, orderId }) => {
       });
       setMessage("✅ Updated successfully");
       setIsEditing(false);
-          window.location.reload();  // <--- reload page to refresh data
-
+      window.location.reload();  // Refresh to get updated data
     } catch (err) {
       console.error(err);
       setMessage("❌ Failed to update");
@@ -43,7 +42,11 @@ const FinancialDetailsOfOrder = ({ money, orderId }) => {
           onChange={handleChange}
         />
       ) : (
-        <p>€{money?.[key]}</p>
+        <p>
+          €{key === 'FPA' && typeof money?.[key] === 'number'
+            ? money[key].toFixed(2)
+            : money?.[key]}
+        </p>
       )}
     </>
   );
@@ -52,6 +55,7 @@ const FinancialDetailsOfOrder = ({ money, orderId }) => {
     <div className="details-section">
       <div className="details-column">
         <h3 className="section-title">Οικονομικές Πληροφορίες</h3>
+
         <div className="detail-box">
           {renderField('Proforma', 'timi_Timokatalogou')}
           {renderField('Τιμή Πώλησης', 'timi_Polisis')}
@@ -71,11 +75,11 @@ const FinancialDetailsOfOrder = ({ money, orderId }) => {
         {isManager && (
           <div className="button-row">
             {!isEditing ? (
-              <button onClick={() => setIsEditing(true)}>✏️ Edit</button>
+              <button onClick={() => setIsEditing(true)}>✏️ Επεξεργασία</button>
             ) : (
               <>
-                <button onClick={handleSubmit}>💾 Save</button>
-                <button onClick={() => { setIsEditing(false); setForm(money); }}>Cancel</button>
+                <button onClick={handleSubmit}>💾 Αποθήκευση</button>
+                <button onClick={() => { setIsEditing(false); setForm(money); }}>Ακύρωση</button>
               </>
             )}
             {message && <p style={{ marginTop: '10px' }}>{message}</p>}

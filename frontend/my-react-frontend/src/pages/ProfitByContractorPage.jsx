@@ -28,7 +28,7 @@ const ProfitByContractorPage = () => {
 
   return (
     <div style={{ padding: '2rem', fontFamily: 'Arial, sans-serif' }}>
-      <h2>Profit by Contractor</h2>
+      <h2>Διαφορά ανά Εργολάβο</h2>
 
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
@@ -38,7 +38,7 @@ const ProfitByContractorPage = () => {
           onChange={e => setSelectedId(e.target.value)}
           style={{ padding: '0.5rem', width: '300px' }}
         >
-          <option value="">-- Select a Contractor --</option>
+          <option value="">-- Επιλέξτε έναν εργολάβο --</option>
           {contractors.map(c => (
             <option key={c._id} value={c._id}>
               {c.firstName && c.lastName
@@ -54,7 +54,7 @@ const ProfitByContractorPage = () => {
           ? <ProfitList title={`Profit for ${selectedProfit.name}`} data={[selectedProfit]} />
           : <p>No profit data found for this contractor.</p>
       ) : (
-        <p>Please select a contractor to view their profit.</p>
+        <p>Παρακαλώ επιλέξτε έναν εργολάβο για να δείτε τη διαφορά του.</p>
       )}
     </div>
   );

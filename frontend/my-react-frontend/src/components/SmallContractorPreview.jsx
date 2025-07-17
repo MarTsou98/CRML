@@ -6,7 +6,7 @@ import './css/SmallContractorPreview.css'; // create styles similar to SmallCust
 const SmallContractorPreview = ({ contractor }) => {
   return (
     <div className="small-contractor-preview">
-      <p><strong>Όνομα:</strong> {contractor.firstName} {contractor.lastName}</p>
+      <p><strong>Επωνυμία:</strong> {contractor.EnterpriseName}</p>
       {/* Adjust or remove email and phone if they don’t exist */}
       <p><strong>Email:</strong> {contractor.email || 'N/A'}</p>
       <p><strong>Τηλέφωνο:</strong> {contractor.phone || 'N/A'}</p>

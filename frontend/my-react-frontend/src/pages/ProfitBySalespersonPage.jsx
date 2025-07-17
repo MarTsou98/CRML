@@ -51,7 +51,7 @@ const ProfitBySalespersonPage = () => {
         ? <ProfitList title={`Profit for ${selectedProfit.name}`} data={[selectedProfit]} />
         : selectedId
           ? <p>No profit data found for this salesperson.</p>
-          : <p>Please select a salesperson to view their profit.</p>
+          : <p>Παρακαλώ επιλέξτε έναν πωλητή για να δείτε τη διαφορά του.</p>
       }
     </div>
   );

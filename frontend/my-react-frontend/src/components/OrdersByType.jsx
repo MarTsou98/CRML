@@ -48,9 +48,9 @@ const CustomTooltip = ({ active, payload, label }) => {
         boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
       }}>
         <p><strong>{label}</strong></p>
-        <p>🧾 Orders: {count}</p>
-        <p>💰 Revenue: ${revenue.toLocaleString()}</p>
-        <p>📈 Profit: ${profit.toLocaleString()}</p>
+        <p>🧾 Αριθμός παραγγελιών: {count}</p>
+        <p>💰 Συνολικά Έσοδα: ${revenue.toLocaleString()}</p>
+        <p>📈 Συνολική Διαφορά: ${profit.toLocaleString()}</p>
       </div>
     );
   }
@@ -59,7 +59,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 
   return (
     <div style={{ padding: '2rem' }}>
-      <h2>📊 Order Counts by Company</h2>
+      <h2>📊 Αριθμός Παραγγελιών ανά Εταιρεία</h2>
 
       {/* Bar Chart */}
       <div style={{ width: '100%', height: 300 }}>
@@ -104,9 +104,9 @@ const CustomTooltip = ({ active, payload, label }) => {
       </div>
 
       <hr />
-      <h3>Total Orders: {orders.total.count}</h3>
-      <h4>Total Revenue: ${orders.total.totalRevenue.toLocaleString()}</h4>
-      <h4>Total Profit: ${orders.total.totalProfit.toLocaleString()}</h4>
+      <h3>Συνολικές Παραγγελίες: {orders.total.count}</h3>
+      <h4>Συνολικά Έσοδα: ${orders.total.totalRevenue.toLocaleString()}</h4>
+      <h4>Συνολική Διαφορά: ${orders.total.totalProfit.toLocaleString()}</h4>
     </div>
   );
 };

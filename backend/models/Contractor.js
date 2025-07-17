@@ -1,6 +1,18 @@
 const mongoose = require('mongoose');
 
 const contractorSchema = new mongoose.Schema({
+  EnterpriseName: {
+    type: String,
+    required: true},
+  VAT: {
+    type: String,
+    required: true
+  },
+  Address: {
+    type: String,
+    required: true
+  },
+
     firstName: {
        type: String
      },

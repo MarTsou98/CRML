@@ -37,14 +37,14 @@ const userRole = user?.role;
 
   if (loading) return <p>Loading order...</p>;
   if (error) return <p>{error}</p>;
-  if (!order) return <p>Order not found.</p>;
+  if (!order) return <p>Δεν βρέθηκε η παραγγελία.</p>;
 
   const { moneyDetails, invoiceType, Lock, createdAt, salesperson_id, contractor_id, customer_id } = order;
 
   return (
   <div className="order-details-container">
   <BackButton />
-  <h2>Order Details</h2>
+  <h2>Στοιχεία Παραγγελίας</h2>
 
   {/* Wrap all three components in a flex container */}
   <div className="details-section">
@@ -57,6 +57,7 @@ const userRole = user?.role;
         customer={customer_id}
         contractor={contractor_id}
         orderNotes={order.orderNotes}
+        typeOfOrder={order.orderedFromCompany}
       />
     </div>
 

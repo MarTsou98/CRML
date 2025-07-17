@@ -8,13 +8,17 @@ import './css/NewContractor.css';
 const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 const NewContractor = () => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    Role: '',
-    phone: '',
-    email: '',
-    ContractorNotes: '',
-  });
+  EnterpriseName: '',
+  VAT: '',
+  Address: '',
+  //firstName: '',
+ // lastName: '',
+ // Role: '',
+  phone: '',
+  email: '',
+  ContractorNotes: '',
+});
+
 
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
@@ -67,10 +71,12 @@ const NewContractor = () => {
     <h2 className="new-contractor-heading">Δημιουργία νέου εργολάβου</h2>
 
     <form onSubmit={handleSubmit} className="new-contractor-form">
-     {[
-  { name: 'firstName', label: 'Όνομα' },
-  { name: 'lastName', label: 'Επίθετο' },
-  { name: 'Role', label: 'Ρόλος' },
+{[
+  { name: 'EnterpriseName', label: 'Επωνυμία Εργολάβου' },
+  { name: 'VAT', label: 'ΑΦΜ' },
+  { name: 'Address', label: 'Διεύθυνση' },
+  // { name: 'firstName', label: 'Όνομα' },
+  // { name: 'lastName', label: 'Επίθετο' },
   { name: 'phone', label: 'Τηλέφωνο' },
   { name: 'email', label: 'Email' },
 ].map(({ name, label }) => (
@@ -89,6 +95,7 @@ const NewContractor = () => {
     )}
   </div>
 ))}
+
 
       <div className="new-contractor-form-group">
         <label className="new-contractor-label">Σημειώσεις:</label>

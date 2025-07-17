@@ -33,7 +33,7 @@ async function run() {
   try {
     await mongoose.connect('mongodb://localhost:27017/kitchen_crm');
    // await createUser('Sofia','s', 'salesperson'); // Create a manager
-    await updatePassword('Sofia','s'); // Optional: only if you need to reset right after
+    await updatePassword('Thei','t'); // Optional: only if you need to reset right after
   } catch (err) {
     console.error('Error:', err);
   } finally {
