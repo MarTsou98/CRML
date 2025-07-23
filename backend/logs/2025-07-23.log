@@ -1,0 +1,974 @@
+[2025-07-23 10:07:07] INFO: Login attempt for username: Tilemachos
+[2025-07-23 10:07:07] INFO: User 'Tilemachos' logged in successfully
+[2025-07-23 10:07:11] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 10:07:17] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 10:07:22] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 10:07:28] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 10:07:32] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 10:07:44] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 10:07:49] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 10:08:17] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 10:30:00] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 10:30:47] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 10:30:58] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 10:31:03] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 10:31:21] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 10:31:27] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 10:32:13] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 10:33:59] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 10:36:50] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 10:36:59] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 10:37:08] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 11:38:19] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 11:38:27] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 11:40:26] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 11:40:31] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 11:40:49] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 11:41:14] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 11:42:02] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 11:43:24] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 11:52:50] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 11:53:55] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 11:53:59] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 11:57:54] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 11:59:56] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 12:00:06] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 12:01:24] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 12:04:30] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 12:05:35] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 12:05:39] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 12:07:44] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 12:08:58] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 12:11:51] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 12:13:12] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 12:13:21] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 12:39:56] INFO: Order fetched successfully
+{
+  "orderId": "687a1618a5f555dfa5c16ad7",
+  "user": null,
+  "route": "/api/orders/687a1618a5f555dfa5c16ad7"
+}
+[2025-07-23 12:40:02] INFO: Login attempt for username: Sofia
+[2025-07-23 12:40:02] INFO: User 'Sofia' logged in successfully
+[2025-07-23 12:40:05] INFO: Order fetched successfully
+{
+  "orderId": "6874e72a272b4b828d3bd616",
+  "user": {
+    "_id": "6853e3275a7cfef9258aac94",
+    "firstName": "Σοφία",
+    "lastName": "Βούτσα",
+    "customers": [
+      "685a5de24306c37b35f8babe",
+      "6874e2b6272b4b828d3bd45a"
+    ],
+    "orders": [
+      "685508db5b2cc3b2b1acd7e3",
+      "685514795b2cc3b2b1acd8b7",
+      "6855192b5b2cc3b2b1acd920",
+      "685519d65b2cc3b2b1acd934",
+      "685519d75b2cc3b2b1acd93c",
+      "68551b155b2cc3b2b1acd969",
+      "68551bb75b2cc3b2b1acd993",
+      "68551bb95b2cc3b2b1acd99b",
+      "68551c375b2cc3b2b1acd9ce",
+      "68551d725b2cc3b2b1acd9fe",
+      "68551ea7fcf793385ec6cd6c",
+      "68551f0d7d80774071db464a",
+      "68551fbf7d80774071db46e2",
+      "6874e2cd272b4b828d3bd498",
+      "6874e4c4272b4b828d3bd50b",
+      "6874e4f0272b4b828d3bd572",
+      "6874e509272b4b828d3bd5c4",
+      "6874e72a272b4b828d3bd616"
+    ],
+    "__v": 0,
+    "createdAt": "2025-05-23T06:29:21.921Z",
+    "updatedAt": "2025-07-14T11:16:58.535Z"
+  },
+  "route": "/api/orders/6874e72a272b4b828d3bd616"
+}
+[2025-07-23 12:40:52] INFO: Order fetched successfully
+{
+  "orderId": "6874e72a272b4b828d3bd616",
+  "user": {
+    "_id": "6853e3275a7cfef9258aac94",
+    "firstName": "Σοφία",
+    "lastName": "Βούτσα",
+    "customers": [
+      "685a5de24306c37b35f8babe",
+      "6874e2b6272b4b828d3bd45a"
+    ],
+    "orders": [
+      "685508db5b2cc3b2b1acd7e3",
+      "685514795b2cc3b2b1acd8b7",
+      "6855192b5b2cc3b2b1acd920",
+      "685519d65b2cc3b2b1acd934",
+      "685519d75b2cc3b2b1acd93c",
+      "68551b155b2cc3b2b1acd969",
+      "68551bb75b2cc3b2b1acd993",
+      "68551bb95b2cc3b2b1acd99b",
+      "68551c375b2cc3b2b1acd9ce",
+      "68551d725b2cc3b2b1acd9fe",
+      "68551ea7fcf793385ec6cd6c",
+      "68551f0d7d80774071db464a",
+      "68551fbf7d80774071db46e2",
+      "6874e2cd272b4b828d3bd498",
+      "6874e4c4272b4b828d3bd50b",
+      "6874e4f0272b4b828d3bd572",
+      "6874e509272b4b828d3bd5c4",
+      "6874e72a272b4b828d3bd616"
+    ],
+    "__v": 0,
+    "createdAt": "2025-05-23T06:29:21.921Z",
+    "updatedAt": "2025-07-14T11:16:58.535Z"
+  },
+  "route": "/api/orders/6874e72a272b4b828d3bd616"
+}
+[2025-07-23 12:41:39] INFO: Order fetched successfully
+{
+  "orderId": "6874e72a272b4b828d3bd616",
+  "user": {
+    "_id": "6853e3275a7cfef9258aac94",
+    "firstName": "Σοφία",
+    "lastName": "Βούτσα",
+    "customers": [
+      "685a5de24306c37b35f8babe",
+      "6874e2b6272b4b828d3bd45a"
+    ],
+    "orders": [
+      "685508db5b2cc3b2b1acd7e3",
+      "685514795b2cc3b2b1acd8b7",
+      "6855192b5b2cc3b2b1acd920",
+      "685519d65b2cc3b2b1acd934",
+      "685519d75b2cc3b2b1acd93c",
+      "68551b155b2cc3b2b1acd969",
+      "68551bb75b2cc3b2b1acd993",
+      "68551bb95b2cc3b2b1acd99b",
+      "68551c375b2cc3b2b1acd9ce",
+      "68551d725b2cc3b2b1acd9fe",
+      "68551ea7fcf793385ec6cd6c",
+      "68551f0d7d80774071db464a",
+      "68551fbf7d80774071db46e2",
+      "6874e2cd272b4b828d3bd498",
+      "6874e4c4272b4b828d3bd50b",
+      "6874e4f0272b4b828d3bd572",
+      "6874e509272b4b828d3bd5c4",
+      "6874e72a272b4b828d3bd616"
+    ],
+    "__v": 0,
+    "createdAt": "2025-05-23T06:29:21.921Z",
+    "updatedAt": "2025-07-14T11:16:58.535Z"
+  },
+  "route": "/api/orders/6874e72a272b4b828d3bd616"
+}
+[2025-07-23 12:41:44] INFO: Order fetched successfully
+{
+  "orderId": "6874e72a272b4b828d3bd616",
+  "user": {
+    "_id": "6853e3275a7cfef9258aac94",
+    "firstName": "Σοφία",
+    "lastName": "Βούτσα",
+    "customers": [
+      "685a5de24306c37b35f8babe",
+      "6874e2b6272b4b828d3bd45a"
+    ],
+    "orders": [
+      "685508db5b2cc3b2b1acd7e3",
+      "685514795b2cc3b2b1acd8b7",
+      "6855192b5b2cc3b2b1acd920",
+      "685519d65b2cc3b2b1acd934",
+      "685519d75b2cc3b2b1acd93c",
+      "68551b155b2cc3b2b1acd969",
+      "68551bb75b2cc3b2b1acd993",
+      "68551bb95b2cc3b2b1acd99b",
+      "68551c375b2cc3b2b1acd9ce",
+      "68551d725b2cc3b2b1acd9fe",
+      "68551ea7fcf793385ec6cd6c",
+      "68551f0d7d80774071db464a",
+      "68551fbf7d80774071db46e2",
+      "6874e2cd272b4b828d3bd498",
+      "6874e4c4272b4b828d3bd50b",
+      "6874e4f0272b4b828d3bd572",
+      "6874e509272b4b828d3bd5c4",
+      "6874e72a272b4b828d3bd616"
+    ],
+    "__v": 0,
+    "createdAt": "2025-05-23T06:29:21.921Z",
+    "updatedAt": "2025-07-14T11:16:58.535Z"
+  },
+  "route": "/api/orders/6874e72a272b4b828d3bd616"
+}
+[2025-07-23 12:41:48] INFO: Order fetched successfully
+{
+  "orderId": "6874e72a272b4b828d3bd616",
+  "user": {
+    "_id": "6853e3275a7cfef9258aac94",
+    "firstName": "Σοφία",
+    "lastName": "Βούτσα",
+    "customers": [
+      "685a5de24306c37b35f8babe",
+      "6874e2b6272b4b828d3bd45a"
+    ],
+    "orders": [
+      "685508db5b2cc3b2b1acd7e3",
+      "685514795b2cc3b2b1acd8b7",
+      "6855192b5b2cc3b2b1acd920",
+      "685519d65b2cc3b2b1acd934",
+      "685519d75b2cc3b2b1acd93c",
+      "68551b155b2cc3b2b1acd969",
+      "68551bb75b2cc3b2b1acd993",
+      "68551bb95b2cc3b2b1acd99b",
+      "68551c375b2cc3b2b1acd9ce",
+      "68551d725b2cc3b2b1acd9fe",
+      "68551ea7fcf793385ec6cd6c",
+      "68551f0d7d80774071db464a",
+      "68551fbf7d80774071db46e2",
+      "6874e2cd272b4b828d3bd498",
+      "6874e4c4272b4b828d3bd50b",
+      "6874e4f0272b4b828d3bd572",
+      "6874e509272b4b828d3bd5c4",
+      "6874e72a272b4b828d3bd616"
+    ],
+    "__v": 0,
+    "createdAt": "2025-05-23T06:29:21.921Z",
+    "updatedAt": "2025-07-14T11:16:58.535Z"
+  },
+  "route": "/api/orders/6874e72a272b4b828d3bd616"
+}
+[2025-07-23 12:42:39] INFO: Order fetched successfully
+{
+  "orderId": "6874e72a272b4b828d3bd616",
+  "user": {
+    "_id": "6853e3275a7cfef9258aac94",
+    "firstName": "Σοφία",
+    "lastName": "Βούτσα",
+    "customers": [
+      "685a5de24306c37b35f8babe",
+      "6874e2b6272b4b828d3bd45a"
+    ],
+    "orders": [
+      "685508db5b2cc3b2b1acd7e3",
+      "685514795b2cc3b2b1acd8b7",
+      "6855192b5b2cc3b2b1acd920",
+      "685519d65b2cc3b2b1acd934",
+      "685519d75b2cc3b2b1acd93c",
+      "68551b155b2cc3b2b1acd969",
+      "68551bb75b2cc3b2b1acd993",
+      "68551bb95b2cc3b2b1acd99b",
+      "68551c375b2cc3b2b1acd9ce",
+      "68551d725b2cc3b2b1acd9fe",
+      "68551ea7fcf793385ec6cd6c",
+      "68551f0d7d80774071db464a",
+      "68551fbf7d80774071db46e2",
+      "6874e2cd272b4b828d3bd498",
+      "6874e4c4272b4b828d3bd50b",
+      "6874e4f0272b4b828d3bd572",
+      "6874e509272b4b828d3bd5c4",
+      "6874e72a272b4b828d3bd616"
+    ],
+    "__v": 0,
+    "createdAt": "2025-05-23T06:29:21.921Z",
+    "updatedAt": "2025-07-14T11:16:58.535Z"
+  },
+  "route": "/api/orders/6874e72a272b4b828d3bd616"
+}
+[2025-07-23 12:42:48] INFO: Order fetched successfully
+{
+  "orderId": "6874e72a272b4b828d3bd616",
+  "user": {
+    "_id": "6853e3275a7cfef9258aac94",
+    "firstName": "Σοφία",
+    "lastName": "Βούτσα",
+    "customers": [
+      "685a5de24306c37b35f8babe",
+      "6874e2b6272b4b828d3bd45a"
+    ],
+    "orders": [
+      "685508db5b2cc3b2b1acd7e3",
+      "685514795b2cc3b2b1acd8b7",
+      "6855192b5b2cc3b2b1acd920",
+      "685519d65b2cc3b2b1acd934",
+      "685519d75b2cc3b2b1acd93c",
+      "68551b155b2cc3b2b1acd969",
+      "68551bb75b2cc3b2b1acd993",
+      "68551bb95b2cc3b2b1acd99b",
+      "68551c375b2cc3b2b1acd9ce",
+      "68551d725b2cc3b2b1acd9fe",
+      "68551ea7fcf793385ec6cd6c",
+      "68551f0d7d80774071db464a",
+      "68551fbf7d80774071db46e2",
+      "6874e2cd272b4b828d3bd498",
+      "6874e4c4272b4b828d3bd50b",
+      "6874e4f0272b4b828d3bd572",
+      "6874e509272b4b828d3bd5c4",
+      "6874e72a272b4b828d3bd616"
+    ],
+    "__v": 0,
+    "createdAt": "2025-05-23T06:29:21.921Z",
+    "updatedAt": "2025-07-14T11:16:58.535Z"
+  },
+  "route": "/api/orders/6874e72a272b4b828d3bd616"
+}
+[2025-07-23 12:44:16] INFO: Order fetched successfully
+{
+  "orderId": "6874e72a272b4b828d3bd616",
+  "user": {
+    "_id": "6853e3275a7cfef9258aac94",
+    "firstName": "Σοφία",
+    "lastName": "Βούτσα",
+    "customers": [
+      "685a5de24306c37b35f8babe",
+      "6874e2b6272b4b828d3bd45a"
+    ],
+    "orders": [
+      "685508db5b2cc3b2b1acd7e3",
+      "685514795b2cc3b2b1acd8b7",
+      "6855192b5b2cc3b2b1acd920",
+      "685519d65b2cc3b2b1acd934",
+      "685519d75b2cc3b2b1acd93c",
+      "68551b155b2cc3b2b1acd969",
+      "68551bb75b2cc3b2b1acd993",
+      "68551bb95b2cc3b2b1acd99b",
+      "68551c375b2cc3b2b1acd9ce",
+      "68551d725b2cc3b2b1acd9fe",
+      "68551ea7fcf793385ec6cd6c",
+      "68551f0d7d80774071db464a",
+      "68551fbf7d80774071db46e2",
+      "6874e2cd272b4b828d3bd498",
+      "6874e4c4272b4b828d3bd50b",
+      "6874e4f0272b4b828d3bd572",
+      "6874e509272b4b828d3bd5c4",
+      "6874e72a272b4b828d3bd616"
+    ],
+    "__v": 0,
+    "createdAt": "2025-05-23T06:29:21.921Z",
+    "updatedAt": "2025-07-14T11:16:58.535Z"
+  },
+  "route": "/api/orders/6874e72a272b4b828d3bd616"
+}
+[2025-07-23 12:44:22] INFO: Order fetched successfully
+{
+  "orderId": "6874e72a272b4b828d3bd616",
+  "user": {
+    "_id": "6853e3275a7cfef9258aac94",
+    "firstName": "Σοφία",
+    "lastName": "Βούτσα",
+    "customers": [
+      "685a5de24306c37b35f8babe",
+      "6874e2b6272b4b828d3bd45a"
+    ],
+    "orders": [
+      "685508db5b2cc3b2b1acd7e3",
+      "685514795b2cc3b2b1acd8b7",
+      "6855192b5b2cc3b2b1acd920",
+      "685519d65b2cc3b2b1acd934",
+      "685519d75b2cc3b2b1acd93c",
+      "68551b155b2cc3b2b1acd969",
+      "68551bb75b2cc3b2b1acd993",
+      "68551bb95b2cc3b2b1acd99b",
+      "68551c375b2cc3b2b1acd9ce",
+      "68551d725b2cc3b2b1acd9fe",
+      "68551ea7fcf793385ec6cd6c",
+      "68551f0d7d80774071db464a",
+      "68551fbf7d80774071db46e2",
+      "6874e2cd272b4b828d3bd498",
+      "6874e4c4272b4b828d3bd50b",
+      "6874e4f0272b4b828d3bd572",
+      "6874e509272b4b828d3bd5c4",
+      "6874e72a272b4b828d3bd616"
+    ],
+    "__v": 0,
+    "createdAt": "2025-05-23T06:29:21.921Z",
+    "updatedAt": "2025-07-14T11:16:58.535Z"
+  },
+  "route": "/api/orders/6874e72a272b4b828d3bd616"
+}
+[2025-07-23 12:44:36] INFO: Order fetched successfully
+{
+  "orderId": "6874e72a272b4b828d3bd616",
+  "user": {
+    "_id": "6853e3275a7cfef9258aac94",
+    "firstName": "Σοφία",
+    "lastName": "Βούτσα",
+    "customers": [
+      "685a5de24306c37b35f8babe",
+      "6874e2b6272b4b828d3bd45a"
+    ],
+    "orders": [
+      "685508db5b2cc3b2b1acd7e3",
+      "685514795b2cc3b2b1acd8b7",
+      "6855192b5b2cc3b2b1acd920",
+      "685519d65b2cc3b2b1acd934",
+      "685519d75b2cc3b2b1acd93c",
+      "68551b155b2cc3b2b1acd969",
+      "68551bb75b2cc3b2b1acd993",
+      "68551bb95b2cc3b2b1acd99b",
+      "68551c375b2cc3b2b1acd9ce",
+      "68551d725b2cc3b2b1acd9fe",
+      "68551ea7fcf793385ec6cd6c",
+      "68551f0d7d80774071db464a",
+      "68551fbf7d80774071db46e2",
+      "6874e2cd272b4b828d3bd498",
+      "6874e4c4272b4b828d3bd50b",
+      "6874e4f0272b4b828d3bd572",
+      "6874e509272b4b828d3bd5c4",
+      "6874e72a272b4b828d3bd616"
+    ],
+    "__v": 0,
+    "createdAt": "2025-05-23T06:29:21.921Z",
+    "updatedAt": "2025-07-14T11:16:58.535Z"
+  },
+  "route": "/api/orders/6874e72a272b4b828d3bd616"
+}
+[2025-07-23 12:44:40] INFO: Order fetched successfully
+{
+  "orderId": "6874e72a272b4b828d3bd616",
+  "user": {
+    "_id": "6853e3275a7cfef9258aac94",
+    "firstName": "Σοφία",
+    "lastName": "Βούτσα",
+    "customers": [
+      "685a5de24306c37b35f8babe",
+      "6874e2b6272b4b828d3bd45a"
+    ],
+    "orders": [
+      "685508db5b2cc3b2b1acd7e3",
+      "685514795b2cc3b2b1acd8b7",
+      "6855192b5b2cc3b2b1acd920",
+      "685519d65b2cc3b2b1acd934",
+      "685519d75b2cc3b2b1acd93c",
+      "68551b155b2cc3b2b1acd969",
+      "68551bb75b2cc3b2b1acd993",
+      "68551bb95b2cc3b2b1acd99b",
+      "68551c375b2cc3b2b1acd9ce",
+      "68551d725b2cc3b2b1acd9fe",
+      "68551ea7fcf793385ec6cd6c",
+      "68551f0d7d80774071db464a",
+      "68551fbf7d80774071db46e2",
+      "6874e2cd272b4b828d3bd498",
+      "6874e4c4272b4b828d3bd50b",
+      "6874e4f0272b4b828d3bd572",
+      "6874e509272b4b828d3bd5c4",
+      "6874e72a272b4b828d3bd616"
+    ],
+    "__v": 0,
+    "createdAt": "2025-05-23T06:29:21.921Z",
+    "updatedAt": "2025-07-14T11:16:58.535Z"
+  },
+  "route": "/api/orders/6874e72a272b4b828d3bd616"
+}
+[2025-07-23 12:45:02] INFO: Order fetched successfully
+{
+  "orderId": "6874e72a272b4b828d3bd616",
+  "user": {
+    "_id": "6853e3275a7cfef9258aac94",
+    "firstName": "Σοφία",
+    "lastName": "Βούτσα",
+    "customers": [
+      "685a5de24306c37b35f8babe",
+      "6874e2b6272b4b828d3bd45a"
+    ],
+    "orders": [
+      "685508db5b2cc3b2b1acd7e3",
+      "685514795b2cc3b2b1acd8b7",
+      "6855192b5b2cc3b2b1acd920",
+      "685519d65b2cc3b2b1acd934",
+      "685519d75b2cc3b2b1acd93c",
+      "68551b155b2cc3b2b1acd969",
+      "68551bb75b2cc3b2b1acd993",
+      "68551bb95b2cc3b2b1acd99b",
+      "68551c375b2cc3b2b1acd9ce",
+      "68551d725b2cc3b2b1acd9fe",
+      "68551ea7fcf793385ec6cd6c",
+      "68551f0d7d80774071db464a",
+      "68551fbf7d80774071db46e2",
+      "6874e2cd272b4b828d3bd498",
+      "6874e4c4272b4b828d3bd50b",
+      "6874e4f0272b4b828d3bd572",
+      "6874e509272b4b828d3bd5c4",
+      "6874e72a272b4b828d3bd616"
+    ],
+    "__v": 0,
+    "createdAt": "2025-05-23T06:29:21.921Z",
+    "updatedAt": "2025-07-14T11:16:58.535Z"
+  },
+  "route": "/api/orders/6874e72a272b4b828d3bd616"
+}
+[2025-07-23 12:45:32] INFO: Order created successfully
+{
+  "order": {
+    "Lock": false,
+    "invoiceType": "Timologio",
+    "orderNotes": "Auto einai mia simiosi",
+    "customer_id": "685a58fb47f82d5c3836b9bd",
+    "salesperson_id": "6853e3275a7cfef9258aac94",
+    "contractor_id": "683015c196e366ac7d14c028",
+    "orderedFromCompany": "Decopan",
+    "moneyDetails": {
+      "timi_Timokatalogou": 1000,
+      "timi_Polisis": 1500,
+      "cash": 1000,
+      "bank": 500,
+      "contractor_Share_Cash": 500,
+      "contractor_Share_Bank": 250,
+      "customer_Share_Cash": 500,
+      "customer_Share_Bank": 250,
+      "payments": [],
+      "remainingCash": 1000,
+      "remainingBank": 500,
+      "damages": [],
+      "discounts": [],
+      "_skipRemainingShareCalc": false,
+      "profit": 500,
+      "totaldamages": 0,
+      "totalpaid": 0,
+      "FPA": 96.77419354838707,
+      "contractor_remainingShare_Cash": 500,
+      "contractor_remainingShare_Bank": 250,
+      "customer_remainingShare_Cash": 500,
+      "customer_remainingShare_Bank": 250
+    },
+    "_id": "6880af3c06b57dc607bf4d77",
+    "createdAt": "2025-07-23T09:45:32.289Z",
+    "updatedAt": "2025-07-23T09:45:32.289Z",
+    "__v": 0
+  }
+}
+[2025-07-23 12:45:43] INFO: Order fetched successfully
+{
+  "orderId": "6880af3c06b57dc607bf4d77",
+  "user": {
+    "_id": "6853e3275a7cfef9258aac94",
+    "firstName": "Σοφία",
+    "lastName": "Βούτσα",
+    "customers": [
+      "685a5de24306c37b35f8babe",
+      "6874e2b6272b4b828d3bd45a"
+    ],
+    "orders": [
+      "685508db5b2cc3b2b1acd7e3",
+      "685514795b2cc3b2b1acd8b7",
+      "6855192b5b2cc3b2b1acd920",
+      "685519d65b2cc3b2b1acd934",
+      "685519d75b2cc3b2b1acd93c",
+      "68551b155b2cc3b2b1acd969",
+      "68551bb75b2cc3b2b1acd993",
+      "68551bb95b2cc3b2b1acd99b",
+      "68551c375b2cc3b2b1acd9ce",
+      "68551d725b2cc3b2b1acd9fe",
+      "68551ea7fcf793385ec6cd6c",
+      "68551f0d7d80774071db464a",
+      "68551fbf7d80774071db46e2",
+      "6874e2cd272b4b828d3bd498",
+      "6874e4c4272b4b828d3bd50b",
+      "6874e4f0272b4b828d3bd572",
+      "6874e509272b4b828d3bd5c4",
+      "6874e72a272b4b828d3bd616",
+      "6880af3c06b57dc607bf4d77"
+    ],
+    "__v": 0,
+    "createdAt": "2025-05-23T06:29:21.921Z",
+    "updatedAt": "2025-07-23T09:45:32.308Z"
+  },
+  "route": "/api/orders/6880af3c06b57dc607bf4d77"
+}
+[2025-07-23 12:45:49] INFO: Order fetched successfully
+{
+  "orderId": "6880af3c06b57dc607bf4d77",
+  "user": {
+    "_id": "6853e3275a7cfef9258aac94",
+    "firstName": "Σοφία",
+    "lastName": "Βούτσα",
+    "customers": [
+      "685a5de24306c37b35f8babe",
+      "6874e2b6272b4b828d3bd45a"
+    ],
+    "orders": [
+      "685508db5b2cc3b2b1acd7e3",
+      "685514795b2cc3b2b1acd8b7",
+      "6855192b5b2cc3b2b1acd920",
+      "685519d65b2cc3b2b1acd934",
+      "685519d75b2cc3b2b1acd93c",
+      "68551b155b2cc3b2b1acd969",
+      "68551bb75b2cc3b2b1acd993",
+      "68551bb95b2cc3b2b1acd99b",
+      "68551c375b2cc3b2b1acd9ce",
+      "68551d725b2cc3b2b1acd9fe",
+      "68551ea7fcf793385ec6cd6c",
+      "68551f0d7d80774071db464a",
+      "68551fbf7d80774071db46e2",
+      "6874e2cd272b4b828d3bd498",
+      "6874e4c4272b4b828d3bd50b",
+      "6874e4f0272b4b828d3bd572",
+      "6874e509272b4b828d3bd5c4",
+      "6874e72a272b4b828d3bd616",
+      "6880af3c06b57dc607bf4d77"
+    ],
+    "__v": 0,
+    "createdAt": "2025-05-23T06:29:21.921Z",
+    "updatedAt": "2025-07-23T09:45:32.308Z"
+  },
+  "route": "/api/orders/6880af3c06b57dc607bf4d77"
+}
+[2025-07-23 12:46:08] INFO: Order fetched successfully
+{
+  "orderId": "6880af3c06b57dc607bf4d77",
+  "user": {
+    "_id": "6853e3275a7cfef9258aac94",
+    "firstName": "Σοφία",
+    "lastName": "Βούτσα",
+    "customers": [
+      "685a5de24306c37b35f8babe",
+      "6874e2b6272b4b828d3bd45a"
+    ],
+    "orders": [
+      "685508db5b2cc3b2b1acd7e3",
+      "685514795b2cc3b2b1acd8b7",
+      "6855192b5b2cc3b2b1acd920",
+      "685519d65b2cc3b2b1acd934",
+      "685519d75b2cc3b2b1acd93c",
+      "68551b155b2cc3b2b1acd969",
+      "68551bb75b2cc3b2b1acd993",
+      "68551bb95b2cc3b2b1acd99b",
+      "68551c375b2cc3b2b1acd9ce",
+      "68551d725b2cc3b2b1acd9fe",
+      "68551ea7fcf793385ec6cd6c",
+      "68551f0d7d80774071db464a",
+      "68551fbf7d80774071db46e2",
+      "6874e2cd272b4b828d3bd498",
+      "6874e4c4272b4b828d3bd50b",
+      "6874e4f0272b4b828d3bd572",
+      "6874e509272b4b828d3bd5c4",
+      "6874e72a272b4b828d3bd616",
+      "6880af3c06b57dc607bf4d77"
+    ],
+    "__v": 0,
+    "createdAt": "2025-05-23T06:29:21.921Z",
+    "updatedAt": "2025-07-23T09:45:32.308Z"
+  },
+  "route": "/api/orders/6880af3c06b57dc607bf4d77"
+}
+[2025-07-23 12:46:16] INFO: Order fetched successfully
+{
+  "orderId": "6880af3c06b57dc607bf4d77",
+  "user": {
+    "_id": "6853e3275a7cfef9258aac94",
+    "firstName": "Σοφία",
+    "lastName": "Βούτσα",
+    "customers": [
+      "685a5de24306c37b35f8babe",
+      "6874e2b6272b4b828d3bd45a"
+    ],
+    "orders": [
+      "685508db5b2cc3b2b1acd7e3",
+      "685514795b2cc3b2b1acd8b7",
+      "6855192b5b2cc3b2b1acd920",
+      "685519d65b2cc3b2b1acd934",
+      "685519d75b2cc3b2b1acd93c",
+      "68551b155b2cc3b2b1acd969",
+      "68551bb75b2cc3b2b1acd993",
+      "68551bb95b2cc3b2b1acd99b",
+      "68551c375b2cc3b2b1acd9ce",
+      "68551d725b2cc3b2b1acd9fe",
+      "68551ea7fcf793385ec6cd6c",
+      "68551f0d7d80774071db464a",
+      "68551fbf7d80774071db46e2",
+      "6874e2cd272b4b828d3bd498",
+      "6874e4c4272b4b828d3bd50b",
+      "6874e4f0272b4b828d3bd572",
+      "6874e509272b4b828d3bd5c4",
+      "6874e72a272b4b828d3bd616",
+      "6880af3c06b57dc607bf4d77"
+    ],
+    "__v": 0,
+    "createdAt": "2025-05-23T06:29:21.921Z",
+    "updatedAt": "2025-07-23T09:45:32.308Z"
+  },
+  "route": "/api/orders/6880af3c06b57dc607bf4d77"
+}
+[2025-07-23 12:48:33] INFO: Order fetched successfully
+{
+  "orderId": "6880af3c06b57dc607bf4d77",
+  "user": {
+    "_id": "6853e3275a7cfef9258aac94",
+    "firstName": "Σοφία",
+    "lastName": "Βούτσα",
+    "customers": [
+      "685a5de24306c37b35f8babe",
+      "6874e2b6272b4b828d3bd45a"
+    ],
+    "orders": [
+      "685508db5b2cc3b2b1acd7e3",
+      "685514795b2cc3b2b1acd8b7",
+      "6855192b5b2cc3b2b1acd920",
+      "685519d65b2cc3b2b1acd934",
+      "685519d75b2cc3b2b1acd93c",
+      "68551b155b2cc3b2b1acd969",
+      "68551bb75b2cc3b2b1acd993",
+      "68551bb95b2cc3b2b1acd99b",
+      "68551c375b2cc3b2b1acd9ce",
+      "68551d725b2cc3b2b1acd9fe",
+      "68551ea7fcf793385ec6cd6c",
+      "68551f0d7d80774071db464a",
+      "68551fbf7d80774071db46e2",
+      "6874e2cd272b4b828d3bd498",
+      "6874e4c4272b4b828d3bd50b",
+      "6874e4f0272b4b828d3bd572",
+      "6874e509272b4b828d3bd5c4",
+      "6874e72a272b4b828d3bd616",
+      "6880af3c06b57dc607bf4d77"
+    ],
+    "__v": 0,
+    "createdAt": "2025-05-23T06:29:21.921Z",
+    "updatedAt": "2025-07-23T09:45:32.308Z"
+  },
+  "route": "/api/orders/6880af3c06b57dc607bf4d77"
+}
+[2025-07-23 12:48:42] INFO: Order fetched successfully
+{
+  "orderId": "6880af3c06b57dc607bf4d77",
+  "user": {
+    "_id": "6853e3275a7cfef9258aac94",
+    "firstName": "Σοφία",
+    "lastName": "Βούτσα",
+    "customers": [
+      "685a5de24306c37b35f8babe",
+      "6874e2b6272b4b828d3bd45a"
+    ],
+    "orders": [
+      "685508db5b2cc3b2b1acd7e3",
+      "685514795b2cc3b2b1acd8b7",
+      "6855192b5b2cc3b2b1acd920",
+      "685519d65b2cc3b2b1acd934",
+      "685519d75b2cc3b2b1acd93c",
+      "68551b155b2cc3b2b1acd969",
+      "68551bb75b2cc3b2b1acd993",
+      "68551bb95b2cc3b2b1acd99b",
+      "68551c375b2cc3b2b1acd9ce",
+      "68551d725b2cc3b2b1acd9fe",
+      "68551ea7fcf793385ec6cd6c",
+      "68551f0d7d80774071db464a",
+      "68551fbf7d80774071db46e2",
+      "6874e2cd272b4b828d3bd498",
+      "6874e4c4272b4b828d3bd50b",
+      "6874e4f0272b4b828d3bd572",
+      "6874e509272b4b828d3bd5c4",
+      "6874e72a272b4b828d3bd616",
+      "6880af3c06b57dc607bf4d77"
+    ],
+    "__v": 0,
+    "createdAt": "2025-05-23T06:29:21.921Z",
+    "updatedAt": "2025-07-23T09:45:32.308Z"
+  },
+  "route": "/api/orders/6880af3c06b57dc607bf4d77"
+}

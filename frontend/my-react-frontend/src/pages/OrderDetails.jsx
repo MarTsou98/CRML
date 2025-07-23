@@ -58,6 +58,7 @@ const userRole = user?.role;
         contractor={contractor_id}
         orderNotes={order.orderNotes}
         typeOfOrder={order.orderedFromCompany}
+        orderId={order._id}
       />
     </div>
 

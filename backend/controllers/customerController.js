@@ -1,6 +1,6 @@
 const Customer = require('../models/Customer');
 const normalizeGreek = require('../utils/normalizeGreek');
-
+const logger = require('../utils/logger');
 exports.createCustomer = async (req, res) => {
   try {
     let {

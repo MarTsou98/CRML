@@ -1,35 +1,35 @@
 const Order = require('../models/Order');
 const mongoose = require('mongoose');
+
+const logger = require('../utils/logger');
 exports.createOrder = async (req, res) => {
-    console.log('Received order payload:', req.body);
   try {
     const orderData = req.body;
 
-    // ✅ Business logic (you can move more here)
     if (orderData.moneyDetails.profit < 0) {
       return res.status(400).json({ error: 'Profit cannot be negative' });
     }
 
     const newOrder = new Order(orderData);
-    const savedOrder = await newOrder.save(); // This triggers pre-save hooks
+    const savedOrder = await newOrder.save();
+
+    logger.info('Order created successfully', {
+      order: savedOrder.toObject()
+    });
 
     res.status(201).json(savedOrder);
   } catch (error) {
-    console.error('Error creating order:', error);
-
-    if (error.name === 'ValidationError' || error.message.includes('Profit')) {
-      return res.status(400).json({ error: error.message });
-    }
-
+    logger.error('Error creating order', { error: error.message, stack: error.stack });
     res.status(500).json({ error: 'Server error creating order' });
   }
 };
 
+
 exports.getOrderById = async (req, res) => {
   const { id } = req.params;
 
-  // ✅ Validate MongoDB ObjectId
   if (!mongoose.Types.ObjectId.isValid(id)) {
+    logger.warn('Invalid order ID requested', { id, route: req.originalUrl });
     return res.status(400).json({ error: 'Invalid order ID' });
   }
 
@@ -40,12 +40,23 @@ exports.getOrderById = async (req, res) => {
       .populate('contractor_id');
 
     if (!order) {
+      logger.info('Order not found', { id });
       return res.status(404).json({ error: 'Order not found' });
     }
 
+    logger.info('Order fetched successfully', {
+      orderId: id,
+      user: order.salesperson_id, // assuming user is attached via auth middleware
+      route: req.originalUrl
+    });
+
     res.json(order);
   } catch (error) {
-    console.error('Error fetching order by ID:', error);
+    logger.error('Error fetching order by ID', {
+      id,
+      error: error.message,
+      stack: error.stack
+    });
     res.status(500).json({ error: 'Server error fetching order' });
   }
 };
@@ -149,6 +160,7 @@ exports.addPaymentToOrder = async (req, res) => {
 exports.addDamageToOrder = async (req, res) => {
   const { orderId } = req.params;
   const { amount, notes, typeOfDamage } = req.body;
+
   const allowedTypes = [
     'Μεταφορά εξωτερικού',
     'Μεταφορά εσωτερικού',
@@ -165,9 +177,6 @@ exports.addDamageToOrder = async (req, res) => {
   }
 
   try {
-    const order = await Order.findById(orderId);
-    if (!order) return res.status(404).json({ error: 'Order not found' });
-
     const damage = {
       amount,
       notes,
@@ -175,16 +184,23 @@ exports.addDamageToOrder = async (req, res) => {
       date: new Date()
     };
 
-    order.moneyDetails.damages.push(damage);
+    const updatedOrder = await Order.findByIdAndUpdate(
+      orderId,
+      {
+        $push: { 'moneyDetails.damages': damage }
+      },
+      { new: true }
+    );
 
-    await order.save();
+    if (!updatedOrder) return res.status(404).json({ error: 'Order not found' });
 
-    res.status(200).json({ message: 'Damage added', order });
+    res.status(200).json({ message: 'Damage added', order: updatedOrder });
   } catch (err) {
-    console.error('Error adding damage:', err);  // <--- Add this line if missing
+    console.error('Error adding damage:', err);
     res.status(500).json({ error: 'Server error adding damage' });
   }
 };
+
 
 
 
@@ -257,10 +273,48 @@ exports.updateOrder = async (req, res) => {
     if (!updatedOrder) {
       return res.status(404).json({ error: 'Order not found' });
     }
-
+    await updatedOrder.save();
     res.json(updatedOrder);
   } catch (error) {
     console.error('Error updating order:', error);
     res.status(500).json({ error: 'Server error updating order' });
+  }
+};
+exports.updateOrderGeneralInfo = async (req, res) => {
+  const { id } = req.params;
+  const { invoiceType, Lock, orderNotes, orderType } = req.body;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: 'Invalid order ID' });
+  }
+
+  try {
+    const order = await Order.findById(id);
+    if (!order) {
+      return res.status(404).json({ error: 'Order not found' });
+    }
+
+    const allowedInvoiceTypes = ['Timologio', 'Apodiksi'];
+    const allowedOrderTypes = ['Κανονική', 'Σύνθεση Ερμαρίων'];
+
+    if (invoiceType && !allowedInvoiceTypes.includes(invoiceType)) {
+      return res.status(400).json({ error: 'Invalid invoiceType' });
+    }
+
+    if (orderType && !allowedOrderTypes.includes(orderType)) {
+      return res.status(400).json({ error: 'Invalid orderType' });
+    }
+
+    if (typeof invoiceType === 'string') order.invoiceType = invoiceType;
+    if (typeof Lock === 'boolean') order.Lock = Lock;
+    if (typeof orderNotes === 'string') order.orderNotes = orderNotes;
+    if (typeof orderType === 'string') order.orderType = orderType;  // <-- fixed here
+
+    await order.save();
+
+    res.status(200).json({ message: 'Order general info updated', order });
+  } catch (err) {
+    console.error('Error updating general info:', err);
+    res.status(500).json({ error: 'Failed to update general order info' });
   }
 };

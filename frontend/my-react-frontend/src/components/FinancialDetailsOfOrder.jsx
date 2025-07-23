@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const FinancialDetailsOfOrder = ({ money, orderId }) => {
   const user = JSON.parse(localStorage.getItem('user'));
-  const isManager = user?.role === 'manager' && user.username === 'Tilemachos';
+  //const isManager = user?.role === 'manager' && user.username === 'Tilemachos';
 
   const [isEditing, setIsEditing] = useState(false);
   const [form, setForm] = useState(money);
@@ -27,7 +27,8 @@ const FinancialDetailsOfOrder = ({ money, orderId }) => {
       window.location.reload();  // Refresh to get updated data
     } catch (err) {
       console.error(err);
-      setMessage("❌ Failed to update");
+      setMessage("❌ Failed to update ! Προσοχή ! Η τιμή Proforma δεν μπορεί να είναι μικρότερη από την τιμή πώλησης");
+     
     }
   };
 
@@ -72,7 +73,7 @@ const FinancialDetailsOfOrder = ({ money, orderId }) => {
           {renderField('Υπόλοιπο Τράπεζης Εργολάβου', 'contractor_remainingShare_Bank')}
         </div>
 
-        {isManager && (
+        {/* {isManager && ( */}
           <div className="button-row">
             {!isEditing ? (
               <button onClick={() => setIsEditing(true)}>✏️ Επεξεργασία</button>
@@ -84,7 +85,7 @@ const FinancialDetailsOfOrder = ({ money, orderId }) => {
             )}
             {message && <p style={{ marginTop: '10px' }}>{message}</p>}
           </div>
-        )}
+        {/* )} */}
       </div>
     </div>
   );

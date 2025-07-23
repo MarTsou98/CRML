@@ -1,5 +1,5 @@
 const SalesPerson = require('../models/Salesperson');
-
+const logger = require('../utils/logger');
 exports.getAllSalesPeople = async (req, res) => {
   try {
     const salespeople = await SalesPerson.find();

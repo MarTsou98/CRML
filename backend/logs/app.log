@@ -1,0 +1,151 @@
+[2025-07-18 12:00:04] INFO: Login attempt for username: Sofia
+[2025-07-18 12:00:04] INFO: User 'Sofia' logged in successfully
+[2025-07-18 12:00:17] INFO: Login attempt for username: Thei
+[2025-07-18 12:00:17] INFO: User 'Thei' logged in successfully
+[2025-07-18 12:00:42] INFO: Login attempt for username: Tilemachs
+[2025-07-18 12:00:42] WARN: Login failed: User 'Tilemachs' not found
+[2025-07-18 12:00:53] INFO: Login attempt for username: Tilemachos
+[2025-07-18 12:00:53] INFO: User 'Tilemachos' logged in successfully
+[2025-07-18 12:11:04] INFO: Login attempt for username: Tilemachos
+[2025-07-18 12:11:04] WARN: Login failed: Incorrect password for user 'Tilemachos'
+[2025-07-18 12:11:05] INFO: Login attempt for username: Tilemachos
+[2025-07-18 12:11:06] WARN: Login failed: Incorrect password for user 'Tilemachos'
+[2025-07-18 12:11:06] INFO: Login attempt for username: Tilemachos
+[2025-07-18 12:11:06] INFO: User 'Tilemachos' logged in successfully
+[2025-07-18 12:11:19] INFO: Received new order payload
+[2025-07-18 12:11:19] INFO: Order created successfully
+[2025-07-18 12:13:51] INFO: Received new order payload {
+  "orderId": "N/A",
+  "contractor": "683015c196e366ac7d14c027"
+}
+[2025-07-18 12:13:51] INFO: Order created successfully {
+  "order": {
+    "Lock": false,
+    "invoiceType": "Apodiksi",
+    "orderNotes": "",
+    "customer_id": "685a5e954306c37b35f8bac7",
+    "salesperson_id": "64c9e3c7f8d2c01a23456789",
+    "contractor_id": "683015c196e366ac7d14c027",
+    "orderedFromCompany": "Sovet",
+    "moneyDetails": {
+      "timi_Timokatalogou": 1,
+      "timi_Polisis": 2,
+      "cash": 11,
+      "bank": 1,
+      "contractor_Share_Cash": 1,
+      "contractor_Share_Bank": 1,
+      "customer_Share_Cash": 1,
+      "customer_Share_Bank": 1,
+      "payments": [],
+      "remainingCash": 11,
+      "remainingBank": 1,
+      "damages": [],
+      "discounts": [],
+      "_skipRemainingShareCalc": false,
+      "profit": 1,
+      "totaldamages": 0,
+      "totalpaid": 0,
+      "FPA": 0.19354838709677413,
+      "contractor_remainingShare_Cash": 1,
+      "contractor_remainingShare_Bank": 1,
+      "customer_remainingShare_Cash": 1,
+      "customer_remainingShare_Bank": 1
+    },
+    "_id": "687a104fa5f555dfa5c169cf",
+    "createdAt": "2025-07-18T09:13:51.150Z",
+    "updatedAt": "2025-07-18T09:13:51.150Z",
+    "__v": 0
+  }
+}
+[2025-07-18 12:37:45] INFO: Login attempt for username: Thei 
+[2025-07-18 12:37:45] INFO: User 'Thei' logged in successfully 
+[2025-07-18 12:37:59] INFO: Received new order payload {
+  "orderId": "N/A",
+  "contractor": "683015c196e366ac7d14c028"
+}
+[2025-07-18 12:37:59] INFO: Order created successfully {
+  "order": {
+    "Lock": false,
+    "invoiceType": "Apodiksi",
+    "orderNotes": "",
+    "customer_id": "686fa771b3a440ca709bf502",
+    "salesperson_id": "685535785a7cfef9258aacab",
+    "contractor_id": "683015c196e366ac7d14c028",
+    "orderedFromCompany": "Decopan",
+    "moneyDetails": {
+      "timi_Timokatalogou": 1,
+      "timi_Polisis": 2,
+      "cash": 111,
+      "bank": 1,
+      "contractor_Share_Cash": 1,
+      "contractor_Share_Bank": 1,
+      "customer_Share_Cash": 1,
+      "customer_Share_Bank": 1,
+      "payments": [],
+      "remainingCash": 111,
+      "remainingBank": 1,
+      "damages": [],
+      "discounts": [],
+      "_skipRemainingShareCalc": false,
+      "profit": 1,
+      "totaldamages": 0,
+      "totalpaid": 0,
+      "FPA": 0.19354838709677413,
+      "contractor_remainingShare_Cash": 1,
+      "contractor_remainingShare_Bank": 1,
+      "customer_remainingShare_Cash": 1,
+      "customer_remainingShare_Bank": 1
+    },
+    "_id": "687a15f7a5f555dfa5c16a6c",
+    "createdAt": "2025-07-18T09:37:59.613Z",
+    "updatedAt": "2025-07-18T09:37:59.613Z",
+    "__v": 0
+  }
+}
+[2025-07-18 12:38:20] INFO: Login attempt for username: Tilemachos 
+[2025-07-18 12:38:20] INFO: User 'Tilemachos' logged in successfully 
+[2025-07-18 12:38:32] INFO: Received new order payload {
+  "orderId": "N/A",
+  "contractor": "683033935df955dbc8087981"
+}
+[2025-07-18 12:38:32] INFO: Order created successfully {
+  "order": {
+    "Lock": false,
+    "invoiceType": "Apodiksi",
+    "orderNotes": "1",
+    "customer_id": "6874e2b6272b4b828d3bd45a",
+    "salesperson_id": "64c9e3c7f8d2c01a23456789",
+    "contractor_id": "683033935df955dbc8087981",
+    "orderedFromCompany": "Decopan",
+    "moneyDetails": {
+      "timi_Timokatalogou": 1,
+      "timi_Polisis": 2,
+      "cash": 1,
+      "bank": 1,
+      "contractor_Share_Cash": 1,
+      "contractor_Share_Bank": 1,
+      "customer_Share_Cash": 1,
+      "customer_Share_Bank": 1,
+      "payments": [],
+      "remainingCash": 1,
+      "remainingBank": 1,
+      "damages": [],
+      "discounts": [],
+      "_skipRemainingShareCalc": false,
+      "profit": 1,
+      "totaldamages": 0,
+      "totalpaid": 0,
+      "FPA": 0.19354838709677413,
+      "contractor_remainingShare_Cash": 1,
+      "contractor_remainingShare_Bank": 1,
+      "customer_remainingShare_Cash": 1,
+      "customer_remainingShare_Bank": 1
+    },
+    "_id": "687a1618a5f555dfa5c16ad7",
+    "createdAt": "2025-07-18T09:38:32.978Z",
+    "updatedAt": "2025-07-18T09:38:32.978Z",
+    "__v": 0
+  }
+}
+[2025-07-18 12:43:12] INFO: Login attempt for username: Tilemachos 
+[2025-07-18 12:43:12] INFO: User 'Tilemachos' logged in successfully 

@@ -2,6 +2,7 @@ const Order = require('../models/Order');
 const Salesperson = require('../models/Salesperson');
 const Contractor = require('../models/Contractor');
 const mongoose = require('mongoose');
+const logger = require('../utils/logger');
 exports.getOrdersByType = async (req, res) => {
   try {
     const companies = ['Lube', 'Decopan', 'Sovet', 'Doors', 'Appliances', 'CounterTop'];
