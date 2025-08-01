@@ -75,6 +75,8 @@ function App() {
     <Route path="stats/profit-by-salesperson" element={<ProfitBySalespersonPage />} />
     <Route path="stats/profit-by-contractor" element={<ProfitByContractorPage />} />
     <Route path="orders/search" element={<OrderSearchPage />} />
+    <Route path="/orders/new/contractor/:contractorId" element={<NewOrder />} />
+
   </Route>
 
   <Route path="*" element={<NotFound />} />

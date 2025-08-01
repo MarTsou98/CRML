@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './css/ContractorDetails.css'; // Import your CSS here
+import SmallOrderPreview from '../components/SmallOrderPreview';
+import './css/ContractorDetails.css';
+
 const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+
 const ContractorDetailsPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -27,21 +30,40 @@ const ContractorDetailsPage = () => {
     fetchContractor();
   }, [id]);
 
-  if (loading) return <p className="customer-loading">Φόρτωση λεπτομερειών εργολάβου...</p>;
-  if (error) return <p className="customer-error">{error}</p>;
-  if (!contractor) return <p className="customer-not-found">Δεν βρέθηκαν εργολάβοι.</p>;
+  if (loading) return <p>Φόρτωση λεπτομερειών εργολάβου...</p>;
+  if (error) return <p>{error}</p>;
+  if (!contractor) return <p>Δεν βρέθηκαν εργολάβοι.</p>;
 
   return (
     <div className="customer-details-wrapper">
       <div className="customer-details-content">
         <button onClick={() => navigate(-1)} className="add-order-button">Πίσω</button>
         <h2 className="customer-details-heading">Λεπτομέρειες Εργολάβου</h2>
+
         <div className="customer-details-section">
-          <p><strong>Όνομα:</strong> {contractor.firstName} {contractor.lastName}</p>
-       {/*   <p><strong>Role:</strong> {contractor.Role}</p> */}
+          <p><strong>Επωνυμία:</strong> {contractor.EnterpriseName}</p>
+          <p><strong>ΑΦΜ:</strong> {contractor.VAT|| 'N/A'}</p>
           <p><strong>Email:</strong> {contractor.email || 'N/A'}</p>
           <p><strong>Τηλέφωνο:</strong> {contractor.phone || 'N/A'}</p>
           <p><strong>Σημειώσεις:</strong> {contractor.ContractorNotes || 'N/A'}</p>
+        </div>
+
+        <button
+          className="add-order-button"
+          onClick={() => navigate(`/orders/new/contractor/${id}`)}
+        >
+          Προσθήκη Παραγγελίας
+        </button>
+
+        <div className="customer-orders-section">
+          <h3>Παραγγελίες</h3>
+          {contractor.orders?.length === 0 ? (
+            <p className="no-orders-message">Δεν υπάρχουν παραγγελίες.</p>
+          ) : (
+            contractor.orders?.map(order => (
+              <SmallOrderPreview key={order._id} order={order} />
+            ))
+          )}
         </div>
       </div>
     </div>

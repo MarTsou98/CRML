@@ -23,16 +23,18 @@ const NewContractor = () => {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
-  const validate = () => {
-    const newErrors = {};
-    Object.entries(formData).forEach(([key, value]) => {
-      if (!value.trim()) {
-        newErrors[key] = `${key.replace(/([A-Z])/g, ' $1')} is required`;
-      }
-    });
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+const validate = () => {
+  const newErrors = {};
+  Object.entries(formData).forEach(([key, value]) => {
+    // Only require certain fields
+    if (key !== 'ContractorNotes' && !value.trim()) {
+      newErrors[key] = `${key.replace(/([A-Z])/g, ' $1')} is required`;
+    }
+  });
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0;
+};
+
 
   const handleChange = (field, value) => {
     setFormData({ ...formData, [field]: value });

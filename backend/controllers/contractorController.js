@@ -67,8 +67,18 @@ exports.getContractorById = async (req, res) => {
     const contractor = await Contractor.findById(req.params.id)
       .populate('salesperson_id')
       .populate('customers')
-      .populate('orders');
-    if (!contractor) return res.status(404).json({ error: 'Contractor not found' });
+      .populate({
+        path: 'orders',
+        populate: {
+          path: 'customer_id',
+          select: 'firstName lastName' // only send what you need
+        }
+      });
+
+    if (!contractor) {
+      return res.status(404).json({ error: 'Contractor not found' });
+    }
+
     res.json(contractor);
   } catch (error) {
     console.error('Error fetching contractor:', error);

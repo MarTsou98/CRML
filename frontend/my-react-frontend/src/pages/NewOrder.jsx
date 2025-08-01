@@ -6,17 +6,16 @@ import ContractorSelect from './ContractorSelect';
 import './css/NewOrder.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+
 const NewOrder = () => {
   const navigate = useNavigate();
-
-  const { customerId } = useParams();
+  const { customerId, contractorId } = useParams();
 
   const [form, setForm] = useState({
-    invoiceType: '',
+    invoiceType: 'Timologio',
     customer_id: '',
     salesperson_id: '',
     contractor_id: '',
@@ -32,9 +31,11 @@ const NewOrder = () => {
       contractor_cash: '',
       customer_cash: '',
       payments: [],
-      //damages: [{ amount: '', notes: '' }],
     },
   });
+
+  const [message, setMessage] = useState('');
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user')) ?? {};
@@ -45,11 +46,9 @@ const NewOrder = () => {
       salesperson_id: user.role === 'manager' ? null : savedSalespersonId,
       invoiceType: 'Timologio',
       customer_id: customerId || prev.customer_id,
+      contractor_id: contractorId || prev.contractor_id, // auto-fill contractor if in URL
     }));
-  }, [customerId]);
-
-  const [message, setMessage] = useState('');
-  const [errors, setErrors] = useState({});
+  }, [customerId, contractorId]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -60,19 +59,6 @@ const NewOrder = () => {
         moneyDetails: {
           ...form.moneyDetails,
           [name]: value,
-        },
-      });
-    } else if (name === 'damageAmount' || name === 'damageNotes') {
-      setForm({
-        ...form,
-        moneyDetails: {
-          ...form.moneyDetails,
-          damages: [
-            {
-              ...form.moneyDetails.damages[0],
-              [name === 'damageAmount' ? 'amount' : 'notes']: value,
-            },
-          ],
         },
       });
     } else {
@@ -128,7 +114,7 @@ const NewOrder = () => {
 
       await axios.post(`${BASE_URL}/api/orders/newOrder`, payload);
       setMessage('Order successfully created!');
-     navigate('/Orders', { state: { successMessage: 'Order created successfully!' } });
+      navigate('/Orders', { state: { successMessage: 'Order created successfully!' } });
     } catch (err) {
       console.error(err);
       setMessage('Failed to create order.');
