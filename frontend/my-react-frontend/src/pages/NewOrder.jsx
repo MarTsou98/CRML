@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CustomerSelect from './CustomerSelect';
-import Backbutton from '../components/BackButton';
 import ContractorSelect from './ContractorSelect';
+import Backbutton from '../components/BackButton';
 import './css/NewOrder.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -20,7 +20,9 @@ const NewOrder = () => {
     salesperson_id: '',
     contractor_id: '',
     orderedFromCompany: '',
+    typeOfOrder: '', // frontend field
     orderNotes: '',
+    DateOfOrder: '', // date string yyyy-mm-dd
     moneyDetails: {
       timi_Timokatalogou: '',
       timi_Polisis: '',
@@ -44,9 +46,8 @@ const NewOrder = () => {
     setForm((prev) => ({
       ...prev,
       salesperson_id: user.role === 'manager' ? null : savedSalespersonId,
-      invoiceType: 'Timologio',
       customer_id: customerId || prev.customer_id,
-      contractor_id: contractorId || prev.contractor_id, // auto-fill contractor if in URL
+      contractor_id: contractorId || prev.contractor_id,
     }));
   }, [customerId, contractorId]);
 
@@ -56,10 +57,7 @@ const NewOrder = () => {
     if (name in form.moneyDetails) {
       setForm({
         ...form,
-        moneyDetails: {
-          ...form.moneyDetails,
-          [name]: value,
-        },
+        moneyDetails: { ...form.moneyDetails, [name]: value },
       });
     } else {
       setForm({ ...form, [name]: value });
@@ -67,15 +65,12 @@ const NewOrder = () => {
   };
 
   const validateForm = () => {
-    const { timi_Timokatalogou, timi_Polisis, cash } = form.moneyDetails;
+    const { timi_Timokatalogou, timi_Polisis } = form.moneyDetails;
     const newErrors = {};
 
     if (Number(timi_Timokatalogou) >= Number(timi_Polisis)) {
       newErrors.timi_Polisis =
         'Η τιμή πώλησης πρέπει να είναι μεγαλύτερη από την τιμή τιμοκαταλόγου.';
-    }
-    if (Number(cash) === 0) {
-      newErrors.cash = 'Το ποσό μετρητών δεν μπορεί να είναι μηδέν.';
     }
 
     setErrors(newErrors);
@@ -93,12 +88,13 @@ const NewOrder = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!validateForm()) return;
 
     try {
+      // Map frontend typeOfOrder to backend orderType
       const payload = {
         ...form,
+        orderType: form.typeOfOrder, // backend expects orderType
         moneyDetails: {
           ...form.moneyDetails,
           timi_Timokatalogou: Number(form.moneyDetails.timi_Timokatalogou),
@@ -113,11 +109,12 @@ const NewOrder = () => {
       };
 
       await axios.post(`${BASE_URL}/api/orders/newOrder`, payload);
-      setMessage('Order successfully created!');
+
+      toast.success('Παραγγελία δημιουργήθηκε επιτυχώς!');
       navigate('/Orders', { state: { successMessage: 'Order created successfully!' } });
     } catch (err) {
       console.error(err);
-      setMessage('Failed to create order.');
+      toast.error('Αποτυχία δημιουργίας παραγγελίας.');
     }
   };
 
@@ -126,6 +123,7 @@ const NewOrder = () => {
       <Backbutton />
       <div className="new-order-content">
         <h2 className="new-order-heading">Δημιουργία Παραγγελίας</h2>
+
         <form onSubmit={handleSubmit} className="new-order-form">
           {/* Invoice Type */}
           <div className="new-order-form-group">
@@ -182,6 +180,40 @@ const NewOrder = () => {
             </select>
           </div>
 
+          {/* Type of Order */}
+          <div className="new-order-form-group">
+            <label htmlFor="typeOfOrder" className="new-order-label">
+              Τύπος Παραγγελίας
+            </label>
+            <select
+              id="typeOfOrder"
+              name="typeOfOrder"
+              value={form.typeOfOrder}
+              onChange={handleChange}
+              className="new-order-input"
+              required
+            >
+              <option value="">-- Επιλέξτε Τύπο Παραγγελίας --</option>
+              <option value="Κανονική">Κανονική</option>
+              <option value="Σύνθεση Ερμαρίων">Σύνθεση Ερμαρίων</option>
+            </select>
+          </div>
+
+          {/* Date of Order */}
+          <div className="new-order-form-group">
+            <label htmlFor="DateOfOrder" className="new-order-label">
+              Ημερομηνία Παραγγελίας
+            </label>
+            <input
+              type="date"
+              id="DateOfOrder"
+              name="DateOfOrder"
+              value={form.DateOfOrder}
+              onChange={handleChange}
+              className="new-order-input"
+            />
+          </div>
+
           {/* Financial Details */}
           <h4 className="new-order-heading">Χρηματοοικονομικά Στοιχεία:</h4>
           {[
@@ -232,12 +264,6 @@ const NewOrder = () => {
             Δημιουργία Παραγγελίας
           </button>
         </form>
-
-        {message && (
-          <p className={`new-order-message${message.includes('Failed') ? ' error' : ''}`}>
-            {message}
-          </p>
-        )}
 
         <ToastContainer />
       </div>

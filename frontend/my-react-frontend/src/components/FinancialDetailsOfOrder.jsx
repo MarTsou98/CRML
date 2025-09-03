@@ -1,39 +1,58 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const FinancialDetailsOfOrder = ({ money, orderId }) => {
   const user = JSON.parse(localStorage.getItem('user'));
-  //const isManager = user?.role === 'manager' && user.username === 'Tilemachos';
-
   const [isEditing, setIsEditing] = useState(false);
-  const [form, setForm] = useState(money);
+  const [form, setForm] = useState(money || {});
   const [message, setMessage] = useState(null);
+
+  // Keep form updated if money prop changes
+  useEffect(() => {
+    setForm(money || {});
+  }, [money]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm(prev => ({
       ...prev,
-      [name]: parseFloat(value)
+      [name]: value === '' ? '' : parseFloat(value)
     }));
   };
 
   const handleSubmit = async () => {
+    // FRONTEND VALIDATION
+    if (
+      typeof form.timi_Timokatalogou === 'number' &&
+      typeof form.timi_Polisis === 'number' &&
+      form.timi_Timokatalogou >= form.timi_Polisis
+    ) {
+      setMessage('❌ Η τιμή Proforma πρέπει να είναι μικρότερη από την τιμή πώλησης');
+      return;
+    }
+
+    if (typeof form.profit === 'number' && form.profit < 0) {
+      setMessage('❌ Το κέρδος δεν μπορεί να είναι αρνητικό');
+      return;
+    }
+
     try {
       await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/api/orders/${orderId}`, {
         moneyDetails: form
       });
-      setMessage("✅ Updated successfully");
+      setMessage('✅ Updated successfully');
       setIsEditing(false);
-      window.location.reload();  // Refresh to get updated data
+      window.location.reload();
     } catch (err) {
       console.error(err);
-      setMessage("❌ Failed to update ! Προσοχή ! Η τιμή Proforma δεν μπορεί να είναι μικρότερη από την τιμή πώλησης");
-     
+      setMessage(
+        '❌ Failed to update! Βεβαιωθείτε ότι η τιμή Proforma είναι μικρότερη από την τιμή πώλησης'
+      );
     }
   };
 
   const renderField = (label, key) => (
-    <>
+    <div style={{ marginBottom: '8px' }}>
       <strong>{label}:</strong>
       {isEditing ? (
         <input
@@ -41,15 +60,14 @@ const FinancialDetailsOfOrder = ({ money, orderId }) => {
           name={key}
           value={form[key] ?? ''}
           onChange={handleChange}
+          style={{ marginLeft: '5px' }}
         />
       ) : (
-        <p>
-          €{key === 'FPA' && typeof money?.[key] === 'number'
-            ? money[key].toFixed(2)
-            : money?.[key]}
-        </p>
+        <span style={{ marginLeft: '5px' }}>
+          €{typeof form[key] === 'number' ? form[key].toFixed(2) : form[key] ?? '0.00'}
+        </span>
       )}
-    </>
+    </div>
   );
 
   return (
@@ -73,19 +91,25 @@ const FinancialDetailsOfOrder = ({ money, orderId }) => {
           {renderField('Υπόλοιπο Τράπεζης Εργολάβου', 'contractor_remainingShare_Bank')}
         </div>
 
-        {/* {isManager && ( */}
-          <div className="button-row">
-            {!isEditing ? (
-              <button onClick={() => setIsEditing(true)}>✏️ Επεξεργασία</button>
-            ) : (
-              <>
-                <button onClick={handleSubmit}>💾 Αποθήκευση</button>
-                <button onClick={() => { setIsEditing(false); setForm(money); }}>Ακύρωση</button>
-              </>
-            )}
-            {message && <p style={{ marginTop: '10px' }}>{message}</p>}
-          </div>
-        {/* )} */}
+        <div className="button-row" style={{ marginTop: '10px' }}>
+          {!isEditing ? (
+            <button onClick={() => setIsEditing(true)}>✏️ Επεξεργασία</button>
+          ) : (
+            <>
+              <button onClick={handleSubmit}>💾 Αποθήκευση</button>
+              <button
+                onClick={() => {
+                  setIsEditing(false);
+                  setForm(money || {});
+                  setMessage(null);
+                }}
+              >
+                Ακύρωση
+              </button>
+            </>
+          )}
+          {message && <p style={{ marginTop: '10px', color: message.startsWith('❌') ? 'red' : 'green' }}>{message}</p>}
+        </div>
       </div>
     </div>
   );

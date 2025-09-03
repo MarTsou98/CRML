@@ -15,6 +15,18 @@ const orderSchema = new mongoose.Schema({
     enum: ["Σύνθεση Ερμαρίων", "Κανονική"]
   },
   orderNotes: { type: String },
+
+ DateOfOrder: {
+  type: Date,
+  default: () => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // normalize to midnight
+    return today;
+  },
+  required: true
+},
+
+
   customer_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Customer'

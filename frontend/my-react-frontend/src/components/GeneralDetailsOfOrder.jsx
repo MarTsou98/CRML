@@ -10,24 +10,27 @@ const GeneralDetailsOfOrder = ({
   contractor,
   orderNotes,
   typeOfOrder,
-  orderId
+  orderId,
+  DateOfOrder,
+  orderedFromCompany
 }) => {
   const user = JSON.parse(localStorage.getItem('user'));
- // const isManager = user?.role === 'manager' && user.username === 'Tilemachos';
-
   const allowedOrderTypes = ['Κανονική', 'Σύνθεση Ερμαρίων'];
 
   const [isEditing, setIsEditing] = useState(false);
   const [form, setForm] = useState({
-    invoiceType,  // expects "Timologio" or "Apodiksi"
+    invoiceType,
     Lock,
     orderNotes,
-    typeOfOrder
+    typeOfOrder,
+    orderedFromCompany,
+    DateOfOrder: DateOfOrder
+      ? new Date(DateOfOrder).toISOString().split('T')[0]
+      : ''
   });
   const [message, setMessage] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  // Clear message after 3 seconds
   useEffect(() => {
     if (message) {
       const timer = setTimeout(() => setMessage(null), 3000);
@@ -37,7 +40,7 @@ const GeneralDetailsOfOrder = ({
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setForm(prev => ({
+    setForm((prev) => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value
     }));
@@ -46,33 +49,47 @@ const GeneralDetailsOfOrder = ({
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      // Validate invoiceType and orderType on submit
-      const invoiceTypeEnum = form.invoiceType === 'Apodiksi' ? 'Apodiksi' : 'Timologio';
+      const safeInvoiceType = form.invoiceType === 'Apodiksi' ? 'Apodiksi' : 'Timologio';
       const safeOrderType = allowedOrderTypes.includes(form.typeOfOrder) ? form.typeOfOrder : 'Κανονική';
 
       await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/api/orders/${orderId}/general-info`, {
-        invoiceType: invoiceTypeEnum,
+        invoiceType: safeInvoiceType,
         Lock: form.Lock,
         orderNotes: form.orderNotes,
         orderType: safeOrderType,
+        DateOfOrder: form.DateOfOrder,
+        orderedFromCompany: form.orderedFromCompany
       });
 
-      setMessage("✅ Updated successfully");
+      setMessage('✅ Updated successfully');
       setIsEditing(false);
 
-      // Update form state with sanitized values to keep in sync with backend
-      setForm(prev => ({
+      // Keep form in sync
+      setForm((prev) => ({
         ...prev,
-        invoiceType: invoiceTypeEnum,
+        invoiceType: safeInvoiceType,
         typeOfOrder: safeOrderType
       }));
-  window.location.reload();  // Refresh to get updated data
+      window.location.reload(); // refresh order details
     } catch (err) {
       console.error(err);
-      setMessage("❌ Failed to update");
+      setMessage('❌ Failed to update');
     } finally {
       setLoading(false);
     }
+  };
+
+  const resetForm = () => {
+    setIsEditing(false);
+    setForm({
+      invoiceType,
+      Lock,
+      orderNotes,
+      typeOfOrder,
+      orderedFromCompany,
+      DateOfOrder: DateOfOrder ? new Date(DateOfOrder).toISOString().split('T')[0] : ''
+    });
+    setMessage(null);
   };
 
   return (
@@ -102,33 +119,55 @@ const GeneralDetailsOfOrder = ({
 
           <strong>Locked:</strong>
           {isEditing ? (
-            <input
-              type="checkbox"
-              name="Lock"
-              checked={form.Lock}
-              onChange={handleChange}
-              disabled={loading}
-            />
+            <input type="checkbox" name="Lock" checked={form.Lock} onChange={handleChange} disabled={loading} />
           ) : (
             <p>{Lock ? 'Yes' : 'No'}</p>
           )}
 
-          <strong>Ημερομηνία:</strong>
-          <p>{new Date(createdAt).toLocaleDateString()}</p>
+          <strong>Ημερομηνία Παραγγελίας:</strong>
+          {isEditing ? (
+            <input type="date" name="DateOfOrder" value={form.DateOfOrder} onChange={handleChange} disabled={loading} />
+          ) : (
+            <p>
+              {DateOfOrder
+                ? new Date(DateOfOrder).toLocaleDateString('el-GR', { year: 'numeric', month: '2-digit', day: '2-digit' })
+                : '----'}
+            </p>
+          )}
 
           <strong>Σημείωση Παραγγελίας:</strong>
           {isEditing ? (
-            <textarea
-              name="orderNotes"
-              value={form.orderNotes}
-              onChange={handleChange}
-              rows={3}
-              style={{ width: '100%' }}
-              disabled={loading}
-            />
+            <textarea name="orderNotes" value={form.orderNotes} onChange={handleChange} rows={3} style={{ width: '100%' }} disabled={loading} />
           ) : (
             <p>{orderNotes}</p>
           )}
+
+          <strong>Εταιρεία:</strong>
+          {isEditing ? (
+            <select name="orderedFromCompany" value={form.orderedFromCompany} onChange={handleChange} disabled={loading}>
+              <option value="">-- Επιλέξτε Εταιρεία --</option>
+              <option value="Lube">Lube</option>
+              <option value="Decopan">Decopan</option>
+              <option value="Sovet">Sovet</option>
+              <option value="Doors">Doors</option>
+              <option value="Appliances">Appliances</option>
+              <option value="CounterTop">CounterTop</option>
+            </select>
+          ) : (
+            <p>{orderedFromCompany}</p>
+          )}
+        </div>
+
+        <div className="button-row">
+          {!isEditing ? (
+            <button onClick={() => setIsEditing(true)} disabled={loading}>✏️ Επεξεργασία</button>
+          ) : (
+            <>
+              <button onClick={handleSubmit} disabled={loading}>💾 Αποθήκευση</button>
+              <button onClick={resetForm} disabled={loading}>Ακύρωση</button>
+            </>
+          )}
+          {message && <p style={{ marginTop: '10px' }}>{message}</p>}
         </div>
 
         <div className="detail-box">
@@ -149,34 +188,6 @@ const GeneralDetailsOfOrder = ({
           <strong>Εργολάβος:</strong>
           <p>{contractor?.firstName} {contractor?.lastName}</p>
         </div>
-
-        {/* {isManager && ( */}
-          <div className="button-row">
-            {!isEditing ? (
-              <button onClick={() => setIsEditing(true)} disabled={loading}>✏️ Επεξεργασία</button>
-            ) : (
-              <>
-                <button onClick={handleSubmit} disabled={loading}>💾 Αποθήκευση</button>
-                <button
-                  onClick={() => {
-                    setIsEditing(false);
-                    setForm({
-                      invoiceType,
-                      Lock,
-                      orderNotes,
-                      typeOfOrder
-                    });
-                    setMessage(null);
-                  }}
-                  disabled={loading}
-                >
-                  Ακύρωση
-                </button>
-              </>
-            )}
-            {message && <p style={{ marginTop: '10px' }}>{message}</p>}
-          </div>
-        {/* )} */}
       </div>
     </div>
   );

@@ -39,7 +39,7 @@ const userRole = user?.role;
   if (error) return <p>{error}</p>;
   if (!order) return <p>Δεν βρέθηκε η παραγγελία.</p>;
 
-  const { moneyDetails, invoiceType, Lock, createdAt, salesperson_id, contractor_id, customer_id } = order;
+  const { moneyDetails, invoiceType, Lock, createdAt, salesperson_id, contractor_id, customer_id , orderedFromCompany } = order;
 
   return (
   <div className="order-details-container">
@@ -50,16 +50,19 @@ const userRole = user?.role;
   <div className="details-section">
     <div className="details-column">
       <GeneralDetailsOfOrder
-        invoiceType={invoiceType}
-        Lock={Lock}
-        createdAt={createdAt}
-        salesperson={salesperson_id}
-        customer={customer_id}
-        contractor={contractor_id}
-        orderNotes={order.orderNotes}
-        typeOfOrder={order.orderedFromCompany}
-        orderId={order._id}
-      />
+  invoiceType={invoiceType}
+  Lock={Lock}
+  createdAt={createdAt}
+  salesperson={salesperson_id}
+  customer={customer_id}
+  contractor={contractor_id}
+  orderNotes={order.orderNotes}
+  typeOfOrder={order.orderType}
+  orderId={order._id}
+  DateOfOrder={order.DateOfOrder}
+  orderedFromCompany={orderedFromCompany}
+/>
+
     </div>
 
     <div className="details-column">

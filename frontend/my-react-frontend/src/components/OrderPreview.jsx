@@ -38,7 +38,10 @@ function OrderPreview() {
       <h2>Order Details</h2>
 
       <p><strong>Order ID:</strong> {order._id}</p>
-      <p><strong>Date:</strong> {formattedDate}</p>
+      <p><strong>Ημερομηνία Παραγγελίας:</strong> {order.DateOfOrder 
+  ? new Date(order.DateOfOrder).toLocaleDateString('el-GR', { year: 'numeric', month: '2-digit', day: '2-digit' })
+  : '—'}
+</p>
       <p><strong>Invoice Type:</strong> {order.invoiceType}</p>
 
       <h3>Customer</h3>

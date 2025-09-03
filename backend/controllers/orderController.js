@@ -6,9 +6,19 @@ exports.createOrder = async (req, res) => {
   try {
     const orderData = req.body;
 
+    // Validate profit
     if (orderData.moneyDetails.profit < 0) {
       return res.status(400).json({ error: 'Profit cannot be negative' });
     }
+if (orderData.DateOfOrder) {
+  const date = new Date(orderData.DateOfOrder);
+  if (isNaN(date.getTime())) {
+    return res.status(400).json({ error: 'Invalid DateOfOrder' });
+  }
+  date.setHours(0, 0, 0, 0); // strip time
+  orderData.DateOfOrder = date;
+}
+
 
     const newOrder = new Order(orderData);
     const savedOrder = await newOrder.save();
@@ -23,6 +33,7 @@ exports.createOrder = async (req, res) => {
     res.status(500).json({ error: 'Server error creating order' });
   }
 };
+
 
 
 exports.getOrderById = async (req, res) => {
@@ -256,33 +267,74 @@ exports.updateOrder = async (req, res) => {
   }
 
   try {
-    // Optional: Validate profit if present in updates.moneyDetails
-    if (updates.moneyDetails && typeof updates.moneyDetails.profit !== 'undefined' && updates.moneyDetails.profit < 0) {
-      return res.status(400).json({ error: 'Profit cannot be negative' });
+    // Validate moneyDetails
+    if (updates.moneyDetails) {
+      const { profit, timi_Timokatalogou, timi_Polisis } = updates.moneyDetails;
+
+      // Profit validation
+      if (typeof profit === 'number' && profit < 0) {
+        return res.status(400).json({ error: 'Profit cannot be negative' });
+      }
+
+      // Proforma < Sale Price validation
+      if (
+        typeof timi_Timokatalogou === 'number' &&
+        typeof timi_Polisis === 'number' &&
+        timi_Timokatalogou >= timi_Polisis
+      ) {
+        return res.status(400).json({ error: 'Proforma must be less than Sale Price' });
+      }
     }
 
-    const updatedOrder = await Order.findByIdAndUpdate(
-      id,
-      { $set: updates },
-      { new: true, runValidators: true }
-    )
-      .populate('customer_id')
-      .populate('salesperson_id')
-      .populate('contractor_id');
+    // DateOfOrder parsing
+    if (updates.DateOfOrder) {
+      const date = new Date(updates.DateOfOrder);
+      if (isNaN(date.getTime())) {
+        return res.status(400).json({ error: 'Invalid DateOfOrder' });
+      }
+      date.setHours(0, 0, 0, 0);
+      updates.DateOfOrder = date;
+    }
 
-    if (!updatedOrder) {
+    // Fetch the order first (so we can trigger recalculations)
+    const order = await Order.findById(id);
+    if (!order) {
       return res.status(404).json({ error: 'Order not found' });
     }
-    await updatedOrder.save();
-    res.json(updatedOrder);
+
+    // Merge updates into the order object
+    Object.assign(order, updates);
+
+    // Recalculate profit
+    if (order.moneyDetails.timi_Timokatalogou != null && order.moneyDetails.timi_Polisis != null) {
+      order.moneyDetails.profit = order.moneyDetails.timi_Polisis - order.moneyDetails.timi_Timokatalogou;
+      if (order.moneyDetails.profit < 0) {
+        return res.status(400).json({ error: 'Profit cannot be negative' });
+      }
+    }
+
+    // Recalculate FPA (tax)
+    if (order.moneyDetails.bank != null) {
+      const bankAmount = order.moneyDetails.bank;
+      order.moneyDetails.FPA = bankAmount - bankAmount / 1.24; // assuming 24% tax
+    }
+
+    // Save the order (triggers pre-save hooks for remaining shares, damages, payments, etc.)
+    await order.save();
+
+    // Populate references before sending response
+    await order.populate('customer_id salesperson_id contractor_id');
+
+    res.json(order);
   } catch (error) {
     console.error('Error updating order:', error);
     res.status(500).json({ error: 'Server error updating order' });
   }
 };
+
 exports.updateOrderGeneralInfo = async (req, res) => {
   const { id } = req.params;
-  const { invoiceType, Lock, orderNotes, orderType } = req.body;
+  const { invoiceType, Lock, orderNotes, orderType, DateOfOrder, orderedFromCompany } = req.body;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).json({ error: 'Invalid order ID' });
@@ -296,6 +348,7 @@ exports.updateOrderGeneralInfo = async (req, res) => {
 
     const allowedInvoiceTypes = ['Timologio', 'Apodiksi'];
     const allowedOrderTypes = ['Κανονική', 'Σύνθεση Ερμαρίων'];
+    const allowedCompanies = ['Lube', 'Decopan', 'Sovet', 'Doors', 'Appliances', 'CounterTop'];
 
     if (invoiceType && !allowedInvoiceTypes.includes(invoiceType)) {
       return res.status(400).json({ error: 'Invalid invoiceType' });
@@ -305,10 +358,24 @@ exports.updateOrderGeneralInfo = async (req, res) => {
       return res.status(400).json({ error: 'Invalid orderType' });
     }
 
+    if (orderedFromCompany && !allowedCompanies.includes(orderedFromCompany)) {
+      return res.status(400).json({ error: 'Invalid orderedFromCompany' });
+    }
+
+    // Apply updates
     if (typeof invoiceType === 'string') order.invoiceType = invoiceType;
     if (typeof Lock === 'boolean') order.Lock = Lock;
     if (typeof orderNotes === 'string') order.orderNotes = orderNotes;
-    if (typeof orderType === 'string') order.orderType = orderType;  // <-- fixed here
+    if (typeof orderType === 'string') order.orderType = orderType;
+    if (typeof orderedFromCompany === 'string') order.orderedFromCompany = orderedFromCompany;
+
+    if (DateOfOrder) {
+      const parsedDate = new Date(DateOfOrder);
+      if (isNaN(parsedDate.getTime())) {
+        return res.status(400).json({ error: 'Invalid DateOfOrder' });
+      }
+      order.DateOfOrder = parsedDate;
+    }
 
     await order.save();
 
@@ -318,3 +385,4 @@ exports.updateOrderGeneralInfo = async (req, res) => {
     res.status(500).json({ error: 'Failed to update general order info' });
   }
 };
+
