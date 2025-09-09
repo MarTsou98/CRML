@@ -181,12 +181,15 @@ const GeneralDetailsOfOrder = ({
           <p>{customer?.email}</p>
           <p>{customer?.phone}</p>
           <p>{customer?.address}</p>
-          <p><strong>Σημείωση:</strong> {customer?.CustomerNotes}</p>
+          <p><strong>Σημείωση από καρτέλα Πελάτη:</strong> {customer?.CustomerNotes}</p>
         </div>
 
         <div className="detail-box">
           <strong>Εργολάβος:</strong>
-          <p>{contractor?.firstName} {contractor?.lastName}</p>
+          <p>{contractor?.EnterpriseName}</p>
+          
+          <p><strong>Σημείωση από καρτέλα Εργολάβου :</strong> {contractor?.ContractorNotes}</p>
+          
         </div>
       </div>
     </div>

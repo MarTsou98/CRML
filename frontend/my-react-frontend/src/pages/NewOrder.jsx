@@ -39,17 +39,16 @@ const NewOrder = () => {
   const [message, setMessage] = useState('');
   const [errors, setErrors] = useState({});
 
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user')) ?? {};
-    const savedSalespersonId = user?.salesperson_id ?? null;
+useEffect(() => {
+  const user = JSON.parse(localStorage.getItem('user')) ?? {};
 
-    setForm((prev) => ({
-      ...prev,
-      salesperson_id: user.role === 'manager' ? null : savedSalespersonId,
-      customer_id: customerId || prev.customer_id,
-      contractor_id: contractorId || prev.contractor_id,
-    }));
-  }, [customerId, contractorId]);
+  setForm((prev) => ({
+    ...prev,
+    salesperson_id: user?.salesperson_id ?? prev.salesperson_id, // works for both roles
+    customer_id: customerId || prev.customer_id,
+    contractor_id: contractorId || prev.contractor_id,
+  }));
+}, [customerId, contractorId]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

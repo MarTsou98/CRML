@@ -1,28 +1,11 @@
+// models/Salesperson.js
 const mongoose = require('mongoose');
+const personSchema = require('./person');
 
 const salespersonSchema = new mongoose.Schema({
-  firstName: {
-    type: String
-  },
-  lastName: {
-    type: String
-  },
-  Role: {
-    type: String
-  },
-  customers: [
-  {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Customer'
-  }
-],
-
-orders: [
-  {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Order'
-  }
-]}, { timestamps: true }); // Adds createdAt and updatedAt
- 
+  ...personSchema.obj,
+  customers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Customer' }],
+  orders: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Order' }]
+}, { timestamps: true });
 
 module.exports = mongoose.model('Salesperson', salespersonSchema);

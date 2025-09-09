@@ -1,15 +1,13 @@
+// models/Manager.js
 const mongoose = require('mongoose');
+const salespersonSchema = require('./Salesperson').schema;
 
 const managerSchema = new mongoose.Schema({
-  firstName: {
-    type: String
+  ...salespersonSchema.obj,
+    pseudoSalespersonId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Salesperson',
   },
-  lastName: {
-    type: String
-  },
-  Role:{
-    type: String
-  }
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model('Manager', managerSchema);

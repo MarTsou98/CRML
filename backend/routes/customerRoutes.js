@@ -12,5 +12,7 @@ router.get('/customers/all', customerController.getAllCustomers);
 router.get('/customers/salesperson/:salespersonId', customerController.getCustomersBySalespersonId);
 router.get('/customers/:customerId', customerController.getCustomersDetailsByCustomerId);
 //router.get('/customers/search', customerController.getCustomersByQuery);
+// PATCH /customers/:customerId
+router.patch('/customers/:customerId', customerController.updateCustomer);
 
 module.exports = router;

@@ -7,9 +7,9 @@ exports.createOrder = async (req, res) => {
     const orderData = req.body;
 
     // Validate profit
-    if (orderData.moneyDetails.profit < 0) {
-      return res.status(400).json({ error: 'Profit cannot be negative' });
-    }
+    //if (orderData.moneyDetails.profit < 0) {
+      //return res.status(400).json({ error: 'Profit cannot be negative' });
+   // }
 if (orderData.DateOfOrder) {
   const date = new Date(orderData.DateOfOrder);
   if (isNaN(date.getTime())) {
@@ -137,7 +137,7 @@ exports.addPaymentToOrder = async (req, res) => {
     return res.status(400).json({ error: 'Invalid order ID' });
   }
 
-  const { amount, method, payer, notes } = req.body;
+  const { amount, method, payer, notes, DateOfPayment } = req.body;
 
   if (!amount || !method || !['Cash', 'Bank'].includes(method)) {
     return res.status(400).json({ error: 'Valid amount and method (Cash or Bank) are required' });
@@ -152,13 +152,11 @@ exports.addPaymentToOrder = async (req, res) => {
       method,
       payer,
       notes,
-      date: new Date()
+      DateOfPayment: DateOfPayment ? new Date(DateOfPayment) : new Date() // fallback if not provided
     };
 
-    // Push payment to array
     order.moneyDetails.payments.push(payment);
 
-    // Optionally update totalPaid
     order.moneyDetails.totalpaid = (order.moneyDetails.totalpaid || 0) + amount;
 
     await order.save();
@@ -168,9 +166,10 @@ exports.addPaymentToOrder = async (req, res) => {
     res.status(500).json({ error: 'Server error adding payment' });
   }
 };
+
 exports.addDamageToOrder = async (req, res) => {
   const { orderId } = req.params;
-  const { amount, notes, typeOfDamage } = req.body;
+  const { amount, notes, typeOfDamage, DateOfDamages } = req.body;
 
   const allowedTypes = [
     'Μεταφορά εξωτερικού',
@@ -192,23 +191,59 @@ exports.addDamageToOrder = async (req, res) => {
       amount,
       notes,
       typeOfDamage,
-      date: new Date()
+      DateOfDamages: DateOfDamages ? new Date(DateOfDamages) : new Date()
     };
 
     const updatedOrder = await Order.findByIdAndUpdate(
       orderId,
-      {
-        $push: { 'moneyDetails.damages': damage }
-      },
+      { $push: { 'moneyDetails.damages': damage } },
       { new: true }
     );
 
-    if (!updatedOrder) return res.status(404).json({ error: 'Order not found' });
+    if (!updatedOrder) {
+      return res.status(404).json({ error: 'Order not found' });
+    }
 
     res.status(200).json({ message: 'Damage added', order: updatedOrder });
   } catch (err) {
     console.error('Error adding damage:', err);
     res.status(500).json({ error: 'Server error adding damage' });
+  }
+};
+
+exports.updateDamage = async (req, res) => {
+  const { orderId, damageId } = req.params;
+  const { amount, typeOfDamage, notes, DateOfDamages } = req.body;
+
+  if (!mongoose.Types.ObjectId.isValid(orderId) || !mongoose.Types.ObjectId.isValid(damageId)) {
+    return res.status(400).json({ error: 'Invalid order or damage ID' });
+  }
+
+  try {
+    const updatedOrder = await Order.findOneAndUpdate(
+      { _id: orderId, 'moneyDetails.damages._id': damageId },
+      {
+        $set: {
+          'moneyDetails.damages.$.amount': amount,
+          'moneyDetails.damages.$.typeOfDamage': typeOfDamage,
+          'moneyDetails.damages.$.notes': notes,
+          'moneyDetails.damages.$.DateOfDamages': DateOfDamages ? new Date(DateOfDamages) : new Date(),
+        },
+      },
+      { new: true }
+    );
+
+    if (!updatedOrder) return res.status(404).json({ error: 'Order or damage not found' });
+
+    // Recalculate total damages
+    const totaldamages = updatedOrder.moneyDetails.damages.reduce((sum, d) => sum + (d.amount || 0), 0);
+    updatedOrder.moneyDetails.totaldamages = totaldamages;
+    await updatedOrder.save();
+
+    res.status(200).json({ message: 'Damage updated successfully', order: updatedOrder });
+  } catch (err) {
+    console.error('Error updating damage:', err);
+    res.status(500).json({ error: 'Server error updating damage' });
   }
 };
 
@@ -272,18 +307,18 @@ exports.updateOrder = async (req, res) => {
       const { profit, timi_Timokatalogou, timi_Polisis } = updates.moneyDetails;
 
       // Profit validation
-      if (typeof profit === 'number' && profit < 0) {
-        return res.status(400).json({ error: 'Profit cannot be negative' });
-      }
+    //  if (typeof profit === 'number' && profit < 0) {
+     //   return res.status(400).json({ error: 'Profit cannot be negative' });
+     // }
 
       // Proforma < Sale Price validation
-      if (
-        typeof timi_Timokatalogou === 'number' &&
-        typeof timi_Polisis === 'number' &&
-        timi_Timokatalogou >= timi_Polisis
-      ) {
-        return res.status(400).json({ error: 'Proforma must be less than Sale Price' });
-      }
+     // if (
+      //  typeof timi_Timokatalogou === 'number' &&
+      //  typeof timi_Polisis === 'number' &&
+      //  timi_Timokatalogou >= timi_Polisis
+   //   ) {
+       // return res.status(400).json({ error: 'Proforma must be less than Sale Price' });
+     // }
     }
 
     // DateOfOrder parsing
@@ -306,12 +341,12 @@ exports.updateOrder = async (req, res) => {
     Object.assign(order, updates);
 
     // Recalculate profit
-    if (order.moneyDetails.timi_Timokatalogou != null && order.moneyDetails.timi_Polisis != null) {
-      order.moneyDetails.profit = order.moneyDetails.timi_Polisis - order.moneyDetails.timi_Timokatalogou;
-      if (order.moneyDetails.profit < 0) {
-        return res.status(400).json({ error: 'Profit cannot be negative' });
-      }
-    }
+   // if (order.moneyDetails.timi_Timokatalogou != null && order.moneyDetails.timi_Polisis != null) {
+     // order.moneyDetails.profit = order.moneyDetails.timi_Polisis - order.moneyDetails.timi_Timokatalogou;
+     // if (order.moneyDetails.profit < 0) {
+     //   return res.status(400).json({ error: 'Profit cannot be negative' });
+     // }
+    //}
 
     // Recalculate FPA (tax)
     if (order.moneyDetails.bank != null) {
@@ -383,6 +418,66 @@ exports.updateOrderGeneralInfo = async (req, res) => {
   } catch (err) {
     console.error('Error updating general info:', err);
     res.status(500).json({ error: 'Failed to update general order info' });
+  }
+};
+
+
+
+exports.updatePayment = async (req, res) => {
+  const { orderId, paymentId } = req.params;
+  const { amount, method, payer, notes, DateOfPayment } = req.body;
+
+  if (!mongoose.Types.ObjectId.isValid(orderId) || !mongoose.Types.ObjectId.isValid(paymentId)) {
+    return res.status(400).json({ error: 'Invalid order or payment ID' });
+  }
+
+  try {
+    const updatedOrder = await Order.findOneAndUpdate(
+      { _id: orderId, 'moneyDetails.payments._id': paymentId },
+      {
+        $set: {
+          'moneyDetails.payments.$.amount': amount,
+          'moneyDetails.payments.$.method': method,
+          'moneyDetails.payments.$.payer': payer,
+          'moneyDetails.payments.$.notes': notes,
+          'moneyDetails.payments.$.DateOfPayment': DateOfPayment ? new Date(DateOfPayment) : new Date(),
+        },
+      },
+      { new: true }
+    );
+
+    if (!updatedOrder) return res.status(404).json({ error: 'Order or payment not found' });
+
+    // Optionally, recalculate totalpaid
+    const totalpaid = updatedOrder.moneyDetails.payments.reduce((sum, p) => sum + (p.amount || 0), 0);
+    updatedOrder.moneyDetails.totalpaid = totalpaid;
+    await updatedOrder.save();
+
+    res.status(200).json({ message: 'Payment updated successfully', order: updatedOrder });
+  } catch (err) {
+    console.error('Error updating payment:', err);
+    res.status(500).json({ error: 'Server error updating payment' });
+  }
+};
+
+
+exports.updateShares = async (req, res) => {
+  const { orderId } = req.params;
+  const { contractor_Share_Cash, contractor_Share_Bank, customer_Share_Cash, customer_Share_Bank } = req.body;
+
+  try {
+    const order = await Order.findById(orderId);
+    if (!order) return res.status(404).json({ error: 'Order not found' });
+
+    if (contractor_Share_Cash !== undefined) order.moneyDetails.contractor_Share_Cash = contractor_Share_Cash;
+    if (contractor_Share_Bank !== undefined) order.moneyDetails.contractor_Share_Bank = contractor_Share_Bank;
+    if (customer_Share_Cash !== undefined) order.moneyDetails.customer_Share_Cash = customer_Share_Cash;
+    if (customer_Share_Bank !== undefined) order.moneyDetails.customer_Share_Bank = customer_Share_Bank;
+
+    await order.save(); // remaining shares are recalculated automatically
+    res.status(200).json({ message: 'Shares updated', order });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to update shares' });
   }
 };
 

@@ -8,5 +8,5 @@ router.post('/createContractor', contractorController.createContractor);
 router.get('/contractors/all', contractorController.getAllContractors);
 // routes/contractorRoutes.js
 router.get('/contractors/:id', contractorController.getContractorById);
-
+router.patch('/contractors/:id', contractorController.updateContractor);
 module.exports = router;

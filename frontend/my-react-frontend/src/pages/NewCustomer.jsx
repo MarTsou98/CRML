@@ -5,26 +5,36 @@ import BackButton from '../components/BackButton';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './css/NewCustomer.css';
-const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
-const NewCustomer = () => {
- const [formData, setFormData] = useState({
-  firstName: '',
-  lastName: '',
-  email: '',
-  phone: '',
-  address: '',
-  CustomerNotes: '', // ✅ New field
-});
 
+const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+
+const NewCustomer = () => {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    address: '',
+    CustomerNotes: '', // ✅ New field
+  });
 
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+
+  const fieldLabels = {
+    firstName: 'Όνομα',
+    lastName: 'Επώνυμο',
+    email: 'Email',
+    phone: 'Τηλέφωνο',
+    address: 'Διεύθυνση',
+    CustomerNotes: 'Σημειώσεις',
+  };
 
   const validate = () => {
     const newErrors = {};
     Object.entries(formData).forEach(([key, value]) => {
       if (!value.trim()) {
-        newErrors[key] = `${key.replace(/([A-Z])/g, ' $1')} είναι υποχρεωτικό`;
+        newErrors[key] = `${fieldLabels[key]} είναι υποχρεωτικό`;
       }
     });
     setErrors(newErrors);
@@ -70,30 +80,33 @@ const NewCustomer = () => {
       <form onSubmit={handleSubmit}>
         {['firstName', 'lastName', 'email', 'phone', 'address'].map((field) => (
           <div className="nice-form-group" key={field}>
-            <label>{field.charAt(0).toUpperCase() + field.slice(1)}:</label>
+            <label>{fieldLabels[field]}:</label>
             <input
               type={field === 'email' ? 'email' : field === 'phone' ? 'tel' : 'text'}
               value={formData[field]}
               onChange={(e) => handleChange(field, e.target.value)}
               className={errors[field] ? 'error' : ''}
             />
-           
             {errors[field] && <small className="error-text">{errors[field]}</small>}
           </div>
         ))}
-         <div className="nice-form-group">
-  <label>Σημειώσεις:</label>
-  <textarea
-    value={formData.CustomerNotes}
-    onChange={(e) => handleChange('CustomerNotes', e.target.value)}
-    rows={4}
-    placeholder="Εισάγετε τυχόν σχετικές σημειώσεις σχετικά με τον πελάτη"
-  />
-  {errors.CustomerNotes && <small className="error-text">{errors.CustomerNotes}</small>}
-</div>
+
+        {/* CustomerNotes */}
+        <div className="nice-form-group">
+          <label>{fieldLabels.CustomerNotes}:</label>
+          <textarea
+            value={formData.CustomerNotes}
+            onChange={(e) => handleChange('CustomerNotes', e.target.value)}
+            rows={4}
+            placeholder="Εισάγετε τυχόν σχετικές σημειώσεις σχετικά με τον πελάτη"
+          />
+          {errors.CustomerNotes && <small className="error-text">{errors.CustomerNotes}</small>}
+        </div>
 
         <div className="nice-form-group">
-          <button type="submit" className="nice-button">Δημιουργία Πελάτη</button>
+          <button type="submit" className="nice-button">
+            Δημιουργία Πελάτη
+          </button>
         </div>
       </form>
     </div>

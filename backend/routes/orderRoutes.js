@@ -35,4 +35,11 @@ router.post('/orders/:orderId/addpayment', orderController.addPaymentToOrder);
 // Add damage to order
 router.post('/orders/:orderId/adddamage', orderController.addDamageToOrder);
 
+router.patch('/orders/:orderId/editpayment/:paymentId', orderController.updatePayment);
+
+router.patch('/orders/:orderId/editdamage/:damageId', orderController.updateDamage);
+// Update original shares
+router.patch('/orders/:orderId/updateshares', orderController.updateShares);
+
+
 module.exports = router;

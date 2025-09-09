@@ -51,50 +51,47 @@ const orderSchema = new mongoose.Schema({
     timi_Polisis: { type: Number, required: true },
     cash: { type: Number, required: true },
     bank: { type: Number, required: true },
-    remainingCash: { type: Number, default: function () { return this.moneyDetails.cash; } },
-    remainingBank: { type: Number, default: function () { return this.moneyDetails.bank; } },
-    contractor_Share_Cash: { type: Number },
-    contractor_remainingShare_Cash: { type: Number },
-    contractor_Share_Bank: { type: Number },
-    contractor_remainingShare_Bank: { type: Number },
-    customer_Share_Cash: { type: Number },
-    customer_remainingShare_Cash: { type: Number },
-    customer_Share_Bank: { type: Number },
-    customer_remainingShare_Bank: { type: Number },
-    FPA: { type: Number },
+
+    // Original shares (editable)
+    contractor_Share_Cash: { type: Number, default: 0 },
+    contractor_Share_Bank: { type: Number, default: 0 },
+    customer_Share_Cash: { type: Number, default: 0 },
+    customer_Share_Bank: { type: Number, default: 0 },
+
+    // Remaining shares (calculated automatically)
+    contractor_remainingShare_Cash: { type: Number, default: 0 },
+    contractor_remainingShare_Bank: { type: Number, default: 0 },
+    customer_remainingShare_Cash: { type: Number, default: 0 },
+    customer_remainingShare_Bank: { type: Number, default: 0 },
+
+    remainingCash: { type: Number, default: 0 },
+    remainingBank: { type: Number, default: 0 },
+
     payments: [
       {
         amount: { type: Number },
-        date: { type: Date, default: Date.now },
-        method: { type: String, enum: ['Cash', 'Bank'], required: true },
-        payer: { type: String, enum: ['Customer', 'Contractor'], required: true },
-        notes: { type: String }
+        method: { type: String, enum: ['Cash', 'Bank'] },
+        payer: { type: String, enum: ['Customer', 'Contractor'] },
+        notes: { type: String },
+        DateOfPayment: { type: Date, default: () => new Date() }
       }
     ],
+
     damages: [
       {
         amount: { type: Number },
-        date: { type: Date, default: Date.now },
         notes: { type: String },
-        typeOfDamage: {
-          type: String,
-          enum: ['Μεταφορά εξωτερικού', 'Μεταφορά εσωτερικού', 'Τοποθέτηση', 'Διάφορα'],
-          required: false
-        }
+        typeOfDamage: { type: String, enum: ['Μεταφορά εξωτερικού', 'Μεταφορά εσωτερικού', 'Τοποθέτηση', 'Διάφορα'] },
+        DateOfDamages: { type: Date, default: () => new Date() }
       }
     ],
-    totalpaid: { type: Number },
-    totaldamages: { type: Number },
-    discounts: [
-      {
-        amount: { type: Number },
-        date: { type: Date, default: Date.now },
-        notes: { type: String }
-      }
-    ],
-    profit: { type: Number },
-    totalCash: { type: Number },
-    totalBank: { type: Number },
+
+    totalpaid: { type: Number, default: 0 },
+    totaldamages: { type: Number, default: 0 },
+    FPA: { type: Number, default: 0 },
+    profit: { type: Number, default: 0 },
+    totalCash: { type: Number, default: 0 },
+    totalBank: { type: Number, default: 0 },
     Notes: { type: String },
     _skipRemainingShareCalc: { type: Boolean, default: false }
   }
@@ -132,9 +129,9 @@ orderSchema.pre('save', function (next) {
   const profit = salesPrice - catalogPrice;
   this.moneyDetails.profit = profit;
 
-  if (profit < 0) {
-    return next(new Error('Profit cannot be negative'));
-  }
+ // if (profit < 0) {
+   // return next(new Error('Profit cannot be negative'));
+  //}
   next();
 });
 
@@ -210,6 +207,48 @@ orderSchema.pre('save', function (next) {
   const customerTotalBank = this.moneyDetails.customer_Share_Bank || 0;
   this.moneyDetails.customer_remainingShare_Cash = customerTotalCash - customerPaidCash;
   this.moneyDetails.customer_remainingShare_Bank = customerTotalBank - customerPaidBank;
+
+  next();
+});
+
+orderSchema.pre('save', function (next) {
+  const md = this.moneyDetails;
+
+  // 1. Total payments
+  if (Array.isArray(md.payments)) {
+    md.totalpaid = md.payments.reduce((sum, p) => sum + (p.amount || 0), 0);
+  } else md.totalpaid = 0;
+
+  // 2. Total damages
+  if (Array.isArray(md.damages)) {
+    md.totaldamages = md.damages.reduce((sum, d) => sum + (d.amount || 0), 0);
+  } else md.totaldamages = 0;
+
+  // 3. Profit
+  const catalogPrice = md.timi_Timokatalogou || 0;
+  const salesPrice = md.timi_Polisis || 0;
+  md.profit = salesPrice - catalogPrice;
+
+  // 4. Tax (FPA)
+  //md.FPA = salesPrice - salesPrice / 1.24;
+
+  // 5. Remaining cash/bank
+  const paidCash = (md.payments || []).filter(p => p.method === 'Cash').reduce((sum, p) => sum + (p.amount || 0), 0);
+  const paidBank = (md.payments || []).filter(p => p.method === 'Bank').reduce((sum, p) => sum + (p.amount || 0), 0);
+  md.remainingCash = (md.cash || 0) - paidCash;
+  md.remainingBank = (md.bank || 0) - paidBank;
+
+  // 6. Remaining shares
+  if (!md._skipRemainingShareCalc) {
+    const sumPayments = (payer, method) => (md.payments || [])
+      .filter(p => p.payer === payer && p.method === method)
+      .reduce((sum, p) => sum + (p.amount || 0), 0);
+
+    md.contractor_remainingShare_Cash = (md.contractor_Share_Cash || 0) - sumPayments('Contractor', 'Cash');
+    md.contractor_remainingShare_Bank = (md.contractor_Share_Bank || 0) - sumPayments('Contractor', 'Bank');
+    md.customer_remainingShare_Cash = (md.customer_Share_Cash || 0) - sumPayments('Customer', 'Cash');
+    md.customer_remainingShare_Bank = (md.customer_Share_Bank || 0) - sumPayments('Customer', 'Bank');
+  }
 
   next();
 });
