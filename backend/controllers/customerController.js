@@ -185,6 +185,62 @@ exports.updateCustomer = async (req, res) => {
     res.status(500).json({ error: 'Server error updating customer' });
   }
 };
+exports.updateCustomer = async (req, res) => {
+  const { customerId } = req.params;
+  const updates = req.body;
+
+  if (!customerId || !mongoose.Types.ObjectId.isValid(customerId)) {
+    return res.status(400).json({ error: 'Invalid customer ID' });
+  }
+
+  try {
+    // Prevent updating email to an existing one
+    if (updates.email) {
+      const existing = await Customer.findOne({ email: updates.email, _id: { $ne: customerId } });
+      if (existing) {
+        return res.status(409).json({ error: 'Email already in use by another customer' });
+      }
+    }
+
+    // Get the old customer first
+    const oldCustomer = await Customer.findById(customerId);
+    if (!oldCustomer) {
+      return res.status(404).json({ error: 'Customer not found' });
+    }
+
+    // Apply updates
+    Object.assign(oldCustomer, updates);
+
+    // Save customer (this also triggers pre-save normalization hooks)
+    const updatedCustomer = await oldCustomer.save();
+
+    // --- Maintain relationship in Salesperson.customers ---
+    if (updates.id_of_salesperson) {
+      const newSalespersonId = updates.id_of_salesperson.toString();
+      const oldSalespersonId = oldCustomer.id_of_salesperson?.toString();
+
+      // 1. Remove from old salesperson if changed
+      if (oldSalespersonId && oldSalespersonId !== newSalespersonId) {
+        await SalesPerson.findByIdAndUpdate(oldSalespersonId, {
+          $pull: { customers: customerId },
+        });
+      }
+
+      // 2. Add to new salesperson
+      await SalesPerson.findByIdAndUpdate(newSalespersonId, {
+        $addToSet: { customers: customerId },
+      });
+    }
+
+    // Populate before sending response
+    await updatedCustomer.populate('id_of_salesperson id_of_contractor');
+
+    res.status(200).json(updatedCustomer);
+  } catch (err) {
+    console.error('Error updating customer:', err);
+    res.status(500).json({ error: 'Server error updating customer' });
+  }
+};
 
 
 

@@ -14,8 +14,8 @@ async function createUsers() {
   try {
     // 1️⃣ Create Salespeople
     const salespeopleData = [
-      { firstName: 'Sofia', lastName: 'Voutsa', username: 'Sofia', password: 'pass123' },
-      { firstName: 'Thei', lastName: 'Kati', username: 'Thei', password: 'pass123' },
+      { firstName: 'Σοφία', lastName: 'Βούτσα', username: 'Sofia', password: 'pass123' },
+      { firstName: 'Θαίη', lastName: 'Βαλασιάδου', username: 'Thei', password: 'pass123' },
 
     ];
 
@@ -40,8 +40,8 @@ async function createUsers() {
 
     // 2️⃣ Create Managers (with pseudo-salesperson)
     const managersData = [
-      { firstName: 'Tilemachos', lastName: 'Tsourelas', username: 'Tilemachos', password: 'pass123' },
-      { firstName: 'Tania', lastName: 'Beesly', username: 'Tania', password: 'pass123' },
+      { firstName: 'Τηλέμαχος', lastName: 'Τσουρέλας', username: 'Tilemachos', password: 'pass123' },
+      { firstName: 'Τάνια', lastName: 'Κάτι', username: 'Tania', password: 'pass123' },
     ];
 
     for (const m of managersData) {
@@ -78,10 +78,35 @@ async function createUsers() {
     }
 
     console.log('All users created successfully!');
+
+
+   
     mongoose.disconnect();
+     updatePassword('Tilemachos', 'Tim9498!'); // ✅ replace with real values
+    updatePassword('Thei', 'Thei1234!');
+    updatePassword('Sofia', 'Sofia1234!');
+
+    updatePassword('Tania', 'Tania1234!');
   } catch (err) {
     console.error('Error creating users:', err);
     mongoose.disconnect();
+  }
+
+}
+
+async function updatePassword(username, plainPassword) {
+  try {
+    await mongoose.connect('mongodb://localhost:27017/kitchen_crm');
+    
+    const salt = await bcrypt.genSalt(10);
+    const hashed = await bcrypt.hash(plainPassword, salt);
+
+    const result = await User.updateOne({ username }, { password: hashed });
+    console.log('Password updated:', result);
+
+    await mongoose.disconnect();
+  } catch (err) {
+    console.error('Error updating password:', err);
   }
 }
 

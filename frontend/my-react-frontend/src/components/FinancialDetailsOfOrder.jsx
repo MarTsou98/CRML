@@ -87,11 +87,13 @@ const FinancialDetailsOfOrder = ({ money, orderId }) => {
         <h3 className="section-title">Οικονομικές Πληροφορίες</h3>
 
         <div className="detail-box">
-          {renderField('Proforma', 'timi_Timokatalogou')}
+        {//renderField('Proforma', 'timi_Timokatalogou') 
+        }
           {renderField('Τιμή Πώλησης', 'timi_Polisis')}
           {renderField('Μετρητά', 'cash')}
           {renderField('Τράπεζα', 'bank')}
-          {renderField('Διαφορά', 'profit', false)}
+          {//renderField('Διαφορά', 'profit', false)
+          }
           {renderField('ΦΠΑ', 'FPA', false)}
         </div>
 

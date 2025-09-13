@@ -1,3 +1,4 @@
+// src/pages/CustomerDetails.jsx
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -11,13 +12,14 @@ const CustomerDetails = () => {
   const { customerId } = useParams();
   const [customer, setCustomer] = useState(null);
   const [form, setForm] = useState({});
+  const [salespeople, setSalespeople] = useState([]); // ✅ salespeople list
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [message, setMessage] = useState(null);
   const navigate = useNavigate();
 
-  // Fetch customer data
+  // Fetch customer + salespeople
   useEffect(() => {
     const fetchCustomer = async () => {
       try {
@@ -29,7 +31,8 @@ const CustomerDetails = () => {
           email: res.data.email,
           phone: res.data.phone,
           address: res.data.address,
-          CustomerNotes: res.data.CustomerNotes || ''
+          CustomerNotes: res.data.CustomerNotes || '',
+          id_of_salesperson: res.data.id_of_salesperson?._id || '' // ✅ salesperson id
         });
       } catch (err) {
         console.error(err);
@@ -39,7 +42,17 @@ const CustomerDetails = () => {
       }
     };
 
+    const fetchSalespeople = async () => {
+      try {
+        const res = await axios.get(`${BASE_URL}/api/salespeople/all`);
+        setSalespeople(res.data);
+      } catch (err) {
+        console.error('Error fetching salespeople:', err);
+      }
+    };
+
     fetchCustomer();
+    fetchSalespeople();
   }, [customerId]);
 
   const handleChange = (e) => {
@@ -120,6 +133,28 @@ const CustomerDetails = () => {
           </p>
 
           <p>
+            <strong>Όνομα Πωλητή:</strong>{' '}
+            {isEditing ? (
+              <select
+                name="id_of_salesperson"
+                value={form.id_of_salesperson || ''}
+                onChange={handleChange}
+              >
+                <option value="">-- Επιλέξτε Πωλητή --</option>
+                {salespeople.map((sp) => (
+                  <option key={sp._id} value={sp._id}>
+                    {sp.firstName} {sp.lastName}
+                  </option>
+                ))}
+              </select>
+            ) : customer.id_of_salesperson ? (
+              `${customer.id_of_salesperson.firstName} ${customer.id_of_salesperson.lastName}`
+            ) : (
+              '—'
+            )}
+          </p>
+
+          <p>
             <strong>Σημειώσεις:</strong>{' '}
             {isEditing ? (
               <textarea
@@ -147,7 +182,8 @@ const CustomerDetails = () => {
                       email: customer.email,
                       phone: customer.phone,
                       address: customer.address,
-                      CustomerNotes: customer.CustomerNotes || ''
+                      CustomerNotes: customer.CustomerNotes || '',
+                      id_of_salesperson: customer.id_of_salesperson?._id || ''
                     });
                     setMessage(null);
                   }}
@@ -165,17 +201,17 @@ const CustomerDetails = () => {
           )}
         </div>
 
-       <button
-  className="add-order-button"
-  onClick={() => navigate(`/orders/new/${customerId}`)}
-  disabled={isEditing} // ✅ disable while editing
-  style={{
-    cursor: isEditing ? 'not-allowed' : 'pointer', // optional: visually indicate it's disabled
-    opacity: isEditing ? 0.5 : 1, // optional: visually dim the button
-  }}
->
-  Προσθήκη Παραγγελίας
-</button>
+        <button
+          className="add-order-button"
+          onClick={() => navigate(`/orders/new/${customerId}`)}
+          disabled={isEditing} // ✅ disable while editing
+          style={{
+            cursor: isEditing ? 'not-allowed' : 'pointer',
+            opacity: isEditing ? 0.5 : 1,
+          }}
+        >
+          Προσθήκη Παραγγελίας
+        </button>
 
         <div className="customer-orders-section">
           <h3>Παραγγελίες</h3>
