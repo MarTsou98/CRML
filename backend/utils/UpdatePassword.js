@@ -18,6 +18,7 @@ async function updatePassword(username, plainPassword) {
   }
 }
 
+
 //updatePassword('Tilemachos', 't'); // ✅ replace with real values
 updatePassword('Thei', 't');
 //updatePassword('Sofia', 's');

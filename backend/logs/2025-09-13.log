@@ -1,0 +1,569 @@
+[2025-09-13 09:29:27] INFO: Login attempt for username: Tilemachos
+[2025-09-13 09:29:27] WARN: Login failed: Incorrect password for user 'Tilemachos'
+[2025-09-13 09:29:33] INFO: Login attempt for username: Tilemachos
+[2025-09-13 09:29:33] WARN: Login failed: Incorrect password for user 'Tilemachos'
+[2025-09-13 09:29:44] INFO: Login attempt for username: Tilemachos
+[2025-09-13 09:29:44] WARN: Login failed: Incorrect password for user 'Tilemachos'
+[2025-09-13 09:30:05] INFO: Login attempt for username: Tilemachos
+[2025-09-13 09:30:05] WARN: Login failed: Incorrect password for user 'Tilemachos'
+[2025-09-13 09:31:12] INFO: Login attempt for username: Tilemachos
+[2025-09-13 09:31:13] INFO: User 'Tilemachos' logged in successfully
+[2025-09-13 09:31:23] INFO: Order fetched successfully
+{
+  "orderId": "68bbe966adf88963007851b4",
+  "user": {
+    "_id": "6872138d9ce49a23d06fc6e4",
+    "firstName": "Θαίη",
+    "lastName": "Αλεξίου",
+    "customers": [
+      "6872145c043be29e360f6991"
+    ],
+    "orders": [
+      "68721508043be29e360f69a1",
+      "68bbe8142c8690ba21dcf05e",
+      "68bbe966adf88963007851b4"
+    ],
+    "__v": 0,
+    "createdAt": "2025-07-12T07:49:33.290Z",
+    "updatedAt": "2025-09-06T07:57:26.021Z"
+  },
+  "route": "/api/orders/68bbe966adf88963007851b4"
+}
+[2025-09-13 09:31:25] INFO: Order fetched successfully
+{
+  "orderId": "68bbe8142c8690ba21dcf05e",
+  "user": {
+    "_id": "6872138d9ce49a23d06fc6e4",
+    "firstName": "Θαίη",
+    "lastName": "Αλεξίου",
+    "customers": [
+      "6872145c043be29e360f6991"
+    ],
+    "orders": [
+      "68721508043be29e360f69a1",
+      "68bbe8142c8690ba21dcf05e",
+      "68bbe966adf88963007851b4"
+    ],
+    "__v": 0,
+    "createdAt": "2025-07-12T07:49:33.290Z",
+    "updatedAt": "2025-09-06T07:57:26.021Z"
+  },
+  "route": "/api/orders/68bbe8142c8690ba21dcf05e"
+}
+[2025-09-13 09:31:51] INFO: Order created successfully
+{
+  "order": {
+    "Lock": false,
+    "invoiceType": "Apodiksi",
+    "orderType": "Σύνθεση Ερμαρίων",
+    "orderNotes": "",
+    "DateOfOrder": "2025-09-19T21:00:00.000Z",
+    "customer_id": "6872145c043be29e360f6991",
+    "salesperson_id": "68c50e9312e08cc6fd957a1f",
+    "contractor_id": "687214e0043be29e360f699b",
+    "orderedFromCompany": "Doors",
+    "moneyDetails": {
+      "timi_Timokatalogou": 0,
+      "timi_Polisis": 1000,
+      "cash": 0,
+      "bank": 0,
+      "contractor_Share_Cash": 0,
+      "contractor_Share_Bank": 0,
+      "customer_Share_Cash": 0,
+      "customer_Share_Bank": 0,
+      "payments": [],
+      "contractor_remainingShare_Cash": 0,
+      "contractor_remainingShare_Bank": 0,
+      "customer_remainingShare_Cash": 0,
+      "customer_remainingShare_Bank": 0,
+      "remainingCash": 0,
+      "remainingBank": 0,
+      "damages": [],
+      "totalpaid": 0,
+      "totaldamages": 0,
+      "FPA": 0,
+      "profit": 1000,
+      "totalCash": 0,
+      "totalBank": 0,
+      "_skipRemainingShareCalc": false
+    },
+    "_id": "68c50fd74280fb6cf710c604",
+    "createdAt": "2025-09-13T06:31:51.185Z",
+    "updatedAt": "2025-09-13T06:31:51.185Z",
+    "__v": 0
+  }
+}
+[2025-09-13 09:31:54] INFO: Order fetched successfully
+{
+  "orderId": "68c50fd74280fb6cf710c604",
+  "user": {
+    "_id": "68c50e9312e08cc6fd957a1f",
+    "firstName": "Tilemachos",
+    "lastName": "Tsourelas",
+    "Role": "manager",
+    "customers": [],
+    "orders": [
+      "68c50fd74280fb6cf710c604"
+    ],
+    "createdAt": "2025-09-13T06:26:27.969Z",
+    "updatedAt": "2025-09-13T06:31:51.197Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68c50fd74280fb6cf710c604"
+}
+[2025-09-13 09:48:56] INFO: Login attempt for username: Thei
+[2025-09-13 09:48:56] INFO: User 'Thei' logged in successfully
+[2025-09-13 09:50:05] INFO: Login attempt for username: Tilemachos
+[2025-09-13 09:50:05] WARN: Login failed: Incorrect password for user 'Tilemachos'
+[2025-09-13 09:50:11] INFO: Login attempt for username: Tilemachos
+[2025-09-13 09:50:11] INFO: User 'Tilemachos' logged in successfully
+[2025-09-13 09:52:34] INFO: Login attempt for username: Tilemachos
+[2025-09-13 09:52:34] INFO: User 'Tilemachos' logged in successfully
+[2025-09-13 10:02:39] INFO: Login attempt for username: Thei
+[2025-09-13 10:02:39] WARN: Login failed: Incorrect password for user 'Thei'
+[2025-09-13 10:02:45] INFO: Login attempt for username: Thei
+[2025-09-13 10:02:45] INFO: User 'Thei' logged in successfully
+[2025-09-13 10:04:09] INFO: Order created successfully
+{
+  "order": {
+    "Lock": false,
+    "invoiceType": "Timologio",
+    "orderType": "Κανονική",
+    "orderNotes": "",
+    "DateOfOrder": "2025-10-02T21:00:00.000Z",
+    "customer_id": "68c513f24280fb6cf710c617",
+    "salesperson_id": "68c513b83fd53fdf9f9023f5",
+    "contractor_id": "68c514574280fb6cf710c629",
+    "orderedFromCompany": "Decopan",
+    "moneyDetails": {
+      "timi_Timokatalogou": 0,
+      "timi_Polisis": 1,
+      "cash": 0,
+      "bank": 0,
+      "contractor_Share_Cash": 0,
+      "contractor_Share_Bank": 0,
+      "customer_Share_Cash": 0,
+      "customer_Share_Bank": 0,
+      "payments": [],
+      "contractor_remainingShare_Cash": 0,
+      "contractor_remainingShare_Bank": 0,
+      "customer_remainingShare_Cash": 0,
+      "customer_remainingShare_Bank": 0,
+      "remainingCash": 0,
+      "remainingBank": 0,
+      "damages": [],
+      "totalpaid": 0,
+      "totaldamages": 0,
+      "FPA": 0,
+      "profit": 1,
+      "totalCash": 0,
+      "totalBank": 0,
+      "_skipRemainingShareCalc": false
+    },
+    "_id": "68c517694280fb6cf710c66f",
+    "createdAt": "2025-09-13T07:04:09.230Z",
+    "updatedAt": "2025-09-13T07:04:09.230Z",
+    "__v": 0
+  }
+}
+[2025-09-13 10:04:10] INFO: Order fetched successfully
+{
+  "orderId": "68c517694280fb6cf710c66f",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023f5",
+    "firstName": "Θαίη",
+    "lastName": "Βαλασιάδου",
+    "Role": "salesperson",
+    "customers": [
+      "68c513f24280fb6cf710c617",
+      "68c5172a4280fb6cf710c650"
+    ],
+    "orders": [
+      "68c517694280fb6cf710c66f"
+    ],
+    "createdAt": "2025-09-13T06:48:24.221Z",
+    "updatedAt": "2025-09-13T07:04:09.232Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68c517694280fb6cf710c66f"
+}
+[2025-09-13 10:04:37] INFO: Order fetched successfully
+{
+  "orderId": "68c517694280fb6cf710c66f",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023f5",
+    "firstName": "Θαίη",
+    "lastName": "Βαλασιάδου",
+    "Role": "salesperson",
+    "customers": [
+      "68c513f24280fb6cf710c617",
+      "68c5172a4280fb6cf710c650"
+    ],
+    "orders": [
+      "68c517694280fb6cf710c66f"
+    ],
+    "createdAt": "2025-09-13T06:48:24.221Z",
+    "updatedAt": "2025-09-13T07:04:09.232Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68c517694280fb6cf710c66f"
+}
+[2025-09-13 10:04:54] INFO: Login attempt for username: Tilemachos
+[2025-09-13 10:04:54] INFO: User 'Tilemachos' logged in successfully
+[2025-09-13 10:05:44] INFO: Login attempt for username: Thei
+[2025-09-13 10:05:44] INFO: User 'Thei' logged in successfully
+[2025-09-13 10:05:49] INFO: Order fetched successfully
+{
+  "orderId": "68c517694280fb6cf710c66f",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023f5",
+    "firstName": "Θαίη",
+    "lastName": "Βαλασιάδου",
+    "Role": "salesperson",
+    "customers": [
+      "68c513f24280fb6cf710c617",
+      "68c5172a4280fb6cf710c650"
+    ],
+    "orders": [
+      "68c517694280fb6cf710c66f"
+    ],
+    "createdAt": "2025-09-13T06:48:24.221Z",
+    "updatedAt": "2025-09-13T07:04:09.232Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68c517694280fb6cf710c66f"
+}
+[2025-09-13 10:09:15] INFO: Login attempt for username: Tilemachos
+[2025-09-13 10:09:15] WARN: Login failed: Incorrect password for user 'Tilemachos'
+[2025-09-13 10:09:20] INFO: Login attempt for username: Tilemachos
+[2025-09-13 10:09:20] INFO: User 'Tilemachos' logged in successfully
+[2025-09-13 10:09:53] INFO: Order created successfully
+{
+  "order": {
+    "Lock": false,
+    "invoiceType": "Timologio",
+    "orderType": "Σύνθεση Ερμαρίων",
+    "orderNotes": "",
+    "DateOfOrder": "2025-09-29T21:00:00.000Z",
+    "customer_id": "68c513f24280fb6cf710c617",
+    "salesperson_id": "68c513b83fd53fdf9f9023fb",
+    "contractor_id": "68c514374280fb6cf710c621",
+    "orderedFromCompany": "Decopan",
+    "moneyDetails": {
+      "timi_Timokatalogou": 0,
+      "timi_Polisis": 1,
+      "cash": 1,
+      "bank": 1,
+      "contractor_Share_Cash": 0,
+      "contractor_Share_Bank": 1,
+      "customer_Share_Cash": 0,
+      "customer_Share_Bank": 0,
+      "payments": [],
+      "contractor_remainingShare_Cash": 0,
+      "contractor_remainingShare_Bank": 1,
+      "customer_remainingShare_Cash": 0,
+      "customer_remainingShare_Bank": 0,
+      "remainingCash": 1,
+      "remainingBank": 1,
+      "damages": [],
+      "totalpaid": 0,
+      "totaldamages": 0,
+      "FPA": 0.19354838709677413,
+      "profit": 1,
+      "totalCash": 0,
+      "totalBank": 0,
+      "_skipRemainingShareCalc": false
+    },
+    "_id": "68c518c14280fb6cf710c6d2",
+    "createdAt": "2025-09-13T07:09:53.839Z",
+    "updatedAt": "2025-09-13T07:09:53.839Z",
+    "__v": 0
+  }
+}
+[2025-09-13 10:10:01] INFO: Order fetched successfully
+{
+  "orderId": "68c518c14280fb6cf710c6d2",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023fb",
+    "firstName": "Τηλέμαχος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [],
+    "orders": [
+      "68c518c14280fb6cf710c6d2"
+    ],
+    "createdAt": "2025-09-13T06:48:24.325Z",
+    "updatedAt": "2025-09-13T07:09:53.841Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68c518c14280fb6cf710c6d2"
+}
+[2025-09-13 10:11:37] INFO: Order fetched successfully
+{
+  "orderId": "68c518c14280fb6cf710c6d2",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023fb",
+    "firstName": "Τηλέμαχος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [],
+    "orders": [
+      "68c518c14280fb6cf710c6d2"
+    ],
+    "createdAt": "2025-09-13T06:48:24.325Z",
+    "updatedAt": "2025-09-13T07:09:53.841Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68c518c14280fb6cf710c6d2"
+}
+[2025-09-13 10:11:59] INFO: Order fetched successfully
+{
+  "orderId": "68c518c14280fb6cf710c6d2",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023fb",
+    "firstName": "Τηλέμαχος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [],
+    "orders": [
+      "68c518c14280fb6cf710c6d2"
+    ],
+    "createdAt": "2025-09-13T06:48:24.325Z",
+    "updatedAt": "2025-09-13T07:09:53.841Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68c518c14280fb6cf710c6d2"
+}
+[2025-09-13 10:12:10] INFO: Order fetched successfully
+{
+  "orderId": "68c518c14280fb6cf710c6d2",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023fb",
+    "firstName": "Τηλέμαχος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [],
+    "orders": [
+      "68c518c14280fb6cf710c6d2"
+    ],
+    "createdAt": "2025-09-13T06:48:24.325Z",
+    "updatedAt": "2025-09-13T07:09:53.841Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68c518c14280fb6cf710c6d2"
+}
+[2025-09-13 10:12:21] INFO: Order fetched successfully
+{
+  "orderId": "68c518c14280fb6cf710c6d2",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023fb",
+    "firstName": "Τηλέμαχος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [],
+    "orders": [
+      "68c518c14280fb6cf710c6d2"
+    ],
+    "createdAt": "2025-09-13T06:48:24.325Z",
+    "updatedAt": "2025-09-13T07:09:53.841Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68c518c14280fb6cf710c6d2"
+}
+[2025-09-13 10:12:31] INFO: Order fetched successfully
+{
+  "orderId": "68c518c14280fb6cf710c6d2",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023fb",
+    "firstName": "Τηλέμαχος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [],
+    "orders": [
+      "68c518c14280fb6cf710c6d2"
+    ],
+    "createdAt": "2025-09-13T06:48:24.325Z",
+    "updatedAt": "2025-09-13T07:09:53.841Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68c518c14280fb6cf710c6d2"
+}
+[2025-09-13 10:13:09] INFO: Login attempt for username: Thei
+[2025-09-13 10:13:09] INFO: User 'Thei' logged in successfully
+[2025-09-13 10:13:15] INFO: Order fetched successfully
+{
+  "orderId": "68c517694280fb6cf710c66f",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023f5",
+    "firstName": "Θαίη",
+    "lastName": "Βαλασιάδου",
+    "Role": "salesperson",
+    "customers": [
+      "68c513f24280fb6cf710c617",
+      "68c5172a4280fb6cf710c650"
+    ],
+    "orders": [
+      "68c517694280fb6cf710c66f"
+    ],
+    "createdAt": "2025-09-13T06:48:24.221Z",
+    "updatedAt": "2025-09-13T07:04:09.232Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68c517694280fb6cf710c66f"
+}
+[2025-09-13 10:13:23] INFO: Order fetched successfully
+{
+  "orderId": "68c517694280fb6cf710c66f",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023f5",
+    "firstName": "Θαίη",
+    "lastName": "Βαλασιάδου",
+    "Role": "salesperson",
+    "customers": [
+      "68c513f24280fb6cf710c617",
+      "68c5172a4280fb6cf710c650"
+    ],
+    "orders": [
+      "68c517694280fb6cf710c66f"
+    ],
+    "createdAt": "2025-09-13T06:48:24.221Z",
+    "updatedAt": "2025-09-13T07:04:09.232Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68c517694280fb6cf710c66f"
+}
+[2025-09-13 10:13:41] INFO: Order fetched successfully
+{
+  "orderId": "68c517694280fb6cf710c66f",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023f5",
+    "firstName": "Θαίη",
+    "lastName": "Βαλασιάδου",
+    "Role": "salesperson",
+    "customers": [
+      "68c513f24280fb6cf710c617",
+      "68c5172a4280fb6cf710c650"
+    ],
+    "orders": [
+      "68c517694280fb6cf710c66f"
+    ],
+    "createdAt": "2025-09-13T06:48:24.221Z",
+    "updatedAt": "2025-09-13T07:04:09.232Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68c517694280fb6cf710c66f"
+}
+[2025-09-13 10:13:54] INFO: Order fetched successfully
+{
+  "orderId": "68c517694280fb6cf710c66f",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023f5",
+    "firstName": "Θαίη",
+    "lastName": "Βαλασιάδου",
+    "Role": "salesperson",
+    "customers": [
+      "68c513f24280fb6cf710c617",
+      "68c5172a4280fb6cf710c650"
+    ],
+    "orders": [
+      "68c517694280fb6cf710c66f"
+    ],
+    "createdAt": "2025-09-13T06:48:24.221Z",
+    "updatedAt": "2025-09-13T07:04:09.232Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68c517694280fb6cf710c66f"
+}
+[2025-09-13 10:14:06] INFO: Order fetched successfully
+{
+  "orderId": "68c517694280fb6cf710c66f",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023f5",
+    "firstName": "Θαίη",
+    "lastName": "Βαλασιάδου",
+    "Role": "salesperson",
+    "customers": [
+      "68c513f24280fb6cf710c617",
+      "68c5172a4280fb6cf710c650"
+    ],
+    "orders": [
+      "68c517694280fb6cf710c66f"
+    ],
+    "createdAt": "2025-09-13T06:48:24.221Z",
+    "updatedAt": "2025-09-13T07:04:09.232Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68c517694280fb6cf710c66f"
+}
+[2025-09-13 10:14:24] INFO: Order fetched successfully
+{
+  "orderId": "68c517694280fb6cf710c66f",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023f5",
+    "firstName": "Θαίη",
+    "lastName": "Βαλασιάδου",
+    "Role": "salesperson",
+    "customers": [
+      "68c513f24280fb6cf710c617",
+      "68c5172a4280fb6cf710c650"
+    ],
+    "orders": [
+      "68c517694280fb6cf710c66f"
+    ],
+    "createdAt": "2025-09-13T06:48:24.221Z",
+    "updatedAt": "2025-09-13T07:04:09.232Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68c517694280fb6cf710c66f"
+}
+[2025-09-13 10:19:31] INFO: Login attempt for username: Thei
+[2025-09-13 10:19:31] WARN: Login failed: Incorrect password for user 'Thei'
+[2025-09-13 10:19:36] INFO: Login attempt for username: Thei
+[2025-09-13 10:19:36] INFO: User 'Thei' logged in successfully
+[2025-09-13 10:27:03] INFO: Login attempt for username: Tilemachos
+[2025-09-13 10:27:03] INFO: User 'Tilemachos' logged in successfully
+[2025-09-13 10:27:17] INFO: Order fetched successfully
+{
+  "orderId": "68c518c14280fb6cf710c6d2",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023fb",
+    "firstName": "Τηλέμαχος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [],
+    "orders": [
+      "68c518c14280fb6cf710c6d2"
+    ],
+    "createdAt": "2025-09-13T06:48:24.325Z",
+    "updatedAt": "2025-09-13T07:09:53.841Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68c518c14280fb6cf710c6d2"
+}
+[2025-09-13 10:27:21] INFO: Order fetched successfully
+{
+  "orderId": "68c517694280fb6cf710c66f",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023f5",
+    "firstName": "Θαίη",
+    "lastName": "Βαλασιάδου",
+    "Role": "salesperson",
+    "customers": [
+      "68c513f24280fb6cf710c617",
+      "68c5172a4280fb6cf710c650"
+    ],
+    "orders": [
+      "68c517694280fb6cf710c66f"
+    ],
+    "createdAt": "2025-09-13T06:48:24.221Z",
+    "updatedAt": "2025-09-13T07:04:09.232Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68c517694280fb6cf710c66f"
+}
+[2025-09-13 10:28:04] INFO: Login attempt for username: Sofia
+[2025-09-13 10:28:04] WARN: Login failed: Incorrect password for user 'Sofia'
+[2025-09-13 10:28:10] INFO: Login attempt for username: Sofia
+[2025-09-13 10:28:10] WARN: Login failed: Incorrect password for user 'Sofia'
+[2025-09-13 10:28:18] INFO: Login attempt for username: Sofia
+[2025-09-13 10:28:18] INFO: User 'Sofia' logged in successfully
