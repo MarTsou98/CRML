@@ -69,6 +69,7 @@ const CustomerDetails = () => {
     } catch (err) {
       console.error(err);
       setMessage('❌ Failed to update customer.');
+       window.location.reload();
     }
   };
 

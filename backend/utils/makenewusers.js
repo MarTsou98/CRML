@@ -13,7 +13,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/kitchen_crm', {
 async function createUsers() {
   try {
     // 1️⃣ Create Salespeople
-    const salespeopleData = [
+   /* const salespeopleData = [
       { firstName: 'Σοφία', lastName: 'Βούτσα', username: 'Sofia', password: 'pass123' },
       { firstName: 'Θαίη', lastName: 'Βαλασιάδου', username: 'Thei', password: 'pass123' },
 
@@ -37,7 +37,7 @@ async function createUsers() {
       await user.save();
       console.log(`Created salesperson user: ${user.username}`);
     }
-
+*/
     // 2️⃣ Create Managers (with pseudo-salesperson)
     const managersData = [
       { firstName: 'Τηλέμαχος', lastName: 'Τσουρέλας', username: 'Tilemachos', password: 'pass123' },
@@ -83,8 +83,8 @@ async function createUsers() {
    
     mongoose.disconnect();
      updatePassword('Tilemachos', 'Tim9498!'); // ✅ replace with real values
-    updatePassword('Thei', 'Thei1234!');
-    updatePassword('Sofia', 'Sofia1234!');
+    //updatePassword('Thei', 'Thei1234!');
+  //  updatePassword('Sofia', 'Sofia1234!');
 
     updatePassword('Tania', 'Tania1234!');
   } catch (err) {
