@@ -32,6 +32,8 @@ import ProfitByContractorPage from './pages/ProfitByContractorPage';
 import OrderSearchPage from './pages/OrdersSearchPage'; // Adjust path if needed
 import AddDamage from './pages/AddDamage';
 
+import StatsPage from './pages/StatsPage';
+
 
 
 function App() {
@@ -65,7 +67,7 @@ function App() {
     <Route path="orders/:orderId" element={<OrderDetails />} />
     <Route path="orders/:orderId/addpayment" element={<AddPayment />} />
     <Route path="/contractors/:id" element={<ContractorDetailsPage />} />
-    <Route path="stats" element={<StatsDashboardPage />} />
+    <Route path="stats" element={<StatsPage/>} />
     <Route path="AllContractorsPage" element={<AllContractorsPage />} />
     <Route path="stats/by-salesperson" element={<OrdersBySalespersonPage />} />
     <Route path="stats/by-contractor" element={<OrdersByContractorPage />} />

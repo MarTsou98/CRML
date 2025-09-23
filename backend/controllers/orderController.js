@@ -481,3 +481,130 @@ exports.updateShares = async (req, res) => {
   }
 };
 
+exports.getOrdersByDateRange = async (req, res) => {
+  try {
+    const { start, end } = req.query;
+
+    if (!start || !end) {
+      return res.status(400).json({ error: 'Start and end dates are required' });
+    }
+
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+
+    // Normalize start/end to full-day boundaries
+    startDate.setHours(0, 0, 0, 0);
+    endDate.setHours(23, 59, 59, 999);
+
+    const orders = await Order.find({
+      DateOfOrder: { $gte: startDate, $lte: endDate }
+    })
+      .populate('customer_id')
+      .populate('salesperson_id')
+      .populate('contractor_id');
+
+    res.json(orders);
+  } catch (error) {
+    console.error('Error fetching orders by date range:', error);
+    res.status(500).json({ error: 'Server error fetching orders by date range' });
+  }
+};
+
+/*
+exports.getStats = async (req, res) => {
+  try {
+    const { start, end, groupBy } = req.query;
+
+    if (!start || !end) {
+      return res.status(400).json({ error: 'Start and end dates are required' });
+    }
+
+    const allowedGroups = ['salesperson_id', 'contractor_id', 'orderedFromCompany'];
+    if (!groupBy || !allowedGroups.includes(groupBy)) {
+      return res.status(400).json({ error: `Invalid groupBy. Must be one of: ${allowedGroups.join(', ')}` });
+    }
+
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+    startDate.setHours(0, 0, 0, 0);
+    endDate.setHours(23, 59, 59, 999);
+
+    // Aggregate orders
+    let stats = await Order.aggregate([
+      { $match: { DateOfOrder: { $gte: startDate, $lte: endDate } } },
+      {
+        $group: {
+          _id: `$${groupBy}`,
+          totalOrders: { $sum: 1 },
+          totalRevenue: { $sum: "$moneyDetails.timi_Polisis" },
+          totalProfit: { $sum: "$moneyDetails.profit" },
+          orders: { $push: "$$ROOT" }
+        }
+      },
+      { $sort: { totalRevenue: -1 } }
+    ]);
+
+    // Populate references for each order in every group
+    for (const group of stats) {
+      group.orders = await Order.populate(group.orders, [
+        { path: 'customer_id', select: 'firstName lastName' },
+        { path: 'salesperson_id', select: 'name' },
+        { path: 'contractor_id', select: 'name' }
+      ]);
+      
+      // Optionally, add a name for the group itself if grouping by ObjectId
+      if (groupBy === 'salesperson_id' || groupBy === 'contractor_id') {
+        const Model = groupBy === 'salesperson_id'
+          ? mongoose.model('Salesperson')
+          : mongoose.model('Contractor');
+        const doc = await Model.findById(group._id).lean();
+        group.name = doc ? doc.name : 'Unknown';
+      }
+    }
+
+    res.json(stats);
+  } catch (error) {
+    console.error('Error fetching stats:', error);
+    res.status(500).json({ error: 'Server error fetching stats' });
+  }
+};*/
+
+exports.getStats = async (req, res) => {
+  try {
+    const { start, end, groupBy } = req.query;
+
+    if (!start || !end) {
+      return res.status(400).json({ error: 'Start and end dates are required' });
+    }
+
+    const allowedGroups = ['salesperson_id', 'contractor_id', 'orderedFromCompany'];
+    if (!groupBy || !allowedGroups.includes(groupBy)) {
+      return res.status(400).json({ error: `Invalid groupBy. Must be one of: ${allowedGroups.join(', ')}` });
+    }
+
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+    startDate.setHours(0, 0, 0, 0);
+    endDate.setHours(23, 59, 59, 999);
+
+    // Fetch all orders in the date range
+    let orders = await Order.find({
+      DateOfOrder: { $gte: startDate, $lte: endDate }
+    })
+    .populate('customer_id', 'firstName lastName')
+    .populate('salesperson_id', 'firstName lastName')
+    .populate('contractor_id', 'name')
+    .lean(); // optional: returns plain JS objects
+
+    // Optional: you could sort orders by group or date
+    orders.sort((a, b) => new Date(a.DateOfOrder) - new Date(b.DateOfOrder));
+
+    res.json(orders);
+  } catch (error) {
+    console.error('Error fetching stats:', error);
+    res.status(500).json({ error: 'Server error fetching stats' });
+  }
+};
+
+
+

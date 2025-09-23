@@ -38,8 +38,8 @@ app.use('/api', contractorRoutes);
 const salespersonRoutes = require('./routes/salespersonRoutes');
 app.use('/api', salespersonRoutes);
 
-const statsRoutes = require('./routes/statsRoutes');
-app.use('/api/stats', statsRoutes);
+//const statsRoutes = require('./routes/statsRoutes');
+//app.use('/api/stats', statsRoutes);
 
 // Start server
 app.listen(PORT, HOST, () => {

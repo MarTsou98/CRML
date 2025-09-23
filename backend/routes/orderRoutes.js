@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const orderController = require('../controllers/orderController');
-
+// Stats API - dynamic groupBy
+router.get('/orders/stats', orderController.getStats);
 // Search orders
 router.get('/search', orderController.searchOrders);
 
@@ -40,6 +41,8 @@ router.patch('/orders/:orderId/editpayment/:paymentId', orderController.updatePa
 router.patch('/orders/:orderId/editdamage/:damageId', orderController.updateDamage);
 // Update original shares
 router.patch('/orders/:orderId/updateshares', orderController.updateShares);
+// Orders within a date range
+router.get('/orders/date-range', orderController.getOrdersByDateRange);
 
-
+    
 module.exports = router;

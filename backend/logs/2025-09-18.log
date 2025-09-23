@@ -1,0 +1,200 @@
+[2025-09-18 09:45:01] INFO: Login attempt for username: Tilemachos
+[2025-09-18 09:45:01] WARN: Login failed: Incorrect password for user 'Tilemachos'
+[2025-09-18 09:45:05] INFO: Login attempt for username: Tilemachos
+[2025-09-18 09:45:05] INFO: User 'Tilemachos' logged in successfully
+[2025-09-18 09:45:25] WARN: Invalid order ID requested
+{
+  "id": "stats",
+  "route": "/api/orders/stats?start=2025-09-11&end=2025-09-25&groupBy=salesperson_id"
+}
+[2025-09-18 09:54:22] INFO: Login attempt for username: Tilemachos
+[2025-09-18 09:54:22] INFO: User 'Tilemachos' logged in successfully
+[2025-09-18 09:54:30] WARN: Invalid order ID requested
+{
+  "id": "stats",
+  "route": "/api/orders/stats?start=2025-09-02&end=2025-09-27&groupBy=contractor_id"
+}
+[2025-09-18 09:54:36] WARN: Invalid order ID requested
+{
+  "id": "stats",
+  "route": "/api/orders/stats?start=2025-09-02&end=2025-09-27&groupBy=salesperson_id"
+}
+[2025-09-18 09:55:35] WARN: Invalid order ID requested
+{
+  "id": "stats",
+  "route": "/api/orders/stats?start=2025-09-02&end=2025-09-27&groupBy=salesperson_id"
+}
+[2025-09-18 10:09:48] INFO: Order created successfully
+{
+  "order": {
+    "Lock": false,
+    "invoiceType": "Timologio",
+    "orderType": "Κανονική",
+    "orderNotes": "",
+    "DateOfOrder": "2025-09-01T21:00:00.000Z",
+    "customer_id": "68c017f4def3f14ccad0fd92",
+    "salesperson_id": "68c01242eb804c5b489f78aa",
+    "contractor_id": "68c0108adef3f14ccad0fcad",
+    "orderedFromCompany": "Decopan",
+    "moneyDetails": {
+      "timi_Timokatalogou": 1,
+      "timi_Polisis": 2,
+      "cash": 1,
+      "bank": 1,
+      "contractor_Share_Cash": 0,
+      "contractor_Share_Bank": 0,
+      "customer_Share_Cash": 0,
+      "customer_Share_Bank": 0,
+      "payments": [],
+      "contractor_remainingShare_Cash": 0,
+      "contractor_remainingShare_Bank": 0,
+      "customer_remainingShare_Cash": 0,
+      "customer_remainingShare_Bank": 0,
+      "remainingCash": 1,
+      "remainingBank": 1,
+      "damages": [],
+      "totalpaid": 0,
+      "totaldamages": 0,
+      "FPA": 0.19354838709677413,
+      "profit": 1,
+      "totalCash": 0,
+      "totalBank": 0,
+      "_skipRemainingShareCalc": false
+    },
+    "_id": "68cbb03c5d4034bc0a08b1a5",
+    "createdAt": "2025-09-18T07:09:48.116Z",
+    "updatedAt": "2025-09-18T07:09:48.116Z",
+    "__v": 0
+  }
+}
+[2025-09-18 10:30:33] INFO: Order created successfully
+{
+  "order": {
+    "Lock": false,
+    "invoiceType": "Timologio",
+    "orderType": "Κανονική",
+    "orderNotes": "",
+    "DateOfOrder": "2025-09-14T21:00:00.000Z",
+    "customer_id": "68cbb5047b2bf693dcd8019d",
+    "salesperson_id": "68c01242eb804c5b489f78aa",
+    "contractor_id": "68c0108adef3f14ccad0fcad",
+    "orderedFromCompany": "Lube",
+    "moneyDetails": {
+      "timi_Timokatalogou": 0,
+      "timi_Polisis": 1,
+      "cash": 0,
+      "bank": 0,
+      "contractor_Share_Cash": 0,
+      "contractor_Share_Bank": 0,
+      "customer_Share_Cash": 0,
+      "customer_Share_Bank": 0,
+      "payments": [],
+      "contractor_remainingShare_Cash": 0,
+      "contractor_remainingShare_Bank": 0,
+      "customer_remainingShare_Cash": 0,
+      "customer_remainingShare_Bank": 0,
+      "remainingCash": 0,
+      "remainingBank": 0,
+      "damages": [],
+      "totalpaid": 0,
+      "totaldamages": 0,
+      "FPA": 0,
+      "profit": 1,
+      "totalCash": 0,
+      "totalBank": 0,
+      "_skipRemainingShareCalc": false
+    },
+    "_id": "68cbb5197b2bf693dcd801ab",
+    "createdAt": "2025-09-18T07:30:33.493Z",
+    "updatedAt": "2025-09-18T07:30:33.493Z",
+    "__v": 0
+  }
+}
+[2025-09-18 10:31:35] INFO: Order created successfully
+{
+  "order": {
+    "Lock": false,
+    "invoiceType": "Timologio",
+    "orderType": "Κανονική",
+    "orderNotes": "",
+    "DateOfOrder": "2025-09-14T21:00:00.000Z",
+    "customer_id": "68cbb5307b2bf693dcd801b9",
+    "salesperson_id": "68c01242eb804c5b489f78aa",
+    "contractor_id": "68c0108adef3f14ccad0fcad",
+    "orderedFromCompany": "Decopan",
+    "moneyDetails": {
+      "timi_Timokatalogou": 0,
+      "timi_Polisis": 2222,
+      "cash": 0,
+      "bank": 0,
+      "contractor_Share_Cash": 0,
+      "contractor_Share_Bank": 0,
+      "customer_Share_Cash": 0,
+      "customer_Share_Bank": 0,
+      "payments": [],
+      "contractor_remainingShare_Cash": 0,
+      "contractor_remainingShare_Bank": 0,
+      "customer_remainingShare_Cash": 0,
+      "customer_remainingShare_Bank": 0,
+      "remainingCash": 0,
+      "remainingBank": 0,
+      "damages": [],
+      "totalpaid": 0,
+      "totaldamages": 0,
+      "FPA": 0,
+      "profit": 2222,
+      "totalCash": 0,
+      "totalBank": 0,
+      "_skipRemainingShareCalc": false
+    },
+    "_id": "68cbb5577b2bf693dcd801c7",
+    "createdAt": "2025-09-18T07:31:35.987Z",
+    "updatedAt": "2025-09-18T07:31:35.987Z",
+    "__v": 0
+  }
+}
+[2025-09-18 10:43:27] INFO: Login attempt for username: Thei
+[2025-09-18 10:43:27] INFO: User 'Thei' logged in successfully
+[2025-09-18 10:44:21] INFO: Order created successfully
+{
+  "order": {
+    "Lock": false,
+    "invoiceType": "Timologio",
+    "orderType": "Κανονική",
+    "orderNotes": "",
+    "DateOfOrder": "2025-09-16T21:00:00.000Z",
+    "customer_id": "68cbb8383779c4c0b81dffc6",
+    "salesperson_id": "68c01242eb804c5b489f78a4",
+    "contractor_id": "68c01704def3f14ccad0fcf3",
+    "orderedFromCompany": "Decopan",
+    "moneyDetails": {
+      "timi_Timokatalogou": 0,
+      "timi_Polisis": 3,
+      "cash": 0,
+      "bank": 0,
+      "contractor_Share_Cash": 0,
+      "contractor_Share_Bank": 0,
+      "customer_Share_Cash": 0,
+      "customer_Share_Bank": 0,
+      "payments": [],
+      "contractor_remainingShare_Cash": 0,
+      "contractor_remainingShare_Bank": 0,
+      "customer_remainingShare_Cash": 0,
+      "customer_remainingShare_Bank": 0,
+      "remainingCash": 0,
+      "remainingBank": 0,
+      "damages": [],
+      "totalpaid": 0,
+      "totaldamages": 0,
+      "FPA": 0,
+      "profit": 3,
+      "totalCash": 0,
+      "totalBank": 0,
+      "_skipRemainingShareCalc": false
+    },
+    "_id": "68cbb8553779c4c0b81dffd4",
+    "createdAt": "2025-09-18T07:44:21.874Z",
+    "updatedAt": "2025-09-18T07:44:21.874Z",
+    "__v": 0
+  }
+}
