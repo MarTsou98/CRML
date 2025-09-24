@@ -593,7 +593,7 @@ exports.getStats = async (req, res) => {
     })
     .populate('customer_id', 'firstName lastName')
     .populate('salesperson_id', 'firstName lastName')
-    .populate('contractor_id', 'name')
+    .populate('contractor_id', 'EnterpriseName')
     .lean(); // optional: returns plain JS objects
 
     // Optional: you could sort orders by group or date

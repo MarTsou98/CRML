@@ -1,0 +1,197 @@
+[2025-09-24 16:21:31] INFO: Login attempt for username: Tilemachos
+[2025-09-24 16:21:31] INFO: User 'Tilemachos' logged in successfully
+[2025-09-24 16:22:43] INFO: Order created successfully
+{
+  "order": {
+    "Lock": false,
+    "invoiceType": "Timologio",
+    "orderType": "Κανονική",
+    "orderNotes": "",
+    "DateOfOrder": "2025-09-17T21:00:00.000Z",
+    "customer_id": "68c5172a4280fb6cf710c650",
+    "salesperson_id": "68c513b83fd53fdf9f9023fb",
+    "contractor_id": "68c514374280fb6cf710c621",
+    "orderedFromCompany": "Lube",
+    "moneyDetails": {
+      "timi_Timokatalogou": 0,
+      "timi_Polisis": 1,
+      "cash": 0,
+      "bank": 0,
+      "contractor_Share_Cash": 0,
+      "contractor_Share_Bank": 0,
+      "customer_Share_Cash": 0,
+      "customer_Share_Bank": 0,
+      "payments": [],
+      "contractor_remainingShare_Cash": 0,
+      "contractor_remainingShare_Bank": 0,
+      "customer_remainingShare_Cash": 0,
+      "customer_remainingShare_Bank": 0,
+      "remainingCash": 0,
+      "remainingBank": 0,
+      "damages": [],
+      "totalpaid": 0,
+      "totaldamages": 0,
+      "FPA": 0,
+      "profit": 1,
+      "totalCash": 0,
+      "totalBank": 0,
+      "_skipRemainingShareCalc": false
+    },
+    "_id": "68d3f0a377a43d7345a6d669",
+    "createdAt": "2025-09-24T13:22:43.787Z",
+    "updatedAt": "2025-09-24T13:22:43.787Z",
+    "__v": 0
+  }
+}
+[2025-09-24 16:27:52] INFO: Login attempt for username: Tilemachos
+[2025-09-24 16:27:52] INFO: User 'Tilemachos' logged in successfully
+[2025-09-24 16:33:32] INFO: Order fetched successfully
+{
+  "orderId": "68d3f0a377a43d7345a6d669",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023fb",
+    "firstName": "Τηλέμαχος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [],
+    "orders": [
+      "68c518c14280fb6cf710c6d2",
+      "68d3f0a377a43d7345a6d669"
+    ],
+    "createdAt": "2025-09-13T06:48:24.325Z",
+    "updatedAt": "2025-09-24T13:22:43.806Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68d3f0a377a43d7345a6d669"
+}
+[2025-09-24 16:33:41] INFO: Order fetched successfully
+{
+  "orderId": "68d3f0a377a43d7345a6d669",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023fb",
+    "firstName": "Τηλέμαχος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [],
+    "orders": [
+      "68c518c14280fb6cf710c6d2",
+      "68d3f0a377a43d7345a6d669"
+    ],
+    "createdAt": "2025-09-13T06:48:24.325Z",
+    "updatedAt": "2025-09-24T13:22:43.806Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68d3f0a377a43d7345a6d669"
+}
+[2025-09-24 16:39:32] INFO: Order fetched successfully
+{
+  "orderId": "68d3f0a377a43d7345a6d669",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023fb",
+    "firstName": "Τηλέμαχος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [],
+    "orders": [
+      "68c518c14280fb6cf710c6d2",
+      "68d3f0a377a43d7345a6d669"
+    ],
+    "createdAt": "2025-09-13T06:48:24.325Z",
+    "updatedAt": "2025-09-24T13:22:43.806Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68d3f0a377a43d7345a6d669"
+}
+[2025-09-24 16:40:35] INFO: Login attempt for username: Thei
+[2025-09-24 16:40:36] WARN: Login failed: Incorrect password for user 'Thei'
+[2025-09-24 16:40:40] INFO: Login attempt for username: Thei
+[2025-09-24 16:40:40] INFO: User 'Thei' logged in successfully
+[2025-09-24 16:42:52] INFO: Login attempt for username: Tilemachos
+[2025-09-24 16:42:52] INFO: User 'Tilemachos' logged in successfully
+[2025-09-24 16:45:36] INFO: Login attempt for username: Tilemachos
+[2025-09-24 16:45:37] INFO: User 'Tilemachos' logged in successfully
+[2025-09-24 16:46:15] INFO: Login attempt for username: Tilemachos
+[2025-09-24 16:46:15] INFO: User 'Tilemachos' logged in successfully
+[2025-09-24 16:47:22] INFO: Order created successfully
+{
+  "order": {
+    "Lock": false,
+    "invoiceType": "Apodiksi",
+    "orderType": "Κανονική",
+    "orderNotes": "",
+    "DateOfOrder": "2025-09-09T21:00:00.000Z",
+    "customer_id": "68c514904280fb6cf710c635",
+    "salesperson_id": "68c513b83fd53fdf9f9023fb",
+    "contractor_id": "68c514574280fb6cf710c629",
+    "orderedFromCompany": "Decopan",
+    "moneyDetails": {
+      "timi_Timokatalogou": 1,
+      "timi_Polisis": 1111,
+      "cash": 0,
+      "bank": 0,
+      "contractor_Share_Cash": 0,
+      "contractor_Share_Bank": 0,
+      "customer_Share_Cash": 0,
+      "customer_Share_Bank": 0,
+      "payments": [],
+      "contractor_remainingShare_Cash": 0,
+      "contractor_remainingShare_Bank": 0,
+      "customer_remainingShare_Cash": 0,
+      "customer_remainingShare_Bank": 0,
+      "remainingCash": 0,
+      "remainingBank": 0,
+      "damages": [],
+      "totalpaid": 0,
+      "totaldamages": 0,
+      "FPA": 0,
+      "profit": 1110,
+      "totalCash": 0,
+      "totalBank": 0,
+      "_skipRemainingShareCalc": false
+    },
+    "_id": "68d3f66a5b37547ba34a07f6",
+    "createdAt": "2025-09-24T13:47:22.332Z",
+    "updatedAt": "2025-09-24T13:47:22.332Z",
+    "__v": 0
+  }
+}
+[2025-09-24 16:51:19] INFO: Order fetched successfully
+{
+  "orderId": "68d3f66a5b37547ba34a07f6",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023fb",
+    "firstName": "Τηλέμαχος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [],
+    "orders": [
+      "68c518c14280fb6cf710c6d2",
+      "68d3f0a377a43d7345a6d669",
+      "68d3f66a5b37547ba34a07f6"
+    ],
+    "createdAt": "2025-09-13T06:48:24.325Z",
+    "updatedAt": "2025-09-24T13:47:22.337Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68d3f66a5b37547ba34a07f6"
+}
+[2025-09-24 16:52:58] INFO: Order fetched successfully
+{
+  "orderId": "68d3f66a5b37547ba34a07f6",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023fb",
+    "firstName": "Τηλέμαχος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [],
+    "orders": [
+      "68c518c14280fb6cf710c6d2",
+      "68d3f0a377a43d7345a6d669",
+      "68d3f66a5b37547ba34a07f6"
+    ],
+    "createdAt": "2025-09-13T06:48:24.325Z",
+    "updatedAt": "2025-09-24T13:47:22.337Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68d3f66a5b37547ba34a07f6"
+}
