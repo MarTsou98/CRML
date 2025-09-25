@@ -38,7 +38,7 @@ function StatsPage() {
       <GroupBySelect groupBy={groupBy} setGroupBy={setGroupBy} />
 
       <button onClick={handleFetch} style={{ marginBottom: "1rem" }}>
-        Get Stats
+       Στατιστικά
       </button>
 
       {loading ? <p>Loading...</p> : <StatsTable data={data} groupBy={groupBy} />}

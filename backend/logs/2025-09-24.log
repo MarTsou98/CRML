@@ -195,3 +195,418 @@
   },
   "route": "/api/orders/68d3f66a5b37547ba34a07f6"
 }
+[2025-09-24 17:02:19] INFO: Order created successfully
+{
+  "order": {
+    "Lock": false,
+    "invoiceType": "Timologio",
+    "orderType": "Κανονική",
+    "orderNotes": "",
+    "DateOfOrder": "2025-09-09T21:00:00.000Z",
+    "customer_id": "68c514904280fb6cf710c635",
+    "salesperson_id": "68c513b83fd53fdf9f9023fb",
+    "contractor_id": "68c514374280fb6cf710c621",
+    "orderedFromCompany": "Decopan",
+    "moneyDetails": {
+      "timi_Timokatalogou": 100,
+      "timi_Polisis": 200,
+      "cash": 100,
+      "bank": 100,
+      "contractor_Share_Cash": 0,
+      "contractor_Share_Bank": 0,
+      "customer_Share_Cash": 0,
+      "customer_Share_Bank": 0,
+      "payments": [],
+      "contractor_remainingShare_Cash": 0,
+      "contractor_remainingShare_Bank": 0,
+      "customer_remainingShare_Cash": 0,
+      "customer_remainingShare_Bank": 0,
+      "remainingCash": 100,
+      "remainingBank": 100,
+      "damages": [],
+      "totalpaid": 0,
+      "totaldamages": 0,
+      "FPA": 19.354838709677423,
+      "profit": 100,
+      "totalCash": 0,
+      "totalBank": 0,
+      "_skipRemainingShareCalc": false
+    },
+    "_id": "68d3f9eb0786a8be1babf495",
+    "createdAt": "2025-09-24T14:02:19.068Z",
+    "updatedAt": "2025-09-24T14:02:19.068Z",
+    "__v": 0
+  }
+}
+[2025-09-24 17:02:20] INFO: Order fetched successfully
+{
+  "orderId": "68d3f9eb0786a8be1babf495",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023fb",
+    "firstName": "Τηλέμαχος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [],
+    "orders": [
+      "68c518c14280fb6cf710c6d2",
+      "68d3f0a377a43d7345a6d669",
+      "68d3f66a5b37547ba34a07f6",
+      "68d3f9eb0786a8be1babf495"
+    ],
+    "createdAt": "2025-09-13T06:48:24.325Z",
+    "updatedAt": "2025-09-24T14:02:19.073Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68d3f9eb0786a8be1babf495"
+}
+[2025-09-24 17:02:29] INFO: Order fetched successfully
+{
+  "orderId": "68d3f9eb0786a8be1babf495",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023fb",
+    "firstName": "Τηλέμαχος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [],
+    "orders": [
+      "68c518c14280fb6cf710c6d2",
+      "68d3f0a377a43d7345a6d669",
+      "68d3f66a5b37547ba34a07f6",
+      "68d3f9eb0786a8be1babf495"
+    ],
+    "createdAt": "2025-09-13T06:48:24.325Z",
+    "updatedAt": "2025-09-24T14:02:19.073Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68d3f9eb0786a8be1babf495"
+}
+[2025-09-24 17:14:32] INFO: Order fetched successfully
+{
+  "orderId": "68d3f9eb0786a8be1babf495",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023fb",
+    "firstName": "Τηλέμαχος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [],
+    "orders": [
+      "68c518c14280fb6cf710c6d2",
+      "68d3f0a377a43d7345a6d669",
+      "68d3f66a5b37547ba34a07f6",
+      "68d3f9eb0786a8be1babf495"
+    ],
+    "createdAt": "2025-09-13T06:48:24.325Z",
+    "updatedAt": "2025-09-24T14:02:19.073Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68d3f9eb0786a8be1babf495"
+}
+[2025-09-24 17:14:40] INFO: Order fetched successfully
+{
+  "orderId": "68d3f9eb0786a8be1babf495",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023fb",
+    "firstName": "Τηλέμαχος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [],
+    "orders": [
+      "68c518c14280fb6cf710c6d2",
+      "68d3f0a377a43d7345a6d669",
+      "68d3f66a5b37547ba34a07f6",
+      "68d3f9eb0786a8be1babf495"
+    ],
+    "createdAt": "2025-09-13T06:48:24.325Z",
+    "updatedAt": "2025-09-24T14:02:19.073Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68d3f9eb0786a8be1babf495"
+}
+[2025-09-24 17:14:47] INFO: Order fetched successfully
+{
+  "orderId": "68d3f9eb0786a8be1babf495",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023fb",
+    "firstName": "Τηλέμαχος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [],
+    "orders": [
+      "68c518c14280fb6cf710c6d2",
+      "68d3f0a377a43d7345a6d669",
+      "68d3f66a5b37547ba34a07f6",
+      "68d3f9eb0786a8be1babf495"
+    ],
+    "createdAt": "2025-09-13T06:48:24.325Z",
+    "updatedAt": "2025-09-24T14:02:19.073Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68d3f9eb0786a8be1babf495"
+}
+[2025-09-24 17:14:53] INFO: Order fetched successfully
+{
+  "orderId": "68d3f9eb0786a8be1babf495",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023fb",
+    "firstName": "Τηλέμαχος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [],
+    "orders": [
+      "68c518c14280fb6cf710c6d2",
+      "68d3f0a377a43d7345a6d669",
+      "68d3f66a5b37547ba34a07f6",
+      "68d3f9eb0786a8be1babf495"
+    ],
+    "createdAt": "2025-09-13T06:48:24.325Z",
+    "updatedAt": "2025-09-24T14:02:19.073Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68d3f9eb0786a8be1babf495"
+}
+[2025-09-24 17:21:59] INFO: Order fetched successfully
+{
+  "orderId": "68d3f9eb0786a8be1babf495",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023fb",
+    "firstName": "Τηλέμαχος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [],
+    "orders": [
+      "68c518c14280fb6cf710c6d2",
+      "68d3f0a377a43d7345a6d669",
+      "68d3f66a5b37547ba34a07f6",
+      "68d3f9eb0786a8be1babf495"
+    ],
+    "createdAt": "2025-09-13T06:48:24.325Z",
+    "updatedAt": "2025-09-24T14:02:19.073Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68d3f9eb0786a8be1babf495"
+}
+[2025-09-24 17:22:08] INFO: Order fetched successfully
+{
+  "orderId": "68d3f9eb0786a8be1babf495",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023fb",
+    "firstName": "Τηλέμαχος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [],
+    "orders": [
+      "68c518c14280fb6cf710c6d2",
+      "68d3f0a377a43d7345a6d669",
+      "68d3f66a5b37547ba34a07f6",
+      "68d3f9eb0786a8be1babf495"
+    ],
+    "createdAt": "2025-09-13T06:48:24.325Z",
+    "updatedAt": "2025-09-24T14:02:19.073Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68d3f9eb0786a8be1babf495"
+}
+[2025-09-24 17:31:10] INFO: Order created successfully
+{
+  "order": {
+    "Lock": false,
+    "invoiceType": "Apodiksi",
+    "orderType": "Κανονική",
+    "orderNotes": "",
+    "DateOfOrder": "2025-09-23T21:00:00.000Z",
+    "customer_id": "68c5146d4280fb6cf710c62c",
+    "salesperson_id": "68c513b83fd53fdf9f9023fb",
+    "contractor_id": "68c514574280fb6cf710c629",
+    "orderedFromCompany": "Sovet",
+    "moneyDetails": {
+      "timi_Timokatalogou": 1000,
+      "timi_Polisis": 2000,
+      "cash": 0,
+      "bank": 0,
+      "contractor_Share_Cash": 0,
+      "contractor_Share_Bank": 0,
+      "customer_Share_Cash": 0,
+      "customer_Share_Bank": 0,
+      "payments": [],
+      "contractor_remainingShare_Cash": 0,
+      "contractor_remainingShare_Bank": 0,
+      "customer_remainingShare_Cash": 0,
+      "customer_remainingShare_Bank": 0,
+      "remainingCash": 0,
+      "remainingBank": 0,
+      "damages": [],
+      "totalpaid": 0,
+      "totaldamages": 0,
+      "FPA": 0,
+      "profit": 1000,
+      "totalCash": 0,
+      "totalBank": 0,
+      "_skipRemainingShareCalc": false
+    },
+    "_id": "68d400ae0786a8be1babf51c",
+    "createdAt": "2025-09-24T14:31:10.834Z",
+    "updatedAt": "2025-09-24T14:31:10.834Z",
+    "__v": 0
+  }
+}
+[2025-09-24 17:46:05] INFO: Order created successfully
+{
+  "order": {
+    "Lock": false,
+    "invoiceType": "Apodiksi",
+    "orderType": "Κανονική",
+    "orderNotes": "",
+    "DateOfOrder": "2025-09-22T21:00:00.000Z",
+    "customer_id": "68c513f24280fb6cf710c617",
+    "salesperson_id": "68c513b83fd53fdf9f9023fb",
+    "contractor_id": "68c514574280fb6cf710c629",
+    "orderedFromCompany": "Decopan",
+    "moneyDetails": {
+      "timi_Timokatalogou": 1000,
+      "timi_Polisis": 12222,
+      "cash": 0,
+      "bank": 0,
+      "contractor_Share_Cash": 0,
+      "contractor_Share_Bank": 0,
+      "customer_Share_Cash": 0,
+      "customer_Share_Bank": 0,
+      "payments": [],
+      "contractor_remainingShare_Cash": 0,
+      "contractor_remainingShare_Bank": 0,
+      "customer_remainingShare_Cash": 0,
+      "customer_remainingShare_Bank": 0,
+      "remainingCash": 0,
+      "remainingBank": 0,
+      "damages": [],
+      "totalpaid": 0,
+      "totaldamages": 0,
+      "FPA": 0,
+      "profit": 11222,
+      "totalCash": 0,
+      "totalBank": 0,
+      "_skipRemainingShareCalc": false
+    },
+    "_id": "68d4042d0786a8be1babf53c",
+    "createdAt": "2025-09-24T14:46:05.960Z",
+    "updatedAt": "2025-09-24T14:46:05.960Z",
+    "__v": 0
+  }
+}
+[2025-09-24 17:46:08] INFO: Order fetched successfully
+{
+  "orderId": "68d4042d0786a8be1babf53c",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023fb",
+    "firstName": "Τηλέμαχος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [],
+    "orders": [
+      "68c518c14280fb6cf710c6d2",
+      "68d3f0a377a43d7345a6d669",
+      "68d3f66a5b37547ba34a07f6",
+      "68d3f9eb0786a8be1babf495",
+      "68d400ae0786a8be1babf51c",
+      "68d4042d0786a8be1babf53c"
+    ],
+    "createdAt": "2025-09-13T06:48:24.325Z",
+    "updatedAt": "2025-09-24T14:46:05.962Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68d4042d0786a8be1babf53c"
+}
+[2025-09-24 17:46:47] INFO: Login attempt for username: Thei
+[2025-09-24 17:46:47] WARN: Login failed: Incorrect password for user 'Thei'
+[2025-09-24 17:46:50] INFO: Login attempt for username: Thei
+[2025-09-24 17:46:50] WARN: Login failed: Incorrect password for user 'Thei'
+[2025-09-24 17:46:55] INFO: Login attempt for username: Thei
+[2025-09-24 17:46:55] INFO: User 'Thei' logged in successfully
+[2025-09-24 17:47:14] INFO: Order created successfully
+{
+  "order": {
+    "Lock": false,
+    "invoiceType": "Apodiksi",
+    "orderType": "Κανονική",
+    "orderNotes": "",
+    "DateOfOrder": "2025-09-24T21:00:00.000Z",
+    "customer_id": "68c5146d4280fb6cf710c62c",
+    "salesperson_id": "68c513b83fd53fdf9f9023f5",
+    "contractor_id": "68c514574280fb6cf710c629",
+    "orderedFromCompany": "Decopan",
+    "moneyDetails": {
+      "timi_Timokatalogou": 1,
+      "timi_Polisis": 2222,
+      "cash": 0,
+      "bank": 0,
+      "contractor_Share_Cash": 0,
+      "contractor_Share_Bank": 0,
+      "customer_Share_Cash": 0,
+      "customer_Share_Bank": 0,
+      "payments": [],
+      "contractor_remainingShare_Cash": 0,
+      "contractor_remainingShare_Bank": 0,
+      "customer_remainingShare_Cash": 0,
+      "customer_remainingShare_Bank": 0,
+      "remainingCash": 0,
+      "remainingBank": 0,
+      "damages": [],
+      "totalpaid": 0,
+      "totaldamages": 0,
+      "FPA": 0,
+      "profit": 2221,
+      "totalCash": 0,
+      "totalBank": 0,
+      "_skipRemainingShareCalc": false
+    },
+    "_id": "68d404720786a8be1babf55f",
+    "createdAt": "2025-09-24T14:47:14.990Z",
+    "updatedAt": "2025-09-24T14:47:14.990Z",
+    "__v": 0
+  }
+}
+[2025-09-24 18:05:26] INFO: Login attempt for username: Tilemachos
+[2025-09-24 18:05:26] INFO: User 'Tilemachos' logged in successfully
+[2025-09-24 18:23:04] INFO: Order fetched successfully
+{
+  "orderId": "68d404720786a8be1babf55f",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023f5",
+    "firstName": "Θαίη",
+    "lastName": "Βαλασιάδου",
+    "Role": "salesperson",
+    "customers": [
+      "68c513f24280fb6cf710c617",
+      "68c5172a4280fb6cf710c650"
+    ],
+    "orders": [
+      "68c517694280fb6cf710c66f",
+      "68d404720786a8be1babf55f"
+    ],
+    "createdAt": "2025-09-13T06:48:24.221Z",
+    "updatedAt": "2025-09-24T14:47:14.992Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68d404720786a8be1babf55f"
+}
+[2025-09-24 18:23:19] INFO: Order fetched successfully
+{
+  "orderId": "68d404720786a8be1babf55f",
+  "user": {
+    "_id": "68c513b83fd53fdf9f9023f5",
+    "firstName": "Θαίη",
+    "lastName": "Βαλασιάδου",
+    "Role": "salesperson",
+    "customers": [
+      "68c513f24280fb6cf710c617",
+      "68c5172a4280fb6cf710c650"
+    ],
+    "orders": [
+      "68c517694280fb6cf710c66f",
+      "68d404720786a8be1babf55f"
+    ],
+    "createdAt": "2025-09-13T06:48:24.221Z",
+    "updatedAt": "2025-09-24T14:47:14.992Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68d404720786a8be1babf55f"
+}
