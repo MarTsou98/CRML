@@ -1,0 +1,9 @@
+[2025-09-17 13:07:05] INFO: Login attempt for username: Tania 
+[2025-09-17 13:07:05] WARN: Login failed: User 'Tania ' not found
+[2025-09-17 13:07:17] INFO: Login attempt for username: Tania
+[2025-09-17 13:07:17] INFO: User 'Tania' logged in successfully
+[2025-09-17 13:07:32] WARN: Invalid order ID requested
+{
+  "id": "search",
+  "route": "/api/orders/search?q=A.D"
+}

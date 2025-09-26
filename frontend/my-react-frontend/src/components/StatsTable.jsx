@@ -237,11 +237,11 @@ function StatsCharts({ allOrders = [] }) {
 
       {/* Damages */}
       <div style={{ height: "400px" }}>
-        <h4 style={{ textAlign: "center" }}>Ζημιές (Pie)</h4>
+        <h4 style={{ textAlign: "center" }}>Έξοδα (Pie)</h4>
         <Pie data={damagesPie} options={pieOptions} />
       </div>
       <div style={{ height: "400px" }}>
-        <h4 style={{ textAlign: "center" }}>Ζημιές (Bar)</h4>
+        <h4 style={{ textAlign: "center" }}>Έξοδα (Bar)</h4>
         <Bar data={damagesBar} options={barOptions} />
       </div>
     </div>
@@ -362,6 +362,7 @@ function StatsTable({ data, groupBy, start, end }) {
       </div>
 
       <div id="table-container" ref={containerRef} style={{ marginTop: "2rem" }}>
+        <h1 style={{ textAlign: "center", marginBottom: "2rem", color: "red",  }}><b>Lube Salonicco</b></h1>
         <h2 style={{ textAlign: "center", marginBottom: "1.5rem" }}>
           Περίοδος: {formatDate(start)} - {formatDate(end)}
         </h2>
@@ -402,7 +403,7 @@ function StatsTable({ data, groupBy, start, end }) {
             damageSummary["Διάφορα"].toFixed(2),
             damageSummary["Τοποθέτηση"].toFixed(2),
             (order.moneyDetails?.timi_Polisis || 0).toFixed(2),
-            ((order.moneyDetails?.profit || 0) - totalDamages).toFixed(2),
+            ((order.moneyDetails?.timi_Polisis || 0)- order.moneyDetails?.FPA - order.moneyDetails.timi_Timokatalogou   - totalDamages).toFixed(2),
             order.moneyDetails?.timi_Polisis
               ? ((order.moneyDetails.timi_Polisis-order.moneyDetails.FPA-order.moneyDetails.timi_Timokatalogou-totalDamages) / (order.moneyDetails.timi_Polisis-order.moneyDetails.FPA) * 100).toFixed(2) + "%"
               : "0%"

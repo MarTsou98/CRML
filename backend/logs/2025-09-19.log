@@ -1,0 +1,250 @@
+[2025-09-19 11:32:42] INFO: Login attempt for username: Tania 
+[2025-09-19 11:32:42] WARN: Login failed: User 'Tania ' not found
+[2025-09-19 11:32:44] INFO: Login attempt for username: Tania 
+[2025-09-19 11:32:44] WARN: Login failed: User 'Tania ' not found
+[2025-09-19 11:32:57] INFO: Login attempt for username: Tania 
+[2025-09-19 11:32:57] WARN: Login failed: User 'Tania ' not found
+[2025-09-19 11:33:19] INFO: Login attempt for username: Tania
+[2025-09-19 11:33:19] INFO: User 'Tania' logged in successfully
+[2025-09-19 11:33:28] INFO: Order fetched successfully
+{
+  "orderId": "68c558d5c2e7cc0fbcefd823",
+  "user": {
+    "_id": "687219ae950e276a8acf2c64",
+    "firstName": "Σοφία",
+    "lastName": "Βουτσά",
+    "customers": [
+      "687fa19eb1a65bc278d83c91",
+      "68b6f386f8def748414ef5f4",
+      "68b6faa950bf498787326647",
+      "68c555c3c2e7cc0fbcefd7ce",
+      "68c55891c2e7cc0fbcefd813"
+    ],
+    "orders": [
+      "687fa3a9b1a65bc278d83cfb",
+      "68b6f4d750bf49878732645e",
+      "68b6f59250bf4987873264d5",
+      "68c5552cc2e7cc0fbcefd7c2",
+      "68c5568cc2e7cc0fbcefd7da",
+      "68c55720c2e7cc0fbcefd7f9",
+      "68c558d5c2e7cc0fbcefd823"
+    ],
+    "__v": 0,
+    "createdAt": "2025-07-12T08:15:42.448Z",
+    "updatedAt": "2025-09-13T11:43:17.566Z"
+  },
+  "route": "/api/orders/68c558d5c2e7cc0fbcefd823"
+}
+[2025-09-19 11:34:39] INFO: Order fetched successfully
+{
+  "orderId": "68c55720c2e7cc0fbcefd7f9",
+  "user": {
+    "_id": "687219ae950e276a8acf2c64",
+    "firstName": "Σοφία",
+    "lastName": "Βουτσά",
+    "customers": [
+      "687fa19eb1a65bc278d83c91",
+      "68b6f386f8def748414ef5f4",
+      "68b6faa950bf498787326647",
+      "68c555c3c2e7cc0fbcefd7ce",
+      "68c55891c2e7cc0fbcefd813"
+    ],
+    "orders": [
+      "687fa3a9b1a65bc278d83cfb",
+      "68b6f4d750bf49878732645e",
+      "68b6f59250bf4987873264d5",
+      "68c5552cc2e7cc0fbcefd7c2",
+      "68c5568cc2e7cc0fbcefd7da",
+      "68c55720c2e7cc0fbcefd7f9",
+      "68c558d5c2e7cc0fbcefd823"
+    ],
+    "__v": 0,
+    "createdAt": "2025-07-12T08:15:42.448Z",
+    "updatedAt": "2025-09-13T11:43:17.566Z"
+  },
+  "route": "/api/orders/68c55720c2e7cc0fbcefd7f9"
+}
+[2025-09-19 11:34:50] INFO: Order fetched successfully
+{
+  "orderId": "68c55720c2e7cc0fbcefd7f9",
+  "user": {
+    "_id": "687219ae950e276a8acf2c64",
+    "firstName": "Σοφία",
+    "lastName": "Βουτσά",
+    "customers": [
+      "687fa19eb1a65bc278d83c91",
+      "68b6f386f8def748414ef5f4",
+      "68b6faa950bf498787326647",
+      "68c555c3c2e7cc0fbcefd7ce",
+      "68c55891c2e7cc0fbcefd813"
+    ],
+    "orders": [
+      "687fa3a9b1a65bc278d83cfb",
+      "68b6f4d750bf49878732645e",
+      "68b6f59250bf4987873264d5",
+      "68c5552cc2e7cc0fbcefd7c2",
+      "68c5568cc2e7cc0fbcefd7da",
+      "68c55720c2e7cc0fbcefd7f9",
+      "68c558d5c2e7cc0fbcefd823"
+    ],
+    "__v": 0,
+    "createdAt": "2025-07-12T08:15:42.448Z",
+    "updatedAt": "2025-09-13T11:43:17.566Z"
+  },
+  "route": "/api/orders/68c55720c2e7cc0fbcefd7f9"
+}
+[2025-09-19 11:35:11] INFO: Order fetched successfully
+{
+  "orderId": "68c5568cc2e7cc0fbcefd7da",
+  "user": {
+    "_id": "687219ae950e276a8acf2c64",
+    "firstName": "Σοφία",
+    "lastName": "Βουτσά",
+    "customers": [
+      "687fa19eb1a65bc278d83c91",
+      "68b6f386f8def748414ef5f4",
+      "68b6faa950bf498787326647",
+      "68c555c3c2e7cc0fbcefd7ce",
+      "68c55891c2e7cc0fbcefd813"
+    ],
+    "orders": [
+      "687fa3a9b1a65bc278d83cfb",
+      "68b6f4d750bf49878732645e",
+      "68b6f59250bf4987873264d5",
+      "68c5552cc2e7cc0fbcefd7c2",
+      "68c5568cc2e7cc0fbcefd7da",
+      "68c55720c2e7cc0fbcefd7f9",
+      "68c558d5c2e7cc0fbcefd823"
+    ],
+    "__v": 0,
+    "createdAt": "2025-07-12T08:15:42.448Z",
+    "updatedAt": "2025-09-13T11:43:17.566Z"
+  },
+  "route": "/api/orders/68c5568cc2e7cc0fbcefd7da"
+}
+[2025-09-19 11:35:21] INFO: Order fetched successfully
+{
+  "orderId": "68c5552cc2e7cc0fbcefd7c2",
+  "user": {
+    "_id": "687219ae950e276a8acf2c64",
+    "firstName": "Σοφία",
+    "lastName": "Βουτσά",
+    "customers": [
+      "687fa19eb1a65bc278d83c91",
+      "68b6f386f8def748414ef5f4",
+      "68b6faa950bf498787326647",
+      "68c555c3c2e7cc0fbcefd7ce",
+      "68c55891c2e7cc0fbcefd813"
+    ],
+    "orders": [
+      "687fa3a9b1a65bc278d83cfb",
+      "68b6f4d750bf49878732645e",
+      "68b6f59250bf4987873264d5",
+      "68c5552cc2e7cc0fbcefd7c2",
+      "68c5568cc2e7cc0fbcefd7da",
+      "68c55720c2e7cc0fbcefd7f9",
+      "68c558d5c2e7cc0fbcefd823"
+    ],
+    "__v": 0,
+    "createdAt": "2025-07-12T08:15:42.448Z",
+    "updatedAt": "2025-09-13T11:43:17.566Z"
+  },
+  "route": "/api/orders/68c5552cc2e7cc0fbcefd7c2"
+}
+[2025-09-19 11:36:26] WARN: Invalid order ID requested
+{
+  "id": "search",
+  "route": "/api/orders/search?q=%CE%91%CE%BD%CE%B1%CF%83%CF%84%CE%B1%CF%83%CE%AF%CE%B1%20%CE%A3%CF%84%CE%B1%CE%BC%CE%AC%CF%84%CE%B7"
+}
+[2025-09-19 11:36:33] WARN: Invalid order ID requested
+{
+  "id": "search",
+  "route": "/api/orders/search?q=lube"
+}
+[2025-09-19 11:37:27] INFO: Order fetched successfully
+{
+  "orderId": "68c558d5c2e7cc0fbcefd823",
+  "user": {
+    "_id": "687219ae950e276a8acf2c64",
+    "firstName": "Σοφία",
+    "lastName": "Βουτσά",
+    "customers": [
+      "687fa19eb1a65bc278d83c91",
+      "68b6f386f8def748414ef5f4",
+      "68b6faa950bf498787326647",
+      "68c555c3c2e7cc0fbcefd7ce",
+      "68c55891c2e7cc0fbcefd813"
+    ],
+    "orders": [
+      "687fa3a9b1a65bc278d83cfb",
+      "68b6f4d750bf49878732645e",
+      "68b6f59250bf4987873264d5",
+      "68c5552cc2e7cc0fbcefd7c2",
+      "68c5568cc2e7cc0fbcefd7da",
+      "68c55720c2e7cc0fbcefd7f9",
+      "68c558d5c2e7cc0fbcefd823"
+    ],
+    "__v": 0,
+    "createdAt": "2025-07-12T08:15:42.448Z",
+    "updatedAt": "2025-09-13T11:43:17.566Z"
+  },
+  "route": "/api/orders/68c558d5c2e7cc0fbcefd823"
+}
+[2025-09-19 11:37:49] INFO: Order fetched successfully
+{
+  "orderId": "68c558d5c2e7cc0fbcefd823",
+  "user": {
+    "_id": "687219ae950e276a8acf2c64",
+    "firstName": "Σοφία",
+    "lastName": "Βουτσά",
+    "customers": [
+      "687fa19eb1a65bc278d83c91",
+      "68b6f386f8def748414ef5f4",
+      "68b6faa950bf498787326647",
+      "68c555c3c2e7cc0fbcefd7ce",
+      "68c55891c2e7cc0fbcefd813"
+    ],
+    "orders": [
+      "687fa3a9b1a65bc278d83cfb",
+      "68b6f4d750bf49878732645e",
+      "68b6f59250bf4987873264d5",
+      "68c5552cc2e7cc0fbcefd7c2",
+      "68c5568cc2e7cc0fbcefd7da",
+      "68c55720c2e7cc0fbcefd7f9",
+      "68c558d5c2e7cc0fbcefd823"
+    ],
+    "__v": 0,
+    "createdAt": "2025-07-12T08:15:42.448Z",
+    "updatedAt": "2025-09-13T11:43:17.566Z"
+  },
+  "route": "/api/orders/68c558d5c2e7cc0fbcefd823"
+}
+[2025-09-19 11:39:36] INFO: Order fetched successfully
+{
+  "orderId": "68c558d5c2e7cc0fbcefd823",
+  "user": {
+    "_id": "687219ae950e276a8acf2c64",
+    "firstName": "Σοφία",
+    "lastName": "Βουτσά",
+    "customers": [
+      "687fa19eb1a65bc278d83c91",
+      "68b6f386f8def748414ef5f4",
+      "68b6faa950bf498787326647",
+      "68c555c3c2e7cc0fbcefd7ce",
+      "68c55891c2e7cc0fbcefd813"
+    ],
+    "orders": [
+      "687fa3a9b1a65bc278d83cfb",
+      "68b6f4d750bf49878732645e",
+      "68b6f59250bf4987873264d5",
+      "68c5552cc2e7cc0fbcefd7c2",
+      "68c5568cc2e7cc0fbcefd7da",
+      "68c55720c2e7cc0fbcefd7f9",
+      "68c558d5c2e7cc0fbcefd823"
+    ],
+    "__v": 0,
+    "createdAt": "2025-07-12T08:15:42.448Z",
+    "updatedAt": "2025-09-13T11:43:17.566Z"
+  },
+  "route": "/api/orders/68c558d5c2e7cc0fbcefd823"
+}
