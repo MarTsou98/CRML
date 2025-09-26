@@ -303,37 +303,83 @@ function StatsTable({ data, groupBy, start, end }) {
     saveAs(new Blob([wbout], { type: "application/octet-stream" }), "orders_stats.xlsx");
   };
 
-  const handleDownloadPDF = async () => {
-    if (!containerRef.current) return;
-    const margin = 30;
-    const pdf = new jsPDF("p", "pt", "a4");
-    const pageWidth = pdf.internal.pageSize.getWidth();
-    const pageHeight = pdf.internal.pageSize.getHeight();
+const handleDownloadPDF = async () => {
+  if (!containerRef.current) return;
+  const margin = 30;
+  const pdf = new jsPDF("p", "pt", "a4");
+  const pageWidth = pdf.internal.pageSize.getWidth();
+  const pageHeight = pdf.internal.pageSize.getHeight();
 
-    const tableEl = document.getElementById("table-container");
-    const tableCanvas = await html2canvas(tableEl, { scale: 2 });
-    const tableImg = tableCanvas.toDataURL("image/png");
-    let tableScale = Math.min((pageWidth - margin * 2) / tableCanvas.width, (pageHeight - margin * 2) / tableCanvas.height);
-    pdf.addImage(tableImg, "PNG", margin, margin, tableCanvas.width * tableScale, tableCanvas.height * tableScale);
+  // ---------- TABLE ----------
+  const tableEl = document.getElementById("table-container");
+  const tableCanvas = await html2canvas(tableEl, { scale: 1.2 }); // lower scale
+  const tableImg = tableCanvas.toDataURL("image/jpeg", 0.7); // JPEG + quality 70%
+  let tableScale = Math.min(
+    (pageWidth - margin * 2) / tableCanvas.width,
+    (pageHeight - margin * 2) / tableCanvas.height
+  );
+  pdf.addImage(
+    tableImg,
+    "JPEG",
+    margin,
+    margin,
+    tableCanvas.width * tableScale,
+    tableCanvas.height * tableScale,
+    undefined,
+    "FAST"
+  );
 
-    const chartsEl = document.getElementById("charts-container");
-    const chartDivs = chartsEl.querySelectorAll("div");
-    const oldHeights = [];
-    chartDivs.forEach((div, i) => { oldHeights[i] = div.style.height; div.style.height = "auto"; });
-    const chartsCanvas = await html2canvas(chartsEl, { scale: 2 });
-    chartDivs.forEach((div, i) => { div.style.height = oldHeights[i]; });
-    pdf.addPage();
-    let chartsScale = Math.min((pageWidth - margin * 2) / chartsCanvas.width, (pageHeight - margin * 2) / chartsCanvas.height);
-    pdf.addImage(chartsCanvas.toDataURL("image/png"), "PNG", (pageWidth - chartsCanvas.width * chartsScale)/2, margin, chartsCanvas.width * chartsScale, chartsCanvas.height * chartsScale);
+  // ---------- CHARTS ----------
+  const chartsEl = document.getElementById("charts-container");
+  const chartDivs = chartsEl.querySelectorAll("div");
+  const oldHeights = [];
+  chartDivs.forEach((div, i) => {
+    oldHeights[i] = div.style.height;
+    div.style.height = "auto";
+  });
+  const chartsCanvas = await html2canvas(chartsEl, { scale: 1.2 });
+  chartDivs.forEach((div, i) => {
+    div.style.height = oldHeights[i];
+  });
+  pdf.addPage();
+  let chartsScale = Math.min(
+    (pageWidth - margin * 2) / chartsCanvas.width,
+    (pageHeight - margin * 2) / chartsCanvas.height
+  );
+  pdf.addImage(
+    chartsCanvas.toDataURL("image/jpeg", 0.7),
+    "JPEG",
+    (pageWidth - chartsCanvas.width * chartsScale) / 2,
+    margin,
+    chartsCanvas.width * chartsScale,
+    chartsCanvas.height * chartsScale,
+    undefined,
+    "FAST"
+  );
 
-    const grandEl = document.getElementById("grandtotals-container");
-    const grandCanvas = await html2canvas(grandEl, { scale: 2 });
-    pdf.addPage();
-    let grandScale = Math.min((pageWidth - margin * 2) / grandCanvas.width, (pageHeight - margin * 2) / grandCanvas.height);
-    pdf.addImage(grandCanvas.toDataURL("image/png"), "PNG", (pageWidth - grandCanvas.width * grandScale)/2, margin, grandCanvas.width * grandScale, grandCanvas.height * grandScale);
+  // ---------- GRAND TOTALS ----------
+  const grandEl = document.getElementById("grandtotals-container");
+  const grandCanvas = await html2canvas(grandEl, { scale: 1.2 });
+  pdf.addPage();
+  let grandScale = Math.min(
+    (pageWidth - margin * 2) / grandCanvas.width,
+    (pageHeight - margin * 2) / grandCanvas.height
+  );
+  pdf.addImage(
+    grandCanvas.toDataURL("image/jpeg", 0.7),
+    "JPEG",
+    (pageWidth - grandCanvas.width * grandScale) / 2,
+    margin,
+    grandCanvas.width * grandScale,
+    grandCanvas.height * grandScale,
+    undefined,
+    "FAST"
+  );
 
-    pdf.save("orders_stats.pdf");
-  };
+  // ---------- SAVE ----------
+  pdf.save("orders_stats.pdf");
+};
+
 
   return (
     <div>
