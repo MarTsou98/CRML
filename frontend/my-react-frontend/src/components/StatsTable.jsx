@@ -5,8 +5,10 @@ import { Pie, Bar } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement } from "chart.js";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import ChartDataLabels from "chartjs-plugin-datalabels";
+ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, ChartDataLabels);
 
-ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement);
+
 
 // Helper: summarize damages by type
 function summarizeDamages(damages) {
@@ -74,16 +76,32 @@ function groupAndSummarizeOrders(orders, groupBy) {
 }
 
 // Charts component
-function StatsCharts({ groupedOrders, allOrders = []  }) {
-  const totalDamages = { "Μεταφορά εξωτερικού": 0, "Μεταφορά εσωτερικού": 0, "Τοποθέτηση": 0, "Διάφορα": 0 };
-  const revenueData = [];
-  Object.entries(groupedOrders).forEach(([groupName, group]) => {
-    revenueData.push({ groupName, revenue: group.totalRevenue, profit: group.totalProfit });
-    Object.keys(totalDamages).forEach(type => totalDamages[type] += group.totalDamages[type]);
-  });
+function StatsCharts({ allOrders = [] }) {
+  const pieOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: "bottom" },
+      datalabels: {
+        color: "#fff",
+        formatter: (value, context) => {
+          const dataset = context.chart.data.datasets[0];
+          const total = dataset.data.reduce((sum, val) => sum + val, 0);
+          return ((value / total) * 100).toFixed(1) + "%";
+        },
+        font: { weight: "bold", size: 14 }
+      }
+    }
+  };
+
+  const barOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { position: "bottom" }, datalabels: { display: false } }
+  };
 
   // Salespeople charts
-  const salespeopleGrouped = groupAndSummarizeOrders(allOrders, 'salesperson_id');
+  const salespeopleGrouped = groupAndSummarizeOrders(allOrders, "salesperson_id");
   const salespeopleNet = Object.entries(salespeopleGrouped).map(([name, group]) => ({
     name,
     netPrice: group.totalNetPrice
@@ -93,50 +111,46 @@ function StatsCharts({ groupedOrders, allOrders = []  }) {
     labels: salespeopleNet.map(s => s.name),
     datasets: [{ data: salespeopleNet.map(s => s.netPrice), backgroundColor: ["#FF6384","#36A2EB","#FFCE56","#4BC0C0","#9966FF"] }]
   };
+
   const salespeopleBar = {
     labels: salespeopleNet.map(s => s.name),
     datasets: [{ label: "Καθαρή Τιμή", data: salespeopleNet.map(s => s.netPrice), backgroundColor: "rgba(255,206,86,0.6)" }]
   };
 
   // Companies charts
-  const companiesGrouped = groupAndSummarizeOrders(allOrders, 'orderedFromCompany');
-  const companiesNet = Object.entries(companiesGrouped).map(([name, group]) => ({ name, netPrice: group.totalNetPrice }));
+  const companiesGrouped = groupAndSummarizeOrders(allOrders, "orderedFromCompany");
+  const companiesNet = Object.entries(companiesGrouped).map(([name, group]) => ({
+    name,
+    netPrice: group.totalNetPrice
+  }));
+
   const companiesPie = {
     labels: companiesNet.map(c => c.name),
     datasets: [{ data: companiesNet.map(c => c.netPrice), backgroundColor: ["#FF6384","#36A2EB","#FFCE56","#4BC0C0","#9966FF"] }]
   };
+
   const companiesBar = {
     labels: companiesNet.map(c => c.name),
     datasets: [{ label: "Καθαρή Τιμή", data: companiesNet.map(c => c.netPrice), backgroundColor: "rgba(75,192,192,0.6)" }]
   };
 
-  const chartOptions = { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: "bottom" } } };
-
   return (
     <div style={{ marginTop: "2rem", display: "flex", flexWrap: "wrap", gap: "2rem" }}>
-      <div style={{ flex: "1 1 300px", maxWidth: "400px", height: "300px" }}>
-        <h4 style={{ textAlign: "center" }}>Έξοδα</h4>
-        <Pie data={{ labels: Object.keys(totalDamages), datasets: [{ data: Object.values(totalDamages), backgroundColor: ["#FF6384","#36A2EB","#FFCE56","#4BC0C0"] }] }} options={chartOptions} />
-      </div>
       <div style={{ flex: "1 1 400px", maxWidth: "400px", height: "300px" }}>
         <h4 style={{ textAlign: "center" }}>Καθαρή Τιμή ανά Salesperson (Pie)</h4>
-        <Pie data={salespeoplePie} options={chartOptions} />
+        <Pie data={salespeoplePie} options={pieOptions} />
       </div>
       <div style={{ flex: "1 1 400px", maxWidth: "400px", height: "300px" }}>
         <h4 style={{ textAlign: "center" }}>Καθαρή Τιμή ανά Salesperson (Bar)</h4>
-        <Bar data={salespeopleBar} options={chartOptions} />
+        <Bar data={salespeopleBar} options={barOptions} />
       </div>
       <div style={{ flex: "1 1 400px", maxWidth: "400px", height: "300px" }}>
         <h4 style={{ textAlign: "center" }}>Καθαρή Τιμή ανά Company (Pie)</h4>
-        <Pie data={companiesPie} options={chartOptions} />
+        <Pie data={companiesPie} options={pieOptions} />
       </div>
       <div style={{ flex: "1 1 400px", maxWidth: "400px", height: "300px" }}>
         <h4 style={{ textAlign: "center" }}>Καθαρή Τιμή ανά Company (Bar)</h4>
-        <Bar data={companiesBar} options={chartOptions} />
-      </div>
-      <div style={{ flex: "1 1 500px", maxWidth: "500px", height: "300px" }}>
-        <h4 style={{ textAlign: "center" }}>Σύνολα/Κέρδος ανά ομάδα</h4>
-        <Bar data={{ labels: revenueData.map(r => r.groupName), datasets: [{ label: "Σύνολα", data: revenueData.map(r => r.revenue), backgroundColor: "rgba(75,192,192,0.6)" }, { label: "Διαφορά", data: revenueData.map(r => r.profit), backgroundColor: "rgba(153,102,255,0.6)" }] }} options={chartOptions} />
+        <Bar data={companiesBar} options={barOptions} />
       </div>
     </div>
   );
@@ -199,7 +213,7 @@ function StatsTable({ data, groupBy, start, end }) {
   const handleDownloadPDF = async () => {
     if (!containerRef.current) return;
     const margin = 30;
-    const pdf = new jsPDF("l", "pt", "a4");
+    const pdf = new jsPDF("p", "pt", "a4");
     const pageWidth = pdf.internal.pageSize.getWidth();
     const pageHeight = pdf.internal.pageSize.getHeight();
 
@@ -266,47 +280,65 @@ function StatsTable({ data, groupBy, start, end }) {
             }}>
               {groupBy === "orderedFromCompany" ? "Εταιρεία: " : groupBy === "salesperson_id" ? "Πωλητής: " : "Εργολάβος: "} {groupName}
             </h3>
-            <table style={{ width: "100%", borderCollapse: "collapse", boxShadow: "0 2px 8px rgba(0,0,0,0.1)", fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" }}>
-              <thead>
-                <tr style={{ backgroundColor: "#f4f6f8", color: "#333", textAlign: "center", fontWeight: "bold", borderBottom: "2px solid #ddd" }}>
-                  {["Πελάτης","Εργολάβος","Ημερομηνία","Είδος","Καθαρή Τιμή","ΦΠΑ","Cash","Bank","Proforma","Μεταφορά Εξωτ.","Μεταφορά Εσωτ.","Διάφορα έξοδα","Τοποθέτηση","Τιμή Πώλησης","Διαφορά","Ποσοστό"].map(header => (
-                    <th key={header} style={{ border: "1px solid #ddd", padding: "8px" }}>{header}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {groupData.orders.map((order, idx) => {
-                  const damageSummary = summarizeDamages(order.moneyDetails?.damages);
-                  const totalDamages = Object.values(damageSummary).reduce((sum, val) => sum + val, 0);
-                  return (
-                    <tr key={order._id} style={{ backgroundColor: idx % 2 === 0 ? "#ffffff" : "#f9f9f9", textAlign: "center" }}>
-                      {[
-                        `${order.customer_id?.firstName || ""} ${order.customer_id?.lastName || ""}`,
-                        order.contractor_id?.EnterpriseName || "",
-                        new Date(order.DateOfOrder).toLocaleDateString(),
-                        order.orderedFromCompany || "",
-                        ((order.moneyDetails?.timi_Polisis || 0) - (order.moneyDetails?.FPA || 0)).toFixed(2),
-                        (order.moneyDetails?.FPA || 0).toFixed(2),
-                        (order.moneyDetails?.cash || 0).toFixed(2),
-                        (order.moneyDetails?.bank || 0).toFixed(2),
-                        order.moneyDetails?.timi_Timokatalogou || 0,
-                        damageSummary["Μεταφορά εξωτερικού"].toFixed(2),
-                        damageSummary["Μεταφορά εσωτερικού"].toFixed(2),
-                        damageSummary["Διάφορα"].toFixed(2),
-                        damageSummary["Τοποθέτηση"].toFixed(2),
-                        (order.moneyDetails?.timi_Polisis || 0).toFixed(2),
-                        ((order.moneyDetails?.profit || 0) - totalDamages).toFixed(2),
-                        order.moneyDetails?.timi_Polisis
-                          ? ((order.moneyDetails.profit / order.moneyDetails.timi_Polisis) * 100).toFixed(2) + "%"
-                          : "0%"
-                      ].map((cell, i) => (
-                        <td key={i} style={{ border: "1px solid #ddd", padding: "8px" }}>{cell}</td>
-                      ))}
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+         <table style={{ width: "100%", borderCollapse: "collapse", boxShadow: "0 2px 8px rgba(0,0,0,0.1)", fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" }}>
+  <thead>
+    <tr style={{ backgroundColor: "#f4f6f8", color: "#333", textAlign: "center", fontWeight: "bold", borderBottom: "2px solid #ddd" }}>
+      {["Πελάτης","Εργολάβος","Ημερομηνία","Είδος","Καθαρή Τιμή","ΦΠΑ","Cash","Bank","Proforma","Μεταφορά Εξωτ.","Μεταφορά Εσωτ.","Διάφορα έξοδα","Τοποθέτηση","Τιμή Πώλησης","Διαφορά","Ποσοστό"].map(header => (
+        <th key={header} style={{ border: "1px solid #ddd", padding: "8px" }}>{header}</th>
+      ))}
+    </tr>
+  </thead>
+  <tbody>
+    {groupData.orders.map((order, idx) => {
+      const damageSummary = summarizeDamages(order.moneyDetails?.damages);
+      const totalDamages = Object.values(damageSummary).reduce((sum, val) => sum + val, 0);
+      return (
+        <tr key={order._id} style={{ backgroundColor: idx % 2 === 0 ? "#ffffff" : "#f9f9f9", textAlign: "center" }}>
+          {[
+            `${order.customer_id?.firstName || ""} ${order.customer_id?.lastName || ""}`,
+            order.contractor_id?.EnterpriseName || "",
+            new Date(order.DateOfOrder).toLocaleDateString(),
+            order.orderedFromCompany || "",
+            ((order.moneyDetails?.timi_Polisis || 0) - (order.moneyDetails?.FPA || 0)).toFixed(2),
+            (order.moneyDetails?.FPA || 0).toFixed(2),
+            (order.moneyDetails?.cash || 0).toFixed(2),
+            (order.moneyDetails?.bank || 0).toFixed(2),
+            order.moneyDetails?.timi_Timokatalogou || 0,
+            damageSummary["Μεταφορά εξωτερικού"].toFixed(2),
+            damageSummary["Μεταφορά εσωτερικού"].toFixed(2),
+            damageSummary["Διάφορα"].toFixed(2),
+            damageSummary["Τοποθέτηση"].toFixed(2),
+            (order.moneyDetails?.timi_Polisis || 0).toFixed(2),
+            ((order.moneyDetails?.profit || 0) - totalDamages).toFixed(2),
+            order.moneyDetails?.timi_Polisis
+              ? ((order.moneyDetails.timi_Polisis-order.moneyDetails.FPA-order.moneyDetails.timi_Timokatalogou-totalDamages) / (order.moneyDetails.timi_Polisis-order.moneyDetails.FPA) * 100).toFixed(2) + "%"
+              : "0%"
+          ].map((cell, i) => (
+            <td key={i} style={{ border: "1px solid #ddd", padding: "8px" }}>{cell}</td>
+          ))}
+        </tr>
+      );
+    })}
+  </tbody>
+  <tfoot>
+    <tr style={{ backgroundColor: "#e0e0e0", fontWeight: "bold", textAlign: "center" }}>
+      <td colSpan={4}>Σύνολο</td>
+      <td>{groupData.totalNetPrice.toFixed(2)}</td>
+      <td>{groupData.orders.reduce((sum, o) => sum + (o.moneyDetails?.FPA || 0), 0).toFixed(2)}</td>
+      <td>{groupData.totalCash.toFixed(2)}</td>
+      <td>{groupData.totalBank.toFixed(2)}</td>
+      <td>{groupData.orders.reduce((sum, o) => sum + (o.moneyDetails?.timi_Timokatalogou || 0), 0)}</td>
+      <td>{groupData.totalDamages["Μεταφορά εξωτερικού"].toFixed(2)}</td>
+      <td>{groupData.totalDamages["Μεταφορά εσωτερικού"].toFixed(2)}</td>
+      <td>{groupData.totalDamages["Διάφορα"].toFixed(2)}</td>
+      <td>{groupData.totalDamages["Τοποθέτηση"].toFixed(2)}</td>
+      <td>{groupData.totalRevenue.toFixed(2)}</td>
+      <td>{groupData.totalProfit.toFixed(2)}</td>
+      <td>-</td>
+    </tr>
+  </tfoot>
+</table>
+
           </div>
         ))}
       </div>
