@@ -439,6 +439,7 @@ const handleDownloadPDF = async () => {
     marginRight: "auto"
   }}
 >
+  <h1>Σύνολα</h1>
   {[
     { label: "Net Price", value: grandTotals.netPrice, color: "#4CAF50" },
     { label: "Revenue", value: grandTotals.revenue, color: "#2196F3" },
