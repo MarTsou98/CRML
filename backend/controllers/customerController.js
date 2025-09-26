@@ -16,8 +16,8 @@ exports.createCustomer = async (req, res) => {
        CustomerNotes // ✅ Include this in the destructuring
     } = req.body;
 if(id_of_contractor === 'undefined' || id_of_contractor === ''|| id_of_contractor === null) {id_of_contractor = '6836d07cf73e4ebd95b75b2b';}
-    if (!firstName || !lastName || !email) {
-      return res.status(400).json({ error: 'firstName, lastName, and email are required' });
+    if (!firstName || !lastName ) {
+      return res.status(400).json({ error: 'firstName, lastName are required' });
     }
 
     const existing = await Customer.findOne({ email });

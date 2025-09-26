@@ -5,47 +5,34 @@ import BackButton from '../components/BackButton';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './css/NewContractor.css';
+
 const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+
 const NewContractor = () => {
   const [formData, setFormData] = useState({
-  EnterpriseName: '',
-  VAT: '',
-  Address: '',
-  //firstName: '',
- // lastName: '',
- // Role: '',
-  phone: '',
-  email: '',
-  ContractorNotes: '',
-});
-
+    EnterpriseName: '',
+    VAT: '',
+    Address: '',
+    phone: '',
+    email: '',
+    ContractorNotes: '',
+  });
 
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
-const validate = () => {
-  const newErrors = {};
-  Object.entries(formData).forEach(([key, value]) => {
-    // Only require certain fields
-    if (key !== 'ContractorNotes' && !value.trim()) {
-      newErrors[key] = `${key.replace(/([A-Z])/g, ' $1')} is required`;
-    }
-  });
-  setErrors(newErrors);
-  return Object.keys(newErrors).length === 0;
-};
-
-
   const handleChange = (field, value) => {
     setFormData({ ...formData, [field]: value });
-    setErrors({ ...errors, [field]: '' });
+    setErrors({ ...errors, [field]: '' }); // clear error when typing
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!validate()) {
-      toast.error('Please correct the highlighted fields');
+    // Validate only EnterpriseName
+    if (!formData.EnterpriseName.trim()) {
+      setErrors({ EnterpriseName: 'Επωνυμία Εργολάβου είναι υποχρεωτικό' });
+      toast.error('Please provide the contractor name');
       return;
     }
 
@@ -55,7 +42,7 @@ const validate = () => {
     try {
       await axios.post(`${BASE_URL}/api/createContractor`, {
         ...formData,
-        salesperson_id, // Fallback if no salesperson_id
+        salesperson_id,
       });
       toast.success('Contractor created successfully!');
       setTimeout(() => navigate('/dashboard'), 1000);
@@ -66,62 +53,53 @@ const validate = () => {
   };
 
   return (
-  <div className="new-contractor-wrapper">
-  <div className="new-contractor-content">
-    <ToastContainer position="top-right" />
-    <BackButton />
-    <h2 className="new-contractor-heading">Δημιουργία νέου εργολάβου</h2>
+    <div className="new-contractor-wrapper">
+      <div className="new-contractor-content">
+        <ToastContainer position="top-right" />
+        <BackButton />
+        <h2 className="new-contractor-heading">Δημιουργία νέου εργολάβου</h2>
 
-    <form onSubmit={handleSubmit} className="new-contractor-form">
-{[
-  { name: 'EnterpriseName', label: 'Επωνυμία Εργολάβου' },
-  { name: 'VAT', label: 'ΑΦΜ' },
-  { name: 'Address', label: 'Διεύθυνση' },
-  // { name: 'firstName', label: 'Όνομα' },
-  // { name: 'lastName', label: 'Επίθετο' },
-  { name: 'phone', label: 'Τηλέφωνο' },
-  { name: 'email', label: 'Email' },
-].map(({ name, label }) => (
-  <div className="new-contractor-form-group" key={name}>
-    <label className="new-contractor-label">{label}:</label>
-    <input
-      type="text"
-      value={formData[name]}
-      onChange={(e) => handleChange(name, e.target.value)}
-      className={`new-contractor-input ${errors[name] ? 'error' : ''}`}
-    />
-    {errors[name] && (
-      <small className="new-contractor-error-message">
-        {errors[name]}
-      </small>
-    )}
-  </div>
-))}
+        <form onSubmit={handleSubmit} className="new-contractor-form">
+          {[
+            { name: 'EnterpriseName', label: 'Επωνυμία Εργολάβου' },
+            { name: 'VAT', label: 'ΑΦΜ' },
+            { name: 'Address', label: 'Διεύθυνση' },
+            { name: 'phone', label: 'Τηλέφωνο' },
+            { name: 'email', label: 'Email' },
+          ].map(({ name, label }) => (
+            <div className="new-contractor-form-group" key={name}>
+              <label className="new-contractor-label">{label}:</label>
+              <input
+                type="text"
+                value={formData[name]}
+                onChange={(e) => handleChange(name, e.target.value)}
+                className={`new-contractor-input ${errors[name] ? 'error' : ''}`}
+              />
+              {errors[name] && (
+                <small className="new-contractor-error-message">
+                  {errors[name]}
+                </small>
+              )}
+            </div>
+          ))}
 
+          <div className="new-contractor-form-group">
+            <label className="new-contractor-label">Σημειώσεις:</label>
+            <textarea
+              value={formData.ContractorNotes}
+              onChange={(e) => handleChange('ContractorNotes', e.target.value)}
+              rows={4}
+              placeholder="Enter any relevant notes about the contractor"
+              className="new-contractor-input"
+            />
+          </div>
 
-      <div className="new-contractor-form-group">
-        <label className="new-contractor-label">Σημειώσεις:</label>
-        <textarea
-          value={formData.ContractorNotes}
-          onChange={(e) => handleChange('ContractorNotes', e.target.value)}
-          rows={4}
-          placeholder="Enter any relevant notes about the contractor"
-          className="new-contractor-input"
-        />
-        {errors.ContractorNotes && (
-          <small className="new-contractor-error-message">
-            {errors.ContractorNotes}
-          </small>
-        )}
+          <button type="submit" className="new-contractor-button">
+            Δημιουργία εργολάβου
+          </button>
+        </form>
       </div>
-
-      <button type="submit" className="new-contractor-button">
-       Δημιουργία εργολάβου
-      </button>
-    </form>
-  </div>
-</div>
-
+    </div>
   );
 };
 

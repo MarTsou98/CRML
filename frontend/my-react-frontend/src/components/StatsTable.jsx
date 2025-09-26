@@ -1,76 +1,13 @@
-import React from "react";
+import React, { useRef } from "react";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 import { Pie, Bar } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement } from "chart.js";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement);
-function StatsCharts({ groupedOrders }) {
-  const totalDamages = {
-    "Μεταφορά εξωτερικού": 0,
-    "Μεταφορά εσωτερικού": 0,
-    "Τοποθέτηση": 0,
-    "Διάφορα": 0,
-  };
 
-  const revenueData = [];
-
-  Object.entries(groupedOrders).forEach(([groupName, group]) => {
-    revenueData.push({ groupName, revenue: group.totalRevenue, profit: group.totalProfit });
-    Object.keys(totalDamages).forEach(type => {
-      totalDamages[type] += group.totalDamages[type];
-    });
-  });
-
-  const pieData = {
-    labels: Object.keys(totalDamages),
-    datasets: [
-      {
-        label: "Total Damages",
-        data: Object.values(totalDamages),
-        backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0"],
-      },
-    ],
-  };
-
-  const barData = {
-    labels: revenueData.map(r => r.groupName),
-    datasets: [
-      {
-        label: "Σύνολα",
-        data: revenueData.map(r => r.revenue),
-        backgroundColor: "rgba(75, 192, 192, 0.6)",
-      },
-      {
-        label: "Διαφορά",
-        data: revenueData.map(r => r.profit),
-        backgroundColor: "rgba(153, 102, 255, 0.6)",
-      },
-    ],
-  };
- const chartOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        position: "bottom",
-      },
-    },
-  };
-  return (
-    <div style={{ marginTop: "2rem", display: "flex", flexWrap: "wrap", gap: "2rem" }}>
-      <div style={{ flex: "1 1 300px", maxWidth: "400px", height: "300px" }}>
-        <h4 style={{ textAlign: "center" }}>Έξοδα</h4>
-        <Pie data={pieData} options={chartOptions} />
-      </div>
-
-      <div style={{ flex: "1 1 300px", maxWidth: "500px", height: "300px" }}>
-        <h4 style={{ textAlign: "center" }}>Σύνολα/Κέρδος ανά ομάδα</h4>
-        <Bar data={barData} options={chartOptions} />
-      </div>
-    </div>
-  );
-}
 // Helper: summarize damages by type
 function summarizeDamages(damages) {
   const summary = {
@@ -79,7 +16,6 @@ function summarizeDamages(damages) {
     "Τοποθέτηση": 0,
     "Διάφορα": 0,
   };
-
   if (Array.isArray(damages)) {
     damages.forEach(d => {
       if (d.typeOfDamage && summary.hasOwnProperty(d.typeOfDamage)) {
@@ -92,12 +28,12 @@ function summarizeDamages(damages) {
 
 // Helper: group and summarize orders
 function groupAndSummarizeOrders(orders, groupBy) {
-  const grouped = {};
+  const grouped = {}; 
+    if (!Array.isArray(orders)) return grouped; 
   orders.forEach(order => {
     let key;
-    if (groupBy === 'orderedFromCompany') {
-      key = order.orderedFromCompany || 'Unassigned';
-    } else if (groupBy === 'salesperson_id') {
+    if (groupBy === 'orderedFromCompany') key = order.orderedFromCompany || 'Unassigned';
+    else if (groupBy === 'salesperson_id') {
       const person = order.salesperson_id;
       key = person ? `${person.firstName || ''} ${person.lastName || ''}`.trim() : 'Unassigned';
     } else if (groupBy === 'contractor_id') {
@@ -105,28 +41,25 @@ function groupAndSummarizeOrders(orders, groupBy) {
       key = contractor ? contractor.EnterpriseName || 'Unassigned' : 'Unassigned';
     }
 
-    if (!grouped[key]) {
-      grouped[key] = {
-        orders: [],
-        totalRevenue: 0,
-        totalProfit: 0,
-        totalCash: 0,
-        totalBank: 0,
-        totalNetPrice: 0,
-        totalDamages: {
-          "Μεταφορά εξωτερικού": 0,
-          "Μεταφορά εσωτερικού": 0,
-          "Τοποθέτηση": 0,
-          "Διάφορα": 0,
-        }
-      };
-    }
+    if (!grouped[key]) grouped[key] = {
+      orders: [],
+      totalRevenue: 0,
+      totalProfit: 0,
+      totalCash: 0,
+      totalBank: 0,
+      totalNetPrice: 0,
+      totalDamages: {
+        "Μεταφορά εξωτερικού": 0,
+        "Μεταφορά εσωτερικού": 0,
+        "Τοποθέτηση": 0,
+        "Διάφορα": 0,
+      }
+    };
 
     const netPrice = (order.moneyDetails?.timi_Polisis || 0) - (order.moneyDetails?.FPA || 0);
     grouped[key].totalNetPrice += netPrice;
 
     const damageSummary = summarizeDamages(order.moneyDetails?.damages);
-
     grouped[key].orders.push(order);
     grouped[key].totalRevenue += order.moneyDetails?.timi_Polisis || 0;
     grouped[key].totalProfit += order.moneyDetails?.profit || 0;
@@ -140,237 +73,411 @@ function groupAndSummarizeOrders(orders, groupBy) {
   return grouped;
 }
 
-function StatsTable({ data, groupBy }) {
+// Charts component
+function StatsCharts({ groupedOrders, allOrders = []  }) {
+  // Existing groupedOrders charts
+  const totalDamages = { "Μεταφορά εξωτερικού": 0, "Μεταφορά εσωτερικού": 0, "Τοποθέτηση": 0, "Διάφορα": 0 };
+  const revenueData = [];
+  const netPriceData = [];
+
+  Object.entries(groupedOrders).forEach(([groupName, group]) => {
+    revenueData.push({ groupName, revenue: group.totalRevenue, profit: group.totalProfit });
+    netPriceData.push({ groupName, netPrice: group.totalNetPrice });
+    Object.keys(totalDamages).forEach(type => totalDamages[type] += group.totalDamages[type]);
+  });
+
+  // Standard charts for Salespeople
+  const salespeopleGrouped = groupAndSummarizeOrders(allOrders, 'salesperson_id');
+  const salespeopleNet = Object.entries(salespeopleGrouped).map(([name, group]) => ({
+    name,
+    netPrice: group.totalNetPrice
+  }));
+
+  const salespeoplePie = {
+    labels: salespeopleNet.map(s => s.name),
+    datasets: [{ data: salespeopleNet.map(s => s.netPrice), backgroundColor: ["#FF6384","#36A2EB","#FFCE56","#4BC0C0","#9966FF"] }]
+  };
+
+  const salespeopleBar = {
+    labels: salespeopleNet.map(s => s.name),
+    datasets: [{ label: "Καθαρή Τιμή", data: salespeopleNet.map(s => s.netPrice), backgroundColor: "rgba(255,206,86,0.6)" }]
+  };
+
+  // Standard charts for Companies
+  const companiesGrouped = groupAndSummarizeOrders(allOrders, 'orderedFromCompany');
+  const companiesNet = Object.entries(companiesGrouped).map(([name, group]) => ({
+    name,
+    netPrice: group.totalNetPrice
+  }));
+
+  const companiesPie = {
+    labels: companiesNet.map(c => c.name),
+    datasets: [{ data: companiesNet.map(c => c.netPrice), backgroundColor: ["#FF6384","#36A2EB","#FFCE56","#4BC0C0","#9966FF"] }]
+  };
+
+  const companiesBar = {
+    labels: companiesNet.map(c => c.name),
+    datasets: [{ label: "Καθαρή Τιμή", data: companiesNet.map(c => c.netPrice), backgroundColor: "rgba(75,192,192,0.6)" }]
+  };
+
+  const chartOptions = { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: "bottom" } } };
+
+  return (
+    <div style={{ marginTop: "2rem", display: "flex", flexWrap: "wrap", gap: "2rem" }}>
+      {/* Existing charts */}
+      <div style={{ flex: "1 1 300px", maxWidth: "400px", height: "300px" }}>
+        <h4 style={{ textAlign: "center" }}>Έξοδα</h4>
+        <Pie data={{ labels: Object.keys(totalDamages), datasets: [{ data: Object.values(totalDamages), backgroundColor: ["#FF6384","#36A2EB","#FFCE56","#4BC0C0"] }] }} options={chartOptions} />
+      </div>
+
+      {/* Standard Salespeople charts */}
+      <div style={{ flex: "1 1 400px", maxWidth: "400px", height: "300px" }}>
+        <h4 style={{ textAlign: "center" }}>Καθαρή Τιμή ανά Salesperson (Pie)</h4>
+        <Pie data={salespeoplePie} options={chartOptions} />
+      </div>
+      <div style={{ flex: "1 1 400px", maxWidth: "400px", height: "300px" }}>
+        <h4 style={{ textAlign: "center" }}>Καθαρή Τιμή ανά Salesperson (Bar)</h4>
+        <Bar data={salespeopleBar} options={chartOptions} />
+      </div>
+
+      {/* Standard Company charts */}
+      <div style={{ flex: "1 1 400px", maxWidth: "400px", height: "300px" }}>
+        <h4 style={{ textAlign: "center" }}>Καθαρή Τιμή ανά Company (Pie)</h4>
+        <Pie data={companiesPie} options={chartOptions} />
+      </div>
+      <div style={{ flex: "1 1 400px", maxWidth: "400px", height: "300px" }}>
+        <h4 style={{ textAlign: "center" }}>Καθαρή Τιμή ανά Company (Bar)</h4>
+        <Bar data={companiesBar} options={chartOptions} />
+      </div>
+
+      {/* Other grouped charts like before */}
+      <div style={{ flex: "1 1 500px", maxWidth: "500px", height: "300px" }}>
+        <h4 style={{ textAlign: "center" }}>Σύνολα/Κέρδος ανά ομάδα</h4>
+        <Bar data={{ labels: revenueData.map(r => r.groupName), datasets: [{ label: "Σύνολα", data: revenueData.map(r => r.revenue), backgroundColor: "rgba(75,192,192,0.6)" }, { label: "Διαφορά", data: revenueData.map(r => r.profit), backgroundColor: "rgba(153,102,255,0.6)" }] }} options={chartOptions} />
+      </div>
+    </div>
+  );
+}
+
+
+
+// Main component
+function StatsTable({  data, groupBy, start, end  }) {
+  const containerRef = useRef();
   if (!data || data.length === 0) return <p>No orders found.</p>;
 
   const groupedOrders = groupAndSummarizeOrders(data, groupBy);
 
-  // Grand totals
-  let grandTotals = {
-    revenue: 0,
-    profit: 0,
-    cash: 0,
-    bank: 0,
-    netPrice: 0,
-    damages: {
-      "Μεταφορά εξωτερικού": 0,
-      "Μεταφορά εσωτερικού": 0,
-      "Τοποθέτηση": 0,
-      "Διάφορα": 0,
-    }
-  };
-
+  let grandTotals = { revenue: 0, profit: 0, cash: 0, bank: 0, netPrice: 0, damages: { "Μεταφορά εξωτερικού": 0, "Μεταφορά εσωτερικού": 0, "Τοποθέτηση": 0, "Διάφορα": 0 } };
   Object.values(groupedOrders).forEach(group => {
     grandTotals.revenue += group.totalRevenue;
     grandTotals.profit += group.totalProfit;
     grandTotals.cash += group.totalCash;
     grandTotals.bank += group.totalBank;
     grandTotals.netPrice += group.totalNetPrice;
-    Object.keys(group.totalDamages).forEach(type => {
-      grandTotals.damages[type] += group.totalDamages[type];
-    });
+    Object.keys(group.totalDamages).forEach(type => grandTotals.damages[type] += group.totalDamages[type]);
   });
 
-  // Excel export
-const handleDownloadExcel = () => {
-  const wb = XLSX.utils.book_new();
-
-  Object.entries(groupedOrders).forEach(([groupName, groupData]) => {
-    const wsData = [
-      [
-        "Πελάτης",
-        "Εργολάβος",
-        "Ημερομηνία",
-        "Τύπος",
-        "Είδος",
-        "Καθαρή Τιμή",
-        "ΦΠΑ",
-        "Cash",
-        "Bank",
-        "Proforma",
-        "Μεταφορά Εξωτ.",
-        "Μεταφορά Εσωτ.",
-        "Διάφορα έξοδα",
-        "Τοποθέτηση",
-        "Τιμή Πώλησης",
-        "Διαφορά"
-      ]
-    ];
-
-    groupData.orders.forEach(order => {
-      const damageSummary = summarizeDamages(order.moneyDetails?.damages);
-      const netPrice = Math.round(((order.moneyDetails?.timi_Polisis || 0) - (order.moneyDetails?.FPA || 0)) * 100) / 100;
-      const timiPolisis = Math.round((order.moneyDetails?.timi_Polisis || 0) * 100) / 100;
-      const profit = Math.round((order.moneyDetails?.profit || 0) * 100) / 100;
-      const cash = Math.round((order.moneyDetails?.cash || 0) * 100) / 100;
-      const bank = Math.round((order.moneyDetails?.bank || 0) * 100) / 100;
-      const proforma = Math.round((order.moneyDetails?.timi_Timokatalogou || 0) * 100) / 100;
-      const extTransport = Math.round(damageSummary["Μεταφορά εξωτερικού"] * 100) / 100;
-      const intTransport = Math.round(damageSummary["Μεταφορά εσωτερικού"] * 100) / 100;
-      const various = Math.round(damageSummary["Διάφορα"] * 100) / 100;
-      const installation = Math.round(damageSummary["Τοποθέτηση"] * 100) / 100;
-
-      wsData.push([
-        `${order.customer_id?.firstName || ""} ${order.customer_id?.lastName || ""}`,
-        order.contractor_id?.EnterpriseName || "",
-        new Date(order.DateOfOrder).toLocaleDateString(),
-        order.orderedFromCompany || "",
-        order.orderType || "",
-        netPrice,
-        order.moneyDetails?.FPA || 0,
-        cash,
-        bank,
-        proforma,
-        extTransport,
-        intTransport,
-        various,
-        installation,
-        timiPolisis,
-        profit
-      ]);
+  const handleDownloadExcel = () => {
+    const wb = XLSX.utils.book_new();
+    Object.entries(groupedOrders).forEach(([groupName, groupData]) => {
+      const wsData = [["Πελάτης","Εργολάβος","Ημερομηνία","Είδος","Καθαρή Τιμή","ΦΠΑ","Cash","Bank","Proforma","Μεταφορά Εξωτ.","Μεταφορά Εσωτ.","Διάφορα έξοδα","Τοποθέτηση","Τιμή Πώλησης","Διαφορά","Ποσοστό"]];
+      groupData.orders.forEach(order => {
+        const damageSummary = summarizeDamages(order.moneyDetails?.damages);
+        wsData.push([
+          `${order.customer_id?.firstName || ""} ${order.customer_id?.lastName || ""}`,
+          order.contractor_id?.EnterpriseName || "",
+          new Date(order.DateOfOrder).toLocaleDateString(),
+          order.orderedFromCompany || "",
+          
+          Math.round(((order.moneyDetails?.timi_Polisis || 0) - (order.moneyDetails?.FPA || 0)) * 100)/100,
+          order.moneyDetails?.FPA || 0,
+          order.moneyDetails?.cash || 0,
+          order.moneyDetails?.bank || 0,
+          order.moneyDetails?.timi_Timokatalogou || 0,
+          damageSummary["Μεταφορά εξωτερικού"],
+          damageSummary["Μεταφορά εσωτερικού"],
+          damageSummary["Διάφορα"],
+          damageSummary["Τοποθέτηση"],
+          order.moneyDetails?.timi_Polisis || 0,
+          order.moneyDetails?.profit || 0,
+          order.moneyDetails?.timi_Polisis ? ((order.moneyDetails.profit / order.moneyDetails.timi_Polisis) * 100).toFixed(2) + "%" : "0%"
+        ]);
+      });
+      const ws = XLSX.utils.aoa_to_sheet(wsData);
+      XLSX.utils.book_append_sheet(wb, ws, groupName.substring(0,31));
     });
+    const wbout = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+    saveAs(new Blob([wbout], { type: "application/octet-stream" }), "orders_stats.xlsx");
+  };
+const formatDate = (date) => date ? new Date(date).toLocaleDateString("en-GB") : "";
+const handleDownloadPDF = async () => {
+  if (!containerRef.current) return;
 
-    // Add totals row for the group
-    wsData.push([
-      `Total for ${groupName}`,
-      "",
-      "",
-      "",
-      groupData.totalNetPrice,
-      "",
-      "",
-      groupData.totalCash,
-      groupData.totalBank,
-      "",
-      groupData.totalDamages["Μεταφορά εξωτερικού"],
-      groupData.totalDamages["Μεταφορά εσωτερικού"],
-      groupData.totalDamages["Διάφορα"],
-      groupData.totalDamages["Τοποθέτηση"],
-      groupData.totalRevenue,
-      groupData.totalProfit
-    ]);
+  const margin = 30;
+  const pdf = new jsPDF("l", "pt", "a4");
+  const pageWidth = pdf.internal.pageSize.getWidth();
+  const pageHeight = pdf.internal.pageSize.getHeight();
 
-    const ws = XLSX.utils.aoa_to_sheet(wsData);
-    XLSX.utils.book_append_sheet(wb, ws, groupName.substring(0, 31));
+  // 1️⃣ Table page
+  const tableEl = document.getElementById("table-container");
+  const tableCanvas = await html2canvas(tableEl, { scale: 2 });
+  const tableImg = tableCanvas.toDataURL("image/png");
+
+  let tableScale = Math.min(
+    (pageWidth - margin * 2) / tableCanvas.width,
+    (pageHeight - margin * 2) / tableCanvas.height
+  );
+  const tableWidth = tableCanvas.width * tableScale;
+  const tableHeight = tableCanvas.height * tableScale;
+
+  pdf.addImage(tableImg, "PNG", margin, margin, tableWidth, tableHeight);
+
+  // 2️⃣ Charts page
+  const chartsEl = document.getElementById("charts-container");
+
+  // Temporarily remove fixed heights to capture full charts
+  const chartDivs = chartsEl.querySelectorAll("div");
+  const oldHeights = [];
+  chartDivs.forEach((div, i) => {
+    oldHeights[i] = div.style.height;
+    div.style.height = "auto";
   });
 
-  // Grand totals sheet
-  const wsGrand = XLSX.utils.aoa_to_sheet([
-    ["Grand Totals"],
-    ["Net Price", grandTotals.netPrice],
-    ["Revenue", grandTotals.revenue],
-    ["Profit", grandTotals.profit],
-    ["Cash", grandTotals.cash],
-    ["Bank", grandTotals.bank],
-    ["Μεταφορά Εξωτ.", grandTotals.damages["Μεταφορά εξωτερικού"]],
-    ["Μεταφορά Εσωτ.", grandTotals.damages["Μεταφορά εσωτερικού"]],
-    ["Διάφορα", grandTotals.damages["Διάφορα"]],
-    ["Τοποθέτηση", grandTotals.damages["Τοποθέτηση"]],
-  ]);
-  XLSX.utils.book_append_sheet(wb, wsGrand, "Grand Totals");
+  const chartsCanvas = await html2canvas(chartsEl, { scale: 2 });
+  const chartsImg = chartsCanvas.toDataURL("image/png");
 
-  const wbout = XLSX.write(wb, { bookType: "xlsx", type: "array" });
-  saveAs(new Blob([wbout], { type: "application/octet-stream" }), "orders_stats.xlsx");
+  // Restore original heights
+  chartDivs.forEach((div, i) => {
+    div.style.height = oldHeights[i];
+  });
+
+  pdf.addPage();
+
+  let chartsScale = Math.min(
+    (pageWidth - margin * 2) / chartsCanvas.width,
+    (pageHeight - margin * 2) / chartsCanvas.height
+  );
+  const chartsWidth = chartsCanvas.width * chartsScale;
+  const chartsHeight = chartsCanvas.height * chartsScale;
+  const chartsXOffset = (pageWidth - chartsWidth) / 2;
+
+  pdf.addImage(chartsImg, "PNG", chartsXOffset, margin, chartsWidth, chartsHeight);
+
+  // 3️⃣ Grand totals page
+  const grandEl = document.getElementById("grandtotals-container");
+  const grandCanvas = await html2canvas(grandEl, { scale: 2 });
+  const grandImg = grandCanvas.toDataURL("image/png");
+
+  let grandScale = Math.min(
+    (pageWidth - margin * 2) / grandCanvas.width,
+    (pageHeight - margin * 2) / grandCanvas.height
+  );
+  const grandWidth = grandCanvas.width * grandScale;
+  const grandHeight = grandCanvas.height * grandScale;
+  const grandXOffset = (pageWidth - grandWidth) / 2;
+
+  pdf.addPage();
+  pdf.addImage(grandImg, "PNG", grandXOffset, margin, grandWidth, grandHeight);
+
+  // Save PDF
+  pdf.save("orders_stats.pdf");
 };
 
 
-  return (
-    <div>
-      <button onClick={handleDownloadExcel} style={{ marginBottom: "1rem" }}>
-        Download Excel
-      </button>
 
-      {Object.entries(groupedOrders).map(([groupName, groupData]) => (
-        <div key={groupName} style={{ marginBottom: "2rem" }}>
-          <h2>
-            {groupBy === "orderedFromCompany" ? "Company: "
-              : groupBy === "salesperson_id" ? "Salesperson: "
-              : "Contractor: "}
-            {groupName}
-          </h2>
 
-          <table border="1" cellPadding="5" style={{ width: "100%" }}>
-            <thead>
-              <tr>
-                <th>Πελάτης</th>
-                <th>Εργολάβος</th>
-                <th>Ημερομηνία</th>
-                <th>Τύπος</th>
-                <th>Είδος</th>
-                <th>Καθαρή Τιμή</th>
-                <th>ΦΠΑ</th>
-                <th>Cash</th>
-                <th>Bank</th>
-                <th>Proforma</th>
-                <th>Μεταφορά Εξωτ.</th>
-                <th>Μεταφορά Εσωτ.</th>
-                <th>Διάφορα έξοδα</th>
-                <th>Τοποθέτηση</th>
-                <th>Τιμή Πώλησης</th>
-                <th>Διαφορά</th>
-              </tr>
-            </thead>
-            <tbody>
-              {groupData.orders.map(order => {
-                const damageSummary = summarizeDamages(order.moneyDetails?.damages);
-                return (
-                  <tr key={order._id}>
-                    <td>{order.customer_id?.firstName} {order.customer_id?.lastName}</td>
-                    <td>{order.contractor_id?.EnterpriseName}</td>
-                    <td>{new Date(order.DateOfOrder).toLocaleDateString()}</td>
-                    <td>{order.orderedFromCompany}</td>
-                    <td>{order.orderType}</td>
-                    <td>{((order.moneyDetails?.timi_Polisis || 0) - (order.moneyDetails?.FPA || 0)).toFixed(2)}</td>
-                    <td>{(order.moneyDetails?.FPA || 0).toFixed(2)}</td>
-                    <td>{(order.moneyDetails?.cash || 0).toFixed(2)}</td>
-                    <td>{(order.moneyDetails?.bank || 0).toFixed(2)}</td>
-                    <td>{order.moneyDetails?.timi_Timokatalogou || 0}</td>
-                    <td>{damageSummary["Μεταφορά εξωτερικού"].toFixed(2)}</td>
-                    <td>{damageSummary["Μεταφορά εσωτερικού"].toFixed(2)}</td>
-                    <td>{damageSummary["Διάφορα"].toFixed(2)}</td>
-                    <td>{damageSummary["Τοποθέτηση"].toFixed(2)}</td>
-                    <td>{(order.moneyDetails?.timi_Polisis || 0).toFixed(2)}</td>
-                    <td>{(order.moneyDetails?.profit || 0).toFixed(2)}</td>
-                  </tr>
-                );
-              })}
-              <tr style={{ fontWeight: "bold", backgroundColor: "#f0f0f0" }}>
-                <td colSpan={2}>Total for {groupName}</td>
-                <td colSpan={3}></td>
-                <td>{groupData.totalNetPrice.toFixed(2)}</td>
-                <td></td>
-                
-                <td>{groupData.totalCash.toFixed(2)}</td>
-                <td>{groupData.totalBank.toFixed(2)}</td>
-                <td></td>
-                <td>{groupData.totalDamages["Μεταφορά εξωτερικού"].toFixed(2)}</td>
-                <td>{groupData.totalDamages["Μεταφορά εσωτερικού"].toFixed(2)}</td>
-                <td>{groupData.totalDamages["Διάφορα"].toFixed(2)}</td>
-                <td>{groupData.totalDamages["Τοποθέτηση"].toFixed(2)}</td>
-                <td>{groupData.totalRevenue.toFixed(2)}</td>
-                <td>{groupData.totalProfit.toFixed(2)}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+
+
+
+
+
+
+ return (
+  <div>
+  <div style={{ marginBottom: "2rem", display: "flex", gap: "1rem" }}>
+  <button
+    onClick={handleDownloadExcel}
+    style={{
+      padding: "10px 20px",
+      backgroundColor: "#4CAF50",
+      color: "#fff",
+      border: "none",
+      borderRadius: "6px",
+      cursor: "pointer",
+      fontWeight: "bold",
+      boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+      transition: "all 0.2s ease-in-out"
+    }}
+    onMouseEnter={e => e.currentTarget.style.backgroundColor = "#45a049"}
+    onMouseLeave={e => e.currentTarget.style.backgroundColor = "#4CAF50"}
+  >
+    Download Excel
+  </button>
+
+  <button
+    onClick={handleDownloadPDF}
+    style={{
+      padding: "10px 20px",
+      backgroundColor: "#2196F3",
+      color: "#fff",
+      border: "none",
+      borderRadius: "6px",
+      cursor: "pointer",
+      fontWeight: "bold",
+      boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+      transition: "all 0.2s ease-in-out"
+    }}
+    onMouseEnter={e => e.currentTarget.style.backgroundColor = "#1976D2"}
+    onMouseLeave={e => e.currentTarget.style.backgroundColor = "#2196F3"}
+  >
+    Download PDF
+  </button>
+</div>
+
+
+    {/* Table container */}
+   <div id="table-container" ref={containerRef} style={{ marginTop: "2rem" }}>
+  <h2 style={{ textAlign: "center", marginBottom: "1.5rem" }}>
+    Περίοδος: {formatDate(start)} - {formatDate(end)}
+  </h2>
+  {Object.entries(groupedOrders).map(([groupName, groupData]) => (
+    <div key={groupName} style={{ marginBottom: "3rem" }}>
+      <h3 style={{ 
+        background: "#4a90e2", 
+        color: "white", 
+        padding: "0.5rem 1rem", 
+        borderRadius: "6px",
+        marginBottom: "0.5rem"
+      }}>
+        {groupBy === "orderedFromCompany"
+          ? "Εταιρεία: "
+          : groupBy === "salesperson_id"
+          ? "Πωλητής: "
+          : "Εργολάβος: "} {groupName}
+      </h3>
+     <table style={{
+  width: "100%",
+  borderCollapse: "collapse",
+  boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+  fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+}}>
+  <thead>
+    <tr style={{
+      backgroundColor: "#f4f6f8",
+      color: "#333",
+      textAlign: "center",
+      fontWeight: "bold",
+      borderBottom: "2px solid #ddd"
+    }}>
+      {["Πελάτης","Εργολάβος","Ημερομηνία","Είδος","Καθαρή Τιμή","ΦΠΑ","Cash","Bank","Proforma","Μεταφορά Εξωτ.","Μεταφορά Εσωτ.","Διάφορα έξοδα","Τοποθέτηση","Τιμή Πώλησης","Διαφορά","Ποσοστό"].map(header => (
+        <th key={header} style={{ border: "1px solid #ddd", padding: "8px" }}>{header}</th>
       ))}
+    </tr>
+  </thead>
+  <tbody>
+    {groupData.orders.map((order, idx) => {
+      const damageSummary = summarizeDamages(order.moneyDetails?.damages);
+      return (
+        <tr key={order._id} style={{
+          backgroundColor: idx % 2 === 0 ? "#ffffff" : "#f9f9f9",
+          textAlign: "center"
+        }}>
+          {[
+            `${order.customer_id?.firstName} ${order.customer_id?.lastName}`,
+            order.contractor_id?.EnterpriseName,
+            new Date(order.DateOfOrder).toLocaleDateString(),
+            order.orderedFromCompany,
+            ((order.moneyDetails?.timi_Polisis || 0) - (order.moneyDetails?.FPA || 0)).toFixed(2),
+            (order.moneyDetails?.FPA || 0).toFixed(2),
+            (order.moneyDetails?.cash || 0).toFixed(2),
+            (order.moneyDetails?.bank || 0).toFixed(2),
+            order.moneyDetails?.timi_Timokatalogou || 0,
+            damageSummary["Μεταφορά εξωτερικού"].toFixed(2),
+            damageSummary["Μεταφορά εσωτερικού"].toFixed(2),
+            damageSummary["Διάφορα"].toFixed(2),
+            damageSummary["Τοποθέτηση"].toFixed(2),
+            (order.moneyDetails?.timi_Polisis || 0).toFixed(2),
+            (order.moneyDetails?.profit || 0).toFixed(2),
+            order.moneyDetails?.timi_Polisis 
+              ? ((order.moneyDetails.profit / order.moneyDetails.timi_Polisis) * 100).toFixed(2) + "%" 
+              : "0%"
+          ].map((cell, i) => (
+            <td key={i} style={{ border: "1px solid #ddd", padding: "8px" }}>{cell}</td>
+          ))}
+        </tr>
+      );
+    })}
+  </tbody>
+</table>
 
-      {/* Grand totals */}
-      <div style={{ fontWeight: "bold", fontSize: "1.1rem", marginTop: "1rem" }}>
-        <p>Grand Totals:</p>
-        <p>Net Price: {grandTotals.netPrice.toFixed(2)}</p>
-        <p>Revenue: {grandTotals.revenue.toFixed(2)}</p>
-        <p>Profit: {grandTotals.profit.toFixed(2)}</p>
-        <p>Cash: {grandTotals.cash.toFixed(2)}</p>
-        <p>Bank: {grandTotals.bank.toFixed(2)}</p>
-        <p>Μεταφορά Εξωτ.: {grandTotals.damages["Μεταφορά εξωτερικού"].toFixed(2)}</p>
-        <p>Μεταφορά Εσωτ.: {grandTotals.damages["Μεταφορά εσωτερικού"].toFixed(2)}</p>
-        <p>Διάφορα Έξοδα: {grandTotals.damages["Διάφορα"].toFixed(2)}</p>
-        <p>Τοποθέτηση: {grandTotals.damages["Τοποθέτηση"].toFixed(2)}</p>
-      </div>
-       <StatsCharts groupedOrders={groupedOrders} />
     </div>
-  );
+  ))}
+</div>
+
+
+    {/* Charts container */}
+    <div id="charts-container">
+      <StatsCharts groupedOrders={groupedOrders} allOrders={data || []} />
+    </div>
+
+    {/* Grand totals container — moved outside table-container */}
+<div
+  id="grandtotals-container"
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: "1rem",
+    marginTop: "4rem", // space from top
+    padding: "3rem", // increased padding
+    background: "#e0e0e0", // darker gray
+    borderRadius: "16px",
+    boxShadow: "0 6px 18px rgba(0,0,0,0.1)",
+    maxWidth: "500px",
+    marginLeft: "auto",
+    marginRight: "auto"
+  }}
+>
+  {[
+    { label: "Net Price", value: grandTotals.netPrice, color: "#4CAF50" },
+    { label: "Revenue", value: grandTotals.revenue, color: "#2196F3" },
+    { label: "Profit", value: grandTotals.profit, color: "#FF9800" },
+    { label: "Cash", value: grandTotals.cash, color: "#9C27B0" },
+    { label: "Bank", value: grandTotals.bank, color: "#00BCD4" },
+    { label: "Μεταφορά Εξωτ.", value: grandTotals.damages["Μεταφορά εξωτερικού"], color: "#F44336" },
+    { label: "Μεταφορά Εσωτ.", value: grandTotals.damages["Μεταφορά εσωτερικού"], color: "#FF5722" },
+    { label: "Διάφορα Έξοδα", value: grandTotals.damages["Διάφορα"], color: "#607D8B" },
+    { label: "Τοποθέτηση", value: grandTotals.damages["Τοποθέτηση"], color: "#795548" }
+  ].map((item, idx) => (
+    <div
+      key={idx}
+      style={{
+        width: "100%",
+        background: "#fff",
+        borderLeft: `6px solid ${item.color}`,
+        borderRadius: "10px",
+        padding: "1.5rem 2rem", // slightly bigger blocks
+        textAlign: "center",
+        boxShadow: "0 3px 8px rgba(0,0,0,0.08)",
+      }}
+    >
+      <div style={{ fontSize: "1rem", color: "#555", marginBottom: "0.5rem" }}>
+        {item.label}
+      </div>
+      <div style={{ fontSize: "1.8rem", fontWeight: "600", color: "#111" }}>
+        {item.value.toFixed(2)}
+      </div>
+    </div>
+  ))}
+</div>
+
+
+
+
+  </div>
+);
+
 }
 
 export default StatsTable;

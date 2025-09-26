@@ -17,7 +17,7 @@ exports.createContractor = async (req, res) => {
     } = req.body;
 
     // Validate required fields
-    if (!EnterpriseName || !VAT || !Address) {
+    if (!EnterpriseName ) {
       return res.status(400).json({ error: 'EnterpriseName, VAT, and Address are required.' });
     }
 
@@ -110,8 +110,8 @@ exports.updateContractor = async (req, res) => {
     }
 
     // Optional: Validate required fields if you want to enforce them on update
-    if (!EnterpriseName || !VAT || !Address) {
-      return res.status(400).json({ error: 'EnterpriseName, VAT, and Address are required.' });
+    if (!EnterpriseName ) {
+      return res.status(400).json({ error: 'EnterpriseName is required.' });
     }
 
     // Optional: If you want email uniqueness check, uncomment

@@ -15,10 +15,9 @@ const NewCustomer = () => {
     email: '',
     phone: '',
     address: '',
-    CustomerNotes: '', // ✅ New field
+    CustomerNotes: '',
   });
 
-  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
   const fieldLabels = {
@@ -30,29 +29,12 @@ const NewCustomer = () => {
     CustomerNotes: 'Σημειώσεις',
   };
 
-  const validate = () => {
-    const newErrors = {};
-    Object.entries(formData).forEach(([key, value]) => {
-      if (!value.trim()) {
-        newErrors[key] = `${fieldLabels[key]} είναι υποχρεωτικό`;
-      }
-    });
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
   const handleChange = (field, value) => {
     setFormData({ ...formData, [field]: value });
-    setErrors({ ...errors, [field]: '' }); // Clear error on change
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!validate()) {
-      toast.error('Διορθώστε τα επισημασμένα πεδία');
-      return;
-    }
 
     const user = JSON.parse(localStorage.getItem('user'));
     const id_of_salesperson = user?.salesperson_id;
@@ -85,13 +67,10 @@ const NewCustomer = () => {
               type={field === 'email' ? 'email' : field === 'phone' ? 'tel' : 'text'}
               value={formData[field]}
               onChange={(e) => handleChange(field, e.target.value)}
-              className={errors[field] ? 'error' : ''}
             />
-            {errors[field] && <small className="error-text">{errors[field]}</small>}
           </div>
         ))}
 
-        {/* CustomerNotes */}
         <div className="nice-form-group">
           <label>{fieldLabels.CustomerNotes}:</label>
           <textarea
@@ -100,7 +79,6 @@ const NewCustomer = () => {
             rows={4}
             placeholder="Εισάγετε τυχόν σχετικές σημειώσεις σχετικά με τον πελάτη"
           />
-          {errors.CustomerNotes && <small className="error-text">{errors.CustomerNotes}</small>}
         </div>
 
         <div className="nice-form-group">

@@ -5,12 +5,11 @@ const contractorSchema = new mongoose.Schema({
     type: String,
     required: true},
   VAT: {
-    type: String,
-    required: true
+    type: String
   },
   Address: {
-    type: String,
-    required: true
+    type: String
+    
   },
 
     firstName: {
