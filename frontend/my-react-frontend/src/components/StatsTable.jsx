@@ -100,7 +100,7 @@ function StatsCharts({ allOrders = [] }) {
     plugins: { legend: { position: "bottom" }, datalabels: { display: false } }
   };
 
-  // Salespeople charts
+  // --- Salespeople ---
   const salespeopleGrouped = groupAndSummarizeOrders(allOrders, "salesperson_id");
   const salespeopleNet = Object.entries(salespeopleGrouped).map(([name, group]) => ({
     name,
@@ -109,15 +109,22 @@ function StatsCharts({ allOrders = [] }) {
 
   const salespeoplePie = {
     labels: salespeopleNet.map(s => s.name),
-    datasets: [{ data: salespeopleNet.map(s => s.netPrice), backgroundColor: ["#FF6384","#36A2EB","#FFCE56","#4BC0C0","#9966FF"] }]
+    datasets: [{
+      data: salespeopleNet.map(s => s.netPrice),
+      backgroundColor: ["#FF6384","#36A2EB","#FFCE56","#4BC0C0","#9966FF"]
+    }]
   };
 
   const salespeopleBar = {
     labels: salespeopleNet.map(s => s.name),
-    datasets: [{ label: "Καθαρή Τιμή", data: salespeopleNet.map(s => s.netPrice), backgroundColor: "rgba(255,206,86,0.6)" }]
+    datasets: [{
+      label: "Καθαρή Τιμή",
+      data: salespeopleNet.map(s => s.netPrice),
+      backgroundColor: "rgba(255,206,86,0.6)"
+    }]
   };
 
-  // Companies charts
+  // --- Companies ---
   const companiesGrouped = groupAndSummarizeOrders(allOrders, "orderedFromCompany");
   const companiesNet = Object.entries(companiesGrouped).map(([name, group]) => ({
     name,
@@ -126,35 +133,121 @@ function StatsCharts({ allOrders = [] }) {
 
   const companiesPie = {
     labels: companiesNet.map(c => c.name),
-    datasets: [{ data: companiesNet.map(c => c.netPrice), backgroundColor: ["#FF6384","#36A2EB","#FFCE56","#4BC0C0","#9966FF"] }]
+    datasets: [{
+      data: companiesNet.map(c => c.netPrice),
+      backgroundColor: ["#FF6384","#36A2EB","#FFCE56","#4BC0C0","#9966FF"]
+    }]
   };
 
   const companiesBar = {
     labels: companiesNet.map(c => c.name),
-    datasets: [{ label: "Καθαρή Τιμή", data: companiesNet.map(c => c.netPrice), backgroundColor: "rgba(75,192,192,0.6)" }]
+    datasets: [{
+      label: "Καθαρή Τιμή",
+      data: companiesNet.map(c => c.netPrice),
+      backgroundColor: "rgba(75,192,192,0.6)"
+    }]
+  };
+
+  // --- Payment Method ---
+  let totalCash = 0, totalBank = 0;
+  allOrders.forEach(o => {
+    totalCash += o.moneyDetails?.cash || 0;
+    totalBank += o.moneyDetails?.bank || 0;
+  });
+
+  const paymentPie = {
+    labels: ["Cash", "Bank"],
+    datasets: [{
+      data: [totalCash, totalBank],
+      backgroundColor: ["#4CAF50", "#2196F3"]
+    }]
+  };
+
+  const paymentBar = {
+    labels: ["Cash", "Bank"],
+    datasets: [{
+      label: "Πληρωμές",
+      data: [totalCash, totalBank],
+      backgroundColor: ["rgba(76,175,80,0.6)", "rgba(33,150,243,0.6)"]
+    }]
+  };
+
+  // --- Damages ---
+  const damagesTotals = { "Μεταφορά εξωτερικού": 0, "Μεταφορά εσωτερικού": 0, "Τοποθέτηση": 0, "Διάφορα": 0 };
+  allOrders.forEach(o => {
+    const d = summarizeDamages(o.moneyDetails?.damages);
+    Object.keys(damagesTotals).forEach(type => damagesTotals[type] += d[type]);
+  });
+
+  const damagesPie = {
+    labels: Object.keys(damagesTotals),
+    datasets: [{
+      data: Object.values(damagesTotals),
+      backgroundColor: ["#F44336","#FF9800","#9C27B0","#607D8B"]
+    }]
+  };
+
+  const damagesBar = {
+    labels: Object.keys(damagesTotals),
+    datasets: [{
+      label: "Σύνολο Ζημιών",
+      data: Object.values(damagesTotals),
+      backgroundColor: "rgba(244,67,54,0.6)"
+    }]
   };
 
   return (
-    <div style={{ marginTop: "2rem", display: "flex", flexWrap: "wrap", gap: "2rem" }}>
-      <div style={{ flex: "1 1 400px", maxWidth: "400px", height: "300px" }}>
+    <div
+      style={{
+        marginTop: "2rem",
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: "2rem"
+      }}
+    >
+      {/* Salespeople */}
+      <div style={{ height: "400px" }}>
         <h4 style={{ textAlign: "center" }}>Καθαρή Τιμή ανά Salesperson (Pie)</h4>
         <Pie data={salespeoplePie} options={pieOptions} />
       </div>
-      <div style={{ flex: "1 1 400px", maxWidth: "400px", height: "300px" }}>
+      <div style={{ height: "400px" }}>
         <h4 style={{ textAlign: "center" }}>Καθαρή Τιμή ανά Salesperson (Bar)</h4>
         <Bar data={salespeopleBar} options={barOptions} />
       </div>
-      <div style={{ flex: "1 1 400px", maxWidth: "400px", height: "300px" }}>
+
+      {/* Companies */}
+      <div style={{ height: "400px" }}>
         <h4 style={{ textAlign: "center" }}>Καθαρή Τιμή ανά Company (Pie)</h4>
         <Pie data={companiesPie} options={pieOptions} />
       </div>
-      <div style={{ flex: "1 1 400px", maxWidth: "400px", height: "300px" }}>
+      <div style={{ height: "400px" }}>
         <h4 style={{ textAlign: "center" }}>Καθαρή Τιμή ανά Company (Bar)</h4>
         <Bar data={companiesBar} options={barOptions} />
+      </div>
+
+      {/* Payment Methods */}
+      <div style={{ height: "400px" }}>
+        <h4 style={{ textAlign: "center" }}>Πληρωμές (Pie)</h4>
+        <Pie data={paymentPie} options={pieOptions} />
+      </div>
+      <div style={{ height: "400px" }}>
+        <h4 style={{ textAlign: "center" }}>Πληρωμές (Bar)</h4>
+        <Bar data={paymentBar} options={barOptions} />
+      </div>
+
+      {/* Damages */}
+      <div style={{ height: "400px" }}>
+        <h4 style={{ textAlign: "center" }}>Ζημιές (Pie)</h4>
+        <Pie data={damagesPie} options={pieOptions} />
+      </div>
+      <div style={{ height: "400px" }}>
+        <h4 style={{ textAlign: "center" }}>Ζημιές (Bar)</h4>
+        <Bar data={damagesBar} options={barOptions} />
       </div>
     </div>
   );
 }
+
 
 // Main component
 function StatsTable({ data, groupBy, start, end }) {
