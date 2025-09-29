@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import ContractorSelect from '../pages/ContractorSelect';
 const GeneralDetailsOfOrder = ({
   invoiceType,
   Lock,
@@ -184,12 +184,35 @@ const GeneralDetailsOfOrder = ({
           <p><strong>Σημείωση από καρτέλα Πελάτη:</strong> {customer?.CustomerNotes}</p>
         </div>
 
-        <div className="detail-box">
-          <strong>Εργολάβος:</strong>
-          <p>{contractor?.EnterpriseName}</p>
-          
-          <p><strong>Σημείωση από καρτέλα Εργολάβου :</strong> {contractor?.ContractorNotes}</p>
-          
+      <div className="detail-box">
+  <strong>Εργολάβος:</strong>
+  {isEditing ? (
+    <ContractorSelect
+      value={form.contractorId || ""}
+      onChange={(newId) =>
+        setForm((prev) => ({ ...prev, contractorId: newId }))
+      }
+    />
+  ) : (
+    <>
+      <p>{contractor?.EnterpriseName}</p>
+      <p>
+        <strong>Σημείωση από καρτέλα Εργολάβου:</strong>{" "}
+        {contractor?.ContractorNotes}
+      </p>
+    </>
+  )}
+</div>
+  <div className="button-row">
+          {!isEditing ? (
+            <button onClick={() => setIsEditing(true)} disabled={loading}>✏️ Επεξεργασία</button>
+          ) : (
+            <>
+              <button onClick={handleSubmit} disabled={loading}>💾 Αποθήκευση</button>
+              <button onClick={resetForm} disabled={loading}>Ακύρωση</button>
+            </>
+          )}
+          {message && <p style={{ marginTop: '10px' }}>{message}</p>}
         </div>
       </div>
     </div>

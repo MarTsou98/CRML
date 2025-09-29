@@ -312,35 +312,52 @@ const handleDownloadPDF = async () => {
 
   // ---------- TABLE ----------
   const tableEl = document.getElementById("table-container");
-  const tableCanvas = await html2canvas(tableEl, { scale: 1.2 }); // lower scale
-  const tableImg = tableCanvas.toDataURL("image/jpeg", 0.7); // JPEG + quality 70%
-  let tableScale = Math.min(
-    (pageWidth - margin * 2) / tableCanvas.width,
-    (pageHeight - margin * 2) / tableCanvas.height
-  );
-  pdf.addImage(
-    tableImg,
-    "JPEG",
-    margin,
-    margin,
-    tableCanvas.width * tableScale,
-    tableCanvas.height * tableScale,
-    undefined,
-    "FAST"
-  );
+  const tableCanvas = await html2canvas(tableEl, { scale: 1.2 });
+  const tableImg = tableCanvas.toDataURL("image/jpeg", 0.7);
+
+  const imgWidth = pageWidth - margin * 2;
+  const imgHeight = (tableCanvas.height * imgWidth) / tableCanvas.width;
+
+  // Estimate row height in the canvas
+  const numRows = tableEl.querySelectorAll("tbody tr").length;
+  const approxRowHeight = tableCanvas.height / numRows;
+
+  const rowsPerPage =60; // 👈 adjust this number
+  const chunkHeight = approxRowHeight * rowsPerPage;
+
+  let yOffset = 0;
+  let pageIndex = 0;
+
+  while (yOffset < tableCanvas.height) {
+    const pageCanvas = document.createElement("canvas");
+    pageCanvas.width = tableCanvas.width;
+    pageCanvas.height = Math.min(chunkHeight, tableCanvas.height - yOffset);
+
+    const ctx = pageCanvas.getContext("2d");
+    ctx.drawImage(
+      tableCanvas,
+      0, yOffset, pageCanvas.width, pageCanvas.height,
+      0, 0, pageCanvas.width, pageCanvas.height
+    );
+
+    const pageImg = pageCanvas.toDataURL("image/jpeg", 0.7);
+    const pageImgHeight = (pageCanvas.height * imgWidth) / pageCanvas.width;
+
+    if (pageIndex > 0) pdf.addPage();
+    pdf.addImage(pageImg, "JPEG", margin, margin, imgWidth, pageImgHeight, undefined, "FAST");
+
+    yOffset += chunkHeight;
+    pageIndex++;
+  }
 
   // ---------- CHARTS ----------
   const chartsEl = document.getElementById("charts-container");
   const chartDivs = chartsEl.querySelectorAll("div");
   const oldHeights = [];
-  chartDivs.forEach((div, i) => {
-    oldHeights[i] = div.style.height;
-    div.style.height = "auto";
-  });
+  chartDivs.forEach((div, i) => { oldHeights[i] = div.style.height; div.style.height = "auto"; });
   const chartsCanvas = await html2canvas(chartsEl, { scale: 1.2 });
-  chartDivs.forEach((div, i) => {
-    div.style.height = oldHeights[i];
-  });
+  chartDivs.forEach((div, i) => { div.style.height = oldHeights[i]; });
+
   pdf.addPage();
   let chartsScale = Math.min(
     (pageWidth - margin * 2) / chartsCanvas.width,
