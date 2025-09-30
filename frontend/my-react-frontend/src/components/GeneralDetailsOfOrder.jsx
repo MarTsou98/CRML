@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import ContractorSelect from '../pages/ContractorSelect';
+import  ContractorSelect from '../pages/ContractorSelect';
 const GeneralDetailsOfOrder = ({
   invoiceType,
   Lock,
@@ -24,6 +24,7 @@ const GeneralDetailsOfOrder = ({
     orderNotes,
     typeOfOrder,
     orderedFromCompany,
+     contractor_id: contractor?._id || '', // add contractor_id
     DateOfOrder: DateOfOrder
       ? new Date(DateOfOrder).toISOString().split('T')[0]
       : ''
@@ -58,7 +59,8 @@ const GeneralDetailsOfOrder = ({
         orderNotes: form.orderNotes,
         orderType: safeOrderType,
         DateOfOrder: form.DateOfOrder,
-        orderedFromCompany: form.orderedFromCompany
+        orderedFromCompany: form.orderedFromCompany,
+        contractor_id: form.contractor_id // send contractor_id here
       });
 
       setMessage('✅ Updated successfully');
@@ -158,17 +160,7 @@ const GeneralDetailsOfOrder = ({
           )}
         </div>
 
-        <div className="button-row">
-          {!isEditing ? (
-            <button onClick={() => setIsEditing(true)} disabled={loading}>✏️ Επεξεργασία</button>
-          ) : (
-            <>
-              <button onClick={handleSubmit} disabled={loading}>💾 Αποθήκευση</button>
-              <button onClick={resetForm} disabled={loading}>Ακύρωση</button>
-            </>
-          )}
-          {message && <p style={{ marginTop: '10px' }}>{message}</p>}
-        </div>
+     
 
         <div className="detail-box">
           <strong>Πωλητής:</strong>
@@ -184,14 +176,12 @@ const GeneralDetailsOfOrder = ({
           <p><strong>Σημείωση από καρτέλα Πελάτη:</strong> {customer?.CustomerNotes}</p>
         </div>
 
-      <div className="detail-box">
+     <div className="detail-box">
   <strong>Εργολάβος:</strong>
   {isEditing ? (
     <ContractorSelect
-      value={form.contractorId || ""}
-      onChange={(newId) =>
-        setForm((prev) => ({ ...prev, contractorId: newId }))
-      }
+      value={form.contractor_id}
+  onChange={(val) => setForm(prev => ({ ...prev, contractor_id: val }))}
     />
   ) : (
     <>
@@ -203,7 +193,8 @@ const GeneralDetailsOfOrder = ({
     </>
   )}
 </div>
-  <div className="button-row">
+
+   <div className="button-row">
           {!isEditing ? (
             <button onClick={() => setIsEditing(true)} disabled={loading}>✏️ Επεξεργασία</button>
           ) : (

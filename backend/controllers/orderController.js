@@ -369,7 +369,7 @@ exports.updateOrder = async (req, res) => {
 
 exports.updateOrderGeneralInfo = async (req, res) => {
   const { id } = req.params;
-  const { invoiceType, Lock, orderNotes, orderType, DateOfOrder, orderedFromCompany } = req.body;
+  const { invoiceType, Lock, orderNotes, orderType, DateOfOrder, orderedFromCompany, contractor_id } = req.body;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).json({ error: 'Invalid order ID' });
@@ -412,7 +412,15 @@ exports.updateOrderGeneralInfo = async (req, res) => {
       order.DateOfOrder = parsedDate;
     }
 
+    // ✅ Update contractor if provided
+    if (contractor_id && mongoose.Types.ObjectId.isValid(contractor_id)) {
+      order.contractor_id = contractor_id;
+    }
+
     await order.save();
+
+    // Populate references for frontend
+    await order.populate('customer_id salesperson_id contractor_id');
 
     res.status(200).json({ message: 'Order general info updated', order });
   } catch (err) {

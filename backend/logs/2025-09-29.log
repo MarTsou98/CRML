@@ -1,0 +1,1098 @@
+[2025-09-29 08:06:49] INFO: Login attempt for username: Tilemachos
+[2025-09-29 08:06:49] INFO: User 'Tilemachos' logged in successfully
+[2025-09-29 08:38:32] INFO: Login attempt for username: Tilemachos
+[2025-09-29 08:38:32] INFO: User 'Tilemachos' logged in successfully
+[2025-09-29 08:38:36] INFO: Order fetched successfully
+{
+  "orderId": "68da1495837236a2cd803f60",
+  "user": {
+    "_id": "68c01242eb804c5b489f78aa",
+    "firstName": "Tilemachos",
+    "lastName": "Tsourelas",
+    "Role": "manager",
+    "customers": [
+      "68c012e3def3f14ccad0fcb4",
+      "68cbb5047b2bf693dcd8019d",
+      "68cbb5307b2bf693dcd801b9",
+      "68d655e63b07a93a96dbaa13"
+    ],
+    "orders": [
+      "68c0166adef3f14ccad0fcd9",
+      "68cbb03c5d4034bc0a08b1a5",
+      "68cbb5197b2bf693dcd801ab",
+      "68cbb5577b2bf693dcd801c7",
+      "68d65146ff57eb51c49f70fd",
+      "68d65155ff57eb51c49f7110",
+      "68d65167ff57eb51c49f7123",
+      "68d651adff57eb51c49f713b",
+      "68d653b2ff57eb51c49f715e",
+      "68d653c4ff57eb51c49f7171",
+      "68d66ccb7f923cf4fa4312eb",
+      "68d66d227f923cf4fa431310",
+      "68d66d377f923cf4fa431323",
+      "68d66d487f923cf4fa431336",
+      "68d66dd87f923cf4fa43134d",
+      "68d66de67f923cf4fa431360",
+      "68d66df77f923cf4fa431373",
+      "68d670f87f923cf4fa4313a2",
+      "68d678b97f923cf4fa4313d5",
+      "68d687f07f923cf4fa43143a"
+    ],
+    "createdAt": "2025-09-09T11:40:50.272Z",
+    "updatedAt": "2025-09-26T12:32:48.615Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68da1495837236a2cd803f60"
+}
+[2025-09-29 08:38:53] INFO: Order fetched successfully
+{
+  "orderId": "68da1495837236a2cd803f60",
+  "user": {
+    "_id": "68c01242eb804c5b489f78aa",
+    "firstName": "Tilemachos",
+    "lastName": "Tsourelas",
+    "Role": "manager",
+    "customers": [
+      "68c012e3def3f14ccad0fcb4",
+      "68cbb5047b2bf693dcd8019d",
+      "68cbb5307b2bf693dcd801b9",
+      "68d655e63b07a93a96dbaa13"
+    ],
+    "orders": [
+      "68c0166adef3f14ccad0fcd9",
+      "68cbb03c5d4034bc0a08b1a5",
+      "68cbb5197b2bf693dcd801ab",
+      "68cbb5577b2bf693dcd801c7",
+      "68d65146ff57eb51c49f70fd",
+      "68d65155ff57eb51c49f7110",
+      "68d65167ff57eb51c49f7123",
+      "68d651adff57eb51c49f713b",
+      "68d653b2ff57eb51c49f715e",
+      "68d653c4ff57eb51c49f7171",
+      "68d66ccb7f923cf4fa4312eb",
+      "68d66d227f923cf4fa431310",
+      "68d66d377f923cf4fa431323",
+      "68d66d487f923cf4fa431336",
+      "68d66dd87f923cf4fa43134d",
+      "68d66de67f923cf4fa431360",
+      "68d66df77f923cf4fa431373",
+      "68d670f87f923cf4fa4313a2",
+      "68d678b97f923cf4fa4313d5",
+      "68d687f07f923cf4fa43143a"
+    ],
+    "createdAt": "2025-09-09T11:40:50.272Z",
+    "updatedAt": "2025-09-26T12:32:48.615Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68da1495837236a2cd803f60"
+}
+[2025-09-29 08:38:58] INFO: Order fetched successfully
+{
+  "orderId": "68da1495837236a2cd803f60",
+  "user": {
+    "_id": "68c01242eb804c5b489f78aa",
+    "firstName": "Tilemachos",
+    "lastName": "Tsourelas",
+    "Role": "manager",
+    "customers": [
+      "68c012e3def3f14ccad0fcb4",
+      "68cbb5047b2bf693dcd8019d",
+      "68cbb5307b2bf693dcd801b9",
+      "68d655e63b07a93a96dbaa13"
+    ],
+    "orders": [
+      "68c0166adef3f14ccad0fcd9",
+      "68cbb03c5d4034bc0a08b1a5",
+      "68cbb5197b2bf693dcd801ab",
+      "68cbb5577b2bf693dcd801c7",
+      "68d65146ff57eb51c49f70fd",
+      "68d65155ff57eb51c49f7110",
+      "68d65167ff57eb51c49f7123",
+      "68d651adff57eb51c49f713b",
+      "68d653b2ff57eb51c49f715e",
+      "68d653c4ff57eb51c49f7171",
+      "68d66ccb7f923cf4fa4312eb",
+      "68d66d227f923cf4fa431310",
+      "68d66d377f923cf4fa431323",
+      "68d66d487f923cf4fa431336",
+      "68d66dd87f923cf4fa43134d",
+      "68d66de67f923cf4fa431360",
+      "68d66df77f923cf4fa431373",
+      "68d670f87f923cf4fa4313a2",
+      "68d678b97f923cf4fa4313d5",
+      "68d687f07f923cf4fa43143a"
+    ],
+    "createdAt": "2025-09-09T11:40:50.272Z",
+    "updatedAt": "2025-09-26T12:32:48.615Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68da1495837236a2cd803f60"
+}
+[2025-09-29 08:39:14] INFO: Order fetched successfully
+{
+  "orderId": "68da1488837236a2cd803f5d",
+  "user": {
+    "_id": "68c01242eb804c5b489f78aa",
+    "firstName": "Tilemachos",
+    "lastName": "Tsourelas",
+    "Role": "manager",
+    "customers": [
+      "68c012e3def3f14ccad0fcb4",
+      "68cbb5047b2bf693dcd8019d",
+      "68cbb5307b2bf693dcd801b9",
+      "68d655e63b07a93a96dbaa13"
+    ],
+    "orders": [
+      "68c0166adef3f14ccad0fcd9",
+      "68cbb03c5d4034bc0a08b1a5",
+      "68cbb5197b2bf693dcd801ab",
+      "68cbb5577b2bf693dcd801c7",
+      "68d65146ff57eb51c49f70fd",
+      "68d65155ff57eb51c49f7110",
+      "68d65167ff57eb51c49f7123",
+      "68d651adff57eb51c49f713b",
+      "68d653b2ff57eb51c49f715e",
+      "68d653c4ff57eb51c49f7171",
+      "68d66ccb7f923cf4fa4312eb",
+      "68d66d227f923cf4fa431310",
+      "68d66d377f923cf4fa431323",
+      "68d66d487f923cf4fa431336",
+      "68d66dd87f923cf4fa43134d",
+      "68d66de67f923cf4fa431360",
+      "68d66df77f923cf4fa431373",
+      "68d670f87f923cf4fa4313a2",
+      "68d678b97f923cf4fa4313d5",
+      "68d687f07f923cf4fa43143a"
+    ],
+    "createdAt": "2025-09-09T11:40:50.272Z",
+    "updatedAt": "2025-09-26T12:32:48.615Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68da1488837236a2cd803f5d"
+}
+[2025-09-29 08:39:41] INFO: Order fetched successfully
+{
+  "orderId": "68da1495837236a2cd803f60",
+  "user": {
+    "_id": "68c01242eb804c5b489f78aa",
+    "firstName": "Tilemachos",
+    "lastName": "Tsourelas",
+    "Role": "manager",
+    "customers": [
+      "68c012e3def3f14ccad0fcb4",
+      "68cbb5047b2bf693dcd8019d",
+      "68cbb5307b2bf693dcd801b9",
+      "68d655e63b07a93a96dbaa13"
+    ],
+    "orders": [
+      "68c0166adef3f14ccad0fcd9",
+      "68cbb03c5d4034bc0a08b1a5",
+      "68cbb5197b2bf693dcd801ab",
+      "68cbb5577b2bf693dcd801c7",
+      "68d65146ff57eb51c49f70fd",
+      "68d65155ff57eb51c49f7110",
+      "68d65167ff57eb51c49f7123",
+      "68d651adff57eb51c49f713b",
+      "68d653b2ff57eb51c49f715e",
+      "68d653c4ff57eb51c49f7171",
+      "68d66ccb7f923cf4fa4312eb",
+      "68d66d227f923cf4fa431310",
+      "68d66d377f923cf4fa431323",
+      "68d66d487f923cf4fa431336",
+      "68d66dd87f923cf4fa43134d",
+      "68d66de67f923cf4fa431360",
+      "68d66df77f923cf4fa431373",
+      "68d670f87f923cf4fa4313a2",
+      "68d678b97f923cf4fa4313d5",
+      "68d687f07f923cf4fa43143a"
+    ],
+    "createdAt": "2025-09-09T11:40:50.272Z",
+    "updatedAt": "2025-09-26T12:32:48.615Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68da1495837236a2cd803f60"
+}
+[2025-09-29 08:44:02] INFO: Order fetched successfully
+{
+  "orderId": "68da1495837236a2cd803f60",
+  "user": {
+    "_id": "68c01242eb804c5b489f78aa",
+    "firstName": "Tilemachos",
+    "lastName": "Tsourelas",
+    "Role": "manager",
+    "customers": [
+      "68c012e3def3f14ccad0fcb4",
+      "68cbb5047b2bf693dcd8019d",
+      "68cbb5307b2bf693dcd801b9",
+      "68d655e63b07a93a96dbaa13"
+    ],
+    "orders": [
+      "68c0166adef3f14ccad0fcd9",
+      "68cbb03c5d4034bc0a08b1a5",
+      "68cbb5197b2bf693dcd801ab",
+      "68cbb5577b2bf693dcd801c7",
+      "68d65146ff57eb51c49f70fd",
+      "68d65155ff57eb51c49f7110",
+      "68d65167ff57eb51c49f7123",
+      "68d651adff57eb51c49f713b",
+      "68d653b2ff57eb51c49f715e",
+      "68d653c4ff57eb51c49f7171",
+      "68d66ccb7f923cf4fa4312eb",
+      "68d66d227f923cf4fa431310",
+      "68d66d377f923cf4fa431323",
+      "68d66d487f923cf4fa431336",
+      "68d66dd87f923cf4fa43134d",
+      "68d66de67f923cf4fa431360",
+      "68d66df77f923cf4fa431373",
+      "68d670f87f923cf4fa4313a2",
+      "68d678b97f923cf4fa4313d5",
+      "68d687f07f923cf4fa43143a"
+    ],
+    "createdAt": "2025-09-09T11:40:50.272Z",
+    "updatedAt": "2025-09-26T12:32:48.615Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68da1495837236a2cd803f60"
+}
+[2025-09-29 08:45:17] INFO: Order fetched successfully
+{
+  "orderId": "68da1495837236a2cd803f60",
+  "user": {
+    "_id": "68c01242eb804c5b489f78aa",
+    "firstName": "Tilemachos",
+    "lastName": "Tsourelas",
+    "Role": "manager",
+    "customers": [
+      "68c012e3def3f14ccad0fcb4",
+      "68cbb5047b2bf693dcd8019d",
+      "68cbb5307b2bf693dcd801b9",
+      "68d655e63b07a93a96dbaa13"
+    ],
+    "orders": [
+      "68c0166adef3f14ccad0fcd9",
+      "68cbb03c5d4034bc0a08b1a5",
+      "68cbb5197b2bf693dcd801ab",
+      "68cbb5577b2bf693dcd801c7",
+      "68d65146ff57eb51c49f70fd",
+      "68d65155ff57eb51c49f7110",
+      "68d65167ff57eb51c49f7123",
+      "68d651adff57eb51c49f713b",
+      "68d653b2ff57eb51c49f715e",
+      "68d653c4ff57eb51c49f7171",
+      "68d66ccb7f923cf4fa4312eb",
+      "68d66d227f923cf4fa431310",
+      "68d66d377f923cf4fa431323",
+      "68d66d487f923cf4fa431336",
+      "68d66dd87f923cf4fa43134d",
+      "68d66de67f923cf4fa431360",
+      "68d66df77f923cf4fa431373",
+      "68d670f87f923cf4fa4313a2",
+      "68d678b97f923cf4fa4313d5",
+      "68d687f07f923cf4fa43143a"
+    ],
+    "createdAt": "2025-09-09T11:40:50.272Z",
+    "updatedAt": "2025-09-26T12:32:48.615Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68da1495837236a2cd803f60"
+}
+[2025-09-29 08:46:30] INFO: Order fetched successfully
+{
+  "orderId": "68da1495837236a2cd803f60",
+  "user": {
+    "_id": "68c01242eb804c5b489f78aa",
+    "firstName": "Tilemachos",
+    "lastName": "Tsourelas",
+    "Role": "manager",
+    "customers": [
+      "68c012e3def3f14ccad0fcb4",
+      "68cbb5047b2bf693dcd8019d",
+      "68cbb5307b2bf693dcd801b9",
+      "68d655e63b07a93a96dbaa13"
+    ],
+    "orders": [
+      "68c0166adef3f14ccad0fcd9",
+      "68cbb03c5d4034bc0a08b1a5",
+      "68cbb5197b2bf693dcd801ab",
+      "68cbb5577b2bf693dcd801c7",
+      "68d65146ff57eb51c49f70fd",
+      "68d65155ff57eb51c49f7110",
+      "68d65167ff57eb51c49f7123",
+      "68d651adff57eb51c49f713b",
+      "68d653b2ff57eb51c49f715e",
+      "68d653c4ff57eb51c49f7171",
+      "68d66ccb7f923cf4fa4312eb",
+      "68d66d227f923cf4fa431310",
+      "68d66d377f923cf4fa431323",
+      "68d66d487f923cf4fa431336",
+      "68d66dd87f923cf4fa43134d",
+      "68d66de67f923cf4fa431360",
+      "68d66df77f923cf4fa431373",
+      "68d670f87f923cf4fa4313a2",
+      "68d678b97f923cf4fa4313d5",
+      "68d687f07f923cf4fa43143a"
+    ],
+    "createdAt": "2025-09-09T11:40:50.272Z",
+    "updatedAt": "2025-09-26T12:32:48.615Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68da1495837236a2cd803f60"
+}
+[2025-09-29 08:46:40] INFO: Order fetched successfully
+{
+  "orderId": "68da1495837236a2cd803f60",
+  "user": {
+    "_id": "68c01242eb804c5b489f78aa",
+    "firstName": "Tilemachos",
+    "lastName": "Tsourelas",
+    "Role": "manager",
+    "customers": [
+      "68c012e3def3f14ccad0fcb4",
+      "68cbb5047b2bf693dcd8019d",
+      "68cbb5307b2bf693dcd801b9",
+      "68d655e63b07a93a96dbaa13"
+    ],
+    "orders": [
+      "68c0166adef3f14ccad0fcd9",
+      "68cbb03c5d4034bc0a08b1a5",
+      "68cbb5197b2bf693dcd801ab",
+      "68cbb5577b2bf693dcd801c7",
+      "68d65146ff57eb51c49f70fd",
+      "68d65155ff57eb51c49f7110",
+      "68d65167ff57eb51c49f7123",
+      "68d651adff57eb51c49f713b",
+      "68d653b2ff57eb51c49f715e",
+      "68d653c4ff57eb51c49f7171",
+      "68d66ccb7f923cf4fa4312eb",
+      "68d66d227f923cf4fa431310",
+      "68d66d377f923cf4fa431323",
+      "68d66d487f923cf4fa431336",
+      "68d66dd87f923cf4fa43134d",
+      "68d66de67f923cf4fa431360",
+      "68d66df77f923cf4fa431373",
+      "68d670f87f923cf4fa4313a2",
+      "68d678b97f923cf4fa4313d5",
+      "68d687f07f923cf4fa43143a"
+    ],
+    "createdAt": "2025-09-09T11:40:50.272Z",
+    "updatedAt": "2025-09-26T12:32:48.615Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68da1495837236a2cd803f60"
+}
+[2025-09-29 09:25:00] INFO: Order fetched successfully
+{
+  "orderId": "68da1495837236a2cd803f60",
+  "user": {
+    "_id": "68c01242eb804c5b489f78aa",
+    "firstName": "Tilemachos",
+    "lastName": "Tsourelas",
+    "Role": "manager",
+    "customers": [
+      "68c012e3def3f14ccad0fcb4",
+      "68cbb5047b2bf693dcd8019d",
+      "68cbb5307b2bf693dcd801b9",
+      "68d655e63b07a93a96dbaa13"
+    ],
+    "orders": [
+      "68c0166adef3f14ccad0fcd9",
+      "68cbb03c5d4034bc0a08b1a5",
+      "68cbb5197b2bf693dcd801ab",
+      "68cbb5577b2bf693dcd801c7",
+      "68d65146ff57eb51c49f70fd",
+      "68d65155ff57eb51c49f7110",
+      "68d65167ff57eb51c49f7123",
+      "68d651adff57eb51c49f713b",
+      "68d653b2ff57eb51c49f715e",
+      "68d653c4ff57eb51c49f7171",
+      "68d66ccb7f923cf4fa4312eb",
+      "68d66d227f923cf4fa431310",
+      "68d66d377f923cf4fa431323",
+      "68d66d487f923cf4fa431336",
+      "68d66dd87f923cf4fa43134d",
+      "68d66de67f923cf4fa431360",
+      "68d66df77f923cf4fa431373",
+      "68d670f87f923cf4fa4313a2",
+      "68d678b97f923cf4fa4313d5",
+      "68d687f07f923cf4fa43143a"
+    ],
+    "createdAt": "2025-09-09T11:40:50.272Z",
+    "updatedAt": "2025-09-26T12:32:48.615Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68da1495837236a2cd803f60"
+}
+[2025-09-29 09:25:30] INFO: Order fetched successfully
+{
+  "orderId": "68da1495837236a2cd803f60",
+  "user": {
+    "_id": "68c01242eb804c5b489f78aa",
+    "firstName": "Tilemachos",
+    "lastName": "Tsourelas",
+    "Role": "manager",
+    "customers": [
+      "68c012e3def3f14ccad0fcb4",
+      "68cbb5047b2bf693dcd8019d",
+      "68cbb5307b2bf693dcd801b9",
+      "68d655e63b07a93a96dbaa13"
+    ],
+    "orders": [
+      "68c0166adef3f14ccad0fcd9",
+      "68cbb03c5d4034bc0a08b1a5",
+      "68cbb5197b2bf693dcd801ab",
+      "68cbb5577b2bf693dcd801c7",
+      "68d65146ff57eb51c49f70fd",
+      "68d65155ff57eb51c49f7110",
+      "68d65167ff57eb51c49f7123",
+      "68d651adff57eb51c49f713b",
+      "68d653b2ff57eb51c49f715e",
+      "68d653c4ff57eb51c49f7171",
+      "68d66ccb7f923cf4fa4312eb",
+      "68d66d227f923cf4fa431310",
+      "68d66d377f923cf4fa431323",
+      "68d66d487f923cf4fa431336",
+      "68d66dd87f923cf4fa43134d",
+      "68d66de67f923cf4fa431360",
+      "68d66df77f923cf4fa431373",
+      "68d670f87f923cf4fa4313a2",
+      "68d678b97f923cf4fa4313d5",
+      "68d687f07f923cf4fa43143a"
+    ],
+    "createdAt": "2025-09-09T11:40:50.272Z",
+    "updatedAt": "2025-09-26T12:32:48.615Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68da1495837236a2cd803f60"
+}
+[2025-09-29 10:23:12] INFO: Login attempt for username: Tilemachos
+[2025-09-29 10:23:12] INFO: User 'Tilemachos' logged in successfully
+[2025-09-29 10:23:15] INFO: Order fetched successfully
+{
+  "orderId": "68da1495837236a2cd803f60",
+  "user": {
+    "_id": "68c01242eb804c5b489f78aa",
+    "firstName": "Tilemachos",
+    "lastName": "Tsourelas",
+    "Role": "manager",
+    "customers": [
+      "68c012e3def3f14ccad0fcb4",
+      "68cbb5047b2bf693dcd8019d",
+      "68cbb5307b2bf693dcd801b9",
+      "68d655e63b07a93a96dbaa13"
+    ],
+    "orders": [
+      "68c0166adef3f14ccad0fcd9",
+      "68cbb03c5d4034bc0a08b1a5",
+      "68cbb5197b2bf693dcd801ab",
+      "68cbb5577b2bf693dcd801c7",
+      "68d65146ff57eb51c49f70fd",
+      "68d65155ff57eb51c49f7110",
+      "68d65167ff57eb51c49f7123",
+      "68d651adff57eb51c49f713b",
+      "68d653b2ff57eb51c49f715e",
+      "68d653c4ff57eb51c49f7171",
+      "68d66ccb7f923cf4fa4312eb",
+      "68d66d227f923cf4fa431310",
+      "68d66d377f923cf4fa431323",
+      "68d66d487f923cf4fa431336",
+      "68d66dd87f923cf4fa43134d",
+      "68d66de67f923cf4fa431360",
+      "68d66df77f923cf4fa431373",
+      "68d670f87f923cf4fa4313a2",
+      "68d678b97f923cf4fa4313d5",
+      "68d687f07f923cf4fa43143a"
+    ],
+    "createdAt": "2025-09-09T11:40:50.272Z",
+    "updatedAt": "2025-09-26T12:32:48.615Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68da1495837236a2cd803f60"
+}
+[2025-09-29 10:23:21] INFO: Order fetched successfully
+{
+  "orderId": "68da1495837236a2cd803f60",
+  "user": {
+    "_id": "68c01242eb804c5b489f78aa",
+    "firstName": "Tilemachos",
+    "lastName": "Tsourelas",
+    "Role": "manager",
+    "customers": [
+      "68c012e3def3f14ccad0fcb4",
+      "68cbb5047b2bf693dcd8019d",
+      "68cbb5307b2bf693dcd801b9",
+      "68d655e63b07a93a96dbaa13"
+    ],
+    "orders": [
+      "68c0166adef3f14ccad0fcd9",
+      "68cbb03c5d4034bc0a08b1a5",
+      "68cbb5197b2bf693dcd801ab",
+      "68cbb5577b2bf693dcd801c7",
+      "68d65146ff57eb51c49f70fd",
+      "68d65155ff57eb51c49f7110",
+      "68d65167ff57eb51c49f7123",
+      "68d651adff57eb51c49f713b",
+      "68d653b2ff57eb51c49f715e",
+      "68d653c4ff57eb51c49f7171",
+      "68d66ccb7f923cf4fa4312eb",
+      "68d66d227f923cf4fa431310",
+      "68d66d377f923cf4fa431323",
+      "68d66d487f923cf4fa431336",
+      "68d66dd87f923cf4fa43134d",
+      "68d66de67f923cf4fa431360",
+      "68d66df77f923cf4fa431373",
+      "68d670f87f923cf4fa4313a2",
+      "68d678b97f923cf4fa4313d5",
+      "68d687f07f923cf4fa43143a"
+    ],
+    "createdAt": "2025-09-09T11:40:50.272Z",
+    "updatedAt": "2025-09-26T12:32:48.615Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68da1495837236a2cd803f60"
+}
+[2025-09-29 10:38:05] INFO: Order fetched successfully
+{
+  "orderId": "68da1495837236a2cd803f60",
+  "user": {
+    "_id": "68c01242eb804c5b489f78aa",
+    "firstName": "Tilemachos",
+    "lastName": "Tsourelas",
+    "Role": "manager",
+    "customers": [
+      "68c012e3def3f14ccad0fcb4",
+      "68cbb5047b2bf693dcd8019d",
+      "68cbb5307b2bf693dcd801b9",
+      "68d655e63b07a93a96dbaa13"
+    ],
+    "orders": [
+      "68c0166adef3f14ccad0fcd9",
+      "68cbb03c5d4034bc0a08b1a5",
+      "68cbb5197b2bf693dcd801ab",
+      "68cbb5577b2bf693dcd801c7",
+      "68d65146ff57eb51c49f70fd",
+      "68d65155ff57eb51c49f7110",
+      "68d65167ff57eb51c49f7123",
+      "68d651adff57eb51c49f713b",
+      "68d653b2ff57eb51c49f715e",
+      "68d653c4ff57eb51c49f7171",
+      "68d66ccb7f923cf4fa4312eb",
+      "68d66d227f923cf4fa431310",
+      "68d66d377f923cf4fa431323",
+      "68d66d487f923cf4fa431336",
+      "68d66dd87f923cf4fa43134d",
+      "68d66de67f923cf4fa431360",
+      "68d66df77f923cf4fa431373",
+      "68d670f87f923cf4fa4313a2",
+      "68d678b97f923cf4fa4313d5",
+      "68d687f07f923cf4fa43143a"
+    ],
+    "createdAt": "2025-09-09T11:40:50.272Z",
+    "updatedAt": "2025-09-26T12:32:48.615Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68da1495837236a2cd803f60"
+}
+[2025-09-29 10:38:13] INFO: Order fetched successfully
+{
+  "orderId": "68da1495837236a2cd803f60",
+  "user": {
+    "_id": "68c01242eb804c5b489f78aa",
+    "firstName": "Tilemachos",
+    "lastName": "Tsourelas",
+    "Role": "manager",
+    "customers": [
+      "68c012e3def3f14ccad0fcb4",
+      "68cbb5047b2bf693dcd8019d",
+      "68cbb5307b2bf693dcd801b9",
+      "68d655e63b07a93a96dbaa13"
+    ],
+    "orders": [
+      "68c0166adef3f14ccad0fcd9",
+      "68cbb03c5d4034bc0a08b1a5",
+      "68cbb5197b2bf693dcd801ab",
+      "68cbb5577b2bf693dcd801c7",
+      "68d65146ff57eb51c49f70fd",
+      "68d65155ff57eb51c49f7110",
+      "68d65167ff57eb51c49f7123",
+      "68d651adff57eb51c49f713b",
+      "68d653b2ff57eb51c49f715e",
+      "68d653c4ff57eb51c49f7171",
+      "68d66ccb7f923cf4fa4312eb",
+      "68d66d227f923cf4fa431310",
+      "68d66d377f923cf4fa431323",
+      "68d66d487f923cf4fa431336",
+      "68d66dd87f923cf4fa43134d",
+      "68d66de67f923cf4fa431360",
+      "68d66df77f923cf4fa431373",
+      "68d670f87f923cf4fa4313a2",
+      "68d678b97f923cf4fa4313d5",
+      "68d687f07f923cf4fa43143a"
+    ],
+    "createdAt": "2025-09-09T11:40:50.272Z",
+    "updatedAt": "2025-09-26T12:32:48.615Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68da1495837236a2cd803f60"
+}
+[2025-09-29 10:38:16] INFO: Order fetched successfully
+{
+  "orderId": "68da1495837236a2cd803f60",
+  "user": {
+    "_id": "68c01242eb804c5b489f78aa",
+    "firstName": "Tilemachos",
+    "lastName": "Tsourelas",
+    "Role": "manager",
+    "customers": [
+      "68c012e3def3f14ccad0fcb4",
+      "68cbb5047b2bf693dcd8019d",
+      "68cbb5307b2bf693dcd801b9",
+      "68d655e63b07a93a96dbaa13"
+    ],
+    "orders": [
+      "68c0166adef3f14ccad0fcd9",
+      "68cbb03c5d4034bc0a08b1a5",
+      "68cbb5197b2bf693dcd801ab",
+      "68cbb5577b2bf693dcd801c7",
+      "68d65146ff57eb51c49f70fd",
+      "68d65155ff57eb51c49f7110",
+      "68d65167ff57eb51c49f7123",
+      "68d651adff57eb51c49f713b",
+      "68d653b2ff57eb51c49f715e",
+      "68d653c4ff57eb51c49f7171",
+      "68d66ccb7f923cf4fa4312eb",
+      "68d66d227f923cf4fa431310",
+      "68d66d377f923cf4fa431323",
+      "68d66d487f923cf4fa431336",
+      "68d66dd87f923cf4fa43134d",
+      "68d66de67f923cf4fa431360",
+      "68d66df77f923cf4fa431373",
+      "68d670f87f923cf4fa4313a2",
+      "68d678b97f923cf4fa4313d5",
+      "68d687f07f923cf4fa43143a"
+    ],
+    "createdAt": "2025-09-09T11:40:50.272Z",
+    "updatedAt": "2025-09-26T12:32:48.615Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68da1495837236a2cd803f60"
+}
+[2025-09-29 10:38:44] INFO: Order fetched successfully
+{
+  "orderId": "68da1495837236a2cd803f60",
+  "user": {
+    "_id": "68c01242eb804c5b489f78aa",
+    "firstName": "Tilemachos",
+    "lastName": "Tsourelas",
+    "Role": "manager",
+    "customers": [
+      "68c012e3def3f14ccad0fcb4",
+      "68cbb5047b2bf693dcd8019d",
+      "68cbb5307b2bf693dcd801b9",
+      "68d655e63b07a93a96dbaa13"
+    ],
+    "orders": [
+      "68c0166adef3f14ccad0fcd9",
+      "68cbb03c5d4034bc0a08b1a5",
+      "68cbb5197b2bf693dcd801ab",
+      "68cbb5577b2bf693dcd801c7",
+      "68d65146ff57eb51c49f70fd",
+      "68d65155ff57eb51c49f7110",
+      "68d65167ff57eb51c49f7123",
+      "68d651adff57eb51c49f713b",
+      "68d653b2ff57eb51c49f715e",
+      "68d653c4ff57eb51c49f7171",
+      "68d66ccb7f923cf4fa4312eb",
+      "68d66d227f923cf4fa431310",
+      "68d66d377f923cf4fa431323",
+      "68d66d487f923cf4fa431336",
+      "68d66dd87f923cf4fa43134d",
+      "68d66de67f923cf4fa431360",
+      "68d66df77f923cf4fa431373",
+      "68d670f87f923cf4fa4313a2",
+      "68d678b97f923cf4fa4313d5",
+      "68d687f07f923cf4fa43143a"
+    ],
+    "createdAt": "2025-09-09T11:40:50.272Z",
+    "updatedAt": "2025-09-26T12:32:48.615Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68da1495837236a2cd803f60"
+}
+[2025-09-29 10:39:04] INFO: Order fetched successfully
+{
+  "orderId": "68da1495837236a2cd803f60",
+  "user": {
+    "_id": "68c01242eb804c5b489f78aa",
+    "firstName": "Tilemachos",
+    "lastName": "Tsourelas",
+    "Role": "manager",
+    "customers": [
+      "68c012e3def3f14ccad0fcb4",
+      "68cbb5047b2bf693dcd8019d",
+      "68cbb5307b2bf693dcd801b9",
+      "68d655e63b07a93a96dbaa13"
+    ],
+    "orders": [
+      "68c0166adef3f14ccad0fcd9",
+      "68cbb03c5d4034bc0a08b1a5",
+      "68cbb5197b2bf693dcd801ab",
+      "68cbb5577b2bf693dcd801c7",
+      "68d65146ff57eb51c49f70fd",
+      "68d65155ff57eb51c49f7110",
+      "68d65167ff57eb51c49f7123",
+      "68d651adff57eb51c49f713b",
+      "68d653b2ff57eb51c49f715e",
+      "68d653c4ff57eb51c49f7171",
+      "68d66ccb7f923cf4fa4312eb",
+      "68d66d227f923cf4fa431310",
+      "68d66d377f923cf4fa431323",
+      "68d66d487f923cf4fa431336",
+      "68d66dd87f923cf4fa43134d",
+      "68d66de67f923cf4fa431360",
+      "68d66df77f923cf4fa431373",
+      "68d670f87f923cf4fa4313a2",
+      "68d678b97f923cf4fa4313d5",
+      "68d687f07f923cf4fa43143a"
+    ],
+    "createdAt": "2025-09-09T11:40:50.272Z",
+    "updatedAt": "2025-09-26T12:32:48.615Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68da1495837236a2cd803f60"
+}
+[2025-09-29 10:39:22] INFO: Order fetched successfully
+{
+  "orderId": "68da1495837236a2cd803f60",
+  "user": {
+    "_id": "68c01242eb804c5b489f78aa",
+    "firstName": "Tilemachos",
+    "lastName": "Tsourelas",
+    "Role": "manager",
+    "customers": [
+      "68c012e3def3f14ccad0fcb4",
+      "68cbb5047b2bf693dcd8019d",
+      "68cbb5307b2bf693dcd801b9",
+      "68d655e63b07a93a96dbaa13"
+    ],
+    "orders": [
+      "68c0166adef3f14ccad0fcd9",
+      "68cbb03c5d4034bc0a08b1a5",
+      "68cbb5197b2bf693dcd801ab",
+      "68cbb5577b2bf693dcd801c7",
+      "68d65146ff57eb51c49f70fd",
+      "68d65155ff57eb51c49f7110",
+      "68d65167ff57eb51c49f7123",
+      "68d651adff57eb51c49f713b",
+      "68d653b2ff57eb51c49f715e",
+      "68d653c4ff57eb51c49f7171",
+      "68d66ccb7f923cf4fa4312eb",
+      "68d66d227f923cf4fa431310",
+      "68d66d377f923cf4fa431323",
+      "68d66d487f923cf4fa431336",
+      "68d66dd87f923cf4fa43134d",
+      "68d66de67f923cf4fa431360",
+      "68d66df77f923cf4fa431373",
+      "68d670f87f923cf4fa4313a2",
+      "68d678b97f923cf4fa4313d5",
+      "68d687f07f923cf4fa43143a"
+    ],
+    "createdAt": "2025-09-09T11:40:50.272Z",
+    "updatedAt": "2025-09-26T12:32:48.615Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68da1495837236a2cd803f60"
+}
+[2025-09-29 10:40:08] INFO: Order fetched successfully
+{
+  "orderId": "68da1495837236a2cd803f60",
+  "user": {
+    "_id": "68c01242eb804c5b489f78aa",
+    "firstName": "Tilemachos",
+    "lastName": "Tsourelas",
+    "Role": "manager",
+    "customers": [
+      "68c012e3def3f14ccad0fcb4",
+      "68cbb5047b2bf693dcd8019d",
+      "68cbb5307b2bf693dcd801b9",
+      "68d655e63b07a93a96dbaa13"
+    ],
+    "orders": [
+      "68c0166adef3f14ccad0fcd9",
+      "68cbb03c5d4034bc0a08b1a5",
+      "68cbb5197b2bf693dcd801ab",
+      "68cbb5577b2bf693dcd801c7",
+      "68d65146ff57eb51c49f70fd",
+      "68d65155ff57eb51c49f7110",
+      "68d65167ff57eb51c49f7123",
+      "68d651adff57eb51c49f713b",
+      "68d653b2ff57eb51c49f715e",
+      "68d653c4ff57eb51c49f7171",
+      "68d66ccb7f923cf4fa4312eb",
+      "68d66d227f923cf4fa431310",
+      "68d66d377f923cf4fa431323",
+      "68d66d487f923cf4fa431336",
+      "68d66dd87f923cf4fa43134d",
+      "68d66de67f923cf4fa431360",
+      "68d66df77f923cf4fa431373",
+      "68d670f87f923cf4fa4313a2",
+      "68d678b97f923cf4fa4313d5",
+      "68d687f07f923cf4fa43143a"
+    ],
+    "createdAt": "2025-09-09T11:40:50.272Z",
+    "updatedAt": "2025-09-26T12:32:48.615Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68da1495837236a2cd803f60"
+}
+[2025-09-29 10:40:29] INFO: Order fetched successfully
+{
+  "orderId": "68da1495837236a2cd803f60",
+  "user": {
+    "_id": "68c01242eb804c5b489f78aa",
+    "firstName": "Tilemachos",
+    "lastName": "Tsourelas",
+    "Role": "manager",
+    "customers": [
+      "68c012e3def3f14ccad0fcb4",
+      "68cbb5047b2bf693dcd8019d",
+      "68cbb5307b2bf693dcd801b9",
+      "68d655e63b07a93a96dbaa13"
+    ],
+    "orders": [
+      "68c0166adef3f14ccad0fcd9",
+      "68cbb03c5d4034bc0a08b1a5",
+      "68cbb5197b2bf693dcd801ab",
+      "68cbb5577b2bf693dcd801c7",
+      "68d65146ff57eb51c49f70fd",
+      "68d65155ff57eb51c49f7110",
+      "68d65167ff57eb51c49f7123",
+      "68d651adff57eb51c49f713b",
+      "68d653b2ff57eb51c49f715e",
+      "68d653c4ff57eb51c49f7171",
+      "68d66ccb7f923cf4fa4312eb",
+      "68d66d227f923cf4fa431310",
+      "68d66d377f923cf4fa431323",
+      "68d66d487f923cf4fa431336",
+      "68d66dd87f923cf4fa43134d",
+      "68d66de67f923cf4fa431360",
+      "68d66df77f923cf4fa431373",
+      "68d670f87f923cf4fa4313a2",
+      "68d678b97f923cf4fa4313d5",
+      "68d687f07f923cf4fa43143a"
+    ],
+    "createdAt": "2025-09-09T11:40:50.272Z",
+    "updatedAt": "2025-09-26T12:32:48.615Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68da1495837236a2cd803f60"
+}
+[2025-09-29 10:43:41] INFO: Order fetched successfully
+{
+  "orderId": "68da1495837236a2cd803f60",
+  "user": {
+    "_id": "68c01242eb804c5b489f78aa",
+    "firstName": "Tilemachos",
+    "lastName": "Tsourelas",
+    "Role": "manager",
+    "customers": [
+      "68c012e3def3f14ccad0fcb4",
+      "68cbb5047b2bf693dcd8019d",
+      "68cbb5307b2bf693dcd801b9",
+      "68d655e63b07a93a96dbaa13"
+    ],
+    "orders": [
+      "68c0166adef3f14ccad0fcd9",
+      "68cbb03c5d4034bc0a08b1a5",
+      "68cbb5197b2bf693dcd801ab",
+      "68cbb5577b2bf693dcd801c7",
+      "68d65146ff57eb51c49f70fd",
+      "68d65155ff57eb51c49f7110",
+      "68d65167ff57eb51c49f7123",
+      "68d651adff57eb51c49f713b",
+      "68d653b2ff57eb51c49f715e",
+      "68d653c4ff57eb51c49f7171",
+      "68d66ccb7f923cf4fa4312eb",
+      "68d66d227f923cf4fa431310",
+      "68d66d377f923cf4fa431323",
+      "68d66d487f923cf4fa431336",
+      "68d66dd87f923cf4fa43134d",
+      "68d66de67f923cf4fa431360",
+      "68d66df77f923cf4fa431373",
+      "68d670f87f923cf4fa4313a2",
+      "68d678b97f923cf4fa4313d5",
+      "68d687f07f923cf4fa43143a"
+    ],
+    "createdAt": "2025-09-09T11:40:50.272Z",
+    "updatedAt": "2025-09-26T12:32:48.615Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68da1495837236a2cd803f60"
+}
+[2025-09-29 10:43:53] INFO: Order fetched successfully
+{
+  "orderId": "68da1495837236a2cd803f60",
+  "user": {
+    "_id": "68c01242eb804c5b489f78aa",
+    "firstName": "Tilemachos",
+    "lastName": "Tsourelas",
+    "Role": "manager",
+    "customers": [
+      "68c012e3def3f14ccad0fcb4",
+      "68cbb5047b2bf693dcd8019d",
+      "68cbb5307b2bf693dcd801b9",
+      "68d655e63b07a93a96dbaa13"
+    ],
+    "orders": [
+      "68c0166adef3f14ccad0fcd9",
+      "68cbb03c5d4034bc0a08b1a5",
+      "68cbb5197b2bf693dcd801ab",
+      "68cbb5577b2bf693dcd801c7",
+      "68d65146ff57eb51c49f70fd",
+      "68d65155ff57eb51c49f7110",
+      "68d65167ff57eb51c49f7123",
+      "68d651adff57eb51c49f713b",
+      "68d653b2ff57eb51c49f715e",
+      "68d653c4ff57eb51c49f7171",
+      "68d66ccb7f923cf4fa4312eb",
+      "68d66d227f923cf4fa431310",
+      "68d66d377f923cf4fa431323",
+      "68d66d487f923cf4fa431336",
+      "68d66dd87f923cf4fa43134d",
+      "68d66de67f923cf4fa431360",
+      "68d66df77f923cf4fa431373",
+      "68d670f87f923cf4fa4313a2",
+      "68d678b97f923cf4fa4313d5",
+      "68d687f07f923cf4fa43143a"
+    ],
+    "createdAt": "2025-09-09T11:40:50.272Z",
+    "updatedAt": "2025-09-26T12:32:48.615Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68da1495837236a2cd803f60"
+}
+[2025-09-29 10:43:58] INFO: Order fetched successfully
+{
+  "orderId": "68da1495837236a2cd803f60",
+  "user": {
+    "_id": "68c01242eb804c5b489f78aa",
+    "firstName": "Tilemachos",
+    "lastName": "Tsourelas",
+    "Role": "manager",
+    "customers": [
+      "68c012e3def3f14ccad0fcb4",
+      "68cbb5047b2bf693dcd8019d",
+      "68cbb5307b2bf693dcd801b9",
+      "68d655e63b07a93a96dbaa13"
+    ],
+    "orders": [
+      "68c0166adef3f14ccad0fcd9",
+      "68cbb03c5d4034bc0a08b1a5",
+      "68cbb5197b2bf693dcd801ab",
+      "68cbb5577b2bf693dcd801c7",
+      "68d65146ff57eb51c49f70fd",
+      "68d65155ff57eb51c49f7110",
+      "68d65167ff57eb51c49f7123",
+      "68d651adff57eb51c49f713b",
+      "68d653b2ff57eb51c49f715e",
+      "68d653c4ff57eb51c49f7171",
+      "68d66ccb7f923cf4fa4312eb",
+      "68d66d227f923cf4fa431310",
+      "68d66d377f923cf4fa431323",
+      "68d66d487f923cf4fa431336",
+      "68d66dd87f923cf4fa43134d",
+      "68d66de67f923cf4fa431360",
+      "68d66df77f923cf4fa431373",
+      "68d670f87f923cf4fa4313a2",
+      "68d678b97f923cf4fa4313d5",
+      "68d687f07f923cf4fa43143a"
+    ],
+    "createdAt": "2025-09-09T11:40:50.272Z",
+    "updatedAt": "2025-09-26T12:32:48.615Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68da1495837236a2cd803f60"
+}
+[2025-09-29 10:44:03] INFO: Order fetched successfully
+{
+  "orderId": "68da1495837236a2cd803f60",
+  "user": {
+    "_id": "68c01242eb804c5b489f78aa",
+    "firstName": "Tilemachos",
+    "lastName": "Tsourelas",
+    "Role": "manager",
+    "customers": [
+      "68c012e3def3f14ccad0fcb4",
+      "68cbb5047b2bf693dcd8019d",
+      "68cbb5307b2bf693dcd801b9",
+      "68d655e63b07a93a96dbaa13"
+    ],
+    "orders": [
+      "68c0166adef3f14ccad0fcd9",
+      "68cbb03c5d4034bc0a08b1a5",
+      "68cbb5197b2bf693dcd801ab",
+      "68cbb5577b2bf693dcd801c7",
+      "68d65146ff57eb51c49f70fd",
+      "68d65155ff57eb51c49f7110",
+      "68d65167ff57eb51c49f7123",
+      "68d651adff57eb51c49f713b",
+      "68d653b2ff57eb51c49f715e",
+      "68d653c4ff57eb51c49f7171",
+      "68d66ccb7f923cf4fa4312eb",
+      "68d66d227f923cf4fa431310",
+      "68d66d377f923cf4fa431323",
+      "68d66d487f923cf4fa431336",
+      "68d66dd87f923cf4fa43134d",
+      "68d66de67f923cf4fa431360",
+      "68d66df77f923cf4fa431373",
+      "68d670f87f923cf4fa4313a2",
+      "68d678b97f923cf4fa4313d5",
+      "68d687f07f923cf4fa43143a"
+    ],
+    "createdAt": "2025-09-09T11:40:50.272Z",
+    "updatedAt": "2025-09-26T12:32:48.615Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68da1495837236a2cd803f60"
+}
+[2025-09-29 10:44:09] INFO: Order fetched successfully
+{
+  "orderId": "68da1495837236a2cd803f60",
+  "user": {
+    "_id": "68c01242eb804c5b489f78aa",
+    "firstName": "Tilemachos",
+    "lastName": "Tsourelas",
+    "Role": "manager",
+    "customers": [
+      "68c012e3def3f14ccad0fcb4",
+      "68cbb5047b2bf693dcd8019d",
+      "68cbb5307b2bf693dcd801b9",
+      "68d655e63b07a93a96dbaa13"
+    ],
+    "orders": [
+      "68c0166adef3f14ccad0fcd9",
+      "68cbb03c5d4034bc0a08b1a5",
+      "68cbb5197b2bf693dcd801ab",
+      "68cbb5577b2bf693dcd801c7",
+      "68d65146ff57eb51c49f70fd",
+      "68d65155ff57eb51c49f7110",
+      "68d65167ff57eb51c49f7123",
+      "68d651adff57eb51c49f713b",
+      "68d653b2ff57eb51c49f715e",
+      "68d653c4ff57eb51c49f7171",
+      "68d66ccb7f923cf4fa4312eb",
+      "68d66d227f923cf4fa431310",
+      "68d66d377f923cf4fa431323",
+      "68d66d487f923cf4fa431336",
+      "68d66dd87f923cf4fa43134d",
+      "68d66de67f923cf4fa431360",
+      "68d66df77f923cf4fa431373",
+      "68d670f87f923cf4fa4313a2",
+      "68d678b97f923cf4fa4313d5",
+      "68d687f07f923cf4fa43143a"
+    ],
+    "createdAt": "2025-09-09T11:40:50.272Z",
+    "updatedAt": "2025-09-26T12:32:48.615Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68da1495837236a2cd803f60"
+}
