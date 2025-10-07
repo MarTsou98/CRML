@@ -1,0 +1,115 @@
+[2025-10-07 14:20:19] INFO: Login attempt for username: m
+[2025-10-07 14:20:19] WARN: Login failed: User 'm' not found
+[2025-10-07 14:20:28] INFO: Login attempt for username: Tilemachos
+[2025-10-07 14:20:28] INFO: User 'Tilemachos' logged in successfully
+[2025-10-07 14:20:32] INFO: Order fetched successfully
+{
+  "orderId": "68de188905efd035eee6d6dd",
+  "user": {
+    "_id": "68dcf924570373f00ce9190e",
+    "firstName": "Μάριος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [
+      "68dd0c12f542121b9573bc92",
+      "68dd0e5bf542121b9573bc9c"
+    ],
+    "orders": [
+      "68dcfc2af542121b9573b921",
+      "68dcfc44f542121b9573b9b8",
+      "68dd10a8f542121b9573bcad",
+      "68de188905efd035eee6d6dd",
+      "68de18a705efd035eee6d6f3"
+    ],
+    "createdAt": "2025-10-01T09:49:24.785Z",
+    "updatedAt": "2025-10-02T06:16:07.051Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68de188905efd035eee6d6dd"
+}
+[2025-10-07 14:26:09] INFO: Order created successfully
+{
+  "order": {
+    "Lock": false,
+    "invoiceType": "Apodiksi",
+    "orderType": "Σύνθεση Ερμαρίων",
+    "orderNotes": "",
+    "DateOfOrder": "2025-10-07T21:00:00.000Z",
+    "customer_id": "68dd0e5bf542121b9573bc9c",
+    "salesperson_id": "68c01242eb804c5b489f78aa",
+    "contractor_id": "68d6582b504e3b585fa7c383",
+    "orderedFromCompany": "Lube",
+    "moneyDetails": {
+      "timi_Timokatalogou": 2000,
+      "timi_Polisis": 4000,
+      "cash": 2500,
+      "bank": 1500,
+      "contractor_Share_Cash": 0,
+      "contractor_Share_Bank": 0,
+      "customer_Share_Cash": 0,
+      "customer_Share_Bank": 0,
+      "payments": [],
+      "contractor_remainingShare_Cash": 0,
+      "contractor_remainingShare_Bank": 0,
+      "customer_remainingShare_Cash": 0,
+      "customer_remainingShare_Bank": 0,
+      "remainingCash": 2500,
+      "remainingBank": 1500,
+      "damages": [],
+      "totalpaid": 0,
+      "totaldamages": 0,
+      "FPA": 290.3225806451612,
+      "profit": 2000,
+      "totalCash": 0,
+      "totalBank": 0,
+      "_skipRemainingShareCalc": false
+    },
+    "_id": "68e4f8d1b81c1fb052861cc5",
+    "createdAt": "2025-10-07T11:26:09.085Z",
+    "updatedAt": "2025-10-07T11:26:09.085Z",
+    "__v": 0
+  }
+}
+[2025-10-07 14:26:49] INFO: Order created successfully
+{
+  "order": {
+    "Lock": false,
+    "invoiceType": "Apodiksi",
+    "orderType": "Κανονική",
+    "orderNotes": "",
+    "DateOfOrder": "2025-10-06T21:00:00.000Z",
+    "customer_id": "68dd0e5bf542121b9573bc9c",
+    "salesperson_id": "68c01242eb804c5b489f78aa",
+    "contractor_id": "68c01704def3f14ccad0fcf3",
+    "orderedFromCompany": "Lube",
+    "moneyDetails": {
+      "timi_Timokatalogou": 5000,
+      "timi_Polisis": 10000,
+      "cash": 8000,
+      "bank": 2000,
+      "contractor_Share_Cash": 0,
+      "contractor_Share_Bank": 0,
+      "customer_Share_Cash": 0,
+      "customer_Share_Bank": 0,
+      "payments": [],
+      "contractor_remainingShare_Cash": 0,
+      "contractor_remainingShare_Bank": 0,
+      "customer_remainingShare_Cash": 0,
+      "customer_remainingShare_Bank": 0,
+      "remainingCash": 8000,
+      "remainingBank": 2000,
+      "damages": [],
+      "totalpaid": 0,
+      "totaldamages": 0,
+      "FPA": 387.0967741935483,
+      "profit": 5000,
+      "totalCash": 0,
+      "totalBank": 0,
+      "_skipRemainingShareCalc": false
+    },
+    "_id": "68e4f8f9b81c1fb052861cdb",
+    "createdAt": "2025-10-07T11:26:49.075Z",
+    "updatedAt": "2025-10-07T11:26:49.075Z",
+    "__v": 0
+  }
+}

@@ -256,9 +256,10 @@ function StatsTable({ data, groupBy, start, end }) {
 
   const groupedOrders = groupAndSummarizeOrders(data, groupBy);
 
-  let grandTotals = { revenue: 0, profit: 0, cash: 0, bank: 0, netPrice: 0, damages: { "Μεταφορά εξωτερικού": 0, "Μεταφορά εσωτερικού": 0, "Τοποθέτηση": 0, "Διάφορα": 0 } };
+  let grandTotals = { revenue: 0, profit: 0, cash: 0, bank: 0, netPrice: 0, FPA: 0, damages: { "Μεταφορά εξωτερικού": 0, "Μεταφορά εσωτερικού": 0, "Τοποθέτηση": 0, "Διάφορα": 0 } };
   Object.values(groupedOrders).forEach(group => {
     grandTotals.revenue += group.totalRevenue;
+    grandTotals.FPA += group.orders.reduce((sum, o) => sum + (o.moneyDetails?.FPA || 0), 0);
     grandTotals.profit += group.totalProfit;
     grandTotals.cash += group.totalCash;
     grandTotals.bank += group.totalBank;
@@ -517,7 +518,12 @@ const handleDownloadPDF = async () => {
         {[
           { label: "Net Price", value: grandTotals.netPrice, color: "#4CAF50" },
           { label: "Revenue", value: grandTotals.revenue, color: "#2196F3" },
-          { label: "Profit", value: grandTotals.profit, color: "#FF9800" },
+{ label: "Profit", value: grandTotals.profit 
+  - grandTotals.damages["Τοποθέτηση"] 
+  - grandTotals.damages["Διάφορα"] 
+  - grandTotals.damages["Μεταφορά εξωτερικού"] 
+  - grandTotals.damages["Μεταφορά εσωτερικού"] - grandTotals.FPA, 
+  color: "#FF9800" },
           { label: "Cash", value: grandTotals.cash, color: "#9C27B0" },
           { label: "Bank", value: grandTotals.bank, color: "#00BCD4" },
           { label: "Μεταφορά Εξωτ.", value: grandTotals.damages["Μεταφορά εξωτερικού"], color: "#F44336" },
