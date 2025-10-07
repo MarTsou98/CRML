@@ -490,7 +490,7 @@ const handleDownloadPDF = async () => {
       <td>{groupData.totalDamages["Διάφορα"].toFixed(2)}</td>
       <td>{groupData.totalDamages["Τοποθέτηση"].toFixed(2)}</td>
       <td>{groupData.totalRevenue.toFixed(2)}</td>
-      <td>{groupData.totalProfit.toFixed(2)}</td>
+      <td>{groupData.totalProfit.toFixed(2) - groupData.totalDamages["Τοποθέτηση"].toFixed(2)-groupData.totalDamages["Διάφορα"].toFixed(2)-groupData.totalDamages["Μεταφορά εξωτερικού"].toFixed(2)-groupData.totalDamages["Μεταφορά εσωτερικού"].toFixed(2)-groupData.orders.reduce((sum, o) => sum + (o.moneyDetails?.FPA || 0), 0).toFixed(2)}</td>
       <td>-</td>
     </tr>
   </tfoot>

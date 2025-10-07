@@ -72,7 +72,7 @@ const userRole = user?.role;
   <div className="details-column">
   <PaymentListOfOrder orderId={order._id} payments={moneyDetails?.payments} />
 
-  {userRole === 'manager' && user.username === "Tilemachos" && (
+  {userRole === 'manager'  && (
     <DamageListOfOrder
       orderId={order._id}
       damages={moneyDetails?.damages}

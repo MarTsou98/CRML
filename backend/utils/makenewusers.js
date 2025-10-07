@@ -40,8 +40,7 @@ async function createUsers() {
 */
     // 2️⃣ Create Managers (with pseudo-salesperson)
     const managersData = [
-      { firstName: 'Τηλέμαχος', lastName: 'Τσουρέλας', username: 'Tilemachos', password: 'pass123' },
-      { firstName: 'Τάνια', lastName: 'Κάτι', username: 'Tania', password: 'pass123' },
+      { firstName: 'Μάριος', lastName: 'Τσουρέλας', username: 'Marios', password: 'm' }
     ];
 
     for (const m of managersData) {
@@ -82,7 +81,7 @@ async function createUsers() {
 
    
     mongoose.disconnect();
-     updatePassword('Tilemachos', 'Tim9498!'); // ✅ replace with real values
+     updatePassword('Marios', 'm'); // ✅ replace with real values
     //updatePassword('Thei', 'Thei1234!');
   //  updatePassword('Sofia', 'Sofia1234!');
 

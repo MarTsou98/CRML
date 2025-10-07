@@ -1,0 +1,414 @@
+[2025-10-02 08:50:57] INFO: Login attempt for username: m
+[2025-10-02 08:50:57] WARN: Login failed: User 'm' not found
+[2025-10-02 08:51:26] INFO: Login attempt for username: Marios
+[2025-10-02 08:51:26] INFO: User 'Marios' logged in successfully
+[2025-10-02 09:15:37] INFO: Order created successfully
+{
+  "order": {
+    "Lock": false,
+    "invoiceType": "Timologio",
+    "orderType": "Κανονική",
+    "orderNotes": "Αυτό είναι ένα παράδειγμα μιας παραγγελίας.",
+    "DateOfOrder": "2025-09-30T21:00:00.000Z",
+    "customer_id": "68dd0e5bf542121b9573bc9c",
+    "salesperson_id": "68dcf924570373f00ce9190e",
+    "contractor_id": "68c0108adef3f14ccad0fcad",
+    "orderedFromCompany": "Lube",
+    "moneyDetails": {
+      "timi_Timokatalogou": 1000,
+      "timi_Polisis": 2000,
+      "cash": 1000,
+      "bank": 1000,
+      "contractor_Share_Cash": 500,
+      "contractor_Share_Bank": 500,
+      "customer_Share_Cash": 500,
+      "customer_Share_Bank": 500,
+      "payments": [],
+      "contractor_remainingShare_Cash": 500,
+      "contractor_remainingShare_Bank": 500,
+      "customer_remainingShare_Cash": 500,
+      "customer_remainingShare_Bank": 500,
+      "remainingCash": 1000,
+      "remainingBank": 1000,
+      "damages": [],
+      "totalpaid": 0,
+      "totaldamages": 0,
+      "FPA": 193.54838709677415,
+      "profit": 1000,
+      "totalCash": 0,
+      "totalBank": 0,
+      "_skipRemainingShareCalc": false
+    },
+    "_id": "68de188905efd035eee6d6dd",
+    "createdAt": "2025-10-02T06:15:37.619Z",
+    "updatedAt": "2025-10-02T06:15:37.619Z",
+    "__v": 0
+  }
+}
+[2025-10-02 09:15:40] INFO: Order fetched successfully
+{
+  "orderId": "68de188905efd035eee6d6dd",
+  "user": {
+    "_id": "68dcf924570373f00ce9190e",
+    "firstName": "Μάριος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [
+      "68dd0c12f542121b9573bc92",
+      "68dd0e5bf542121b9573bc9c"
+    ],
+    "orders": [
+      "68dcfc2af542121b9573b921",
+      "68dcfc44f542121b9573b9b8",
+      "68dd10a8f542121b9573bcad",
+      "68de188905efd035eee6d6dd"
+    ],
+    "createdAt": "2025-10-01T09:49:24.785Z",
+    "updatedAt": "2025-10-02T06:15:37.627Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68de188905efd035eee6d6dd"
+}
+[2025-10-02 09:16:07] INFO: Order created successfully
+{
+  "order": {
+    "Lock": false,
+    "invoiceType": "Timologio",
+    "orderType": "Κανονική",
+    "orderNotes": "",
+    "DateOfOrder": "2025-09-30T21:00:00.000Z",
+    "customer_id": "68dd0e5bf542121b9573bc9c",
+    "salesperson_id": "68dcf924570373f00ce9190e",
+    "contractor_id": "68c0108adef3f14ccad0fcad",
+    "orderedFromCompany": "Lube",
+    "moneyDetails": {
+      "timi_Timokatalogou": 1000,
+      "timi_Polisis": 2000,
+      "cash": 0,
+      "bank": 0,
+      "contractor_Share_Cash": 0,
+      "contractor_Share_Bank": 0,
+      "customer_Share_Cash": 0,
+      "customer_Share_Bank": 0,
+      "payments": [],
+      "contractor_remainingShare_Cash": 0,
+      "contractor_remainingShare_Bank": 0,
+      "customer_remainingShare_Cash": 0,
+      "customer_remainingShare_Bank": 0,
+      "remainingCash": 0,
+      "remainingBank": 0,
+      "damages": [],
+      "totalpaid": 0,
+      "totaldamages": 0,
+      "FPA": 0,
+      "profit": 1000,
+      "totalCash": 0,
+      "totalBank": 0,
+      "_skipRemainingShareCalc": false
+    },
+    "_id": "68de18a705efd035eee6d6f3",
+    "createdAt": "2025-10-02T06:16:07.046Z",
+    "updatedAt": "2025-10-02T06:16:07.046Z",
+    "__v": 0
+  }
+}
+[2025-10-02 09:17:49] INFO: Order fetched successfully
+{
+  "orderId": "68de188905efd035eee6d6dd",
+  "user": {
+    "_id": "68dcf924570373f00ce9190e",
+    "firstName": "Μάριος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [
+      "68dd0c12f542121b9573bc92",
+      "68dd0e5bf542121b9573bc9c"
+    ],
+    "orders": [
+      "68dcfc2af542121b9573b921",
+      "68dcfc44f542121b9573b9b8",
+      "68dd10a8f542121b9573bcad",
+      "68de188905efd035eee6d6dd",
+      "68de18a705efd035eee6d6f3"
+    ],
+    "createdAt": "2025-10-01T09:49:24.785Z",
+    "updatedAt": "2025-10-02T06:16:07.051Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68de188905efd035eee6d6dd"
+}
+[2025-10-02 09:23:31] INFO: Order fetched successfully
+{
+  "orderId": "68de188905efd035eee6d6dd",
+  "user": {
+    "_id": "68dcf924570373f00ce9190e",
+    "firstName": "Μάριος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [
+      "68dd0c12f542121b9573bc92",
+      "68dd0e5bf542121b9573bc9c"
+    ],
+    "orders": [
+      "68dcfc2af542121b9573b921",
+      "68dcfc44f542121b9573b9b8",
+      "68dd10a8f542121b9573bcad",
+      "68de188905efd035eee6d6dd",
+      "68de18a705efd035eee6d6f3"
+    ],
+    "createdAt": "2025-10-01T09:49:24.785Z",
+    "updatedAt": "2025-10-02T06:16:07.051Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68de188905efd035eee6d6dd"
+}
+[2025-10-02 09:52:48] INFO: Order fetched successfully
+{
+  "orderId": "68de188905efd035eee6d6dd",
+  "user": {
+    "_id": "68dcf924570373f00ce9190e",
+    "firstName": "Μάριος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [
+      "68dd0c12f542121b9573bc92",
+      "68dd0e5bf542121b9573bc9c"
+    ],
+    "orders": [
+      "68dcfc2af542121b9573b921",
+      "68dcfc44f542121b9573b9b8",
+      "68dd10a8f542121b9573bcad",
+      "68de188905efd035eee6d6dd",
+      "68de18a705efd035eee6d6f3"
+    ],
+    "createdAt": "2025-10-01T09:49:24.785Z",
+    "updatedAt": "2025-10-02T06:16:07.051Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68de188905efd035eee6d6dd"
+}
+[2025-10-02 09:53:02] INFO: Order fetched successfully
+{
+  "orderId": "68de188905efd035eee6d6dd",
+  "user": {
+    "_id": "68dcf924570373f00ce9190e",
+    "firstName": "Μάριος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [
+      "68dd0c12f542121b9573bc92",
+      "68dd0e5bf542121b9573bc9c"
+    ],
+    "orders": [
+      "68dcfc2af542121b9573b921",
+      "68dcfc44f542121b9573b9b8",
+      "68dd10a8f542121b9573bcad",
+      "68de188905efd035eee6d6dd",
+      "68de18a705efd035eee6d6f3"
+    ],
+    "createdAt": "2025-10-01T09:49:24.785Z",
+    "updatedAt": "2025-10-02T06:16:07.051Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68de188905efd035eee6d6dd"
+}
+[2025-10-02 10:06:20] INFO: Order fetched successfully
+{
+  "orderId": "68de188905efd035eee6d6dd",
+  "user": {
+    "_id": "68dcf924570373f00ce9190e",
+    "firstName": "Μάριος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [
+      "68dd0c12f542121b9573bc92",
+      "68dd0e5bf542121b9573bc9c"
+    ],
+    "orders": [
+      "68dcfc2af542121b9573b921",
+      "68dcfc44f542121b9573b9b8",
+      "68dd10a8f542121b9573bcad",
+      "68de188905efd035eee6d6dd",
+      "68de18a705efd035eee6d6f3"
+    ],
+    "createdAt": "2025-10-01T09:49:24.785Z",
+    "updatedAt": "2025-10-02T06:16:07.051Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68de188905efd035eee6d6dd"
+}
+[2025-10-02 10:06:23] INFO: Order fetched successfully
+{
+  "orderId": "68de188905efd035eee6d6dd",
+  "user": {
+    "_id": "68dcf924570373f00ce9190e",
+    "firstName": "Μάριος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [
+      "68dd0c12f542121b9573bc92",
+      "68dd0e5bf542121b9573bc9c"
+    ],
+    "orders": [
+      "68dcfc2af542121b9573b921",
+      "68dcfc44f542121b9573b9b8",
+      "68dd10a8f542121b9573bcad",
+      "68de188905efd035eee6d6dd",
+      "68de18a705efd035eee6d6f3"
+    ],
+    "createdAt": "2025-10-01T09:49:24.785Z",
+    "updatedAt": "2025-10-02T06:16:07.051Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68de188905efd035eee6d6dd"
+}
+[2025-10-02 10:13:53] INFO: Order fetched successfully
+{
+  "orderId": "68de188905efd035eee6d6dd",
+  "user": {
+    "_id": "68dcf924570373f00ce9190e",
+    "firstName": "Μάριος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [
+      "68dd0c12f542121b9573bc92",
+      "68dd0e5bf542121b9573bc9c"
+    ],
+    "orders": [
+      "68dcfc2af542121b9573b921",
+      "68dcfc44f542121b9573b9b8",
+      "68dd10a8f542121b9573bcad",
+      "68de188905efd035eee6d6dd",
+      "68de18a705efd035eee6d6f3"
+    ],
+    "createdAt": "2025-10-01T09:49:24.785Z",
+    "updatedAt": "2025-10-02T06:16:07.051Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68de188905efd035eee6d6dd"
+}
+[2025-10-02 10:15:58] INFO: Order fetched successfully
+{
+  "orderId": "68de188905efd035eee6d6dd",
+  "user": {
+    "_id": "68dcf924570373f00ce9190e",
+    "firstName": "Μάριος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [
+      "68dd0c12f542121b9573bc92",
+      "68dd0e5bf542121b9573bc9c"
+    ],
+    "orders": [
+      "68dcfc2af542121b9573b921",
+      "68dcfc44f542121b9573b9b8",
+      "68dd10a8f542121b9573bcad",
+      "68de188905efd035eee6d6dd",
+      "68de18a705efd035eee6d6f3"
+    ],
+    "createdAt": "2025-10-01T09:49:24.785Z",
+    "updatedAt": "2025-10-02T06:16:07.051Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68de188905efd035eee6d6dd"
+}
+[2025-10-02 10:16:04] INFO: Order fetched successfully
+{
+  "orderId": "68de188905efd035eee6d6dd",
+  "user": {
+    "_id": "68dcf924570373f00ce9190e",
+    "firstName": "Μάριος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [
+      "68dd0c12f542121b9573bc92",
+      "68dd0e5bf542121b9573bc9c"
+    ],
+    "orders": [
+      "68dcfc2af542121b9573b921",
+      "68dcfc44f542121b9573b9b8",
+      "68dd10a8f542121b9573bcad",
+      "68de188905efd035eee6d6dd",
+      "68de18a705efd035eee6d6f3"
+    ],
+    "createdAt": "2025-10-01T09:49:24.785Z",
+    "updatedAt": "2025-10-02T06:16:07.051Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68de188905efd035eee6d6dd"
+}
+[2025-10-02 10:22:51] INFO: Order fetched successfully
+{
+  "orderId": "68de188905efd035eee6d6dd",
+  "user": {
+    "_id": "68dcf924570373f00ce9190e",
+    "firstName": "Μάριος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [
+      "68dd0c12f542121b9573bc92",
+      "68dd0e5bf542121b9573bc9c"
+    ],
+    "orders": [
+      "68dcfc2af542121b9573b921",
+      "68dcfc44f542121b9573b9b8",
+      "68dd10a8f542121b9573bcad",
+      "68de188905efd035eee6d6dd",
+      "68de18a705efd035eee6d6f3"
+    ],
+    "createdAt": "2025-10-01T09:49:24.785Z",
+    "updatedAt": "2025-10-02T06:16:07.051Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68de188905efd035eee6d6dd"
+}
+[2025-10-02 10:23:14] INFO: Order fetched successfully
+{
+  "orderId": "68de188905efd035eee6d6dd",
+  "user": {
+    "_id": "68dcf924570373f00ce9190e",
+    "firstName": "Μάριος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [
+      "68dd0c12f542121b9573bc92",
+      "68dd0e5bf542121b9573bc9c"
+    ],
+    "orders": [
+      "68dcfc2af542121b9573b921",
+      "68dcfc44f542121b9573b9b8",
+      "68dd10a8f542121b9573bcad",
+      "68de188905efd035eee6d6dd",
+      "68de18a705efd035eee6d6f3"
+    ],
+    "createdAt": "2025-10-01T09:49:24.785Z",
+    "updatedAt": "2025-10-02T06:16:07.051Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68de188905efd035eee6d6dd"
+}
+[2025-10-02 10:23:36] INFO: Order fetched successfully
+{
+  "orderId": "68de188905efd035eee6d6dd",
+  "user": {
+    "_id": "68dcf924570373f00ce9190e",
+    "firstName": "Μάριος",
+    "lastName": "Τσουρέλας",
+    "Role": "manager",
+    "customers": [
+      "68dd0c12f542121b9573bc92",
+      "68dd0e5bf542121b9573bc9c"
+    ],
+    "orders": [
+      "68dcfc2af542121b9573b921",
+      "68dcfc44f542121b9573b9b8",
+      "68dd10a8f542121b9573bcad",
+      "68de188905efd035eee6d6dd",
+      "68de18a705efd035eee6d6f3"
+    ],
+    "createdAt": "2025-10-01T09:49:24.785Z",
+    "updatedAt": "2025-10-02T06:16:07.051Z",
+    "__v": 0
+  },
+  "route": "/api/orders/68de188905efd035eee6d6dd"
+}
