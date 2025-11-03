@@ -6,10 +6,24 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearSca
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import ChartDataLabels from "chartjs-plugin-datalabels";
+
+import autoTable from "jspdf-autotable";
+import "../assets/fonts/NotoSans-Regular-normal"; // adjust path as needed
+import"../assets/fonts/NotoSans_Condensed-Bold-normal"; // adjust path as needed
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, ChartDataLabels);
 
 
-
+function drawGradientHeader(pdf, x, y, width, height, colorStart, colorEnd) {
+  const steps = 100; // number of color steps for smooth gradient
+  for (let i = 0; i < steps; i++) {
+    const ratio = i / (steps - 1);
+    const r = Math.round(colorStart[0] + ratio * (colorEnd[0] - colorStart[0]));
+    const g = Math.round(colorStart[1] + ratio * (colorEnd[1] - colorStart[1]));
+    const b = Math.round(colorStart[2] + ratio * (colorEnd[2] - colorStart[2]));
+    pdf.setFillColor(r, g, b);
+    pdf.rect(x + (i * width) / steps, y, width / steps, height, 'F'); // fill small rectangle
+  }
+}
 // Helper: summarize damages by type
 function summarizeDamages(damages) {
   const summary = {
@@ -306,66 +320,146 @@ function StatsTable({ data, groupBy, start, end }) {
 
 const handleDownloadPDF = async () => {
   if (!containerRef.current) return;
-  const margin = 30;
-  const pdf = new jsPDF("p", "pt", "a4");
+
+ let margin = 60;
+const pdf = new jsPDF("l", "pt", "a4");
+pdf.setFont("NotoSans-Regular");
   const pageWidth = pdf.internal.pageSize.getWidth();
   const pageHeight = pdf.internal.pageSize.getHeight();
 
-  // ---------- TABLE ----------
-  const tableEl = document.getElementById("table-container");
-  const tableCanvas = await html2canvas(tableEl, { scale: 1.2 });
-  const tableImg = tableCanvas.toDataURL("image/jpeg", 0.7);
+  // ---------- TABLES ----------
+  const tableContainer = document.getElementById("table-container");
+  const tables = tableContainer.querySelectorAll("table");
 
-  const imgWidth = pageWidth - margin * 2;
-  const imgHeight = (tableCanvas.height * imgWidth) / tableCanvas.width;
+  if (tables.length === 0) {
+    console.warn("No tables found in #table-container");
+  } else {
+    let startY = margin;
+    margin = 5
+    tables.forEach((table, i) => {
+  // Get the group title from the <h3> just above the table
+  const groupTitleEl = table.previousElementSibling; // assumes <h3> is right above table
+  const groupTitle = groupTitleEl ? groupTitleEl.textContent : "";
 
-  // Estimate row height in the canvas
-  const numRows = tableEl.querySelectorAll("tbody tr").length;
-  const approxRowHeight = tableCanvas.height / numRows;
+autoTable(pdf, {
+  html: table,
+  startY,
+  
+  theme: "grid",
+  
+  styles: {
+  font: "NotoSans-Regular",
+  fontSize: 10,
+  cellPadding: 4,
+  overflow: 'linebreak', // wrap text within cell width
+  // optional: prevent breaking numbers badly
+  halign: 'right',       // numbers align nicely
+  valign: 'middle'
+},
+   tableWidth: 'auto', // <-- lets table expand to content
+  headStyles: {
+    font: "NotoSans_Condensed-Bold",
+    fontStyle: "normal",
+    fontSize: 9,
+    fillColor: [230, 230, 230],
+    textColor: 20
+  },
+  footStyles: {
+    font: "NotoSans_Condensed-Bold",
+    fontStyle: "normal",
+    fontSize: 10,
+    fillColor: [224, 224, 224],
+    textColor: 20
+  },
+  columnStyles: {
+    0: { cellWidth: 100 },
+   // 1: { cellWidth: 60 },
+    //2: { cellWidth: 60 },
+    //3: { cellWidth: 60 },
+    /*4: { cellWidth: 100 },
+    5: { cellWidth: 100 },
+    6: { cellWidth: 40 },
+    7: { cellWidth: 40 },
+    8: { cellWidth: 40 },
+    9: { cellWidth: 40 },
+    10: { cellWidth: 40 },
+    11: { cellWidth: 40 },
+    12: { cellWidth: 40 },
+    13: { cellWidth: 40 },
+    14: { cellWidth: 40 },
+    15: { cellWidth: 40 },
+    16: { cellWidth: 40 }
+  */},
+  margin: { 
+    left: 10,
+    right: 10,
+    
+  },
+  didDrawPage: (data) => {
+    const headerHeight = 30;
+    const pageWidth = pdf.internal.pageSize.getWidth();
 
-  const rowsPerPage =60; // 👈 adjust this number
-  const chunkHeight = approxRowHeight * rowsPerPage;
-
-  let yOffset = 0;
-  let pageIndex = 0;
-
-  while (yOffset < tableCanvas.height) {
-    const pageCanvas = document.createElement("canvas");
-    pageCanvas.width = tableCanvas.width;
-    pageCanvas.height = Math.min(chunkHeight, tableCanvas.height - yOffset);
-
-    const ctx = pageCanvas.getContext("2d");
-    ctx.drawImage(
-      tableCanvas,
-      0, yOffset, pageCanvas.width, pageCanvas.height,
-      0, 0, pageCanvas.width, pageCanvas.height
+    drawGradientHeader(
+      pdf,
+      0,
+      0,
+      pageWidth,
+      headerHeight,
+      [139, 0, 0],   
+      [255, 255, 255]
     );
 
-    const pageImg = pageCanvas.toDataURL("image/jpeg", 0.7);
-    const pageImgHeight = (pageCanvas.height * imgWidth) / pageCanvas.width;
+    pdf.setFont("NotoSans_Condensed-Bold");
+    pdf.setFontSize(18);
+    pdf.setTextColor(255, 255, 255);
+    pdf.text("Lube Salonicco", margin, 20);
 
-    if (pageIndex > 0) pdf.addPage();
-    pdf.addImage(pageImg, "JPEG", margin, margin, imgWidth, pageImgHeight, undefined, "FAST");
+    if (data.pageNumber === 1) {
+      pdf.setFont("NotoSans_Condensed-Bold");
+      pdf.setFontSize(12);
+      pdf.setTextColor(0, 0, 0);
+      pdf.text(groupTitle, margin, startY - 10);
+    }
+  }
+});
 
-    yOffset += chunkHeight;
-    pageIndex++;
+
+
+
+  if (i < tables.length - 1) pdf.addPage();
+});
+
   }
 
+  let currentY = pdf.lastAutoTable?.finalY || margin;
+
   // ---------- CHARTS ----------
-  const chartsEl = document.getElementById("charts-container");
+const chartsEl = document.getElementById("charts-container");
+if (chartsEl) {
   const chartDivs = chartsEl.querySelectorAll("div");
   const oldHeights = [];
-  chartDivs.forEach((div, i) => { oldHeights[i] = div.style.height; div.style.height = "auto"; });
-  const chartsCanvas = await html2canvas(chartsEl, { scale: 1.2 });
-  chartDivs.forEach((div, i) => { div.style.height = oldHeights[i]; });
 
-  pdf.addPage();
-  let chartsScale = Math.min(
+  // Temporarily reset heights to auto for proper capture
+  chartDivs.forEach((div, i) => {
+    oldHeights[i] = div.style.height;
+    div.style.height = "auto";
+  });
+
+  // Increase scale for higher resolution + bigger image
+  const chartsCanvas = await html2canvas(chartsEl, { scale: 1.5 }); // was 1.2
+  chartDivs.forEach((div, i) => (div.style.height = oldHeights[i]));
+
+  const chartsImg = chartsCanvas.toDataURL("image/jpeg", 0.7);
+
+  // Compute scale to fit page, but allow it to take slightly more space
+  const chartsScale = Math.min(
     (pageWidth - margin * 2) / chartsCanvas.width,
     (pageHeight - margin * 2) / chartsCanvas.height
-  );
+  ) * 1.0; // 5% bigger
+
+  pdf.addPage();
   pdf.addImage(
-    chartsCanvas.toDataURL("image/jpeg", 0.7),
+    chartsImg,
     "JPEG",
     (pageWidth - chartsCanvas.width * chartsScale) / 2,
     margin,
@@ -374,25 +468,29 @@ const handleDownloadPDF = async () => {
     undefined,
     "FAST"
   );
-
+}
   // ---------- GRAND TOTALS ----------
   const grandEl = document.getElementById("grandtotals-container");
-  const grandCanvas = await html2canvas(grandEl, { scale: 1.2 });
-  pdf.addPage();
-  let grandScale = Math.min(
-    (pageWidth - margin * 2) / grandCanvas.width,
-    (pageHeight - margin * 2) / grandCanvas.height
-  );
-  pdf.addImage(
-    grandCanvas.toDataURL("image/jpeg", 0.7),
-    "JPEG",
-    (pageWidth - grandCanvas.width * grandScale) / 2,
-    margin,
-    grandCanvas.width * grandScale,
-    grandCanvas.height * grandScale,
-    undefined,
-    "FAST"
-  );
+  if (grandEl) {
+    const grandCanvas = await html2canvas(grandEl, { scale: 1.2 });
+    const grandImg = grandCanvas.toDataURL("image/jpeg", 0.7);
+    const grandScale = Math.min(
+      (pageWidth - margin * 2) / grandCanvas.width,
+      (pageHeight - margin * 2) / grandCanvas.height
+    );
+
+    pdf.addPage();
+    pdf.addImage(
+      grandImg,
+      "JPEG",
+      (pageWidth - grandCanvas.width * grandScale) / 2,
+      margin,
+      grandCanvas.width * grandScale,
+      grandCanvas.height * grandScale,
+      undefined,
+      "FAST"
+    );
+  }
 
   // ---------- SAVE ----------
   pdf.save("orders_stats.pdf");
@@ -478,23 +576,46 @@ const handleDownloadPDF = async () => {
       );
     })}
   </tbody>
-  <tfoot>
-    <tr style={{ backgroundColor: "#e0e0e0", fontWeight: "bold", textAlign: "center" }}>
-      <td colSpan={4}>Σύνολο</td>
-      <td>{groupData.totalNetPrice.toFixed(2)}</td>
-      <td>{groupData.orders.reduce((sum, o) => sum + (o.moneyDetails?.FPA || 0), 0).toFixed(2)}</td>
-      <td>{groupData.totalCash.toFixed(2)}</td>
-      <td>{groupData.totalBank.toFixed(2)}</td>
-      <td>{groupData.orders.reduce((sum, o) => sum + (o.moneyDetails?.timi_Timokatalogou || 0), 0)}</td>
-      <td>{groupData.totalDamages["Μεταφορά εξωτερικού"].toFixed(2)}</td>
-      <td>{groupData.totalDamages["Μεταφορά εσωτερικού"].toFixed(2)}</td>
-      <td>{groupData.totalDamages["Διάφορα"].toFixed(2)}</td>
-      <td>{groupData.totalDamages["Τοποθέτηση"].toFixed(2)}</td>
-      <td>{groupData.totalRevenue.toFixed(2)}</td>
-      <td>{groupData.totalProfit.toFixed(2) - groupData.totalDamages["Τοποθέτηση"].toFixed(2)-groupData.totalDamages["Διάφορα"].toFixed(2)-groupData.totalDamages["Μεταφορά εξωτερικού"].toFixed(2)-groupData.totalDamages["Μεταφορά εσωτερικού"].toFixed(2)-groupData.orders.reduce((sum, o) => sum + (o.moneyDetails?.FPA || 0), 0).toFixed(2)}</td>
-      <td>-</td>
-    </tr>
-  </tfoot>
+ <tfoot>
+  <tr style={{ backgroundColor: "#e0e0e0", fontWeight: "bold", textAlign: "center" }}>
+    <td colSpan={4}>Σύνολο</td>
+    <td>{groupData.totalNetPrice.toFixed(2)}</td>
+    <td>{groupData.orders.reduce((sum, o) => sum + (o.moneyDetails?.FPA || 0), 0).toFixed(2)}</td>
+    <td>{groupData.totalCash.toFixed(2)}</td>
+    <td>{groupData.totalBank.toFixed(2)}</td>
+    <td>{groupData.orders.reduce((sum, o) => sum + (o.moneyDetails?.timi_Timokatalogou || 0), 0)}</td>
+    <td>{groupData.totalDamages["Μεταφορά εξωτερικού"].toFixed(2)}</td>
+    <td>{groupData.totalDamages["Μεταφορά εσωτερικού"].toFixed(2)}</td>
+    <td>{groupData.totalDamages["Διάφορα"].toFixed(2)}</td>
+    <td>{groupData.totalDamages["Τοποθέτηση"].toFixed(2)}</td>
+    <td>{groupData.totalRevenue.toFixed(2)}</td>
+    <td>
+      {(groupData.totalProfit
+        - groupData.totalDamages["Τοποθέτηση"]
+        - groupData.totalDamages["Διάφορα"]
+        - groupData.totalDamages["Μεταφορά εξωτερικού"]
+        - groupData.totalDamages["Μεταφορά εσωτερικού"]
+        - groupData.orders.reduce((sum, o) => sum + (o.moneyDetails?.FPA || 0), 0)
+      ).toFixed(2)}
+    </td>
+    <td>
+      {(() => {
+        // compute average percentage
+        if (!groupData.orders.length) return "0%";
+        const totalPercentage = groupData.orders.reduce((sum, order) => {
+          const damageSummary = summarizeDamages(order.moneyDetails?.damages);
+          const totalDamages = Object.values(damageSummary).reduce((sum, val) => sum + val, 0);
+          const netPrice = (order.moneyDetails?.timi_Polisis || 0) - (order.moneyDetails?.FPA || 0);
+          const profit = (order.moneyDetails?.profit || 0) - totalDamages;
+          return sum + (netPrice ? (profit / netPrice) * 100 : 0);
+        }, 0);
+        const avg = totalPercentage / groupData.orders.length;
+        return avg.toFixed(2) + "%";
+      })()}
+    </td>
+  </tr>
+</tfoot>
+
 </table>
 
           </div>

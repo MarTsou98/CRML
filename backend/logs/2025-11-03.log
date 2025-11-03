@@ -1,0 +1,143 @@
+[2025-11-03 12:40:20] INFO: Login attempt for username: m
+[2025-11-03 12:40:20] WARN: Login failed: User 'm' not found
+[2025-11-03 12:40:58] INFO: Login attempt for username: Marios
+[2025-11-03 12:40:58] INFO: User 'Marios' logged in successfully
+[2025-11-03 13:00:37] INFO: Login attempt for username: Marios
+[2025-11-03 13:00:37] INFO: User 'Marios' logged in successfully
+[2025-11-03 13:22:38] INFO: Login attempt for username: Marios
+[2025-11-03 13:22:38] INFO: User 'Marios' logged in successfully
+[2025-11-03 13:32:29] INFO: Login attempt for username: Marios
+[2025-11-03 13:32:29] INFO: User 'Marios' logged in successfully
+[2025-11-03 13:47:51] INFO: Login attempt for username: Marios
+[2025-11-03 13:47:52] INFO: User 'Marios' logged in successfully
+[2025-11-03 13:53:02] INFO: Login attempt for username: Marios
+[2025-11-03 13:53:02] INFO: User 'Marios' logged in successfully
+[2025-11-03 14:08:51] INFO: Order created successfully
+{
+  "order": {
+    "Lock": false,
+    "invoiceType": "Timologio",
+    "orderType": "Κανονική",
+    "orderNotes": "",
+    "DateOfOrder": "2025-11-04T22:00:00.000Z",
+    "customer_id": "68dd0e5bf542121b9573bc9c",
+    "salesperson_id": "68dcf924570373f00ce9190e",
+    "contractor_id": "68d6592b7f923cf4fa4312b2",
+    "orderedFromCompany": "Decopan",
+    "moneyDetails": {
+      "timi_Timokatalogou": 1,
+      "timi_Polisis": 2,
+      "cash": 0,
+      "bank": 0,
+      "contractor_Share_Cash": 0,
+      "contractor_Share_Bank": 0,
+      "customer_Share_Cash": 0,
+      "customer_Share_Bank": 0,
+      "payments": [],
+      "contractor_remainingShare_Cash": 0,
+      "contractor_remainingShare_Bank": 0,
+      "customer_remainingShare_Cash": 0,
+      "customer_remainingShare_Bank": 0,
+      "remainingCash": 0,
+      "remainingBank": 0,
+      "damages": [],
+      "totalpaid": 0,
+      "totaldamages": 0,
+      "FPA": 0,
+      "profit": 1,
+      "totalCash": 0,
+      "totalBank": 0,
+      "_skipRemainingShareCalc": false
+    },
+    "_id": "69089b539da1379ae47d8ae1",
+    "createdAt": "2025-11-03T12:08:51.837Z",
+    "updatedAt": "2025-11-03T12:08:51.837Z",
+    "__v": 0
+  }
+}
+[2025-11-03 14:49:04] INFO: Order created successfully
+{
+  "order": {
+    "Lock": false,
+    "invoiceType": "Apodiksi",
+    "orderType": "Κανονική",
+    "orderNotes": "",
+    "DateOfOrder": "2025-11-03T22:00:00.000Z",
+    "customer_id": "68dd0e5bf542121b9573bc9c",
+    "salesperson_id": "68dcf924570373f00ce9190e",
+    "contractor_id": "68c01704def3f14ccad0fcf3",
+    "orderedFromCompany": "Sovet",
+    "moneyDetails": {
+      "timi_Timokatalogou": 1,
+      "timi_Polisis": 1000,
+      "cash": 0,
+      "bank": 0,
+      "contractor_Share_Cash": 0,
+      "contractor_Share_Bank": 0,
+      "customer_Share_Cash": 0,
+      "customer_Share_Bank": 0,
+      "payments": [],
+      "contractor_remainingShare_Cash": 0,
+      "contractor_remainingShare_Bank": 0,
+      "customer_remainingShare_Cash": 0,
+      "customer_remainingShare_Bank": 0,
+      "remainingCash": 0,
+      "remainingBank": 0,
+      "damages": [],
+      "totalpaid": 0,
+      "totaldamages": 0,
+      "FPA": 0,
+      "profit": 999,
+      "totalCash": 0,
+      "totalBank": 0,
+      "_skipRemainingShareCalc": false
+    },
+    "_id": "6908a4c08f4965b73bd16a18",
+    "createdAt": "2025-11-03T12:49:04.060Z",
+    "updatedAt": "2025-11-03T12:49:04.060Z",
+    "__v": 0
+  }
+}
+[2025-11-03 14:51:07] INFO: Order created successfully
+{
+  "order": {
+    "Lock": false,
+    "invoiceType": "Timologio",
+    "orderType": "Σύνθεση Ερμαρίων",
+    "orderNotes": "",
+    "DateOfOrder": "2025-11-03T22:00:00.000Z",
+    "customer_id": "68dd0e5bf542121b9573bc9c",
+    "salesperson_id": "68dcf924570373f00ce9190e",
+    "contractor_id": "68c01704def3f14ccad0fcf3",
+    "orderedFromCompany": "Doors",
+    "moneyDetails": {
+      "timi_Timokatalogou": 1,
+      "timi_Polisis": 3,
+      "cash": 0,
+      "bank": 0,
+      "contractor_Share_Cash": 0,
+      "contractor_Share_Bank": 0,
+      "customer_Share_Cash": 0,
+      "customer_Share_Bank": 0,
+      "payments": [],
+      "contractor_remainingShare_Cash": 0,
+      "contractor_remainingShare_Bank": 0,
+      "customer_remainingShare_Cash": 0,
+      "customer_remainingShare_Bank": 0,
+      "remainingCash": 0,
+      "remainingBank": 0,
+      "damages": [],
+      "totalpaid": 0,
+      "totaldamages": 0,
+      "FPA": 0,
+      "profit": 2,
+      "totalCash": 0,
+      "totalBank": 0,
+      "_skipRemainingShareCalc": false
+    },
+    "_id": "6908a53b8f4965b73bd16ab4",
+    "createdAt": "2025-11-03T12:51:07.843Z",
+    "updatedAt": "2025-11-03T12:51:07.843Z",
+    "__v": 0
+  }
+}
