@@ -321,9 +321,11 @@ function StatsTable({ data, groupBy, start, end }) {
 const handleDownloadPDF = async () => {
   if (!containerRef.current) return;
 
- let margin = 60;
-const pdf = new jsPDF("l", "pt", "a4");
-pdf.setFont("NotoSans-Regular");
+  const topMargin = 30;
+  const sideMargin = 40;
+  const pdf = new jsPDF("l", "pt", "a4");
+  pdf.setFont("NotoSans-Regular");
+
   const pageWidth = pdf.internal.pageSize.getWidth();
   const pageHeight = pdf.internal.pageSize.getHeight();
 
@@ -331,169 +333,124 @@ pdf.setFont("NotoSans-Regular");
   const tableContainer = document.getElementById("table-container");
   const tables = tableContainer.querySelectorAll("table");
 
-  if (tables.length === 0) {
-    console.warn("No tables found in #table-container");
-  } else {
-    let startY = margin;
-    margin = 5
+  if (tables.length > 0) {
+    const headerHeight = 30;
+    const headerMargin = 15;
+    let startY = topMargin + headerHeight + headerMargin + 10;
+
     tables.forEach((table, i) => {
-  // Get the group title from the <h3> just above the table
-  const groupTitleEl = table.previousElementSibling; // assumes <h3> is right above table
-  const groupTitle = groupTitleEl ? groupTitleEl.textContent : "";
+      const groupTitleEl = table.previousElementSibling;
+      const groupTitle = groupTitleEl ? groupTitleEl.textContent : "";
 
-autoTable(pdf, {
-  html: table,
-  startY,
-  
-  theme: "grid",
-  
-  styles: {
-  font: "NotoSans-Regular",
-  fontSize:8,
-  cellPadding: 4,
-  overflow: 'linebreak', // wrap text within cell width
-  // optional: prevent breaking numbers badly
-  halign: 'right',       // numbers align nicely
-  valign: 'middle',
-     textColor: 20
-},
-   tableWidth: 'auto', // <-- lets table expand to content
-  headStyles: {
-    font: "NotoSans_Condensed-Bold",
-    fontStyle: "normal",
-    fontSize: 8,
-    fillColor: [230, 230, 230],
-    textColor: 20
-  },
-  footStyles: {
-    font: "NotoSans_Condensed-Bold",
-    fontStyle: "normal",
-    fontSize: 8,
-    fillColor: [224, 224, 224],
-    textColor: 20
-  },
-  columnStyles: {
-    0: { cellWidth: 90 },
-   // 1: { cellWidth: 60 },
-    //2: { cellWidth: 60 },
-    //3: { cellWidth: 60 },
-    //4: { cellWidth: 100 },
-   // 5: { cellWidth: 100 },
-   // 6: { cellWidth: 40 },
-   // 7: { cellWidth: 60 },
-   // 8: { cellWidth: 60 },
-   // 9: { cellWidth: 60 },
-   // 10: { cellWidth: 40 },
-  //  11: { cellWidth: 40 },
-   // 12: { cellWidth: 40 },
-   // 13: { cellWidth: 40 },
-   // 14: { cellWidth: 40 },
-   // 15: { cellWidth: 40 },
-   // 16: { cellWidth: 40 }
-  },
-  margin: { 
-    left: 40,
-    right: 40,
-    top:40,
-    bottom:25
-    
-  },
-  didDrawPage: (data) => {
-  const headerHeight = 30;
-  const pageWidth = pdf.internal.pageSize.getWidth();
+      autoTable(pdf, {
+        html: table,
+        startY: undefined,
+        margin: { top: startY, left: sideMargin, right: sideMargin, bottom: 25 },
+        theme: "grid",
+        styles: {
+          font: "NotoSans-Regular",
+          fontSize: 8,
+          cellPadding: 4,
+          overflow: "linebreak",
+          halign: "right",
+          valign: "middle",
+          textColor: 20,
+          lineColor: [0, 0, 0],
+          lineWidth: 0.5,
+        },
+        headStyles: {
+          font: "NotoSans_Condensed-Bold",
+          fontStyle: "normal",
+          fontSize: 8,
+          fillColor: [230, 230, 230],
+          textColor: 20,
+          lineColor: [0, 0, 0],
+          lineWidth: 0.5,
+        },
+        footStyles: {
+          font: "NotoSans_Condensed-Bold",
+          fontStyle: "normal",
+          fontSize: 8,
+          fillColor: [224, 224, 224],
+          textColor: 20,
+          lineColor: [0, 0, 0],
+          lineWidth: 0.5,
+        },
+        columnStyles: { 0: { cellWidth: 90, fontSize: 6 }, 1: { fontSize: 6 } },
+        didDrawPage: () => {
+          // Gradient header
+          drawGradientHeader(pdf, 0, topMargin, pageWidth, headerHeight, [139, 0, 0], [255, 255, 255]);
+          // Main title
+          pdf.setFont("NotoSans_Condensed-Bold");
+          pdf.setFontSize(18);
+          pdf.setTextColor(255, 255, 255);
+          pdf.text("Lube Salonicco", sideMargin, topMargin + 20);
+          // Date range
+          pdf.setFont("NotoSans-Regular");
+          pdf.setFontSize(12);
+          pdf.setTextColor(255, 255, 255);
+          const dateRangeText = `${formatDate(start)} - ${formatDate(end)}`;
+          const titleWidth = pdf.getTextWidth("Lube Salonicco         ");
+          pdf.text(dateRangeText, sideMargin + titleWidth + 10, topMargin + 20);
+          // Group title
+          if (groupTitle) {
+            pdf.setFont("NotoSans_Condensed-Bold");
+            pdf.setFontSize(12);
+            pdf.setTextColor(0, 0, 0);
+            pdf.text(groupTitle, sideMargin, topMargin + headerHeight + headerMargin);
+          }
+        },
+      });
 
-  // Gradient header
-  drawGradientHeader(pdf, 0, 0, pageWidth, headerHeight, [139, 0, 0], [255, 255, 255]);
-
-  // Lube Salonicco title
-  pdf.setFont("NotoSans_Condensed-Bold");
-  pdf.setFontSize(18);
-  pdf.setTextColor(255, 255, 255);
-  pdf.text("Lube Salonicco", 10, 20);
-    pdf.marginTop = headerHeight + 10; // adjust top margin for table
-  // Date range next to the title
-  pdf.setFont("NotoSans-Regular");
-  pdf.setFontSize(12);
-  pdf.setTextColor(255, 255, 255);
-  const dateRangeText = `${formatDate(start)} - ${formatDate(end)}`;
-  
-  // Position date range to the right of the title
-  const titleWidth = pdf.getTextWidth("Lube Salonicco         ");
-  pdf.text(dateRangeText, 10 + titleWidth + 10, 20); // 10pt padding after title
-
-  // Logo on the right
-  //const iconBase64 = "data:image/png;base64,...."; // full Base64 string here
-  const iconSize = 20;
-  const iconX = pageWidth - 10 - iconSize;
-  const iconY = 5;
-  //pdf.addImage(iconBase64, "PNG", iconX, iconY, iconSize, iconSize);
-
-  // Optional: group title on first page
-  if (data.pageNumber === 1) {
-    const groupTitleEl = table.previousElementSibling;
-    const groupTitle = groupTitleEl ? groupTitleEl.textContent : "";
-    pdf.setFont("NotoSans_Condensed-Bold");
-    pdf.setFontSize(12);
-    pdf.setTextColor(0, 0, 0);
-    pdf.text(groupTitle, 10, startY - 10);
+      startY = pdf.lastAutoTable?.finalY + 20;
+      if (i < tables.length - 1) pdf.addPage();
+    });
   }
-}
-});
-
-
-
-
-  if (i < tables.length - 1) pdf.addPage();
-});
-
-  }
-
-  let currentY = pdf.lastAutoTable?.finalY || margin;
 
   // ---------- CHARTS ----------
-const chartsEl = document.getElementById("charts-container");
-if (chartsEl) {
-  const chartDivs = chartsEl.querySelectorAll("div");
-  const oldHeights = [];
+  const chartsEl = document.getElementById("charts-container");
+  if (chartsEl) {
+    const chartDivs = chartsEl.querySelectorAll("div");
 
-  // Temporarily reset heights to auto for proper capture
-  chartDivs.forEach((div, i) => {
-    oldHeights[i] = div.style.height;
-    div.style.height = "auto";
-  });
+    for (let i = 1; i < chartDivs.length; i++) {
+      const div = chartDivs[i];
+      const oldHeight = div.style.height;
+      div.style.height = "auto";
 
-  // Increase scale for higher resolution + bigger image
-  const chartsCanvas = await html2canvas(chartsEl, { scale: 1.5 }); // was 1.2
-  chartDivs.forEach((div, i) => (div.style.height = oldHeights[i]));
+      const canvas = await html2canvas(div, { scale: 3 }); // high resolution
+      div.style.height = oldHeight;
 
-  const chartsImg = chartsCanvas.toDataURL("image/jpeg", 0.7);
+      const imgData = canvas.toDataURL("image/jpeg", 1.0);
 
-  // Compute scale to fit page, but allow it to take slightly more space
-  const chartsScale = Math.min(
-    (pageWidth - margin * 2) / chartsCanvas.width,
-    (pageHeight - margin * 2) / chartsCanvas.height
-  ) * 1.0; // 5% bigger
+      // Fill page while maintaining aspect ratio
+      const margin = 20;
+      const scaleX = (pageWidth - margin * 2) / canvas.width;
+      const scaleY = (pageHeight - margin * 2) / canvas.height;
+      const chartsScale = Math.min(scaleX, scaleY);
 
-  pdf.addPage();
-  pdf.addImage(
-    chartsImg,
-    "JPEG",
-    (pageWidth - chartsCanvas.width * chartsScale) / 2,
-    margin,
-    chartsCanvas.width * chartsScale,
-    chartsCanvas.height * chartsScale,
-    undefined,
-    "FAST"
-  );
-}
+      pdf.addPage();
+      pdf.addImage(
+        imgData,
+        "JPEG",
+        (pageWidth - canvas.width * chartsScale) / 2,
+        margin,
+        canvas.width * chartsScale,
+        canvas.height * chartsScale,
+        undefined,
+        "FAST"
+      );
+    }
+  }
+
   // ---------- GRAND TOTALS ----------
   const grandEl = document.getElementById("grandtotals-container");
   if (grandEl) {
-    const grandCanvas = await html2canvas(grandEl, { scale: 1.2 });
-    const grandImg = grandCanvas.toDataURL("image/jpeg", 0.7);
+    const grandCanvas = await html2canvas(grandEl, { scale: 2 });
+    const grandImg = grandCanvas.toDataURL("image/jpeg", 0.9);
+
     const grandScale = Math.min(
-      (pageWidth - margin * 2) / grandCanvas.width,
-      (pageHeight - margin * 2) / grandCanvas.height
+      (pageWidth - sideMargin * 2) / grandCanvas.width,
+      (pageHeight - topMargin * 2) / grandCanvas.height
     );
 
     pdf.addPage();
@@ -501,7 +458,7 @@ if (chartsEl) {
       grandImg,
       "JPEG",
       (pageWidth - grandCanvas.width * grandScale) / 2,
-      margin,
+      topMargin,
       grandCanvas.width * grandScale,
       grandCanvas.height * grandScale,
       undefined,
@@ -512,6 +469,7 @@ if (chartsEl) {
   // ---------- SAVE ----------
   pdf.save("orders_stats.pdf");
 };
+
 
 
   return (
