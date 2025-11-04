@@ -349,7 +349,7 @@ autoTable(pdf, {
   
   styles: {
   font: "NotoSans-Regular",
-  fontSize: 10,
+  fontSize:8,
   cellPadding: 4,
   overflow: 'linebreak', // wrap text within cell width
   // optional: prevent breaking numbers badly
@@ -360,14 +360,14 @@ autoTable(pdf, {
   headStyles: {
     font: "NotoSans_Condensed-Bold",
     fontStyle: "normal",
-    fontSize: 9,
+    fontSize: 8,
     fillColor: [230, 230, 230],
     textColor: 20
   },
   footStyles: {
     font: "NotoSans_Condensed-Bold",
     fontStyle: "normal",
-    fontSize: 10,
+    fontSize: 8,
     fillColor: [224, 224, 224],
     textColor: 20
   },
