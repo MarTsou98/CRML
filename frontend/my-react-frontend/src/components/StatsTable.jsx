@@ -376,20 +376,20 @@ autoTable(pdf, {
    // 1: { cellWidth: 60 },
     //2: { cellWidth: 60 },
     //3: { cellWidth: 60 },
-    /*4: { cellWidth: 100 },
-    5: { cellWidth: 100 },
-    6: { cellWidth: 40 },
-    7: { cellWidth: 40 },
-    8: { cellWidth: 40 },
-    9: { cellWidth: 40 },
-    10: { cellWidth: 40 },
-    11: { cellWidth: 40 },
-    12: { cellWidth: 40 },
-    13: { cellWidth: 40 },
-    14: { cellWidth: 40 },
-    15: { cellWidth: 40 },
-    16: { cellWidth: 40 }
-  */},
+    //4: { cellWidth: 100 },
+   // 5: { cellWidth: 100 },
+   // 6: { cellWidth: 40 },
+   // 7: { cellWidth: 60 },
+   // 8: { cellWidth: 60 },
+   // 9: { cellWidth: 60 },
+   // 10: { cellWidth: 40 },
+  //  11: { cellWidth: 40 },
+   // 12: { cellWidth: 40 },
+   // 13: { cellWidth: 40 },
+   // 14: { cellWidth: 40 },
+   // 15: { cellWidth: 40 },
+   // 16: { cellWidth: 40 }
+  },
   margin: { 
     left: 10,
     right: 10,
@@ -579,16 +579,16 @@ if (chartsEl) {
  <tfoot>
   <tr style={{ backgroundColor: "#e0e0e0", fontWeight: "bold", textAlign: "center" }}>
     <td colSpan={4}>Σύνολο</td>
-    <td>{groupData.totalNetPrice.toFixed(2)}</td>
-    <td>{groupData.orders.reduce((sum, o) => sum + (o.moneyDetails?.FPA || 0), 0).toFixed(2)}</td>
-    <td>{groupData.totalCash.toFixed(2)}</td>
-    <td>{groupData.totalBank.toFixed(2)}</td>
+    <td>{groupData.totalNetPrice.toFixed(0)}</td>
+    <td>{groupData.orders.reduce((sum, o) => sum + (o.moneyDetails?.FPA || 0), 0).toFixed(0)}</td>
+    <td>{groupData.totalCash.toFixed(0)}</td>
+    <td>{groupData.totalBank.toFixed(0)}</td>
     <td>{groupData.orders.reduce((sum, o) => sum + (o.moneyDetails?.timi_Timokatalogou || 0), 0)}</td>
-    <td>{groupData.totalDamages["Μεταφορά εξωτερικού"].toFixed(2)}</td>
-    <td>{groupData.totalDamages["Μεταφορά εσωτερικού"].toFixed(2)}</td>
-    <td>{groupData.totalDamages["Διάφορα"].toFixed(2)}</td>
-    <td>{groupData.totalDamages["Τοποθέτηση"].toFixed(2)}</td>
-    <td>{groupData.totalRevenue.toFixed(2)}</td>
+    <td>{groupData.totalDamages["Μεταφορά εξωτερικού"].toFixed(0)}</td>
+    <td>{groupData.totalDamages["Μεταφορά εσωτερικού"].toFixed(0)}</td>
+    <td>{groupData.totalDamages["Διάφορα"].toFixed(0)}</td>
+    <td>{groupData.totalDamages["Τοποθέτηση"].toFixed(0)}</td>
+    <td>{groupData.totalRevenue.toFixed(0)}</td>
     <td>
       {(groupData.totalProfit
         - groupData.totalDamages["Τοποθέτηση"]
@@ -596,7 +596,7 @@ if (chartsEl) {
         - groupData.totalDamages["Μεταφορά εξωτερικού"]
         - groupData.totalDamages["Μεταφορά εσωτερικού"]
         - groupData.orders.reduce((sum, o) => sum + (o.moneyDetails?.FPA || 0), 0)
-      ).toFixed(2)}
+      ).toFixed(0)}
     </td>
     <td>
       {(() => {
