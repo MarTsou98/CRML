@@ -321,8 +321,8 @@ function StatsTable({ data, groupBy, start, end }) {
 const handleDownloadPDF = async () => {
   if (!containerRef.current) return;
 
-  const topMargin = 30;
-  const sideMargin = 40;
+  const topMargin = 30; // top margin for the whole content
+  const sideMargin = 40; // left/right margin
   const pdf = new jsPDF("l", "pt", "a4");
   pdf.setFont("NotoSans-Regular");
 
@@ -333,19 +333,28 @@ const handleDownloadPDF = async () => {
   const tableContainer = document.getElementById("table-container");
   const tables = tableContainer.querySelectorAll("table");
 
-  if (tables.length > 0) {
-    const headerHeight = 30;
-    const headerMargin = 15;
+  if (tables.length === 0) {
+    console.warn("No tables found in #table-container");
+  } else {
+    const headerHeight = 30; // gradient header height
+    const headerMargin = 15; // padding below header
     let startY = topMargin + headerHeight + headerMargin + 10;
 
     tables.forEach((table, i) => {
       const groupTitleEl = table.previousElementSibling;
       const groupTitle = groupTitleEl ? groupTitleEl.textContent : "";
 
+      const tableTopMargin = topMargin + headerHeight + headerMargin + 10;
+
       autoTable(pdf, {
         html: table,
         startY: undefined,
-        margin: { top: startY, left: sideMargin, right: sideMargin, bottom: 25 },
+        margin: {
+          top: tableTopMargin,
+          left: sideMargin,
+          right: sideMargin,
+          bottom: 25,
+        },
         theme: "grid",
         styles: {
           font: "NotoSans-Regular",
@@ -358,6 +367,7 @@ const handleDownloadPDF = async () => {
           lineColor: [0, 0, 0],
           lineWidth: 0.5,
         },
+        tableWidth: "auto",
         headStyles: {
           font: "NotoSans_Condensed-Bold",
           fontStyle: "normal",
@@ -377,22 +387,25 @@ const handleDownloadPDF = async () => {
           lineWidth: 0.5,
         },
         columnStyles: { 0: { cellWidth: 90, fontSize: 6 }, 1: { fontSize: 6 } },
-        didDrawPage: () => {
-          // Gradient header
+        didDrawPage: (data) => {
+          // Draw gradient header
           drawGradientHeader(pdf, 0, topMargin, pageWidth, headerHeight, [139, 0, 0], [255, 255, 255]);
-          // Main title
+
+          // Draw main title
           pdf.setFont("NotoSans_Condensed-Bold");
           pdf.setFontSize(18);
           pdf.setTextColor(255, 255, 255);
           pdf.text("Lube Salonicco", sideMargin, topMargin + 20);
-          // Date range
+
+          // Draw date range
           pdf.setFont("NotoSans-Regular");
           pdf.setFontSize(12);
           pdf.setTextColor(255, 255, 255);
           const dateRangeText = `${formatDate(start)} - ${formatDate(end)}`;
           const titleWidth = pdf.getTextWidth("Lube Salonicco         ");
           pdf.text(dateRangeText, sideMargin + titleWidth + 10, topMargin + 20);
-          // Group title
+
+          // Draw group title at top of every page for that table
           if (groupTitle) {
             pdf.setFont("NotoSans_Condensed-Bold");
             pdf.setFontSize(12);
@@ -417,15 +430,14 @@ const handleDownloadPDF = async () => {
       const oldHeight = div.style.height;
       div.style.height = "auto";
 
-      const canvas = await html2canvas(div, { scale: 3 }); // high resolution
+      const canvas = await html2canvas(div, { scale: 2 });
       div.style.height = oldHeight;
 
-      const imgData = canvas.toDataURL("image/jpeg", 1.0);
+      const imgData = canvas.toDataURL("image/jpeg", 0.9);
 
-      // Fill page while maintaining aspect ratio
-      const margin = 20;
-      const scaleX = (pageWidth - margin * 2) / canvas.width;
-      const scaleY = (pageHeight - margin * 2) / canvas.height;
+      const chartMargin = 20; // margin around chart
+      const scaleX = (pageWidth - chartMargin * 2) / canvas.width;
+      const scaleY = (pageHeight - chartMargin * 2) / canvas.height;
       const chartsScale = Math.min(scaleX, scaleY);
 
       pdf.addPage();
@@ -433,7 +445,7 @@ const handleDownloadPDF = async () => {
         imgData,
         "JPEG",
         (pageWidth - canvas.width * chartsScale) / 2,
-        margin,
+        chartMargin,
         canvas.width * chartsScale,
         canvas.height * chartsScale,
         undefined,
@@ -445,8 +457,8 @@ const handleDownloadPDF = async () => {
   // ---------- GRAND TOTALS ----------
   const grandEl = document.getElementById("grandtotals-container");
   if (grandEl) {
-    const grandCanvas = await html2canvas(grandEl, { scale: 2 });
-    const grandImg = grandCanvas.toDataURL("image/jpeg", 0.9);
+    const grandCanvas = await html2canvas(grandEl, { scale: 1.2 });
+    const grandImg = grandCanvas.toDataURL("image/jpeg", 0.7);
 
     const grandScale = Math.min(
       (pageWidth - sideMargin * 2) / grandCanvas.width,
@@ -469,7 +481,6 @@ const handleDownloadPDF = async () => {
   // ---------- SAVE ----------
   pdf.save("orders_stats.pdf");
 };
-
 
 
   return (
