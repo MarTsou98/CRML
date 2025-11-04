@@ -410,7 +410,7 @@ autoTable(pdf, {
   pdf.setFontSize(18);
   pdf.setTextColor(255, 255, 255);
   pdf.text("Lube Salonicco", 10, 20);
-
+    pdf.marginTop = headerHeight + 10; // adjust top margin for table
   // Date range next to the title
   pdf.setFont("NotoSans-Regular");
   pdf.setFontSize(12);
