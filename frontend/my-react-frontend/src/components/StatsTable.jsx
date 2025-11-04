@@ -354,7 +354,8 @@ autoTable(pdf, {
   overflow: 'linebreak', // wrap text within cell width
   // optional: prevent breaking numbers badly
   halign: 'right',       // numbers align nicely
-  valign: 'middle'
+  valign: 'middle',
+     textColor: 20
 },
    tableWidth: 'auto', // <-- lets table expand to content
   headStyles: {
@@ -372,7 +373,7 @@ autoTable(pdf, {
     textColor: 20
   },
   columnStyles: {
-    0: { cellWidth: 100 },
+    0: { cellWidth: 90 },
    // 1: { cellWidth: 60 },
     //2: { cellWidth: 60 },
     //3: { cellWidth: 60 },
@@ -391,36 +392,52 @@ autoTable(pdf, {
    // 16: { cellWidth: 40 }
   },
   margin: { 
-    left: 10,
-    right: 10,
+    left: 40,
+    right: 40,
+    top:40,
+    bottom:25
     
   },
   didDrawPage: (data) => {
-    const headerHeight = 30;
-    const pageWidth = pdf.internal.pageSize.getWidth();
+  const headerHeight = 30;
+  const pageWidth = pdf.internal.pageSize.getWidth();
 
-    drawGradientHeader(
-      pdf,
-      0,
-      0,
-      pageWidth,
-      headerHeight,
-      [139, 0, 0],   
-      [255, 255, 255]
-    );
+  // Gradient header
+  drawGradientHeader(pdf, 0, 0, pageWidth, headerHeight, [139, 0, 0], [255, 255, 255]);
 
+  // Lube Salonicco title
+  pdf.setFont("NotoSans_Condensed-Bold");
+  pdf.setFontSize(18);
+  pdf.setTextColor(255, 255, 255);
+  pdf.text("Lube Salonicco", 10, 20);
+
+  // Date range next to the title
+  pdf.setFont("NotoSans-Regular");
+  pdf.setFontSize(12);
+  pdf.setTextColor(255, 255, 255);
+  const dateRangeText = `${formatDate(start)} - ${formatDate(end)}`;
+  
+  // Position date range to the right of the title
+  const titleWidth = pdf.getTextWidth("Lube Salonicco         ");
+  pdf.text(dateRangeText, 10 + titleWidth + 10, 20); // 10pt padding after title
+
+  // Logo on the right
+  //const iconBase64 = "data:image/png;base64,...."; // full Base64 string here
+  const iconSize = 20;
+  const iconX = pageWidth - 10 - iconSize;
+  const iconY = 5;
+  //pdf.addImage(iconBase64, "PNG", iconX, iconY, iconSize, iconSize);
+
+  // Optional: group title on first page
+  if (data.pageNumber === 1) {
+    const groupTitleEl = table.previousElementSibling;
+    const groupTitle = groupTitleEl ? groupTitleEl.textContent : "";
     pdf.setFont("NotoSans_Condensed-Bold");
-    pdf.setFontSize(18);
-    pdf.setTextColor(255, 255, 255);
-    pdf.text("Lube Salonicco", margin, 20);
-
-    if (data.pageNumber === 1) {
-      pdf.setFont("NotoSans_Condensed-Bold");
-      pdf.setFontSize(12);
-      pdf.setTextColor(0, 0, 0);
-      pdf.text(groupTitle, margin, startY - 10);
-    }
+    pdf.setFontSize(12);
+    pdf.setTextColor(0, 0, 0);
+    pdf.text(groupTitle, 10, startY - 10);
   }
+}
 });
 
 
@@ -602,13 +619,16 @@ if (chartsEl) {
       {(() => {
         // compute average percentage
         if (!groupData.orders.length) return "0%";
-        const totalPercentage = groupData.orders.reduce((sum, order) => {
-          const damageSummary = summarizeDamages(order.moneyDetails?.damages);
-          const totalDamages = Object.values(damageSummary).reduce((sum, val) => sum + val, 0);
-          const netPrice = (order.moneyDetails?.timi_Polisis || 0) - (order.moneyDetails?.FPA || 0);
-          const profit = (order.moneyDetails?.profit || 0) - totalDamages;
-          return sum + (netPrice ? (profit / netPrice) * 100 : 0);
-        }, 0);
+       const totalPercentage = groupData.orders.reduce((sum, order) => {
+  const damageSummary = summarizeDamages(order.moneyDetails?.damages);
+  const totalDamages = Object.values(damageSummary).reduce((sum, val) => sum + val, 0);
+  const netPrice = (order.moneyDetails?.timi_Polisis || 0) - (order.moneyDetails?.FPA || 0);
+  const difference = netPrice
+                     - (order.moneyDetails?.timi_Timokatalogou || 0)
+                     - totalDamages;
+  const pct = netPrice ? (difference / netPrice) * 100 : 0;
+  return sum + pct;
+}, 0);
         const avg = totalPercentage / groupData.orders.length;
         return avg.toFixed(2) + "%";
       })()}
