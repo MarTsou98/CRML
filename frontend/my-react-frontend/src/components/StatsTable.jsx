@@ -435,7 +435,7 @@ const handleDownloadPDF = async () => {
 
       const imgData = canvas.toDataURL("image/jpeg", 0.9);
 
-      const chartMargin = 20; // margin around chart
+      const chartMargin = 40; // margin around chart
       const scaleX = (pageWidth - chartMargin * 2) / canvas.width;
       const scaleY = (pageHeight - chartMargin * 2) / canvas.height;
       const chartsScale = Math.min(scaleX, scaleY);
