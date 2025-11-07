@@ -626,16 +626,16 @@ const handleDownloadPDF = async () => {
       >
         <h1>Σύνολα</h1>
         {[
-          { label: "Net Price", value: grandTotals.netPrice, color: "#4CAF50" },
-          { label: "Revenue", value: grandTotals.revenue, color: "#2196F3" },
+          { label: "Net Price", value: grandTotals.netPrice, fontSize:16, color: "#4CAF50" },
+          { label: "Revenue", value: grandTotals.revenue, fontSize:16, color: "#2196F3" },
 { label: "Profit", value: grandTotals.profit 
   - grandTotals.damages["Τοποθέτηση"] 
   - grandTotals.damages["Διάφορα"] 
   - grandTotals.damages["Μεταφορά εξωτερικού"] 
   - grandTotals.damages["Μεταφορά εσωτερικού"] - grandTotals.FPA, 
   color: "#FF9800" },
-          { label: "Cash", value: grandTotals.cash, color: "#9C27B0" },
-          { label: "Bank", value: grandTotals.bank, color: "#00BCD4" },
+          { label: "Cash", value: grandTotals.cash, fontSize:16, color: "#9C27B0" },
+          { label: "Bank", value: grandTotals.bank, fontSize:16, color: "#00BCD4" },
           { label: "Μεταφορά Εξωτ.", value: grandTotals.damages["Μεταφορά εξωτερικού"], color: "#F44336" },
           { label: "Μεταφορά Εσωτ.", value: grandTotals.damages["Μεταφορά εσωτερικού"], color: "#FF5722" },
           { label: "Διάφορα Έξοδα", value: grandTotals.damages["Διάφορα"], color: "#607D8B" },
@@ -645,7 +645,7 @@ const handleDownloadPDF = async () => {
             width: "100%", background: "#fff", borderLeft: `6px solid ${item.color}`,
             borderRadius: "10px", padding: "1.5rem 2rem", textAlign: "center", boxShadow: "0 3px 8px rgba(0,0,0,0.08)",
           }}>
-            <div style={{ fontSize: "1rem", color: "#555", marginBottom: "0.5rem" }}>{item.label}</div>
+            <div style={{ fontSize: "1.8rem", color: "#555", marginBottom: "0.5rem" }}>{item.label}</div>
             <div style={{ fontSize: "1.8rem", fontWeight: "600", color: "#111" }}>{item.value.toFixed(2)}</div>
           </div>
         ))}
